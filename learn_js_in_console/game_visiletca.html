@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> game</title>
+</head>
+<body>
+
+<!-- <script>
+	var name = prompt("как вас зовут?"); //открытие диалового окна с возможностью что-то написать
+	console.log("привет, " + name);
+
+	var likesCats = confirm("Тебе нравятся кошки?"); //открытие д.о. с вопросами
+	if (likesCats) {
+		console.log("Ты молодец");
+	} else {
+		console.log("Ты все равно молодец!");
+	}
+
+	alert("js - is great");// для выдачи информации
+</script>
+ -->
+ <h1> Виселица! </h1>
+ <script>
+
+ 	var words = [
+ 	"жопа",
+ 	"кукищ",
+ 	"туцтуц",
+ 	"перпендикулярный"];
+
+	// Выбираем случайное слово
+ 	var word = words[Math.floor(Math.random() * words.length)];
+
+ 	// Создаем итоговый массив
+ 	var answer_array = [];
+ 	for (var i = 0; i < word.length; i++) {
+ 		answer_array[i] = "_";
+ 	}
+
+
+ 	var remaining_letters = word.length;
+ 	var time = 20;
+
+ 	// Игровой цикл
+ 	while (remaining_letters > 0 && time > 0) {
+	 	alert(answer_array.join(" "));
+
+	// Запрашиваем вариант ответа
+ 	var guess = prompt("Угадайте букву или нажмите Отмена для выхода из игры");
+	
+	//второй вариант поставить ограничение в попытках
+ // 	if (guess == time) {
+	//  	break;
+	// }
+
+ 	if (guess === null) {
+ 		// Выходим из игрового цикла
+ 		break;
+ 	} else if (guess.length !== 1) {
+ 		alert("Пожалуйста, введите только одну букву");
+	} else {
+		time--;
+		guess = guess.toLowerCase();
+ 		// Обновляем состояние игры
+ 		for (var j = 0; j < word.length; j++) { //мы проверяем каждую букву переменной word
+ 			if (word[j] === guess && answer_array[j] === "_") { //проверяем, совпадает ли текущая буква (word[j]) с ответом игрока
+ 				answer_array[j] = guess;
+ 				remaining_letters--;
+			}
+ 		}
+ 	}
+ // Конец игрового цикла
+ }
+ 	alert(answer_array.join(" "));
+ 	if (time > 0) {
+ 		alert("Отлично! было загадано слово " + word);
+ 	}else {
+	 	alert("Очень плохо! было загадано слово " + word); 
+	}
+ </script>
+
+</body>
+</html>
