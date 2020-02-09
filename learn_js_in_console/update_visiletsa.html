@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> game</title>
+	<meta charset="utf-8">
+</head>
+<body>
+
+ <h1> Виселица! </h1>
+ <script>
+ 	var pick_word = function () {
+ 		// Возвращает случайно выбранное слово
+		var words = [
+		 	"жопа",
+		 	"кукищ",
+		 	"туцтуц",
+		 	"перпендикулярный"
+		];
+
+		// Выбираем случайное слово
+		return words[Math.floor(Math.random() * words.length)];
+ 	};
+
+	var setup_answer_array = function (word) {
+		// Возвращает итоговый массив для заданного слова word
+		var answer_array = [];
+	 	for (var i = 0; i < word.length; i++) {
+	 		answer_array[i] = "_";
+	 	}
+	 	return answer_array;
+	};
+
+	var show_player_progress = function (answer_array) {
+		// С помощью alert отображает текущее состояние игры
+		alert(answer_array.join(" "));
+	};
+
+	var get_guess = function () {
+		// Запрашивает ответ игрока с помощью prompt
+		return prompt("Угадайте букву или нажмите Отмена для выхода из игры")
+	};
+ 	
+	var updates_game_state = function (guess, word, answer_array) {
+	    // Обновляет answer_arrays согласно ответу игрока (guess)
+    	// возвращает число, обозначающее, сколько раз буква guess
+    	// встречается в слове, чтобы можно было обновить значение
+    	// remaining_letters
+		var appearances = 0;
+		for (var j = 0; j < word.length; j++) { //мы проверяем каждую букву переменной word
+ 			if (word[j] === guess) { //проверяем, совпадает ли текущая буква (word[j]) с ответом игрока
+ 				answer_array[j] = guess;
+ 				appearances++;
+			}
+		}
+		return appearances;
+	};
+
+	var show_answer_congratulate_player = function (answer_array) {
+	    // С помощью alert показывает игроку отгаданное слово
+        // и поздравляет его с победой
+		show_player_progress(answer_array);
+		alert("Отлично! было загадано слово " + answer_array.join(""));
+	};
+
+	var word = pick_word(); // word: загаданное слово
+	var answer_array = setup_answer_array(word);  // answer_array: итоговый массив
+ 	var remaining_letters = word.length;  // remaining_letters: сколько букв осталось угадать
+
+ 	// Игровой цикл
+ 	while (remaining_letters > 0) {
+ 		show_player_progress(answer_array); 
+ 		var guess = get_guess(); // guess: ответ игрока
+	 	if (guess === null) {
+	 		break;
+	 	} else if (guess.length !== 1) {
+	 		alert("Пожалуйста, введите только одну букву");
+		} else {
+			// correct_guess: количество открытых букв
+			var correct_guess = updates_game_state(guess, word, answer_array);
+			remaining_letters -= correct_guess;
+	 		}
+	 	}
+	 	show_answer_congratulate_player(answer_array);
+
+ </script>
+
+</body>
+</html>
