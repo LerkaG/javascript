@@ -4,17 +4,55 @@
 <head>
 	<title></title>
 	<meta charset="utf-8">
-	<script type="text/javascript" src="search_element.js"></script>
+	<!-- <script type="text/javascript" src="search_element.js"></script> -->
 </head>
 <body>
 	<h1 id="main-heading"> hi, world! </h1>
+	<h3 id="main"> hi, world! </h3>
+	<h2></h2>
+	<h4></h4>
 
+	<script src="https://code.jquery.com/jquery-2.1.0.js"></script>
 
 <script>
-	var heading_element = document.getElementById("main-heading");
-	console.log(heading_element.innerHTML);
-	var new_heading_text = prompt('введите новый заголовок');
-	heading_element.innerHTML = new_heading_text;
+	// изменения элемента на чистом JS
+
+	// var heading_element = document.getElementById("main-heading");
+	// //Обращаясь к свойству innerHTML, можно поменять содержимое любого элемента DOM через JavaScript-код.
+	// console.log(heading_element.innerHTML); 
+	// var new_heading_text = prompt('введите новый заголовок');
+	// heading_element.innerHTML = new_heading_text;
+
+
+	// c jQuery
+
+	// var new_heading_text = prompt("Ведите новый заголовок");
+	// $('') принимает один аргумент, который называется строка селектора (какой элемент или элементы нужно найти в дереве DOM)
+	// $('#main-heading').text(new_heading_text);
+
+	// // создание нового параграфа через js jQuery
+	// $('body').append('<p> Это новый параграф </p>'); 
+
+	// // цикл, который дает возможность несколько раз вводить текст с новой строки в диалоговое окно
+	// for (var i = 0; i < 3; i++) {
+	// 	var hobby = prompt("Назови одно из своих хобби!");
+	// 	$('body').append('<p>' + hobby + '</p>');
+	// }
+
+	//исчезание элементов
+	// $('h1').fadeOut(0).fadeIn(5000).fadeOut(2000).fadeIn(1500);
+	// $('#main').slideDown(220).slideUp(2000).slideDown(2000).slideUp(2000);
+	// $('h2').text("этот текст скоро исчезанет").fadeOut(2000).fadeOut(3020).slideDown(2000);
+	// $('h4').text("этот текст скоро исчезанет").fadeOut(2000);
+	// $('h4').text("этот текст с").fadeIn(2000);
+
+
+for (var i = 0; i < 2; i++) {
+	$('h4').text('Это этот э ').hide(1000);
+	$('h4').text('Это этот э ').show(500);
+	// $('h4').text('Это этот э ').fadeIn(500);
+
+}
 </script>
 
 </body>
