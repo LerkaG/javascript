@@ -1,0 +1,21 @@
+<!-- HTML JS -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="search_element.js"></script>
+</head>
+<body>
+	<h1 id="main-heading"> hi, world! </h1>
+
+
+<script>
+	var heading_element = document.getElementById("main-heading");
+	console.log(heading_element.innerHTML);
+	var new_heading_text = prompt('введите новый заголовок');
+	heading_element.innerHTML = new_heading_text;
+</script>
+
+</body>
+</html>
