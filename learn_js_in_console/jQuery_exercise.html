@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> упражнения jQuery </title>
+</head>
+<h2> New nrenre </h2>
+<h1 id="main"> привет мир </h1>
+
+
+<body>
+<script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+<script type="text/javascript">
+
+	$('#main').text('мои дудуд');
+	var friend = ["one", "two", "three"];
+
+// без задержки
+	// for (var i = 0; i < friend.length; i++) {
+	// 	$('body').append('<p>' + friend[i] + '</p>');
+	// 	$('p').last().hide().fadeIn((i+1) * 1000);
+	// };
+
+// с задержкой
+	for (var i = 0; i < friend.length; i++) {
+		$('body').append('<p>' + friend[i] + '</p>');
+		$('p').last().hide().delay((i+1) * 3000).fadeIn(2000);
+	};
+
+	$('p').append(' Лучший')
+
+	var fade_time;
+
+	for (var i = 0; i < 5; i++) {
+		fade_time = (i + 1) * 1000;
+		$('h1').fadeOut(fade_time / 2).fadeIn(fade_time / 2);
+	}
+
+	// $('h2').fadeOut(2000).delay(3000).fadeIn(100);
+	$('h2').fadeTo(2000, 0.2); // 0.2 - opacity
+</script>
+
+</body>
+</html>
