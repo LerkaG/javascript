@@ -10,8 +10,20 @@
 	var time_up = function () {
 		alert('время вышло!');
 	};
-	setTimeout(time_up, 3000);
+	var time_out_id = setTimeout(time_up, 3000); //отображение через определенное время
+
+	clearTimeout(time_out_id); //отключение таймера 
+
+	var counter = 1;
+	var print_message = function() {
+		console.log('Ты смотришь в консоль уже ' + counter + ' сек');
+		counter++;
+	}
+	var interval_id = setInterval(print_message, 100);
+	clearInterval(interval_id);
 	
+
+
 </script>
 
 
