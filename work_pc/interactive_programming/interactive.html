@@ -1,12 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title> interactive programming</title>
 	<meta charset="utf-8">
 </head>
 <body>
-<h1> text </h1>
+<h1 id="heading"> hello world </h1>
+
+<script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+<!-- animation element -->
 <script>
+	var left_offset = 0; //отступ с лева
+	var move_heading = function() {
+		$("#heading").offset({left: left_offset }); //указание стороны смещения
+		$("#heading").offset({top: 200 }); //смещение объекта без анимации
+		
+		left_offset++;
+		if (left_offset > 200) {
+			left_offset = 0;
+		}
+	};
+	setInterval(move_heading, 1); //скорость
+</script>
+
+<!-- message on the console -->
+<script>
+
+	// отображение сообщения в консоли
 	var time_up = function () {
 		alert('время вышло!');
 	};
@@ -19,7 +40,7 @@
 		console.log('Ты смотришь в консоль уже ' + counter + ' сек');
 		counter++;
 	}
-	var interval_id = setInterval(print_message, 100);
+	var interval_id = setInterval(print_message, 5000);
 	clearInterval(interval_id);
 	
 
