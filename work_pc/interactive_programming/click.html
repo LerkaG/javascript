@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> реакция на клик в консоле</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<h1 id="heading" style="color: green"> quater </h1>
+	<h1 id="heading2" style="color: blue"><br> my new test </h1>
+
+
+	<script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+<!-- 
+	реакция на клик в консоле. определяет в каком месте по XY был сделан клик
+-->
+	<script>
+		var click_handler = function(event) {
+			console.log("Клик! " + event.pageX + " " + event.pageY);
+		};
+		$("h1").click(click_handler);
+			
+	</script>
+
+<!-- при перемещении мышки -->
+<!-- 
+	<script>
+		$('html').mousemove(function(event) {
+			$("#heading").offset({
+				left: event.pageX,
+				top: event.pageY
+			});
+		});
+	</script> 
+-->
+
+<!-- при нажатии на мышку -->
+<!-- 	<script>
+		$('html').click(function(event) {
+			$("#heading").offset({
+				left: event.pageX,
+				top: event.pageY
+			});
+		});	
+	</script> -->
+
+<!-- квадрат из текста -->
+	<script>
+		var deriction = "вправо";
+		var offset = 0;
+
+		var click = 0
+		var interval_length = 120;
+
+		$("#heading").offset({left: offset, top: offset});
+		
+		var move_hading = function () {
+			if (deriction === 'вправо') {
+				$("#heading").offset({left: offset});
+				offset++;
+				if (offset > 200) {
+					offset = 0;
+					deriction = "вниз"
+				}
+			} else if (deriction === "вниз") {
+				$("#heading").offset({top: offset});
+				offset++;
+				if (offset > 200) {
+					offset = 200;
+					deriction = "влево"
+				}
+			} else if (deriction === "влево") {
+				$("#heading").offset({left: offset});
+				offset--;
+				if (offset < 0) {
+					offset = 200;
+					deriction = "вверх";
+				}
+			} else if (deriction === "вверх") {
+				$("#heading").offset({top: offset});
+				offset--;
+				if (offset < 0) {
+					offset = 0;
+					deriction = "вправо";
+				}
+			}
+		};
+		// var interval_id = setInterval(move_hading, 10);
+		var interval_id = setInterval(move_hading, interval_length);
+
+
+//остановка по клику
+		// $("#heading").click(function () {
+		// 	clearInterval(interval_id);
+		// });
+
+		// setInterval(move_hading, 0);
+
+//ускорение по клику		
+		// $("#heading").click(function () {
+		// 	setInterval(move_hading, 30);
+		// 	$('#heading').text("попал");
+		// });
+
+//ускорение по клику с остановкой
+		$("#heading").click(function () {
+			clearInterval(interval_id);
+			// setInterval(move_hading, 30);
+			$('#heading').text("попал");
+			interval_length = 1;
+			click++;
+
+			if (click > 10) {
+				$('#heading').text("Накликал таки!"); 
+				// clearInterval(move_hading);
+			} else if (click > 3) {
+				$("heading").text('2');
+			} else {
+				interval_id = setInterval(move_hading, interval_length)
+			}
+			// setInterval(move_hading, 0);
+		});
+
+		
+
+		
+	</script>
+
+<!-- треугольник из текста -->
+	<script>
+		var deriction2 = "вправо";
+		var offset2 = 0;
+		$("#heading2").offset({left: offset2, top: offset2});
+		
+		var move_hading2 = function () {
+			if (deriction2 === 'вправо') {
+				$("#heading2").offset({left: offset2});
+				offset2++;
+				if (offset2 > 200) {
+					offset2 = 0;
+					deriction2 = "вниз"
+				}
+			} else if (deriction2 === "вниз") {
+				$("#heading2").offset({top: offset2});
+				offset2++;
+				if (offset2 > 200) {
+					offset2 = 200;
+					deriction2 = "вверх"
+				}
+			} else if (deriction2 === "вверх") {
+				$("#heading2").offset({top: offset2, left: offset2});
+				offset2--;
+				if (offset2 < 0) {
+					offset2 = 200;
+					deriction2 = "вправо2";
+				}
+			} else if (deriction2 === "вправо2") {
+				$("#heading2").offset({left: offset2});
+				offset2++;
+				if (offset2 > 200) {
+					offset2 = 0;
+					deriction2 = "вправо";
+				}
+			}
+		};
+
+	
+		setInterval(move_hading2, 0);
+
+	</script>
+
+
+
+</body>
+</html>

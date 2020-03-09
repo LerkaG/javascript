@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Game: Find Gold</title>
+</head>
+<body>
+	<h1 id="heading"> Найди клад! </h1>
+	<img id="map" width=400 height=400 src="https://nostarch.com/images/treasuremap.png?__cf_chl_captcha_tk__=c21226e96ec39137918218a3e0891aac9bf62baf-1583775622-0-AdEdlRQ09xsLKNLmntlm-FGYKHV43Mh_9NdDlCODo6LH16y9Gm1xrXDCpAomY9RUpFBbfPrr8wd43qkWWw3Dcd95_ApaOTX8qwI8x6DC1H-vA4XunRTXO92D76PhuHZ8nrwgLpDhUTnyHFZQ3mvhGBJf5Ml7uyc8QK0B5J2YxhE0ge2q2YL-Tt2gHxxyduY_DjBvLLc-aJ5n5O9UeKahav83rk8cGmAnqYWAWmTlbYOpzXh-Wm3eZZzVSkO0G_rY5iD7_44TtestuLFJMhjF5eXzSu_1clbkSjrViWaj4jD84Z86RqpznqUnLtbIokK6cQS7QdAu7kA3v6clmEXw2Q6h8_fPs4X57tpYwzGuqk1eyYdHLvwltQ6Sr9TOuDT0iuzP7K3TnPy8ein1QcXcm9SiPg4BLtxL7Eid6X1ZEeOM">
+
+	<p id="distance"></p>
+	<script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+	<script>
+
+	// Получить случайное число от 0 до size-1
+		var get_random_number = function (size) {
+			return Math.floor(Math.random() * size);
+		};
+
+		var width = 400;
+		var height = 400;
+		var clicks = 0;
+
+	// Случайная позиция клада
+		var target = {
+			x: get_random_number(width),
+			y: get_random_number(height)
+		};
+
+	// Добавляем элементу img обработчик клика
+		$("#map").click(function (event){
+			clicks++;
+
+			// Получаем расстояние от места клика до клада
+			var distance = get_distance(event, target);
+
+			// Преобразуем расстояние в подсказку
+			var distance_hint = get_distance_hint(distance);
+
+			// Записываем в элемент #distance новую подсказку
+			$("#distance").text(distance_hint);
+
+			if (distance < 20) {
+				alert("Клад найден! Сделано кликов: " + clicks);
+			}
+
+		});
+
+    // Вычислить расстояние от клика (event) до клада (target)
+		var get_distance = function (event, target) {
+			var diffX = event.offsetX - target.x;
+			var diffY = event.offsetY - target.y;
+
+			//формула для вычисления расстояния между кликом и кладом
+			return Math.sqrt((diffX * diffX) + (diffY * diffY)); 
+		};
+
+	// Получить для расстояния строку подсказки
+		var get_distance_hint = function (distance) {
+			if (distance < 10) {
+				return "Обожжешься";
+			} else if (distance < 20) {
+				return "Очень горячо";
+			} else if (distance < 40) {
+				return "Горячо";
+			} else if (distance < 80) {
+				return "Тепло";
+			} else if (distance < 160) {
+				return "Холодно";
+			} else if (distance < 320) {
+				return "Очень холодно";
+			} else {
+				return "Замерзнешь!";
+			}
+		};
+
+	</script>
+</body>
+</html>
