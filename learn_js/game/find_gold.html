@@ -8,7 +8,7 @@
 	<h1 id="heading"> Найди клад! </h1>
 	<h2></h2>
 		<p id="distance"></p>
-	<img id="map" width=800 height=800 src="https://nostarch.com/images/treasuremap.png?__cf_chl_captcha_tk__=c21226e96ec39137918218a3e0891aac9bf62baf-1583775622-0-AdEdlRQ09xsLKNLmntlm-FGYKHV43Mh_9NdDlCODo6LH16y9Gm1xrXDCpAomY9RUpFBbfPrr8wd43qkWWw3Dcd95_ApaOTX8qwI8x6DC1H-vA4XunRTXO92D76PhuHZ8nrwgLpDhUTnyHFZQ3mvhGBJf5Ml7uyc8QK0B5J2YxhE0ge2q2YL-Tt2gHxxyduY_DjBvLLc-aJ5n5O9UeKahav83rk8cGmAnqYWAWmTlbYOpzXh-Wm3eZZzVSkO0G_rY5iD7_44TtestuLFJMhjF5eXzSu_1clbkSjrViWaj4jD84Z86RqpznqUnLtbIokK6cQS7QdAu7kA3v6clmEXw2Q6h8_fPs4X57tpYwzGuqk1eyYdHLvwltQ6Sr9TOuDT0iuzP7K3TnPy8ein1QcXcm9SiPg4BLtxL7Eid6X1ZEeOM">
+	<img id="map" width=800 height=800 src="map.png">
 
 	<script src="https://code.jquery.com/jquery-2.1.0.js"></script>
 
@@ -22,7 +22,7 @@
 		var width = 400;
 		var height = 400;
 		var clicks = 0;
-		let br = ("<p>", "</p>");
+		var click_limit = 10;
 
 	// Случайная позиция клада
 		var target = {
@@ -36,7 +36,10 @@
 		$("#map").click(function (event){
 			clicks++;
 
-			var click_num = click(clicks);
+			if (clicks > 9) {
+				alert("GAME OVER");
+				return;
+			}
 
 			// Получаем расстояние от места клика до клада
 			var distance = get_distance(event, target);
@@ -47,13 +50,15 @@
 			// Записываем в элемент #distance новую подсказку
 			$("#distance").text(distance_hint);
 
+
+			$("h2").text("Осталось " + (click_limit - clicks) + " попыток.");
+
 			if (distance < 20) {
 				alert(distance  + "\nКлад найден! Сделано кликов: " + clicks);
 				// return $("h1").text(distance + " Клад найден! Сделано кликов: " + clicks);
 			} else {
 				return $("h1").text(distance + " X");
 			}
-
 		});
 
     // Вычислить расстояние от клика (event) до клада (target)
@@ -73,14 +78,7 @@
 		// 	}
 		// }
 
-		var click = function (clicks) {
-			for (var i = 10; i > clicks; i--) {
-				// i = clicks;
-				return $("h2").text("Сделано кликов " + i);
-			} if (clicks > 9) {
-				alert("GAME OVER");
-			}
-		}
+
 
 	// Получить для расстояния строку подсказки
 		var get_distance_hint = function (distance) {
