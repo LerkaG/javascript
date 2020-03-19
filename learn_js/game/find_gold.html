@@ -6,8 +6,9 @@
 </head>
 <body>
 	<h1 id="heading"> Найди клад! </h1>
+	<h2></h2>
 		<p id="distance"></p>
-	<img id="map" width=400 height=400 src="https://nostarch.com/images/treasuremap.png?__cf_chl_captcha_tk__=c21226e96ec39137918218a3e0891aac9bf62baf-1583775622-0-AdEdlRQ09xsLKNLmntlm-FGYKHV43Mh_9NdDlCODo6LH16y9Gm1xrXDCpAomY9RUpFBbfPrr8wd43qkWWw3Dcd95_ApaOTX8qwI8x6DC1H-vA4XunRTXO92D76PhuHZ8nrwgLpDhUTnyHFZQ3mvhGBJf5Ml7uyc8QK0B5J2YxhE0ge2q2YL-Tt2gHxxyduY_DjBvLLc-aJ5n5O9UeKahav83rk8cGmAnqYWAWmTlbYOpzXh-Wm3eZZzVSkO0G_rY5iD7_44TtestuLFJMhjF5eXzSu_1clbkSjrViWaj4jD84Z86RqpznqUnLtbIokK6cQS7QdAu7kA3v6clmEXw2Q6h8_fPs4X57tpYwzGuqk1eyYdHLvwltQ6Sr9TOuDT0iuzP7K3TnPy8ein1QcXcm9SiPg4BLtxL7Eid6X1ZEeOM">
+	<img id="map" width=800 height=800 src="https://nostarch.com/images/treasuremap.png?__cf_chl_captcha_tk__=c21226e96ec39137918218a3e0891aac9bf62baf-1583775622-0-AdEdlRQ09xsLKNLmntlm-FGYKHV43Mh_9NdDlCODo6LH16y9Gm1xrXDCpAomY9RUpFBbfPrr8wd43qkWWw3Dcd95_ApaOTX8qwI8x6DC1H-vA4XunRTXO92D76PhuHZ8nrwgLpDhUTnyHFZQ3mvhGBJf5Ml7uyc8QK0B5J2YxhE0ge2q2YL-Tt2gHxxyduY_DjBvLLc-aJ5n5O9UeKahav83rk8cGmAnqYWAWmTlbYOpzXh-Wm3eZZzVSkO0G_rY5iD7_44TtestuLFJMhjF5eXzSu_1clbkSjrViWaj4jD84Z86RqpznqUnLtbIokK6cQS7QdAu7kA3v6clmEXw2Q6h8_fPs4X57tpYwzGuqk1eyYdHLvwltQ6Sr9TOuDT0iuzP7K3TnPy8ein1QcXcm9SiPg4BLtxL7Eid6X1ZEeOM">
 
 	<script src="https://code.jquery.com/jquery-2.1.0.js"></script>
 
@@ -27,13 +28,15 @@
 		var target = {
 			// x: get_random_number(width),
 			// y: get_random_number(height)
-			x: 400,
-			y: 400
+			x: 800,
+			y: 800
 		};
 
 	// Добавляем элементу img обработчик клика
 		$("#map").click(function (event){
 			clicks++;
+
+			var click_num = click(clicks);
 
 			// Получаем расстояние от места клика до клада
 			var distance = get_distance(event, target);
@@ -62,19 +65,38 @@
 			return Math.sqrt((diffX * diffX) + (diffY * diffY)); 
 		};
 
+		// var click = function (clicks) {
+		// 	if (clicks > 9) {
+		// 		alert("GAME OVER");
+		// 	} else {
+		// 		return $("h2").text("Сделано кликов " + clicks);
+		// 	}
+		// }
+
+		var click = function (clicks) {
+			for (var i = 10; i > clicks; i--) {
+				// i = clicks;
+				return $("h2").text("Сделано кликов " + i);
+			} if (clicks > 9) {
+				alert("GAME OVER");
+			}
+		}
+
 	// Получить для расстояния строку подсказки
 		var get_distance_hint = function (distance) {
 			if (distance < 10) {
 				return " Обожжешься";
-			} else if (distance < 20) {
-				return "Очень горячо";
 			} else if (distance < 40) {
-				return "Горячо";
+				return "Очень близко";
 			} else if (distance < 80) {
+				return "Очень горячо";
+			} else if (distance < 140) {
+				return "Горячо";
+			} else if (distance < 280) {
 				return "Тепло";
-			} else if (distance < 160) {
+			} else if (distance < 360) {
 				return "Холодно";
-			} else if (distance < 320) {
+			} else if (distance < 420) {
 				return "Очень холодно";
 			} else {
 				return "Замерзнешь!";
