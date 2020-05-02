@@ -14,7 +14,7 @@ ul {
 }
  
 header {
-    height: 100vh;
+    height: 70vh;
     background-image: url(./img/header_bg.jpg);
     /* добавь сюда свойство background-image */
     background-repeat: repeat-x;
@@ -89,4 +89,112 @@ header {
     margin-bottom: 21px;
     color: #262674;
 }
+/*.far, .fas {
+    color: blue;
+}*/
  
+/* занятие 2 - секция 2 */
+.section-header {
+    font-size: 28px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    color: #1ab798;
+    padding-top: 60px;
+    margin-bottom: 32px;
+}
+ 
+.section-header::before {
+    content: '';
+    width: 60px;
+    height: 1px;
+    background-color: #babdc1;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+ 
+.section-header::after {
+    content: '';
+    width: 60px;
+    height: 1px;
+    background-color: #babdc1;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+ 
+.features-item::before {
+    content: '';
+    background-image: url(./img/page_1.png);
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-block;
+    position: relative;
+    left: -50px;
+    top: 30px;
+    padding-right: 30px;
+}
+ 
+.features-item:nth-of-type(2)::before {
+    background-image: url(./img/page_2.png);
+}
+ 
+.features-item:nth-of-type(3)::before {
+    background-image: url(./img/page_4.png);  
+}
+ 
+.features-item:nth-of-type(4)::before {
+    background-image: url(./img/page_3.png);  
+}
+ 
+.features-item:nth-of-type(5)::before {
+    background-image: url(./img/page_5.png);    
+}
+ 
+.features-item:nth-of-type(6)::before {
+    background-image: url(./img/page_6.png);   
+}
+ 
+.features-item-header {
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+}
+ 
+.features-item-text {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 13px;
+    line-height: 24px;
+}
+ 
+.features-intro-text {
+    width: 90%;
+    margin: 0 auto;
+    /* добавь сюда свойство margin-bottom */
+   
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 26px;
+    text-align: center;
+}
+ 
+.features-list {
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+ 
+.features-item {
+    width: 300px;
+    /* добавь сюда свойство margin-bottom */
+    margin-bottom: 10px;
+    padding-left: 0px;
+}
