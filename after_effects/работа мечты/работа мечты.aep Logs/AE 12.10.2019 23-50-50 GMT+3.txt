@@ -1,1 +1,0 @@
-Adobe After Effects v14.0.1 Macintosh 64 render log for project “работа мечты.aep”Rendering started on 12.10.2019 at 23:50:50 GMT+3  12.10.2019 23:50:50 GMT+3: Starting composition “1”.  Output To: /Users/lera/Downloads/1_1.mov    12.10.2019 23:54:14 GMT+3: Finished composition “1”.  Total Time Elapsed: 3 Min, 24 SecLog closed on 12.10.2019 at 23:54:14 GMT+3
