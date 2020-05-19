@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Need for speed</title>
+</head>
+<body>
+ <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+ <script> 
+
+ 	//конструктор
+ 	var Car = function (x, y) {
+ 		this.x = x;
+ 		this.y = y;
+ 	};
+
+ 	var draw_car = function (car) {
+ 		var car_html = '<img src="https://lh3.googleusercontent.com/proxy/PthgYKV05S2m_18074kymFk2q3Lf61VMnxOSYdvCLSyPaeYCdHAy50u-RhI4iC0Vv92xesXQezOY9EFxtLCu6E1Yr86Zr311lrrlT4Oa9HkYzygskpcj_8hTsw">';
+
+ 		var car_element = $(car_html); 
+ 		// в переменной car_element теперь хранится jQuery-элемент с информацией о теге <img> и мы сможем изменить свойства этого элемента перед тем, как добавить его на страницу. 
+
+ 		car_element.css({
+ 			position: "absolute",
+ 			left: car.x,
+ 			top:car.y,
+ 			width: "250px",
+		    height: "150px"
+ 		});
+
+ 		$("body").append(car_element); // с помощью jQuery добавляем car_element к элементу body нашего HTML-документа
+ 	};
+
+ 	var tesla = new Car (20, 20);
+ 	var nissan = new Car (400, 200);
+ 	draw_car(tesla); //отображение на экране.
+ 	draw_car(nissan);
+ 	
+ </script>
+	
+</body>
+</html>

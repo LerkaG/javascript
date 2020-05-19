@@ -1,0 +1,95 @@
+<!-- page 187 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Need for speed - Prototype</title>
+</head>
+<body>
+ <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+ <script> 
+
+ 	//Настройка объектов через прототипы
+
+	//синтаксис добавления метода к свойству  prototype
+	// Car.prototype.draw = function () {  
+	// // Тело метода 
+	// }
+
+ 	//конструктор
+ 	var Car = function (x, y) {
+ 		this.x = x;
+ 		this.y = y;
+ 		this.speed = 5;
+ 		this.draw();
+ 	};
+
+	//добавление нового метода draw
+	Car.prototype.draw = function () {
+ 		var car_html = '<img src="./img/car.png">';
+
+		//создаем jQuery-элемент для этого HTML, сохраняя его в свойстве объекта this.car_element
+ 		this.car_element = $(car_html); 
+
+ 		this.car_element.css({
+ 			position: "absolute",
+ 			left: this.x,
+ 			top:this.y,
+ 			width: "250px",
+		    height: "150px"
+ 		});
+
+ 		$("body").append(this.car_element); // с помощью jQuery добавляем car_element к элементу body нашего HTML-документа
+ 	};
+
+ 	//методы для перемещения машин по экрану
+ 	Car.prototype.move_right = function (distance) {
+ 		//увеличение координаты x машины на 5
+ 		// this.x += 5; //увеличение координаты x машины на 5
+ 		// this.x += this.speed; //увеличение координаты x машины на speed значение
+ 		this.x += distance; //увеличение координаты x машины на distance значение, тоесть на то, которое мы сами пропишим.
+ 		this.car_element.css ({
+ 			left:this.x,
+ 			top:this.y
+ 		});
+ 	};
+ 	Car.prototype.move_left = function (distance) {
+ 		this.x -= this.speed;
+ 		this.car_element.css ({
+ 			left:this.x,
+ 			top:this.y
+ 		});
+ 	};
+ 	Car.prototype.move_up = function (distance) {
+ 		this.y -= distance;
+ 		this.car_element.css ({
+ 			left:this.x,
+ 			top:this.y
+ 		});
+ 	};
+ 	Car.prototype.move_down = function (distance) {
+ 		this.y += distance;
+ 		this.car_element.css ({
+ 			left:this.x,
+ 			top:this.y
+ 		});
+ 	};
+ 	
+
+ 	var tesla = new Car (20, 20);
+ 	var nissan = new Car (400, 200);
+ 	// tesla.draw(); //отображение на экране.
+ 	// nissan.draw();
+	// tesla.move_right(); // при этом вводе в консоле, машина будет двигаться на 5 рх в право.
+
+	//движение машин по экрану
+	setInterval(function () {
+		tesla.move_right(Math.random() * 5);
+		nissan.move_right(Math.random() * 5);
+	}, 4 );	 	
+ </script>
+
+
+
+</body>
+</html>
