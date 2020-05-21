@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title> Canvas </title>
+</head>
+<body>
+	<canvas id="canvas" width="400" height="400"></canvas>
+	<script>
+		var canvas = document.getElementById("canvas"); //Ищем и сохраняем элемент canvas 
+		var ctx = canvas.getContext("2d"); //Получаем контекст рисования, благодаря этому мы можем рисовать.
+		ctx.fillStyle = "Red";
+		ctx.fillRect(0, 0, 10, 10); // отображение на экране
+
+		for (var i = 0; i < 4; i++) {
+			ctx.fillRect(i * 30, i * 30, 30, 30);
+		}
+
+		var ctx_2 = canvas.getContext("2d");
+		ctx_2.fillStyle = "Blue";
+		ctx_2.fillRect(180, 10, 30, 30); //голова
+		ctx_2.fillRect(191, 40, 8, 15); // шея 
+		ctx_2.fillRect(157, 50, 75, 8); // руки
+		ctx_2.fillRect(172, 50, 45, 45); // тело
+		ctx_2.fillRect(172, 90, 8, 35); //левая нога
+		ctx_2.fillRect(209, 90, 8, 35); // правая нога
+
+		var three = canvas.getContext("2d");
+		three.fillStyle = "Aqua";
+		three.fillRect(100, 200, 50, 100);
+		three.fillStyle = "Lavender";
+		three.fillRect(150, 200, 50, 100);
+		three.fillStyle = "LightCyan";
+		three.fillRect(200, 200, 50, 100);
+
+		three.strokeRect(250, 200, 50, 100);
+
+		three.strokeStyle = ("DeepPink"); // цвет обводки (контура)
+		three.lineWigth = 4; //ширина линии обводки
+		three.strokeRect(300, 200, 50, 100);
+
+		//Рисование линий или путей. page 198
+	</script>
+</body>
+</html>
