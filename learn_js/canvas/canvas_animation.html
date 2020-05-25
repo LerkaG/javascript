@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas Animation</title>
+</head>
+<body>
+	<canvas id="canvas" width="100" height="100"></canvas>
+	<canvas id="canvas_2" width="100" height="100"></canvas>
+	<canvas id="canvas_bee" width="100" height="100"></canvas>
+	<canvas id="canvas_ball" width="100" height="100"></canvas>
+	<canvas id="canvas_ball_2" width="100" height="100"></canvas>
+	
+	<script>
+		// 1.
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext("2d");
+		// 2.
+		var canvas_2 = document.getElementById("canvas_2");
+		var ctx_2 = canvas_2.getContext("2d");
+		// 3.
+		var canvas_bee = document.getElementById("canvas_bee");
+		var ctx_bee = canvas_bee.getContext("2d");
+		// 4.
+		var canvas_ball = document.getElementById("canvas_ball");
+		var ctx_ball = canvas_ball.getContext("2d");
+		// 5.
+		var canvas_ball_2 = document.getElementById("canvas_ball_2");
+		var ctx_ball_2 = canvas_ball_2.getContext("2d");
+
+		var position = 0; //чтобы управлять перемещением квадрата слева направо
+		
+	// 1. ДВИЖЕНИЕ ПО СТРАНИЦЕ
+		//функция при каждом вызове рисует новый квадрат
+		setInterval (function () { //setInterval - запуск анимации. 
+			ctx.clearRect(0, 0, 100, 100); // очистка прямоугольной области на «холсте
+			ctx.fillRect(position, 0, 20, 20); // x и y координаты верхнего левого угла прямоугольника, 20 - ширина и высота
+
+			position++; // увеличение позиции на 1 
+			// проверяем, не стала ли переменная position больше 100, и если стала, сбрасываем ее в 0. 
+			if (position > 100) { 
+				position = 0;
+			}
+		}, 30); //setInterval будет вызывать указанную функцию каждые 30 миллисекунд
+
+	// 2. ИЗМЕНЕНИЕ РАЗМЕРА КВАДРАТА 
+		var size = 0;
+		setInterval(function (){
+			ctx_2.clearRect(0, 0, 100, 100);
+			ctx_2.fillRect(0, 0, size, size); // size - задаем ширину и высоту с размером 0
+
+			size++;
+			if (size > 100) {
+				size = 0;
+			}
+		}, 30);
+
+	// 3. ПЧЕЛА
+		// функция, рисующяя заполненные или обведенные окружности
+		var circle = function(x, y, radius, fill_circle) {
+			ctx_bee.beginPath();
+			ctx_bee.arc(x, y, radius, 0, Math.PI * 2, false); // метод arc для создания окружности с центром в точке (x, y)
+
+			if (fill_circle) {
+				ctx_bee.fill(); 
+			} else {
+				ctx_bee.stroke();
+			}
+		};
+
+		// РИСУЕМ ПЧЕЛУ
+		var draw_bee = function (x, y) {
+			ctx_bee.lineWidth = 2;
+			ctx_bee.strokeStyle = "Black";
+			ctx_bee.fillStyle = "Gold";
+
+			//big bee
+			circle(x, y, 18, true);
+			circle(x, y, 18, false);
+			circle(x - 9, y - 24.5, 9, false);
+			circle(x + 9, y - 24.5, 9, false);
+			circle(x - 5, y - 4, 5, false);
+			circle(x + 5, y - 4, 5, false);
+			
+			// small bee
+			// circle(x, y, 8, true);
+			// circle(x, y, 8, false);
+			// circle(x - 5, y - 11, 5, false);
+			// circle(x + 5, y - 11, 5, false);
+			// circle(x - 2, y - 1, 2, false);
+			// circle(x + 2, y - 1, 2, false);
+		};
+
+		// ИЗМЕНЕНИЕ ПОЗИЦИИ ПЧЕЛЫ
+		var update = function (coordinate) {
+			var offset = Math.random() * 4 - 2; //offset — это смещение, определяющее, на сколько нужно изменить текущую координату
+			 // сам по себе вызов Math.random() вернет случайное значение от 0 до 1.
+			 // следовательно, Math.random() * 4 даст число от 0 до 4. 
+			 // И вычтя 2, мы получим наше случайное число от −2 до 2. 
+			coordinate += offset; // изменение координаты на величину смещения offset. Если смещение положительное, координата увеличится, если отрицательное — уменьшится.
+
+			// Проверка выхода пчелы за границу холста
+			if (coordinate > 100) {
+				coordinate = 100;
+			} 
+			if (coordinate < 0) {
+				coordinate = 0;
+			} 
+			return coordinate; //Возвращаем обновленную координату 
+		};
+
+		// АНИМИРУЕМ ПЧЕЛУ 
+		var x = 50;
+		var y = 50;
+
+		setInterval(function () {
+			ctx_bee.clearRect(0, 0, 100, 100);
+
+			draw_bee(x, y);
+			x = update(x);
+			y = update(y);
+
+			ctx_bee.strokeRect(0, 0, 100, 100);
+		}, 30);
+
+
+	// 4. ОТСКАКИВАЮЩИЙ МЯЧ page 217
+
+		// КОНСТРУКТОР BALL 
+		var Ball = function () {
+			this.x = 50; // начальная позиция мяча по x, y 
+			this.y = 50;
+			this.xSpeed = -2; // горизонтальная скорость (влево)
+			this.ySpeed = 3; // вертикальная скорость (вниз)
+		}; 
+
+		// Рисуем мяч
+		var draw_ball = function (x, y, radius, fill_circle) {
+			ctx_ball.beginPath();
+			ctx_ball.arc(x, y, radius, 0, Math.PI * 2, false);
+
+			if (fill_circle) {
+				ctx_ball.fill();
+			} else {
+				ctx_ball.stroke();
+			}
+		};
+
+		//добавление нового метода draw к конструктору Ball, вызывает draw_ball чтобы нарисовать окружность с центром.
+		Ball.prototype.draw = function () {
+			draw_ball(this.x, this.y, 3, true);
+		};
+
+		// Перемещение мяча
+		Ball.prototype.move = function () {
+			this.x += this.xSpeed; // прибавляем значение горизонтальной скорости к this.x
+			this.y += this.ySpeed; // прибавляем значение вертикальной скорости к this.y
+		};
+
+		// Отскоки мяча (проверка столкновения)
+		Ball.prototype.check_collision = function () {
+			if (this.x < 0 || this.x > 100) { // проверка столкновения левой и правой границы
+				this.xSpeed = -this.xSpeed; // -this.xSpeed - это мы инвертируем(меняем) направление мяча.
+			}
+			if (this.y < 0 || this.y > 100) { // проверка столкновения вверхней и нижней границы
+				this.ySpeed = -this.ySpeed;
+			}
+		};
+
+		// Анимация мяча
+		var ball = new Ball(); // создаем объект-мяч 
+		setInterval(function () {
+			ctx_ball.clearRect(0, 0, 100, 100);
+
+			ball.draw();
+			ball.move();
+			ball.check_collision();
+
+			ctx_ball.strokeRect(0, 0, 100, 100); // рамка холста
+		}, 30);
+
+
+		// 5. Много мячиков
+
+		// КОНСТРУКТОР BALL 
+		var Ball_more = function () {
+			this.x = 100; // начальная позиция мяча по x, y 
+			this.y = 100;
+			this.xSpeed = (Math.random() * 10) - 5; // горизонтальная скорость (влево)
+			this.ySpeed = (Math.random() * 10) - 5; // вертикальная скорость (вниз)
+		}; 
+
+		// Рисуем мяч
+		var draw_ball_2 = function (x, y, radius, fill_circle) {
+			ctx_ball_2.beginPath();
+			ctx_ball_2.arc(x, y, radius, 0, Math.PI * 2, false);
+
+			if (fill_circle) {
+				ctx_ball_2.fill();
+			} else {
+				ctx_ball_2.stroke();
+			}
+		};
+
+		//добавление нового метода draw к конструктору Ball, вызывает draw_ball чтобы нарисовать окружность с центром.
+		Ball_more.prototype.draw = function () {
+			draw_ball_2(this.x, this.y, 3, true);
+		};
+
+		// Перемещение мяча
+		Ball_more.prototype.move = function () {
+			this.x += this.xSpeed; // прибавляем значение горизонтальной скорости к this.x
+			this.y += this.ySpeed; // прибавляем значение вертикальной скорости к this.y
+		};
+
+		// Увеличение размеров «холста»
+		var width = canvas.width;
+		var height = canvas.height;
+
+		// Отскоки мяча (проверка столкновения)
+		Ball_more.prototype.check_collision = function () {
+			if (this.x < 0 || this.x > width) { // проверка столкновения левой и правой границы
+				this.xSpeed = -this.xSpeed; // -this.xSpeed - это мы инвертируем(меняем) направление мяча.
+			}
+			if (this.y < 0 || this.y > height) { // проверка столкновения вверхней и нижней границы
+				this.ySpeed = -this.ySpeed;
+			}
+		};
+
+		// Анимация мяча
+		var balls = []; // создаем объект-мяч 
+		for (var i = 0; i < 10; i++) {
+			balls[i] = new Ball_more();
+		}
+		setInterval(function () {
+			ctx_ball_2.clearRect(0, 0, width, height);
+
+			for (var i = 0; i < balls.length; i++) {
+			balls[i].draw();
+			balls[i].move();
+			balls[i].check_collision();
+		}
+
+			ctx_ball_2.strokeRect(0, 0, width, height); // рамка холста
+		}, 30);
+		
+
+		// #4. Цветные мячи page 223
+
+	</script>
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

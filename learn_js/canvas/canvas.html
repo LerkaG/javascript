@@ -5,9 +5,11 @@
 	<title> Canvas </title>
 </head>
 <body>
-	<canvas id="canvas" width="400" height="400"></canvas>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+	<canvas id="canvas" width="700" height="700"></canvas>
 	<script>
 		var canvas = document.getElementById("canvas"); //Ищем и сохраняем элемент canvas 
+
 		var ctx = canvas.getContext("2d"); //Получаем контекст рисования, благодаря этому мы можем рисовать.
 		ctx.fillStyle = "Red";
 		ctx.fillRect(0, 0, 10, 10); // отображение на экране
@@ -39,7 +41,138 @@
 		three.lineWigth = 4; //ширина линии обводки
 		three.strokeRect(300, 200, 50, 100);
 
-		//Рисование линий или путей. page 198
+		//Рисование линий или путей.
+		// крест
+		var new_ctx = canvas.getContext("2d");
+		new_ctx.strokeStyle = "Red";
+		new_ctx.lineWidth = 4;
+		new_ctx.beginPath(); // начать путь
+		new_ctx.moveTo(300, 350); //поставили две точки x, y
+		new_ctx.lineTo (400, 450); // провели лининию по этим точкам
+		new_ctx.moveTo(400, 350);
+		new_ctx.lineTo (300, 450);
+		new_ctx.stroke(); // отображение линий на экране
+
+// человек 2
+		var guy = canvas.getContext("2d");
+		guy.fillStyle = "Red";
+		guy.fillRect(300,10,30,30);
+		guy.lineWidth = 4;
+		guy.beginPath();
+		guy.moveTo(314, 30);
+		guy.lineTo(314, 100);
+		guy.moveTo(285, 50);
+		guy.lineTo(315, 65);
+		guy.moveTo(345, 50);
+		guy.lineTo(315, 65);
+		guy.moveTo(285, 135);
+		guy.lineTo(314, 99);
+		guy.moveTo(345, 135);
+		guy.lineTo(314, 99);
+		guy.stroke();
+
+		var home = canvas.getContext("2d");
+		home.fillStyle = "Blue";
+		home.beginPath();
+		home.moveTo(200, 400);
+		home.lineTo(200, 360);
+		home.lineTo(230, 330);
+		home.lineTo(260, 360);
+		home.lineTo(260, 400);
+		home.lineTo(200, 400);
+		// home.fill();
+		home.stroke();
+
+	//Рисование дуг и окружностей 
+		var circle_test = canvas.getContext("2d");
+		circle_test.strokeStyle = "Green";
+		circle_test.beginPath();
+		circle_test.arc(50, 170, 20, 0, Math.PI / 2, false); //50 - x, 170 - y, 20 - радиус, 0 - начальный угол
+		circle_test.stroke();
+
+		circle_test.beginPath();
+		circle_test.arc(100, 170, 20, 0, Math.PI, false);
+		circle_test.stroke();
+
+		circle_test.beginPath();
+		circle_test.arc(150, 170, 20, 0, Math.PI * 2, false);
+		circle_test.stroke();
+
+		// Рисование нескольких окружностей с помощью функции page 204
+
+		//обводка кругов
+		var circle = function (x, y, radius) {
+			ctx.beginPath();
+			ctx.arc (x, y, radius, 0, Math.PI * 2, false);
+			ctx.stroke();
+		};
+		ctx.lineWidth = 4;
+		ctx.strokeStyle = "Red";
+		circle(100, 400, 10);
+		ctx.strokeStyle = "Orange";
+		circle(100, 400, 20);
+		ctx.strokeStyle = "Yellow";
+		circle(100, 400, 30);
+		ctx.strokeStyle = "Blue";
+		circle(100, 400, 40);
+		ctx.strokeStyle = "Purple";
+		circle(100, 400, 50);
+		ctx.strokeStyle = "Green";
+		circle(100, 400, 60);
+
+
+		// Снеговик
+		var circle = function (x, y, radius, fill_circ) {
+			ctx.beginPath();
+
+			ctx.arc (x, y, radius, 0, Math.PI * 2, false);
+
+			if (fill_circ) {
+				ctx.fill();  // заливка круга
+			} else {
+				ctx.stroke(); // обводка круга
+			}
+		};
+
+		var draw_snowman = function (x, y) {
+			ctx.fillStyle = "Black";
+			ctx.strokeStyle = "Black";
+			ctx.lineWidth = 4;
+
+			circle(x + 350, y + 110, 40, false);
+			circle(x + 350, y + 40, 30, false);	
+			circle(x + 340, y + 35, 5, true);
+			circle(x + 360, y + 35, 5, true);
+			circle(x + 350, y + 90, 5, true);
+			circle(x + 350, y + 110, 5, true);
+			circle(x + 350, y + 130, 5, true);
+
+			ctx.fillStyle = "Orange";
+			circle(x + 350, y + 45, 4, true);
+		} 
+		draw_snowman(200, 0); // указываем место положение всего снеговика. 
+
+
+		//Рисование по массиву точек
+		var draw_point = function (points) {
+			ctx.beginPath();
+			ctx.moveTo(points[0][0],points[0][1]);
+			for (var i = 1; i < points.length; i++) {
+				ctx.lineTo(points[i][0], points[i][1]);
+			}
+			ctx.stroke();
+		};
+
+		var point = [[50, 50], [50, 100], [100, 100], [100, 50], [50, 50]]; 
+		draw_point(point);
+
+
+		// Постоянное рисование мышкой		
+		$('canvas').mousemove(function (event) {
+	    	ctx.fillStyle = "Red"
+		    circle(event.offsetX, event.offsetY, 15, true);
+	    });
+
 	</script>
 </body>
 </html>

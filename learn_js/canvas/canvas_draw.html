@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Canvas в HTML5</title>
+    </head>
+    <body>
+        <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+        <canvas id="myCanvas" width="550" height="550">
+            Ваш браузер не поддерживает Canvas
+        </canvas>
+
+        <script>
+            var canvas = document.getElementById("myCanvas"); //Ищем и сохраняем элемент canvas 
+            var ctx = canvas.getContext("2d");
+            var draw = false;
+            
+            var circle = function (x, y, radius, fill_circ) {
+                ctx.beginPath();
+                ctx.arc (x, y, radius, 0, Math.PI * 2, false);
+                ctx.fillStyle = "Red"
+            
+                if (fill_circ) {
+                    ctx.fill();  // заливка круга
+                } else {
+                    ctx.stroke(); // обводка круга
+                }
+            };
+
+            canvas.addEventListener("mousedown", function (event) {
+                draw = true;
+                ctx.beginPath();
+            });
+
+            canvas.addEventListener("mousemove", function (event) {
+                if (draw == true) {
+                    circle(event.offsetX, event.offsetY, 10, true);
+                }
+            });
+
+            canvas.addEventListener("mouseup", function(event){
+                ctx.closePath();
+                draw = false;
+            });
+        </script>
+    </body>
+</html>
