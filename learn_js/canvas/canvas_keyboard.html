@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title> УПРАВЛЕНИЕ АНИМАЦИЯМИ С КЛАВИАТУРЫ </title>
+</head>
+<body>
+	<canvas id="canvas" width="400" height="400"></canvas>
+	<script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+	<script>
+		// функция будет вызываться при каждом нажатии клавиши. 
+		//чтобы узнать какая клавиша имеет свое значение.
+		// $("body").keydown(function (event) {
+		// 	console.log(event.keyCode);
+		// });
+
+		var key_names = {
+			13: "enter", //обзац
+			16: "shift", 
+			17: "ctrl", 
+			18: "alt", 
+			32: "space", //пробел
+			37: "left",
+			38: "up",
+			39: "right",
+			40: "down"
+		};
+
+		$("body").keydown(function (event) {
+			console.log(key_names[event.keyCode]); // пример. key_names[32] - в консоле узнать какое название у кода 32.
+		});
+
+
+
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext("2d");
+		var width = canvas.width;
+		var height = canvas.height;
+
+		var circle = function(x, y, radius, fill_circle) {
+			ctx.beginPath();
+			ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+
+			if (fill_circle) {
+				ctx.fill();
+			} else {
+				ctx.stroke();
+			}
+		};
+
+		// Конструктор
+		var Ball = function () {
+			this.x = width / 2; //координата центра
+			this.y = height / 2; //координата центра
+			this.xSpeed = 1;
+			this.ySpeed = 0;
+			this.speed = 5;
+			this.size = 10;
+		};
+
+		// Обновляем позицию мяча соответственно его скорости
+		Ball.prototype.move = function () {
+			this.x += this.xSpeed * this.speed;
+			this.y += this.ySpeed * this.speed;
+
+		 // проверка, не вышел ли мяч за границу «холста»
+			// if (this.x < 0) {
+			// 	this.x = 0;
+			// } else if (this.x > width) {
+			// 	this.x = 0;
+			// }
+
+			// if (this.y < 0) {
+			// 	this.y = 0;
+			// } else if (this.y > height) {
+			// 	this.y = 0;
+			// }
+			if (this.x < 0 || this.x > width) {
+				this.xSpeed = -this.xSpeed;
+			} else if (this.y < 0 || this.y > height) {
+				this.ySpeed = -this.ySpeed;
+			}
+		};
+
+		// Рисуем мяч в его текущей позиции
+		Ball.prototype.draw = function () {
+			circle(this.x, this.y, this.size, true);
+		};
+
+		// направление движения мяча
+		Ball.prototype.doAction = function (action) {
+			if (action === "up") {
+				this.xSpeed = 0;
+				this.ySpeed = -5;
+			} else if (action === "down") {
+				this.xSpeed = 0;
+				this.ySpeed = 5;
+			} else if (action === "left") {
+				this.xSpeed = -5;
+				this.ySpeed = 0;
+			} else if (action === "right") {
+				this.xSpeed = 5;
+				this.ySpeed = 0;
+			} else if (action === "stop") {
+				this.xSpeed = 0;
+				this.ySpeed = 0;
+			} else if (action === "быстрее") {
+				this.speed++;
+			} else if (action === "медленнее") {
+				if (this.speed > 0) {
+				this.speed--;
+				}
+			} else if (action === "меньше") {
+				if (this.size > 0) {
+				this.size--;
+				}
+			} else if (action === "больше") {
+				this.size++;
+			}
+		};
+
+	    // Задаем новую скорость мяча
+		Ball.prototype.setSpeed = function (new_speed) {
+			if (new_speed !== undefined) {
+				this.speed = new_speed;
+			}
+		};
+
+
+		var ball = new Ball(); // объект мяча
+
+		// Объект для перевода кодов клавиш в названия действий
+		var key_actions = {
+			32: "stop", //пробел
+			37: "left",
+			38: "up",
+			39: "right",
+			40: "down",
+		    88: "быстрее",
+		    90: "медленнее",
+		    67: "меньше",
+		    86: "больше"
+		};
+
+	    // Объект для перевода кодов клавиш в скорости
+	    var speeds = {
+	    	49: 1,
+	    	50: 2,
+	    	51: 3,
+	    	52: 4,
+	    	53: 5,
+	    	54: 6,
+	    	55: 7,
+	    	56: 8,
+	    	57: 9
+	    };
+
+		// Обработчик события keydown, будет вызван при каждом нажатии клавиши
+		$("body").keydown(function (event) {
+			var action = key_actions[event.keyCode];
+			var speed = speeds[event.keyCode];
+			ball.doAction(action);
+			ball.setSpeed(speed);
+		});
+
+		// Функция анимации, вызывается раз в 30 мс
+		setInterval(function () {
+			ctx.clearRect(0, 0, width, height);
+			ball.draw(); // рисует
+			ball.move(); // обновляет
+			ctx.strokeRect(0, 0, width, height);
+		}, 30);
+
+
+
+
+	</script>
+</body>
+</html>

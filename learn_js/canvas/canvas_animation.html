@@ -188,7 +188,13 @@
 			this.y = 100;
 			this.xSpeed = (Math.random() * 10) - 5; // горизонтальная скорость (влево)
 			this.ySpeed = (Math.random() * 10) - 5; // вертикальная скорость (вниз)
+			var colors = ["Red", "Blue", "Yellow", "Green", "Pink"]; // массив для разрисования мячей
+			this.color = pick_random_word(colors);//делаем рандомный цвет
 		}; 
+
+		var pick_random_word = function (words){
+			return words[Math.floor(Math.random() * words.length)];
+		};
 
 		// Рисуем мяч
 		var draw_ball_2 = function (x, y, radius, fill_circle) {
@@ -204,6 +210,7 @@
 
 		//добавление нового метода draw к конструктору Ball, вызывает draw_ball чтобы нарисовать окружность с центром.
 		Ball_more.prototype.draw = function () {
+			ctx_ball_2.fillStyle = this.color; //заливка цветом
 			draw_ball_2(this.x, this.y, 3, true);
 		};
 
