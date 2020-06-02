@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> game</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	 <h2 id="txt"> </h2>
+<script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+<canvas id="canvas" width="500" height="300"></canvas>
+
+ <script>
+ 	var canvas = document.getElementById("canvas"); //Ищем и сохраняем элемент canvas 
+	var ctx = canvas.getContext("2d");
+
+	var pic_word = function () {
+	 	var words = [
+	 	"жопа",
+	 	"кукищ",
+	 	"туцтуц",
+	 	"перпендикулярный"];
+
+	 	return words[Math.floor(Math.random() * words.length)]; // Выбираем случайное слово
+	 };
+
+	 var setup_answer_array = function (word) {
+	 	var answer_array = []; // Создаем итоговый массив
+	 	for (var i = 0; i < word.length; i++) {
+	 		answer_array[i] = "_";
+	 	}
+	 	return answer_array;
+	 };
+
+	 var show_player_progress = function (answer_array) {
+	 	alert(answer_array.join(" "));
+	 };
+	 var get_guess = function () {
+	 	return prompt("Угадайте букву или нажмите Отмена для выхода из игры");// Запрашиваем вариант ответа
+	 };
+
+ 	var update_game_state = function (guess, word, answer_array) {
+ 		var appearances = 0;
+ 		// Обновляем состояние игры
+ 		for (var j = 0; j < word.length; j++) { //мы проверяем каждую букву переменной word
+ 			if (word[j] === guess) { //проверяем, совпадает ли текущая буква (word[j]) с ответом игрока
+ 				answer_array[j] = guess;
+ 				draw_correct_guess(guess, j);
+ 				appearances++;
+			}
+ 		}
+ 		return appearances;
+ 	};
+
+ 	var show_answer_and_congratulate_player = function (answer_array) {
+ 		show_player_progress(answer_array);
+ 		alert("Отлично! Было загадано слово " + answer_array.join(""));
+ 	};
+
+ 	var draw_segment = function (incorrect_guesses) {
+ 		ctx.lineWidth = 4;
+
+ 		if (incorrect_guesses === 0) {
+ 			ctx.strokeRect(20,20,20,20);
+ 			$('#txt').text('Было сделано 1 ошибку, ты молодец.');
+ 		} else if (incorrect_guesses === 1) {
+ 			ctx.beginPath();
+ 			ctx.moveTo(30,40);
+ 			ctx.lineTo(30, 80);
+ 			ctx.stroke();
+ 			$('#txt').text('Было сделано 2 ошибку, ты молодец.');
+ 		} else if (incorrect_guesses === 2) {
+ 			ctx.beginPath();
+ 			ctx.moveTo(30,80);
+ 			ctx.lineTo(10, 110);
+ 			ctx.stroke();
+ 			$('#txt').text('Было сделано 3 ошибки, ты можешь лучше.');
+		} else if (incorrect_guesses === 3) {
+			ctx.beginPath();
+			ctx.moveTo(30,80);
+			ctx.lineTo(50, 110);
+			ctx.stroke();
+			console.log("уря3");
+			$('#txt').text('Было сделано 4 ошибки');
+
+		} else if (incorrect_guesses === 4) {
+ 			ctx.beginPath();
+ 			ctx.moveTo(30,60);
+ 			ctx.lineTo(10, 50);
+ 			ctx.stroke();
+ 			console.log("уря4");
+ 			$('#txt').text('Было сделано 5 ошибки, ты почти проиграл.');
+
+		} else if (incorrect_guesses === 5) {
+ 			ctx.beginPath();
+ 			ctx.moveTo(30,60);
+ 			ctx.lineTo(50, 50);
+ 			ctx.stroke();
+ 			console.log("ур5");
+ 			$('#txt').text('Было сделано 6+ ошибок, ты проиграл.');
+ 		}
+ 	};
+
+	// Рисуем подчеркивания для догадок
+ 	var draw_under_scores = function (how_many) {
+ 		ctx.lineWidth = 5;
+ 		ctx.beginPath();
+
+ 		for (var i = 0; i < how_many; i++) {
+ 			ctx.moveTo((i * 30) + 10, 160);
+ 			ctx.lineTo((i * 30) + 30, 160);
+ 		}
+ 		ctx.stroke();
+ 	};
+
+ 	 // Рисуем угаданную букву в соответствующей позиции
+ 	 var draw_correct_guess = function (guess, index) {
+ 	 	ctx.font = "20px Comic Sans MS";
+ 	 	ctx.fillText(guess.toUpperCase(), (index * 30) + 10, 150);
+ 	 };
+
+	 // Рисуем перечеркнутую неправильную догадку в соответствующей позиции
+	 var draw_incorrect_guess = function (guess, index) {
+	 	ctx.font = "19px Comic Sans MS";
+ 	 	ctx.fillText(guess.toUpperCase(), 380, (index * 20) + 40);
+ 	 	ctx.moveTo(380, (index * 20) + 30);
+ 	 	ctx.lineTo(400, (index * 20) + 30);
+ 	 	ctx.stroke();
+	 };
+
+ 	var word = pic_word();
+ 	var answer_array = setup_answer_array(word);
+ 	var remaining_letters = word.length;
+ 	var incorrect_guesses = 0;
+
+ 	draw_under_scores(word.length);
+
+ 	while (remaining_letters > 0) {
+ 		show_player_progress(answer_array);
+ 		var guess = get_guess();
+ 		if (guess === null) {
+ 			// Выходим из игрового цикла
+	 		break;
+ 		} else if (guess.length !== 1) {
+	 		alert("Пожалуйста, введите только одну букву");
+		} else {
+		var correct_guesses = update_game_state(guess, word, answer_array);
+
+		remaining_letters -= correct_guesses;
+
+		if (correct_guesses === 0) {
+			draw_segment(incorrect_guesses);
+			draw_incorrect_guess(guess, incorrect_guesses);
+			incorrect_guesses++;
+		}
+ 	}
+ }
+
+ show_answer_and_congratulate_player(answer_array);
+
+
+ </script>
+ <h1> Виселица! </h1>
+</body>
+</html>

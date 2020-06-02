@@ -6,4 +6,10 @@ var precent = function (num, precent) {
 			+ one + " - число процента;" + '\n'
 			+ two + " - сумма без процента;" + '\n'
 			+ three + " - сумма с процентом." + '\n';
-}
+};
+
+var peoples = function (view, like) {
+	var one = (view / like);
+	
+	return '\n' + "(" + view + " / " + like + ") = " + one + '\n' ;
+};
