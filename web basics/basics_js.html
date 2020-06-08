@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Basics JS</title>
+</head>
+<body>
+	<style>
+		body {
+			font-family: Arial;
+		}
+		h2, h3, h4 {
+			margin-bottom: 0px;
+		}
+		h3 {
+			margin-top: 0px;
+		}
+		h4 {
+			margin-top: 10px;
+		}
+		footer {
+			margin: 200px;
+		}
+		span {
+			white-space: pre-wrap;
+		}
+		.error {
+			color: red;
+		}
+		
+	</style>
+	<script type="text/javascript">
+		'use strict'; // Строгий режим
+		var length = 'JavaScript is awesome'.length; // обращение к свойству строки length
+		var to_upper_case = 'JavaScript is awesome'.toUpperCase(); // обращение к методу строки toUpperCase()
+
+// ВЫВОД ДАННЫХ. ПОЛУЧЕНИЕ ДАННЫХ
+	// Вывод данных console.log() и alert().
+		const message = "Message on alert window";
+		const name = "Lera";
+		console.log(message); 
+		console.log(message, name); 
+		// alert(message);
+
+	// Получение данных от пользователя prompt() и confirm()
+		// const is_confirm = confirm("Message on confirm window");
+		// console.log(is_confirm);
+
+		// const is_prompt = prompt("Message on prompt window");
+		// console.log(is_prompt);
+		// console.log(typeof is_prompt);
+
+// МАТЕМАТИЧЕСКИЕ ОПЕРАТОРЫ
+	// Сложение с заменой (есть и для других операторов)
+		let value = 5;
+		value += 10; // Аналогично записи value = value + 10
+		console.log(value); // 15
+	// Операторы сравнения
+		const x = 5;
+		const y = 10;
+		const z = 5;
+
+		console.log('x > y:', x > y); // false
+		console.log('x < y:', x < y); // true
+		console.log('x < z:', x < z); // false
+		console.log('x <= z:', x <= z); // true
+		console.log('x === y:', x === y); // false
+		console.log('x === z:', x === z); // true
+		console.log('x !== y:', x !== y); // true
+		console.log('x !== z:', x !== z); // false
+
+// ЧИСЛА
+	//Number()
+		const value_a = 5;
+		console.log(Number(value_a) + " - const value_a = 5" );
+		console.log(typeof Number(value_a) + " - value_a = 5");
+		const value_b = "Not number";
+		console.log(Number(value_b) + " - const value_b = Not number");
+		console.log(typeof Number(value_b) + " - const value_b = Not number");
+
+	// Number.parseInt() и Number.parseFloat()
+		console.log(Number.parseInt("2.3"));
+		console.log(Number.parseInt("2.3asdf"));
+		console.log(Number.parseInt("asdf"));
+		console.log(Number.parseFloat("2.3"));
+		console.log(Number.parseFloat("2.3fas"));
+		console.log(Number.parseFloat("fas"));
+
+	// Проверка на число
+		const num_isnan_1 = Number("23");
+		const num_isnan_2 = Number("ff");
+
+		console.log(Number.isNaN(num_isnan_1));
+		console.log(Number.isNaN(num_isnan_2));
+
+	// Сложение чисел с плавающей точкой
+		console.log((0.1 * 10 + 0.2 * 10) / 10);
+
+	// Объект Math
+		//  Math.floor(num) - возвращает число перед точкой, либо равное указанному
+		console.log(Math.floor(1.7)); // 1
+		console.log(Math.floor(5.1)); // 5
+
+		// Math.ceil(num) - возвращает округленное число, либо равное указанному числу.
+		console.log(Math.ceil(1.9)); // 2
+		console.log(Math.ceil(3.1)); // 4
+
+		// Math.round(num) - возвращает значение числа, округлённое до ближайшего целого
+		console.log(Math.round(1.2)); // 1
+		console.log(Math.round(1.5)); // 2
+
+		// Math.max(num1, num2, ...) - возвращает наибольшее число из набора
+		console.log(Math.max(20,10,40,550,21)); // 550
+
+		// Math.min(num1, num2, ...) - возвращает наименьшее число из набора
+		console.log(Math.min(10, 1.2, 299, 29)); // 1.2
+
+		// Math.pow(base, exponent) - возведение в степень
+		console.log(Math.pow(2, 4)); //16
+
+		// Math.random() - возвращает псевдослучайное число в диапазоне от 0-1
+		console.log(Math.random()); //возвращает рандомное дробное число от 0-1
+		console.log(Math.round(Math.random() * 100)); // возвращает рандомное целое число от 0-100
+		console.log(Math.random() * (10 - 1) + 1);// возвращает рандомное дробное число от 1 до 10
+
+// СТРОКИ
+	// Конкатенация строк (сложение строк)
+		let result;
+		result = 5 + "5";
+		console.log("5 + '5' = " + result + " (type - " + typeof result + ")");
+		result = 5 + "5" + 5;
+		console.log("5 + '5' + 5 = " + result + " (type - " + typeof result + ")");
+		result = 5 + 5;
+		console.log("5 + 5 = " + result + " (type - " + typeof result + ")");
+
+	// Встроенные свойства и методы строк
+		let text = 'Hello';
+		console.log(text.length); // 5
+
+		console.log(text.toUpperCase()); // HELLO
+		console.log(text.toLowerCase()); // hello
+
+		console.log(text.indexOf()); // -1
+		console.log(text.indexOf("o")); // 4
+		console.log(text.indexOf("H")); // 0
+
+		console.log(text.includes("Hello")); //true
+		console.log(text.includes("hello")); //false
+		console.log(text.includes("He")); //true
+		console.log(text); //Hello
+
+	// Шаблонные строки и интерполяция
+		let names = "Lera";
+		let age = 23;
+		let mood = "normal";
+
+		let concatination = ("My name is " + name + ", i'm " + age + " years old. And i'm " + mood);
+		console.log(concatination); // My name is Lera, i'm 24 years old. And i'm normal
+
+		let template = `My name is ${name}, i'm ${age} years old. And i'm ${mood}`;
+		console.log(template);
+
+		console.log(`Результат сложения = ${2 + 2}.`);
+
+// ЛОГИЧЕСКИЕ ОПЕРАТОРЫ
+	// &&
+		const num = 20;
+		const result_num_true = num > 10 && num < 30; 
+		console.log(result_num_true + " && ");//true
+		const result_num_false = num > 10 && num > 30;
+		console.log(result_num_false + " && "); //false
+		const result_num_false_2 = num < 10 && num > 30;
+		console.log(result_num_false_2 + " && "); //false
+		const result_num_false_3 = num < 10 && num < 30;
+		console.log(result_num_false_3 + " && "); //false
+
+	// ||
+		const result_2 = num > 10 || num < 30;
+		console.log(result_2 + (" ||")); //true
+
+		const result_3 = num < 10 || num < 30;
+		console.log(result_3 + (" ||")); //true
+
+		const result_4 = num > 10 || num > 30;
+		console.log(result_4 + (" ||")); //true
+
+		const result_5 = num < 10 || num > 30;
+		console.log(result_5 + (" ||")); //false
+	
+	// !
+		console.log("!true = " + !true);
+		console.log("!false = " + !false);
+		console.log("!0 = " + !0);
+		console.log("!1 = " + !1);
+
+// ВЕТВЕЛЕНИЯ
+	// Инструкция if
+	let cost = 0;
+	const subscription = "pro";
+	if (subscription === "pro") {
+		cost = 100;
+	}
+	console.log(cost);
+
+	if (subscription === "easy") {
+		cost = 200;
+	}
+	console.log(cost);
+
+	// Инструкция if...else
+	if (subscription === "easy") {
+		cost = 200;
+	} else {
+		cost = 0
+	}
+	console.log(cost);
+
+	if (subscription === "pro") {
+		cost = 200;
+	} else {
+		cost = 0
+	}
+	console.log(cost);
+
+	// Инструкция else...if
+	if (subscription === "easy") {
+		cost = 200;
+	} else if (subscription === "mobby") {
+		cost = 120;
+	} else if (subscription === "pro") {
+		cost = 100
+	} 
+	console.log(cost);
+
+	// Тернарный оператор
+	const ageset = 20;
+	const type = ageset >= 30 ? "child" : "adult";
+	console.log(type);
+
+	// Операция поиска большего числа.
+	const num_1 = 55;
+	const num_2 = 15;
+	const big_num = num_1 > num_2 ? num_1 : num_2;
+	console.log(big_num);
+
+	// Инструкция switch
+	let coin;
+	const typing = 'premium';
+	switch (typing) {
+		case 'free':
+			coin = 0;
+			break;
+		case 'pro':
+			coin = 100;
+			break;
+		case 'premium':
+			coin = 500;
+			break;
+
+		default:
+			console.log("Invalid subscription type");
+	}
+	console.log(coin); //500
+
+//ОБЛАСТЬ ВИДИМОСТИ
+	const scope = 5;
+	if (true) {
+		console.log("Block scope:", scope); // 5
+	}
+	console.log('Global scope', scope); // 5
+
+	if (true) {
+		const scope_2 = 10;
+		console.log("Block scope:", scope_2); // 10
+	}
+	// console.log('Global scope', scope_2); // ReferenceError: scope_2 is not defined
+
+	const global = 'global';
+	if (true) {
+		const block_a = 'block A';
+
+		 // Видим глобальную + локальную A
+		console.log(global); // global
+		console.log(block_a); // block A
+
+		// Переменные block_b и block_c не найдены в доступных областях видимости.
+		// Будет ошибка обращения к переменной.
+		// console.log(block_b); // ReferenceError: block_b is not defined
+		// console.log(block_c); // ReferenceError: block_c is not defined
+
+		if (true) {
+			const block_b = 'block B';
+
+			// Видим глобальную + внешнюю A + локальную B
+			console.log(global); //global
+			console.log(block_a); //block A
+			console.log(block_b); //block B
+
+			// Переменная block_c не найдена в доступных областях видимости.
+		    // Будет ошибка обращения к переменной.
+			// console.log(block_c); // // ReferenceError: blockC is not defined
+		}
+	}
+
+	if (true) {
+		const block_c = 'block C';
+
+		// Видим глобальную + локальную C
+		console.log(global); // global
+		console.log(block_c); // block C'
+
+	   // Переменные blockA и blockB не найдены в доступных областях видимости.
+	   // Будет ошибка обращения к переменной.
+	   // console.log(block_a); // ReferenceError: block_a is not defined
+	   // console.log(block_b); // ReferenceError: block_b is not defined
+	}
+
+	console.log(global); // global
+	// console.log(block_a); //  ReferenceError: block_a is not defined
+	// console.log(block_b); //  ReferenceError: block_b is not defined
+	// console.log(block_c); //  ReferenceError: block_c is not defined
+
+	</script>	
+	<main>
+		<section>
+		<h1>Основы JS</h1>
+		<b>.length </b> - (свойство) кол-во символов строки <br>
+		<b>.toUpperCase() </b> - (метод) все буквы заглавные. <br>
+		<b>'use strict';</b> - Строгий режим. Когда эта строка находится в начале скрипта, весь сценарий работает в «современном» режиме.<br>
+		</section>
+
+		<h2>Переменные let и const</h2>
+		<section>
+		Переменным объявленным через let не обязательно сразу присваивать значение. <br>
+		<b>let age; </b><br>
+		<b>age = 14; </b><br><br>
+		Константа const обязательно должны быть инициализированызначением во время объявления, иначе будет ошибка. <br>
+		<b>const yearOfBirth = 2006; </b><br><br>
+
+		Значение переменной можно получить обратившись к ней по имени. <br>
+		<b>console.log() </b> используется для вывода данных в консоль разработчика <br>
+		<b>console.log(yearOfBirth); </b> <br><br>
+
+		<i><b>null</b></i> если в базе данных не нашли пользователя, то можно сказать что значение null. <br>
+		Переменная guest пуста и лишена значения<br>
+		<b>const guest = null;</b> <br><br>
+
+		<i><b>undefined</b></i>  По умолчанию, когда переменная объявляется, но не инициализируется, ее значение не определено, ей присваивается undefined. <br>
+		<b>let name; <br>
+		console.log(name);</b>// undefined
+	</section>
+
+	<section>
+		<h2>Оператор typeof</h2> 
+		отображает какой тип имеет та или иная переменная
+		<i>undefined</i>  <br>
+		<b>let a; <br>
+		console.log(typeof a);</b> // "undefined" <br><br>
+
+		<i>null</i><br>
+		<b>const b = null; <br>
+		console.log(typeof null);</b>  // "object" <br><br>
+
+		<i>Number </i><br>
+		<b>const c = 5; <br>
+		console.log(typeof c);</b> // "number" <br><br>
+
+		<i>String</i> <br>
+		<b>const d = 'JavaScript is awesome!'; <br>
+		console.log(typeof d);</b> // "string" <br><br>
+
+		<i>Boolean</i> <br>
+		<b>const e = false; <br>
+		console.log(typeof e);</b> // "boolean" <br>
+	</section>
+
+	<section>
+	<h2>Вывод данных. Получение данных</h2>
+		<h3>Вывод данных console.log() и alert().</h3> 
+		<i>const message = "Message on alert window"; <br> 
+		const name = "Lera" </i><br>
+		<b>consol.log(message); <br>
+		consol.log(message, name + "your text");<br>		
+		alert(message);</b> //откроется модальное окно <br><br>
+
+		<h3>Получение данных от пользователя prompt() и confirm()</h3> 
+		<b>confirm()</b> — выводит модальное окно с сообщением, и 2 кнопки, Ok и Cancel. При нажатии на Ok, на место вызова функции возвращается true, при нажатии на Cancel возвращается false. <br>
+		<i>const is_confirm = </i><b> confirm("Message on confirm window");</b> <br> 
+		<i>console.log(is_confirm);</i> <br>
+		<b>prompt()</b> — выводит модальное окно с полем ввода и кнопками Ok и Cancel. При Ok возвращает то, что было введено в поле ввода, при Cancel возвращает null. <br>
+		Не зависимо что ввел пользователь, * всегда вернется строка. Тоесть если пользователь ввел 5, то вернется * не число 5, а строка "5" <br>
+		<i>const is_prompt =</i> <b>prompt("Message on prompt window");</b> <br>
+		<i>console.log(is_prompt); <br>
+		console.log(typeof is_prompt);	</i>	 
+	</section>
+
+	<section>
+	<h2>Математические операторы</h2>
+		+, -, *, / - такое же как и в обычной алгебре <br>
+		Сложение с заменой (есть и для других операторов) <br>
+		<i>let value = 5;</i> <br>
+		// Аналогично записи value = value + 10; <br>
+		<i>value += 10; <br>
+		console.log(value); // 15 </i><br><br>
+		<h3>Операторы сравнения</h3> 
+		Используются для сравнения значений. Результатом своего выполнения возвращают були, true или false. <br>
+		<b>a > b </b>и <b>a < b   </b>- больше/меньше <br>
+		<b>a >= b </b>и <b>a <= b </b>- больше/меньше или равно <br>
+		<b>a == b          </b>- равенство <br>
+		<b>a != b          </b>- неравенство <br>
+		<b>a === b         </b>- строгое равенство <br>
+		<b>a !== b         </b>- строгое неравенство <br>
+	<b>	const x = 5; <br>
+		const y = 10; <br>
+		const z = 5; <br>
+	</b>
+		<b>console.log('x > y:', x > y);    </b> // false <br>
+		<b>console.log('x < y:', x < y);    </b> // true <br>
+		<b>console.log('x < z:', x < z);     </b>// false <br>
+		<b>console.log('x <= z:', x <= z);   </b>// true <br>
+		<b>console.log('x === y:', x === y); </b>// false <br>
+		<b>console.log('x === z:', x === z); </b>// true <br>
+		<b>console.log('x !== y:', x !== y); </b>// true <br>
+		<b>console.log('x !== z:', x !== z); </b>// false <br>
+		Всегда используйте строгое равенство === и строгое неравенство !==
+	</section>
+
+	<section>
+		<h2>Числа</h2>
+		Для того чтобы сделать преобразование значений в число явно, используйте функцию <b>Number(val)</b>, передавая ей в val то, что надо привести к числу. <br>
+		Если значние не возможно привести к числу, результатом будет специальное значение <b><i>NaN (Not a Number).</i></b> <br>
+		Аналогичным образом происходит преобразование и в других математических операторах и функциях. <br>
+
+		<i>const value_a = 5; </i><br>
+		<b>console.log(Number(value_a));</b> //5<br> 
+		<b>console.log(typeof Number(value_a));</b> //type - number  <br>
+		<i>const value_b = "Not number"; </i><br> 
+		<b>console.log(Number(value_b));</b> //NaN <br>
+		<b>console.log(typeof Number(value_b));</b>  //type - number <br> <br>
+
+		<h3>Number.parseInt() и Number.parseFloat()</h3>
+		<b>parseInt</b> - парсит из строки целое число. Если нет числа, выдает NaN <br>
+		<b>console.log(Number.parseInt("2.3")); </b> // 2<br>
+		<b>console.log(Number.parseInt("2.3asdf")); </b> // 2 <br>
+		<b>console.log(Number.parseInt("asdf")); </b> // NaN<br>
+		<b>parseFloat</b> - парсит из строки дробное число. Если нет числа, выдает NaN <br>
+		<b>console.log(Number.parseFloat("2.3")); </b> // 2.3<br> 
+		<b>console.log(Number.parseFloat("2.3fas")); </b> // 2.3<br>
+		<b>console.log(Number.parseFloat("fas")); </b> // NaN<br><br>
+
+		<h3>Проверка на число</h3>
+		Для проверки на число можно использовать метод <b> Number.isNaN(val)</b> <br>
+		Отвечает на вопрос "это не число?" true - это не число; false - это число;
+
+		<b>const num_isnan_1 = Number("23"); <br>
+		const num_isnan_2 = Number("ff"); <br>
+		console.log(Number.isNaN(num_isnan_1));</b> //false <br>
+		<b>console.log(Number.isNaN(num_isnan_2));</b> //true <br><br>
+
+		<h3>Сложение чисел с плавающей точкой</h3>
+		Что бы сделать точные вычисления для чисел с плавающей точкой(дробные), <br> 
+		можно умножить каждое число на 10, затем их прибавить и все разделить на 10, тогда не будет ошибок в вычислениях <br>
+		<b>console.log((0.1 * 10 + 0.2 * 10) / 10);</b> <br> <br>
+		<h3>Объект Math</h3>
+		Один из встроенных объектов в язык. Предоставляет набор методов для работы с числами. <br><br>
+
+		//  Math.floor(num) - возвращает число перед точкой, либо равное указанному <br>
+		<b>console.log(Math.floor(1.7));</b> // 1 <br>
+		<b>console.log(Math.floor(5.1));</b> // 5 <br><br>
+
+		// Math.ceil(num) - возвращает округленное число, либо равное указанному числу. <br>
+		<b>console.log(Math.ceil(1.9)); </b>// 2 <br>
+		<b>console.log(Math.ceil(3.1));</b> // 4 <br><br>
+
+		// Math.round(num) - возвращает значение числа, округлённое до ближайшего целого <br>
+		<b>console.log(Math.round(1.2));</b> // 1 <br>
+		<b>console.log(Math.round(1.5));</b> // 2 <br><br>
+
+		// Math.max(num1, num2, ...) - возвращает наибольшее число из набора <br>
+		<b>console.log(Math.max(20,10,40,550,21));</b> // 550 <br><br>
+
+		// Math.min(num1, num2, ...) - возвращает наименьшее число из набора <br>
+		<b>console.log(Math.min(10, 1.2, 299, 29));</b> // 1.2 <br><br>
+
+		// Math.pow(base, exponent) - возведение в степень <br>
+		<b>console.log(Math.pow(2, 4)); </b>//16 <br><br>
+
+		// Math.random() - возвращает псевдослучайное число в диапазоне от 0-1 <br>
+		<b>console.log(Math.random()); </b>//возвращает рандомное дробное число от 0-1 <br>
+		<b>console.log(Math.round(Math.random() * 100));</b> // возвращает рандомное целое число от 0-100 <br>
+		<b>console.log(Math.random() * (10 - 1) + 1);</b> // возвращает рандомное дробное число от 1 до 10 <br>
+	</section>
+
+	<section>
+		<h2>Строки</h2>
+		<h3>Конкатенация строк (сложение строк)</h3> 
+		Если строку прибавить со строкой или с числом, то строка просто подставиться рядом с числом или строкой и будет присвоен тип строки. <br>
+			<i>let result;</i> <br>
+			<i>result = 5 + "5";</i> <br>
+			<b>console.log("5 + '5' = " + result + " (type - " + typeof result + ")");</b> // 5 + '5' = 55 (type - string) <br>
+			<i>result = 5 + "5" + 5;</i> <br>
+			<b>console.log("5 + '5' + 5 = " + result + " (type - " + typeof result + ")");</b> // 5 + '5' + 5 = 555 (type - string) <br>
+			<i>result = 5 + 5;</i> <br>
+			<b>console.log("5 + 5 = " + result + " (type - " + typeof result + ")");</b> // 5 + 5 = 10 (type - number) <br><br>
+
+		<h3>Встроенные свойства и методы строк</h3> 
+			<i>let text = 'Hello';</i> <br>
+			<b>length </b>- свойство, хранит длину строки <br>
+			<b>console.log(text.length); </b> // 5 <br> <br>
+			<b>toLowerCase() и toUpperCase() </b>- вернут новую строку в соответствующем регистре, не изменяют оригинальную строку <br>
+			<b> console.log(text.toLowerCase()); </b>// hello <br>
+			<b> console.log(text.toUpperCase()); </b>// HELLO <br> <br>
+			<b>indexOf() </b>- вернет позицию (индекс) на которой находится первое совпадение подстроки или -1, если ничего не найдено <br>
+			<b>console.log(text.indexOf()); </b>// -1 <br> 
+			<b>console.log(text.indexOf("o"));</b>// 4 <br> 
+			<b>console.log(text.indexOf("H"));</b>// 0 <br> <br>
+			<b>includes() </b>- один из наиболее часто используемых методов, в большинстве случаев заменяет indexOf, проверяет входит ли подстрока в строку, возвращает true или false <br>
+			<b>console.log(text.includes("Hello"));</b> //true <br>
+			<b>console.log(text.includes("hello"));</b> //false <br>
+			<b>console.log(text.includes("He"));</b> //true <br><br>
+			После применения свойств, переменная осталась прежней<br>
+			<b>console.log(text);</b> //Hello <br><br>
+
+			<h3>Шаблонные строки и интерполяция</h3>
+			Шаблонные строки это альтернатива конкатенации с более удобным синтаксисом. <br>
+			Они заключены в обратные кавычки вместо двойных или одинарных и могут содержать местозаполнители, которые обозначаются знаком доллара и фигурными скобками. <br>
+			<i>let names = "Lera"; <br>
+			let age = 23; <br>
+			let mood = "normal"; <br><br>
+
+			Конкатенация строк </i><br>
+			<b>let concatination = ("My name is " + name + ", i'm " + age + " years old. And i'm " + mood); </b><br>
+			<i>console.log(concatination); </i>// My name is Lera, i'm 23 years old. And i'm normal <br><br>
+			<i>Шаблонные строки </i><br>
+			<b>let template = `My name is ${name}, i'm ${age} years old. And i'm ${mood}`; </b><br>
+			<i>console.log(template);</i> // My name is Lera, i'm 23 years old. And i'm normal<br><br>
+			В интерполяции можно использовать любое валидное выражение <br>
+			<b>console.log(`Результат сложения = ${2 + 2}.`); </b>//Результат сложения = 4.
+	</section>
+	<section>
+		<h2>Логические операторы</h2>
+		<h3>Двоичная логика</h3>
+		<b>Последовательность выполнения</b> — следование записи кода сверху вниз. <br>
+		Но не всегда программа должна выполняться строго последовательно. Для изменения последовательности используются циклы и ветвления. <br><br>
+		<b>Ветвление</b> — возможность выполнить ту или иную последовательность кода в зависимости от условия. <br>
+		Условие может быть любым, но результат его проверки всегда будет одним из двух значений true или false. <br><br>
+		<h3>Приведение типов</h3>
+		<b>6</b> ложных значений, приводящихся к <b>false </b>в логическом преобразовании: <b>0, NaN, null, undefined, пустая строка: "" или '', false</b>. <br>
+		 Абсолютно все остальное приводится к <b>true.</b> <br><br>
+
+		<h3>Логические операторы</h3>
+		Есть три логических оператора, которые используются для проверки выполнения множественных выражений: <b>&&</b> - И, <b>||</b> - ИЛИ, <b>! </b>- НЕ  <br>
+		
+		<h4> Логическое «И» &&</h4>
+		Оператор <b>&&</b> приводит все операнды к булю и возвращает одно из значений (операндов). Левый операнд если его можно привести к <b>false</b>, и правый в остальных случаях. <br>
+		Для того чтобы оператор <b>&&</b> вернул <b>true</b>, требуется чтобы все операнды были истинными. 
+		Если хотябы один из операндов будет приведен к <b>false</b>, то результатом выражения будет <b>false</b> <br><br>
+ 		<i>const num = 20; <br>
+		const result_num_true = </i><b>num > 10 && num < 30; </b> // 20 больше 10(да) и(&&) 20 меньше 30(да) = да<br>
+		<i>console.log(result_num_true);</i> // true<br><br>
+		const result_num_false = </i><b>num > 10 && num > 30; </b> // 20 больше 10(да) и(&&) 20 больше 30(нет) = нет<br>
+		<i>console.log(result_num_false);</i> // false<br><br>
+		const result_num_false = </i><b>num < 10 && num > 30; </b> // 20 меньше 10(нет) и(&&) 20 больше 30(нет) = нет<br>
+		<i>console.log(result_num_false);</i> // false<br><br>
+		const result_num_false = </i><b>num < 10 && num < 30; </b> // 20 меньше 10(нет) и(&&) 20 меньше 30(да) = нет<br>
+		<i>console.log(result_num_false);</i> // false<br><br>
+		
+
+		<h4>Логическое «ИЛИ» <b>||</b></h4>
+		Оператор <b>||</b> возвращает одно из значений (операндов). Всегда будет <b>true</b> если хотябы один из операндов был приведен к <b>true</b>. <br><br>
+		<i>const result_2 = </i><b>num > 10 || num < 30;</b> true || true = true;<br>	
+		<i>console.log(result_2);</i> //true <br><br>	
+		<i>const result_3 =</i> <b>num < 10 || num < 30;</b> false || true = true; <br>	
+		<i>console.log(result_3); </i>//true <br><br>	
+		<i>const result_4 = </i><b>num > 10 || num > 30;</b> true || false = true; <br>	
+		<i>console.log(result_4);</i> //true <br><br>	
+		<i>const result_5 = </i><b>num < 10 || num > 30;</b> false || false = false; <br>	
+		<i>console.log(result_5);</i> //false <br>	
+
+
+		<h4><h4> Логическое «НЕ» !</h4></h4>
+		Оператор ! приводит операнд к булю, если необходимо, а затем заменяет его на противоположный. <br><br>
+		<i>console.log("!true = " +</i> <b>!true</b>); // !true = false <br>
+		<i>console.log("!false = " +</i> <b>!false</b>); // !false = true <br>
+		<i>console.log("!0 = " + </i><b>!0</b>); // !0 = true <br>
+		<i>console.log("!1 = " + </i><b>!1</b>); // !1 = false <br><br>
+		<h3>Порядок вычисления</h3>
+		При выполнении логических операций, правый операнд может не вычисляться. <br>
+		<b>false && </b>(этот операнд не вычисляется)<b> = false <br>
+		true || </b>(этот операнд не вычисляется) <b> = true</b><br>
+	</section>
+	<section>
+		<h2>Ветвеления</h2>
+		<h3>Операторы ветвеления</h3>
+		Логические операторы не могут самостоятельно управлять потоком выполнения программы, для этого используются ветвления. <br>
+		Все они устроены по одному принципу - входные данные приводятся к булю (<b>true</b> или <b>false</b>) и, в зависимости от результата этого значения, поток программы направляется в ту или иную ветку. <br><br>
+
+		<h3>Инструкция if</h3>
+		Входные данные, которые приводятся к булевому типу называются <b>условием.</b> <br>
+		Условие помещают за оператором <b>if</b> в круглых скобках. <br>
+		Если <b>условие</b> приводится к <b>true</b>, то выполняется код в фигурных скобках (ветка). <br><br>
+		<b>let cost = 0; <br>
+		const subscription = "pro"; <br>
+		if (subscription === "pro") { <br>
+		<span>    cost = 100;</span> <br>
+		} <br>
+		console.log(cost);</b> // 100<br><br>
+
+		Если условие приводится к <b>false</b>, код в фигурных скобках будет пропущен. <br>
+		<b>if (subscription === "easy") { <br>
+		<span>    cost = 200;</span> <br>
+		} <br>
+		console.log(cost);</b> // 100<br><br>
+
+		<h3>Инструкция if...else</h3>
+		Расширяет синтаксис оператора <b>if</b> тем, что в случае если условие приводится к <b>false</b>, выполнится код в фигурных скобках после оператора <b>else</b>. <br>
+		При <b>true</b>, оператор <b>else</b> и связанный с ним программный блок, игнорируются.<br><br>
+		<b>if (subscription === "easy") { <br>
+		<span>    cost = 200;</span> <br>
+		} else {<br>
+		<span>    cost = 0</span> <br>
+		console.log(cost);</b> // 0<br><br><br>
+
+		<b>if (subscription === "pro") { <br>
+		<span>    cost = 200;</span> <br>
+		} else {<br>
+		<span>    cost = 0</span> <br>
+		console.log(cost);</b> // 200<br><br>
+
+		<h3>Инструкция else...if</h3>
+		Расширяет синтаксис оператора <b>if...else</b> тем, что после else снова добавляется оператор <b>if</b>. <br>
+		Все ответвления это результат <b>false</b> на все предыдущие вопросы. <br>
+		При первом же <b>true</b> проверки прекратятся и выполнится только один сценарий, соотвествующий этому <b>true</b> <br><br>
+
+		<b>if (subscription === "easy") { <br>
+		<span>    cost = 200;</span> <br>
+		} else if (subscription === "mobby") {<br>
+		<span>    cost = 120</span> <br>
+		} else if (subscription === "pro") {<br>
+		<span>    cost = 100</span> <br>
+		console.log(cost);</b> // 100<br><br>
+
+		<h3>Тернарный оператор</h3>
+		Есть конструкция, похожая на if...else, с упрощенным синтаксисом, называемая тернарный оператор (ternary - тройной). <br>
+		{условие} ? {выражение если условие правдиво} : {выражение если условие не правдиво} <br>
+		Тернарный оператор должен использоваться в простых операциях присваивания или возврата.<br><br>
+		<i><b><u> = Сравнительный пример if...else с тернарным оператором = </u></b></i> <br>
+		<i> <u>Инструкция if...else</u> </i> <br>
+		<b>let type; <br>
+		const age = 20; <br>
+		if (age >= 30) { <br>
+		 <span>    type = 'adult';</span> <br>
+		} else { <br>
+		 <span>    type = 'child';</span> <br>
+		} <br>
+		console.log(type);</b> // adult <br><br>
+
+		<i><u>Тернарный оператор</u> </i> <br>
+		<b>const ageset = 20; <br>
+		const type = ageset >= 30 ? "child" : "adult"; <br>
+		console.log(type);</b> // adult <br><br>
+
+		Операция поиска большего числа. <br>
+		<i><b><u> = Сравнительный пример if...else с тернарным оператором = </u></b></i> <br>
+		<i> <u>Инструкция if...else</u> </i> <br>
+		<b>const num1 = 55; <br>
+		const num2 = 15; <br>
+		let biggerNumber; <br>
+
+		if (num1 > num2) { <br>
+		 <span>    biggerNumber = num1; </span><br>
+		} else { <br>
+		  <span>    biggerNumber = num2; </span><br>
+		} <br>
+		console.log(biggerNumber);</b> // 55 <br><br>
+
+		<i><u>Тернарный оператор</u> </i> <br>
+		<b>const num_1 = 55; <br>
+		const num_2 = 15; <br>
+		const big_num = num_1 > num_2 ? num_1 : num_2; <br>
+		console.log(big_num);</b> // 55<br> <br> 
+
+		<h3>Инструкция switch</h3>
+		В некоторых случаях сложности чтения логических конструкций можно избежать, используя оператор ветвления <b>switch</b>. <br>
+		Синтаксис этого оператора разбивает условие на общую часть <b>switch</b> и множество отдельных случаев <b>case</b>. <br>
+		Т.е. применимость этого оператора ограничена только задачами с одним общим вопросом и множеством вариантов ответов. <br>
+		Значение выражения - строка или число, которое сравнивается со всеми значениями <b>case</b>. <br>
+		Если совпадения не произошло, управление передается <b>default</b>. <br>
+		Оператор <b>break</b> в завершении каждого блока <b>case</b> ставят чтобы прервать дальнейшие проверки и сразу перейти к коду за инструкцией <b>switch</b>. <br>
+		Если оператор <b>break</b> будет отсутствовать, то после того как выполнится какое-то условие <b>case</b>, все последующие за ним блоки кода будут выполняться один за другим <br><br>
+		<b>let coin; <br>
+		const typing = 'premium'; <br>
+		switch (typing) { <br>
+		<span>   case 'free': </span><br>
+		<span>      coin = 0;</span> <br>
+		<span>      break;</span> <br>
+		<span>   case 'pro':</span> <br>
+		<span>      coin = 100;</span> <br>
+		<span>      break; </span><br>
+		<span>  case 'premium': </span><br>
+		<span>    coin = 500; </span><br>
+		<span>    break; </span><br><br>
+
+		<span>  default: </span><br>
+		<span>    console.log("Invalid subscription type");</span> <br>
+		} <br>
+		console.log(coin); </b>//500 <br>
+	</section>
+	<section>
+		<h2> Область видимости</h2>
+		Область видимости переменных (variable scope) - доступность переменных в определенном месте кода. <br>
+		Есть несколько областей видимости: <b>глобальная, блочная, eval и функции</b>. <br>
+		Глобальная область видимости используется по умолчанию. Все и вся имеют доступ к переменным объявленным в ней. <br>
+		Переменные объявленные в глобальной области видимости уязвимы, так как их может изменить любой участок кода. <br>
+		Переменная <b>scope</b> объявлена в <b>глобальной области видимости</b>, то есть вне какого-то блока, и доступна в любом месте после объявления. <br>
+		<b>const scope = 5; <br>
+		if (true) { <br>
+		<span>    console.log("Block scope:", scope); </b>// 5 </span><br>
+		<b>} <br>
+		console.log('Global scope', scope);</b> // 5  <br><br>
+
+		Любая конструкция использующая фигурные скобки <b>{}</b> <i>(условия, циклы, функции и т. п.)</i> создает <b>новую локальную область</b> видимости, <br>
+		и переменные, объявленные в этой области видимости, используя <b>let</b> или <b>const</b>, <i>не доступны вне этого блока</i>. <br>
+		<b>if (true) { <br>
+		<span>    const scope_2 = 10;</span> <br>
+		<span>    console.log("Block scope:", scope_2); </span></b> // 10 <br>
+		<b>} <br>
+		console.log('Global scope', scope_2);</b> // ReferenceError: scope_2 is not defined <br><br>
+
+		Глобальная есть по умолчанию, создадим в ней переменную <b>global</b> <br>
+		Далее используя оператор <b>if </b>создадим блочную область видимости <b>block A </b><br>
+		Внутри области видимости <b>block A </b>поставим еще один оператор <b>if</b>, который создаст вложенную область видимости <b>block B</b> <br>
+		На одном уровне с <b>block A</b>, создадим область видимости <b>block C</b> все так же используя оператор <b>if</b> <br><br>
+
+		<b>const global = 'global'; <br>
+		if (true) { <br>
+<span>    </span>const block_a = 'block A';</b> <br><br>
+ <span>    </span><i>// Видим глобальную + локальную A </i><br>
+<span>    </span><b>console.log(global);</b> // global <br>
+<span>    </span><b>console.log(block_a);</b> // block A <br><br>
+<span>    </span><i>// Переменные block_b и block_c не найдены в доступных областях видимости. <br>
+<span>    </span>// Будет ошибка обращения к переменной.</i> <br>
+<span>    </span><b class="error">console.log(block_b);</b> // ReferenceError: block_b is not defined <br>
+<span>    </span><b class="error">console.log(block_c);</b> // ReferenceError: block_c is not defined <br><br>
+<span>    </span><b>if (true) { <br>
+<span>        </span>const block_b = 'block B'; </b><br><br>
+<span>        </span><i>// Видим глобальную + внешнюю A + локальную B </i><br>
+<span>        </span><b>console.log(global);</b> //global <br>
+<span>        </span><b>console.log(block_a);</b> //block A <br>
+<span>        </span><b>console.log(block_b);</b> //block B <br><br>
+<span>        </span><i>// Переменная block_c не найдена в доступных областях видимости. <br>
+<span>        </span>// Будет ошибка обращения к переменной.</i> <br>
+<span>        </span><b class="error">console.log(block_c);</b> // ReferenceError: blockC is not defined <br>
+<span>    </span><b>} <br>
+		} <br><br>
+		if (true) { <br>
+<span>    </span>const block_c = 'block C'; </b><br><br>
+<span>    </span><i>// Видим глобальную + локальную C </i><br>
+<span>    </span><b>console.log(global);</b> // global <br>
+<span>    </span><b>console.log(block_c);</b> // block C' <br><br>
+<span>    </span><i>// Переменные blockA и blockB не найдены в доступных областях видимости. <br>
+<span>    </span>// Будет ошибка обращения к переменной.</i> <br>
+<span>    </span><b class="error">console.log(block_a);</b> // ReferenceError: block_a is not defined <br>
+<span>    </span><b class="error">console.log(block_b);</b> // ReferenceError: block_b is not defined <br>
+		<b>} <br><br>
+		console.log(global); </b>// global <br>
+		<b class="error">console.log(block_a);</b> //  ReferenceError: block_a is not defined <br>
+		<b class="error">console.log(block_b);</b> //  ReferenceError: block_b is not defined <br>
+		<b class="error">console.log(block_c);</b> //  ReferenceError: block_c is not defined <br>
+
+
+	</section>
+</main>
+<footer></footer>
+</body>
+</html>
