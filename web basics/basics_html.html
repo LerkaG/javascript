@@ -19,6 +19,9 @@
 		span {
 			white-space: pre-wrap;
 		}
+		footer {
+			margin: 200px;
+		}
 	</style>
 	<header>
 		<h1> HTML tags </h1>
@@ -55,6 +58,8 @@
 
 		  <!-- ссылка на скайп (отправить файл) -->
 		  <li> <a href="skype:имя-пользователя?sendfile"> Send file on Skype </a>(a href="skype:имя-пользователя?sendfile")</li>
+		  <li> <a href="#section2">Go to Section 2</a> (a href="#section2") - <i>ссылка на другой раздел на той же странице</i></li>
+		  <li> <a href="javascript:alert('Hello World!');">Execute JavaScript</a> (a href="javascript:alert('Hello World!');) - <i>ссылка на JavaScript</i></li>
 		</ul>
 		<b> href </b>- указывает адрес на ту страницу, на которую перейдет пользователь при нажатии на текст ссылки <br>
 		<b>target </b>- указывает то, в каком окне откроется страница при клике на ссылку <br>
@@ -88,7 +93,50 @@
 		<b></b>
 		<b></b>
 	 </section>
+
+	 <section>
+	 	<h2>HTML теги по алфавиту</h2>
+	 	<b><i><u> a</u></i></b> - Тэг определяет гиперссылку, которая используется для связи с одной страницы на другую. 
+	 	<br>АТРИБУТЫ: <br>
+	 	<b>download</b>="filename", <b>href</b>="URL", <b>hreflang</b>="language_code", <b>media</b>="media_query", <b>ping</b>="list_of_URLs", <br><b>referrerpolicy</b>="no-referrer", "no-referrer-when-downgrade", "origin", "origin-when-cross-origin", "unsafe-url",<br> <b>rel</b>="alternate", "author", "bookmark", "external", "help", "license", "next", "nofollow", "noreferrer", "noopener", "prev", "search", "tag", <br><b>target</b>="_blank", "_parent", "_self", "_top", "framename", <b>type</b>-"media_type". <br><br>
+
+	 	<b><i><u><abbr title="tags abbr"> abbr</abbr></u></i></b> - Тэг определяет аббревиатуру или аббревиатуру, как  «HTML», «CSS», «мистер», «Доктор», «как можно скорее», «ATM».<br><br>
+
+	 	<address> <u>address </u> - Тэг определяет контактную информацию автора / владельца документа или статьи о.</address> <br>
+
+	 	<b><i><u>area</u></i></b> - Тег определяет область внутри изображения-карты <b>map</b> (изображение-карта представляет собой изображение с интерактивными областями). <br>АТРИБУТЫ: <br>
+	 	<b>alt</b>="text", <b>coords</b>="coordinates", <b>download</b>="filename", <b>href</b>="URL", <b>hreflang</b>="language_code", <b>media</b>="media query", <br><b>rel</b>="alternate", "author", "bookmark", "help", "license", "next", "nofollow", "noreferrer", "prefetch", "prev", "search", "tag",<br>
+	 	<b>shape</b>="default", "rect", "circle", "poly", <b>target</b>="_blank", "_parent", "_self", "_top", "framename", <b>type</b>="media_type" <br><br>
+
+	 	<b><i><u>article </u></i></b>- Тег определяет независимое, самодостаточное содержание. Потенциальные источники для <b>article</b> элемента: Пост форума, Сообщение блога, Новость <br><br>
+
+	 	<b><i><u>aside</u></i></b> - Тэг определяет некоторый контент в стороне от содержания его помещают в. Дополнительный контент должен быть косвенно связан с окружающим контентом. <br> <b>aside</b> Содержимое часто размещается в документе как боковая панель. <br><br>
+
+	 	<b><i><u>audio</u></i></b> - Тег используется для встраивания контента звука в документе. <b>audio</b>Тег содержит один или несколько <b>source</b> тегов с различными источниками звука. <br> Браузер выберет первый источник, который он поддерживает. Текст между <b>audio</b> тегами будет отображаться только в браузерах, не поддерживающих элемент <аудио>. 
+		<br>АТРИБУТЫ: <br>
+		<b>autoplay</b>="autoplay", <b>controls</b>="controls", <b>loop</b>="loop", <b>muted</b>="muted", <b>preload</b>="auto", "metadata", "none", <b>src</b>="URL" <br><br>
+
+		<b><u><i>base</i></u></b> - Тег определяет базовый URL и / или цель для всех относительных URL - адресов в документе. Тег должен иметь либо <b>HREF</b> или целевой атрибут настоящего, или оба. <br>В документе может быть только один <b>base</b> элемент, и он должен быть внутри элемента <head>.
+		<br>АТРИБУТЫ: <b>href</b>="URL", <b>target</b>="_blank", "_parent", "_self", "_top" <br><br>
+
+		<b><u><i>bdi </i></u></b>- тег изолирует часть текста, которая может быть отформатирована в другом направлении, чем другой текст за ее пределами. Полезен при встраивании пользовательского контента с неизвестным направлением текста.
+		<br>ПРИМЕР: <br>
+		User <bdi>إيان</bdi>: 90 points <br> User إيان<: 90 points <br><br>
+
+		<b><u><i>bdo</i></u></b> - Тег используется для переопределения текущего направления текста.
+		<br>АТРИБУТЫ: <b>dir</b>="ltr", "rtl" <br><br>
+
+		<b><u><i>blockquote</i></u></b> - Тег определяет раздел, который процитированный из другого источника. Браузеры обычно делают отступы для элементов. Использовать <b>q</b> для встроенных (коротких) цитат.
+		<br>АТРИБУТЫ: <b>cite</b>="URL"
+		<br>ПРИМЕР:
+		<blockquote cite="http://www.worldwildlife.org/who/index.html"> For 50 years, WWF has been protecting the future of nature. </blockquote> <br>
+
+		<b><u><i>button</i></u></b> - Тег определяет кнопку интерактивной. Внутри элемента можно поместить текст (и такие теги, как <b>i, strong, br, img</b> и т. Д.). <br>Это невозможно с помощью кнопки, созданной с помощью элемента <b>input</b>! Всегда указывайте атрибут <b>type</b> для <b>button</b> элемента, чтобы сообщить браузерам, какой это тип кнопки. 
+		<br>АТРИБУТЫ:
+
+	 </section> 
 </main>
+<footer></footer>
 
 </body>
 </html>
