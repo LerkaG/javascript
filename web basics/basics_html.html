@@ -116,7 +116,7 @@
 		<br>АТРИБУТЫ: <br>
 		<b>autoplay</b>="autoplay", <b>controls</b>="controls", <b>loop</b>="loop", <b>muted</b>="muted", <b>preload</b>="auto", "metadata", "none", <b>src</b>="URL" <br><br>
 
-		<b><u><i>base</i></u></b> - Тег определяет базовый URL и / или цель для всех относительных URL - адресов в документе. Тег должен иметь либо <b>HREF</b> или целевой атрибут настоящего, или оба. <br>В документе может быть только один <b>base</b> элемент, и он должен быть внутри элемента <head>.
+		<b><u><i>base</i></u></b> - Тег определяет базовый URL и / или цель для всех относительных URL - адресов в документе. Тег должен иметь либо <b>HREF</b> или целевой атрибут настоящего, или оба. <br>В документе может быть только один <b>base</b> элемент, и он должен быть внутри элемента <b>head</b>.
 		<br>АТРИБУТЫ: <b>href</b>="URL", <b>target</b>="_blank", "_parent", "_self", "_top" <br><br>
 
 		<b><u><i>bdi </i></u></b>- тег изолирует часть текста, которая может быть отформатирована в другом направлении, чем другой текст за ее пределами. Полезен при встраивании пользовательского контента с неизвестным направлением текста.
@@ -132,7 +132,392 @@
 		<blockquote cite="http://www.worldwildlife.org/who/index.html"> For 50 years, WWF has been protecting the future of nature. </blockquote> <br>
 
 		<b><u><i>button</i></u></b> - Тег определяет кнопку интерактивной. Внутри элемента можно поместить текст (и такие теги, как <b>i, strong, br, img</b> и т. Д.). <br>Это невозможно с помощью кнопки, созданной с помощью элемента <b>input</b>! Всегда указывайте атрибут <b>type</b> для <b>button</b> элемента, чтобы сообщить браузерам, какой это тип кнопки. 
+		<br>АТРИБУТЫ: <br>
+		 <b>autofocus</b>="autofocus", <b>disabled</b>="disabled", <b>form</b>="form_id", <b>formaction</b>="URL", <b>formenctype</b>="application/x-www-form-urlencoded","multipart/form-data","text/plain", <br><b>formmethod</b>="get", "post", <b>formnovalidate</b>="formnovalidate", <b>formtarget</b>="_blank", "_self", "_parent", "_top", "framename", <b>name</b>="name", <b>type</b>="button", "reset", "submit", <b>value</b>="text" <br><br>
+
+		<b><u><i>caption</i></u></b> - Тег определяет заголовок таблицы, должен быть вставлен сразу после <b>table</b> тега. <br><br>
+
+		<b><u><i>cite</i></u></b> - тег определяет название творческой работы (например, книга, стихотворение, песня, кино, живопись, скульптура и т.д.). Обычно отображается курсивом <br><br>
+
+		<b><u><i>code</i></u></b> - Тег используется для определения куска компьютерного кода. Содержимое внутри отображается в моноширинном шрифте браузера по умолчанию.<br>Еще для отображения кода используются такие теги: <b>samp, kbd, var, pre</b> <br><br>
+
+		<b><u><i>col</i></u></b> - тег определяет свойства столбцов для каждого столбца в пределах <b>COLGROUP</b> элемента. Он полезен для применения стилей ко всем столбцам <br>вместо повторения стилей для каждой ячейки для каждой строки.
+		<br>АТРИБУТЫ: <b>span</b>="number" <br><br>
+
+		<b><u><i>colgroup</i></u></b> - Тег указывает группу из одного или нескольких столбцов в таблице для форматирования. <br>
+		Полезен для применения стилей ко всем столбцам вместо повторения стилей для каждой ячейки для каждой строки. <br>
+		Он должен быть дочерним элементом элемента <b>table</b> после любых элементов <b>caption</b> и перед любыми элементами <b>thead, tbody, tfoot и tr </b>. <br>
+		Чтобы определить различные свойства для столбца в пределах <b>colgroup</b>, используйте тег <b>col</b> внутри <b>colgroup</b> тега.
+		<br>АТРИБУТЫ: <b>span</b>="number" <br><br>
+
+		<b><u><i>data</b></u></i> - Тег используется для добавления машиночитаемого перевода данного содержания. <br>
+		Этот элемент предоставляет как машиночитаемое значение для процессоров данных, так и удобочитаемое значение для рендеринга в браузере. <br>
+		Если содержимое связано со временем или датой, используйте вместо него элемент <b>time</b>. Safari - не поддерживает
+		<br>АТРИБУТЫ: <b>value</b>="machine-readable format" <br><br>
+				
+		<b><u><i>datalist</b></u></i> - Тег задает список предопределенных опций для элемента <b>INPUT</b>. <br>
+		Тег используется , чтобы обеспечить «автозаполнение» функцию для элементов <b>INPUT</b>. Пользователи увидят раскрывающийся список предопределенных параметров при вводе данных. <br>
+		В <b>datalist</b> атрибут ID элемента должен быть равен атрибуту списка элемент<b> INPUT</b> (это связывает их вместе).
+
+		<br>ПРИМЕР:
+		<label for="browser">Choose your browser from the list:</label>
+		<input list="browsers" name="browser" id="browser">
+		<datalist id="browsers">
+		  <option value="Edge">
+		  <option value="Firefox">
+		  <option value="Chrome">
+		  <option value="Opera">
+		  <option value="Safari">
+		</datalist> <br><br>
+
+		<b><u><i>dd</b></u></i> - Тег используется для описания термин / имя в списке описаний.Внутри тега вы можете поместить абзацы, разрывы строк, изображения, ссылки, списки и т. Д. <br> Тег используется в сочетании с <b>DL</b> (определяет список описание) и <b>DT</b> (определение терминов / имен). 
+
+		<dl>ПРИМЕР:
+		  <dt>Coffee</dt>
+		  <dd>Black hot drink</dd>
+		  <dt>Milk</dt>
+		  <dd>White cold drink</dd>
+		</dl> <br>
+
+		<b><u><i>del</i></u></b> - Тэг определяет текст , который был удален из документа. Браузеры обычно вычеркивают строку через удаленный текст. Тег <b>ins</b> для разметки вставленного текста.
 		<br>АТРИБУТЫ:
+		<b>cite</b>="URL", <b>datetime</b>="YYYY-MM-DDThh:mm:ssTZD"
+		<br>ПРИМЕР:
+		My favorite color is <del>blue</del> <ins>red</ins>! <br><br>
+
+		<b><u><i>details</i></u></b> - Тег определяет дополнительные детали , которые пользователь может открывать и закрывать по требованию. <br>
+		Он часто используется для создания интерактивного виджета. Когда он открыт, он раскрывается и отображает содержимое внутри. <br>
+		Любой контент может быть размещен внутри <b>details</b> тега. <b>summary</b> тег используется в связке с <b>details</b> указать видимый заголовок для деталей.
+		<br>АТРИБУТЫ: <b>open</b>="open"
+		<br>ПРИМЕР:
+		<details>
+		  <summary>Epcot Center</summary>
+		  <p>Epcot is a theme park at Walt Disney World Resort featuring exciting attractions.</p>
+		</details> <br><br>
+
+		<b><u><i>dfn</i></u></b> - Тег обозначает «определение элемента», и это указывает на термин , который будет определен в пределах содержания. <br>
+		Термин внутри <b>dfn</b>тега может быть любым из следующих:
+		<br>ПРИМЕР: <br>
+			<dfn>HTML</dfn> is the standard markup language for creating web pages.
+
+			<p> с добавленным атрибутом title: <br>
+				<dfn title="HyperText Markup Language">HTML</dfn> is the standard markup language for creating web pages.</p>
+
+			<p> с тегом <b>abbr</b> внутри элемента <br>
+				<dfn><abbr title="HyperText Markup Language">HTML</abbr></dfn> is the standard markup language for creating web pages.</p>
+
+			<p>с добавленным атрибутом <b>id</b>. Затем, всякий раз, когда используется термин, он может обратиться к определению с тегом <b>a</b><br>
+				<dfn id="html-def">HTML</dfn> is the standard markup language for creating web pages. <br>
+				This is some text... <br>
+				This is some text... <br>
+				Learn <a href="#html-def">HTML</a> now. </p><br>
+		<b><u><i>dialog</i></u></b> - Тэг определяет диалоговое окно или подокно. Элемент позволяет легко создавать всплывающие окна и модальности на веб - странице. Safari - не поддерживает
+		<br>АТРИБУТЫ: <b>open</b>="open"
+		<br>ПРИМЕР: <br>
+		<dialog open>This is an open dialog window</dialog> <br><br><br><br>
+
+		<b><u><i>div</i></u></b> - Тег определяет разделение или раздел в HTML - документе, используется в качестве контейнера для HTML - элементов - который затем стилизованных с помощью CSS или манипулируют с помощью JavaScript. <br> <br>
+
+		<b><u><i>dl</i></u></b> - Тэг определяет список описания. Используется в сочетании с <b>dt</b> (определяет условия / имена) и <b>dd</b> (описывает каждый термин / имя).
+		<br>ПРИМЕР: смотреть пример <b><u><i>dd</b></u></i> <br><br>
+
+		<b><u><i>dt</i></u></b> - Тег определяет термин / имя в списке описаний. Используются в сочетании с <b>dt</b> (определяет список описания) и <b>dd</b> (описывает каждый термин / имя).
+		<br>ПРИМЕР: смотреть пример <b><u><i>dd</b></u></i> <br><br>
+
+		<b><u><i>em</i></u></b> - Тег используется для определения выделенного текста. Содержимое внутри обычно отображается курсивом. 
+		<br>ПРИМЕР: We <em>cannot</em> live like this. <br><br>
+
+		<b><u><i>fieldset</i></u></b> - Тег используется для группировки связанных элементов в форме. Тег рисует рамку вокруг связанных элементов.<b>legend</b> тег используется для определения заголовка для <b>fieldset</b> элемента.
+		<br>АТРИБУТЫ: <b>disabled</b>="disabled", <b>form</b>="form_id", <b>name</b>="text"
+		<br>ПРИМЕР: <br>
+		<form action="/action_page.php">
+		  <fieldset>
+		    <legend>Personalia:</legend>
+		    <label for="fname">First name:</label>
+		    <input type="text" id="fname" name="fname"><br><br>
+		    <label for="lname">Last name:</label>
+		    <input type="text" id="lname" name="lname"><br><br>
+		    <label for="email">Email:</label>
+		    <input type="email" id="email" name="email"><br><br>
+		    <label for="birthday">Birthday:</label>
+		    <input type="date" id="birthday" name="birthday"><br><br>
+		    <input type="submit" value="Submit">
+		  </fieldset>
+		</form> <br><br>
+
+		<b><u><i>figcaption</i></u></b> - Тэг определяет заголовок для <b>figure</b> элемента. Элемент может быть помещен в качестве первого или последнего дочернего элемента <b>figure</b>.
+		<br>ПРИМЕР: 
+		<figure>
+		  <img src="challange17.png" alt="Trulli" style="width:10%">
+		  <figcaption>Fig.1 - Trulli, Puglia, Italy.</figcaption>
+		</figure>
+
+		<b><u><i>figure</i></u></b> - В теге указывает самодостаточным содержание, как иллюстрации, диаграммы, фотографии, списки кодов и т.д. <br>
+		Хотя содержимое <b>figure</b> элемента связано с основным потоком, его положение не зависит от основного потока, в случае его удаления это не должно влиять на поток документа. <br>Элемент <b>figcaption</b> используется для добавления заголовка для <b>figure</b> элемента.
+		<br>ПРИМЕР: смотреть пример <b><u><i>figcaption</i></u></b> <br><br>
+
+		<b><u><i>form</i></u></b> - Тег используется для создания формы HTML для ввода данных пользователя. Элемент может содержать один или несколько из следующих элементов формы: <br><b>input, textarea, button, select, option, optgroup, fieldset, label, output</b>
+		<br>АТРИБУТЫ: <br><b>accept-charset</b>="character_set", <b>action</b>="URL", <b>autocomplete</b>="on", "off", <b>enctype</b>="application/x-www-form-urlencoded", "multipart/form-data", "text/plain", <br><b>method</b>="get", "post", <b>name</b>="text"	, <b>novalidate</b>="novalidate", <b>rel</b>="external", "help", "license", "next", "nofollow", "noopener", "noreferrer", "opener", "prev", "search", <b>target</b>="_blank", "_self", "_parent", "_top"
+
+		<br>ПРИМЕР: 
+		<form action="/action_page.php" method="get">
+		  <label for="fname">First name:</label>
+		  <input type="text" id="fname" name="fname"><br><br>
+		  <label for="lname">Last name:</label>
+		  <input type="text" id="lname" name="lname"><br><br>
+		  <input type="submit" value="Submit">
+		</form> <br>
+
+		<b><u><i>head</i></u></b> - Элемент является контейнером для метаданных (данных о данных) и помещается между тегом <b>HTML</b> и тег <b>body</b>. <br>
+		Следующие элементы могут входить внутрь <b>head</b> элемента: <b>title, style, base, link, meta, script, noscript</b> <br><br>
+
+		<b><u><i>Тэг</i></u></b> - определяет тематический перерыв в HTML - странице (например, сдвиг в теме). Чаще всего отображается в виде горизонтальной линии.
+		<br>ПРИМЕР: <hr> <br><br>
+
+		<b><i><u>i</u></i></b> - Тэг определяет часть текста. Содержимое внутри обычно отображается курсивом .часто используется для обозначения технических терминов, фразы из другого языка, мыслей, названия судна и т.д. <br>
+		Использовать элемент только тогда, когда нет более подходящего семантического элемента, такого как: <br>	
+		<b>em</b> (выделенный текст), <b>strong</b> (важный текст), <b>mark</b> (отмеченный / выделенный текст), <b>cite</b> (название работы), <b>dfn</b> (термин определения) <br><br>
+
+		<b><u><i>iframe</i></u></b> - Тег определяет встроенный фрейм. Он используется для встраивания другого документа в текущий документ HTML. <br>
+		Рекомендуется всегда включать атрибут заголовка для <b>iframe</b>. Это используется программами чтения с экрана для считывания содержимого <b>iframe</b>.
+		<br>АТРИБУТЫ: <br><b>allow</b>="", <b>allowfullscreen</b>="true", "false", <b>allowpaymentrequest</b>="true", "false", <b>height</b>="pixels", <b>name</b>="text", <b>referrerpolicy</b>="no-referrer", "no-referrer-when-downgrade", "origin", "origin-when-cross-origin", "same-origin", "strict-origin", "strict-origin-when-cross-origin", "unsafe-url", <b>sandbox</b>="allow-forms", "allow-pointer-lock", "allow-popups", "allow-same-origin", "allow-scripts", "allow-top-navigation", <b>src</b>="URL", <b>srcdoc</b>="HTML_code", <b>width</b>="pixels"
+
+		<br>ПРИМЕР: 
+		<iframe src="file:///H:/js/repo_js/javascript/web%20basics/basics_html.html#html-def" title="W3Schools Free Online Web Tutorials"></iframe> <br><br>
+
+		<b><u><i>img</i></u></b> - Тег используется , чтобы вставлять изображения в HTML - странице. Чтобы связать изображение с другим документом, просто вложите <b>img</b> тег в тег <b>a</b>.
+		<br> Есть два обязательных атрибута: <br>
+		<b>src</b> - указывает путь к изображению <b>alt</b> - указывает альтернативный текст для изображения, если изображение по какой-либо причине не может быть отображено 
+		<br>АТРИБУТЫ: <br>
+		<b>alt</b>="text", <b>crossorigin</b>="anonymous", "use-credentials", <b>height</b>="pixels", <b>ismap</b>="ismap", <b>longdesc</b>="URL", <b>sizes</b>="sizes", <b>src</b>="URL", <b>srcset</b>="URL", <b>usemap</b>="#mapname",<br><b>width</b>="pixels", <b>referrerpolicy</b>="no-referrer", "no-referrer-when-downgrade", "origin", "origin-when-cross-origin", "unsafe-url" <br><br>
+
+		<b><u><i>input</i></u></b> - Тег определяет поле ввода , в котором пользователь может ввести данные. Является наиболее важным элементом формы. <br>Элемент может отображаться несколькими способами, в зависимости от атрибута типа.
+		<br>АТРИБУТЫ: <br>
+		<b>accept</b>="file_extension", "audio/*", "video/*", "image/*", "media_type", <b>alt</b>="text", <b>autocomplete</b>="on", "off", <b>autofocus</b>="autofocus", <b>checked</b>="checked", 	<b>dirname</b>="inputname.dir", <br>
+		<b>disabled</b>="disabled", <b>form</b>="form_id", <b>formaction</b>="URL", <b>formenctype</b>="application/x-www-form-urlencoded", "multipart/form-data", "text/plain", <b>formmethod</b>="get", "post", <br>
+		<b>formnovalidate</b>="formnovalidate", <b>formtarget</b>="_blank", "_self", "_parent", "_top", "framename", <b>height</b>="pixels", <b>list</b>="datalist_id", <b>max</b>="number", "date", <b>maxlength</b>="number", <b>value</b>="text", <b>width</b>="pixels",<br>
+		<b>min</b>="number", "date", <b>minlength</b>="number", <b>multiple</b>="multiple", <b>name</b>="text", <b>pattern</b>="regexp"	, <b>placeholder</b>="text", <b>readonly</b>="readonly", <b>required</b>="required", <b>size</b>="number", <b>src</b>="URL", <b>step</b>="number","any", <br>
+		<b>type</b>="button", "checkbox", "color", "date", "datetime-local", "email", "file", "hidden", "image", "month", "number", "password", "radio", "range", "reset", "search", "submit", "tel", "text", "time", "url", "week"
+		<br>ПРИМЕР: смотреть пример <b><u><i>form</i></u></b> <br><br>		
+
+		<b><u><i>ins</i></u></b> - Тэг определяет текст, который был вставлен в документ. Браузеры обычно <ins>подчеркивают</ins> вставленный текст.
+		<br>АТРИБУТЫ: <b>cite</b>="URL", <b>datetime</b>="YYYY-MM-DDThh:mm:ssTZD" <br><br>
+
+		<b><u><i>kbd</i></u></b> - Тег используется для определения ввода с клавиатуры. Содержимое внутри отображается в моноширинном шрифте браузера по умолчанию.
+		<br>ПРИМЕР: Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy text (Windows). <br><br>
+
+		<b><u><i>label</i></u></b> - Атрибут <b>for</b> должен быть равен атрибуту <b>id</b> связанного элемента, чтобы связать их вместе. Метка также может быть связана с элементом, помещая элемент внутри <b>label</b>. <br>
+		Тег определяет метку для нескольких элементов: <br>
+		<b> input type</b>="color", "date", "datetime-local", "email", "file", "month", "number", "password", "radio", "range", "search", "tel", "text", "time", "url",<b> meter, progress, select, textarea</b>
+		<br>АТРИБУТЫ: <b>for</b>="element_id", <b>form</b>="form_id" <br><br>
+
+		<b><u><i>legend</i></u></b> - Тэг определяет заголовок для <b>Fieldset</b> элемента.
+		<br>ПРИМЕР: смотреть пример <b><u><i>fieldset</i></u></b> <br><br>
+
+		<b><u><i>li</i></u></b> - Тег определяет элемент списка. Используется внутри <b>ol</b> (отображаются с цифрами или буквами), маркированные списки <b>UL</b>, а также в списках меню <b>menu</b> (отображаются с маркерами).
+		<br>АТРИБУТЫ: <b>value</b>="number" <br><br>
+
+		<b><u><i>link</i></u></b> - Тег определяет отношения между текущим документом и внешним ресурсом. Чаще всего используется для ссылки на внешние таблицы стилей. <br>
+		<br>АТРИБУТЫ: <br>
+		<b>crossorigin</b>="anonymous", "use-credentials", <b>href</b>="URL", <b>hreflang</b>="language_code", <b>media</b>="media_query",  <b>sizes</b>="HeightxWidth", "any",<br><b>referrerpolicy</b>="no-referrer", "no-referrer-when-downgrade", "origin", "origin-when-cross-origin", "unsafe-url", <b>title, type</b>="media_type", <br><b>rel</b>="alternate", "author", "dns-prefetch", "help", "icon", "license", "next", "pingback", "preconnect", "prefetch", "preload", "prerender", "prev", "search", "stylesheet" <br><br>
+
+		<b><u><i>map</i></u></b> - Тег используется для определения изображения-карты(изображение с интерактивными областями). <br>Обязательный атрибут <b>name</b> элемента связан с атрибутом <b>usemap</b> в <b>img</b> и создает связь между изображением и картой. <br>Элемент содержит ряд <b>area</b> элементов, который определяет интерактивные области на карте изображения.
+		<br>АТРИБУТЫ: <b>name</b>="mapname"
+		<br>ПРИМЕР:
+		<img src="challange17.png" alt="Workplace" usemap="#workmap" width="200" height="190">
+		<map name="workmap">
+		  <area shape="rect" coords="34,44,270,350" alt="Computer" href="computer.htm">
+		  <area shape="rect" coords="290,172,333,250" alt="Phone" href="phone.htm">
+		  <area shape="circle" coords="337,300,44" alt="Cup of coffee" href="coffee.htm">
+		</map> <br><br>
+
+		<b><u><i>mark</i></u></b> - Тэг определяет текст, который должен быть отмечен или выделен.
+		<br>ПРИМЕР: Do not forget to buy <mark>milk</mark> today. <br><br>
+
+		<b><u><i>meta</i></u></b> - Тэг определяет метаданные о HTML документе внутри элемента <b>head</b> и обычно используются для указания набора символов, описания страницы, ключевых слов, автора документа и настроек области просмотра.
+		<br>АТРИБУТЫ: <br>
+		<b>charset</b>="character_set", <b>content</b>="text", <b>http-equiv</b>="content-security-policy", "content-type", "default-style", "refresh", <b>name</b>="application-name", "author", "description", "generator", "keywords", "viewport" <br><br>
+
+		<b><u><i>meter</i></u></b> - Тэг определяет скалярное измерение в пределах известного диапазона или дробное значение. добавляйте тег <b>label</b> для лучшей практики доступности!<br>
+		Тег не должен использоваться для обозначения прогресса (как в панели прогресса). Для индикаторов выполнения использывать тег <b>progress</b> .
+		<br>АТРИБУТЫ: <br>
+		<b>form</b>="form_id", <b>high</b>="number", <b>low</b>="number", <b>max</b>="number", <b>min</b>="number", <b>optimum</b>="number", <b>value</b>="numbe"
+		<br>ПРИМЕР: <br>
+		<label for="disk_c">Disk usage C:</label>
+		<meter id="disk_c" value="2" min="0" max="10">2 out of 10</meter>
+		<label for="disk_d">Disk usage D:</label>
+		<meter id="disk_d" value="0.6">60%</meter> <br><br>
+
+		<b><u><i>nav</i></u></b> - Тег определяет набор навигационных ссылок. НЕ все ссылки документа должны быть внутри <b>nav</b> элемента. Элемент <b>nav</b> предназначен только для основного блока навигационных ссылок.
+		<br>ПРИМЕР:
+		<nav>
+		  <a href="/html/">HTML</a> |
+		  <a href="/css/">CSS</a> |
+		  <a href="/js/">JavaScript</a> |
+		  <a href="/python/">Python</a>
+		</nav> <br>
+
+		<b><u><i>noscript</i></u></b> - Тэг определяет альтернативный контент, если были отключены скрипты в браузере или если браузер не поддерживает скрипт. 
+		лемент может быть использован в <b>HEAD, body</b>.<br>При использовании внутри <b>HEAD</b> элемент может содержать только элементы <b>link, style, meta</b>.
+		<br>ПРИМЕР:
+		<script>
+		document.write("Hello World!")
+		</script>
+		<noscript>Your browser does not support JavaScript!</noscript> <br><br>
+		<b><u><i>object</i></u></b> - Тег определяет контейнер для внешнего ресурса. Внешний ресурс может быть веб-страницей, картинкой, медиаплеером или подключаемым приложением. 
+		<br>Тег был предназначен для встраивания плагинов браузера. Большинство браузеров больше не поддерживают <b>Java-апплеты и плагины</b>. <br> Поддержка <b>Shockwave Flash</b> отключена в  браузерах. Элементы управления <b>ActiveX</b> больше не поддерживаются ни в одном браузере.
+		<br>АТРИБУТЫ: <br>
+		 <b>data</b>="URL", <b>form</b>="form_id", <b>height</b>="pixels", <b>name</b>="name", <b>type</b>="media_type", <b>typemustmatch</b>="true/false", <b>usemap</b>="#mapname", <b>width</b>="pixels <br><br>
+
+		<b><u><i>ol</i></u></b> - Тэг определяет упорядоченный список. Упорядоченный список может быть числовым или алфавитным.
+		<br>АТРИБУТЫ:
+		<b>reversed</b>="reversed", <b>start</b>="number", <b>type</b>=1", "A", "a", "I", "i", 
+		<br>ПРИМЕР:
+		<ol start="50">
+		  <li>Coffee</li>
+		  <li>Tea</li>
+		  <li>Milk</li>
+		</ol> 
+
+		<b><u><i>optgroup</i></u></b> - тег используется для группировки связанных параметров в элементе <b>select</b> (раскрывающийся список). Когда длинный список опций, группы связанных опций проще для пользователя.
+		<br>АТРИБУТЫ: <b>disabled</b>="disabled", <b>label</b>="text"
+		<br>ПРИМЕР:
+		<label for="cars">Choose a car:</label>
+		<select  name="cars" id="cars">
+		  <optgroup label="Swedish Cars">
+		    <option value="volvo">Volvo</option>
+		    <option value="saab">Saab</option>
+		  </optgroup>
+		  <optgroup label="German Cars">
+		    <option value="mercedes">Mercedes</option>
+		    <option value="audi">Audi</option>
+		  </optgroup>
+		</select> <br><br>
+
+		<b><u><i>option</i></u></b> - Тэг определяет параметр в списке выбора. <b>option</b> элементы находятся внутри элемента <b>select , optgroup или datalist</b>. <br>
+		Тег можно использовать без каких-либо атрибутов, но обычно требуется атрибут <b>value</b>, который указывает, что отправляется на сервер при отправке формы. <br>
+		Если длинный список параметров, можно сгруппировать связанные параметры в теге <b>optgroup</b> . 
+		<br>АТРИБУТЫ: 
+		<b>disabled</b>="disabled", <b>label</b>="text", <b>selected</b>="selected", <b>value</b>="text"
+		<br>ПРИМЕР:
+		<label for="cars">Choose a car:</label>
+		<select id="cars">
+		  <option value="volvo">Volvo</option>
+		  <option value="saab">Saab</option>
+		  <option value="opel">Opel</option>
+		  <option value="audi">Audi</option>
+		</select> <br><br>
+
+		<b><u><i>output</i></u></b> - Тег используется для представления результата вычислений (например , один выполняется с помощью скрипта).
+		<br>АТРИБУТЫ: <b>for</b>="element_id", <b>form</b>="form_id", <b>name</b>="name"
+		<br>ПРИМЕР:
+		<form oninput="x.value=parseInt(a.value)+parseInt(b.value)">
+		  <input type="range" id="a" value="50">
+		  +<input type="number" id="b" value="25">
+		  =<output name="x" for="a b"></output>
+		</form> <br><br>
+
+		<b>param</b> - тег используется для определения параметров для элемента <b>object</b>. Поддерживается во всех основных браузерах. Однако формат файла, в <b>object</b>, может поддерживаться не во всех браузерах.
+		<br>АТРИБУТЫ: <b>name</b>="name", <b>value</b>="value"
+		<br>ПРИМЕР:
+		<object data="file:///H:/js/repo_js/javascript/web%20basics/basics_html.html">
+		  <param name="autoplay" value="true">
+		</object> <br><br>
+
+		<b><u><i>picture</i></u></b> - тег дает веб-разработчикам больше гибкости в определении ресурсов изображения. Элемент содержит два тега: один или более <b>source</b> тегов и один <b>IMG</b> тега. 
+		<br>КАК РАБОТАЕТ:<br> Браузер будет искать первый элемент <b>source</b>, где медиазапрос соответствует текущей ширине области просмотра, а затем отобразит правильное изображение (указанное в атрибуте srcset). <br> Элемент <b>img</b> требуется в качестве последнего дочернего <b>picture</b>элемента, в качестве альтернативного варианта, если ни один из исходных тегов не совпадает.
+		<br>ПРИМЕР:
+		<picture>
+		  <source media="(min-width:450px)" srcset="challange17.png">
+		  <source media="(min-width:165px)" srcset="challange14.png">
+		  <img src="challange18_(2.0).png" alt="Flowers" style="width:200px;">
+		</picture> <br><br>
+
+		<b><u><i>pre</i></u></b> - определяет тег отформатирован текст. Текст в элементе отображается шрифтом фиксированной ширины, и текст сохраняет как пробелы, так и разрывы строк.  
+		<br>ПРИМЕР:
+		<pre>
+		Text in a pre    element 
+		  is    displayed in a fixed-width
+		</pre>
+
+		<b><u><i>progress</i></u></b> - Тег представляет прогресс выполнения задачи. Всегда добавляйте тег <b>label</b> для лучшей практики доступности!
+		Используйте <b>progress</b> тег в сочетании с JavaScript для отображения хода выполнения задачи. <br>
+		Тег не подходит для представления показателя (например, использование дискового пространства или релевантность результата запроса). Чтобы представить датчик, используйте вместо него тег <b>meter</b>.
+		<br>АТРИБУТЫ: <b>max</b>="number", <b>value</b>="number"
+		<br>ПРИМЕР:
+		<label for="file">Downloading progress:</label>
+		<progress id="file" value="32" max="100"> 32% </progress> <br><br>
+
+		<b><u><i>q</i></u></b> - Тэг определяет короткую цитату. Браузеры обычно вставляют кавычки вокруг цитаты. Использовать <b>blockquote</b> для длинных цитат. 
+		<br>АТРИБУТЫ: <b>cite</b>="URL"
+		<br>ПРИМЕР: <q>Build a future where people live in harmony with nature.</q> <br><br>
+
+		<b><u><i>rp</i></u></b> - Тег может быть использован для обеспечения круглых скобок вокруг текста <b>ruby</b>, который будет показан в браузерах , которые не поддерживают <b>ruby</b> аннотаций. <br>
+		Использовать <b>rp</b> вместе с <b>ruby</b> и <b>rt</b> : элемент <b>ruby</b> состоит из одного или нескольких символов, которым требуется объяснение / произношение, и элемента <rt>, который предоставляет эту информацию, и дополнительного <b>rp</b> элемента, который определяет, что показывать для браузеры, которые не поддерживают аннотации ruby.
+		<br>ПРИМЕР: 
+		<ruby>
+			漢 <rt><rp>(</rp>ㄏㄢˋ<rp>)</rp></rt>
+		</ruby> <br><br>
+
+		<b><u><i>rt</i></u></b> - Тег определяет объяснение или произношение символов (для Восточной Азии книгопечатания) в рубиновой аннотации.
+		<br>ПРИМЕР: смотреть <b><u><i>rp</i></u></b> <br><br>
+
+		<b><u><i>ruby</i></u></b> - Тег указывает рубиновый аннотацию. Рубиновая аннотация - это небольшой дополнительный текст, прикрепленный к основному тексту для обозначения произношения или значения соответствующих символов. <br>Этот вид аннотации часто используется в японских публикациях.
+		<br>ПРИМЕР: смотреть <b><u><i>rp</i></u></b> <br><br>
+
+		<b><u><i>s</i></u></b> - тег указывает текст, который больше не правильной, точной и актуальной. Текст будет отображаться с перечекнутой линией. <br>
+		Тег не должен использоваться для определения удаленного текста в документе, для этого использовать <b>Del</b> тег .
+		<br>ПРИМЕР: <s>Only 50 tickets left!</s> <br><br>
+
+		<b><u><i>samp</i></u></b> - Тег используются для определения выборки вывода компьютерной программы. Содержимое внутри отображается в моноширинном шрифте браузера по умолчанию.
+		<br>ПРИМЕР: <samp>File not found.</samp> <br><br>
+
+		<b><u><i>script</i></u></b> - Тег используется для встраивания на стороне клиента сценария <b>JavaScript</b>. Элемент либо содержит утверждения сценариев, или он указывает на внешний файл сценария через атрибут <b>Src</b>. <br>
+		Обычное использование <b>JavaScript</b> - это манипуляции с изображениями, проверка формы и динамические изменения содержимого. <br>	
+		Существует несколько способов выполнения внешнего скрипта: <br>
+		<samp>Если <b>async = "async"</b>: сценарий выполняется асинхронно с остальной частью страницы (сценарий будет выполняться, пока страница продолжает анализ) <br>
+		Если <b>async</b> отсутствует и <b>defer = "defer"</b>: скрипт выполняется после завершения анализа страницы  <br>
+		Если нет ни асинхронного, ни отсроченного: скрипт выбирается и выполняется немедленно, прежде чем браузер продолжит анализ страницы  <br>
+		Также обратите внимание на элемент <b>noscript</b> для пользователей, которые отключили сценарии в своем браузере или имеют браузер, который не поддерживает сценарии на стороне клиента. </samp>
+		<br>АТРИБУТЫ:
+		<b>async</b>="async", <b>charset</b>="charset", <b>defer</b>="defer", <b>src</b>="URL", <b>type</b>="media_type"
+
+		<br>ПРИМЕР: <bdo id="demo">Testing</bdo>
+		<script>
+			document.getElementById("demo").innerHTML = "test JavaScript!";
+		</script> <br><br>
+
+		<b><u><i>section</i></u></b> - Тег определяет раздел в документе. <br><br>
+
+		<b><i><u>select</u></i></b> - Элемент используется для создания выпадающего списка. Часто используются в форме, для сбора пользовательского ввода. <br>
+		<b>name</b> aтрибут необходим для ссылки на данных формы после отправки формы (если опустить <b>name</b> атрибут, никаких данных из раскрывающегося списка не будут представлены). <br>
+		<b>id</b> - aтрибут необходим, чтобы связать выпадающий список с этикеткой. <br>
+		<b>option</b> - теги внутри <b>select</b> элемента определяют доступные опции в раскрывающемся списке. <br>
+		Всегда добавляйте тег <b>label</b> для лучшей практики доступности!
+		<br>АТРИБУТЫ:
+		<b>autofocus</b>="autofocu", <b>disabled</b>="disable", <b>form</b>="form_i", <b>multiple</b>="multipl", <b>name</b>="nam", <b>required</b>="require", <b>size</b>="number"
+		<br>ПРИМЕР:
+		<label for="cars">Choose a car:</label>
+
+		<select name="cars" id="cars">
+		  <option value="volvo">Volvo</option>
+		  <option value="saab">Saab</option>
+		  <option value="mercedes">Mercedes</option>
+		  <option value="audi">Audi</option>
+		</select> <br><br>
+
+		<b><u><i>small</i></u></b> - Тэг определяет меньший текст (например , авторское право и другие побочные комментарии). Лучше использовать стили. <br>
+		<br>ПРИМЕР: <small>This is some smaller text.</small> <br><br>
+
+		<b><u><i>source</i></u></b> - Тег используется для указания нескольких медиа - ресурсов для медиа - элементов, таких как <b>video, audio, picture</b>.
+		Тег позволяет указать альтернативные файлы видео / аудио / изображения , которые браузер может выбрать, на основе поддержки браузера или видового экрана шириной. Браузер выберет первый, который <b>source</b> он поддерживает.
+		<br>АТРИБУТЫ: <b>media</b>="media_query", <b>sizes</b>, <b>src</b>="URL", <b>srcset</b>="URL", <b>type</b>="MIME-type"
+		<br>ПРИМЕР:
+		<audio controls>
+		  <source src="horse.ogg" type="audio/ogg">
+		  <source src="MattyBRaps.mp3" type="audio/mpeg">
+		  Your browser does not support the audio element.
+		</audio>
 
 	 </section> 
 </main>
