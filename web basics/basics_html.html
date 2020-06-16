@@ -509,23 +509,236 @@
 		<b><u><i>small</i></u></b> - Тэг определяет меньший текст (например , авторское право и другие побочные комментарии). Лучше использовать стили. <br>
 		<br>ПРИМЕР: <small>This is some smaller text.</small> <br><br>
 
-		<b><u><i>source</i></u></b> - Тег используется для указания нескольких медиа - ресурсов для медиа - элементов, таких как <b>video, audio, picture</b>.
-		Тег позволяет указать альтернативные файлы видео / аудио / изображения , которые браузер может выбрать, на основе поддержки браузера или видового экрана шириной. Браузер выберет первый, который <b>source</b> он поддерживает.
+		<b><u><i>source</i></u></b> - Тег используется для указания нескольких медиа - ресурсов для медиа - элементов, таких как <b>video, audio, picture</b>. <br>
+		Тег позволяет указать альтернативные файлы видео / аудио / изображения , которые браузер может выбрать, на основе поддержки браузера или видового экрана шириной.  <br>Браузер выберет первый, который <b>source</b> он поддерживает.
 		<br>АТРИБУТЫ: <b>media</b>="media_query", <b>sizes</b>, <b>src</b>="URL", <b>srcset</b>="URL", <b>type</b>="MIME-type"
 		<br>ПРИМЕР:
 		<audio controls>
-		  <source src="horse.ogg" type="audio/ogg">
+		  <source src="MattyBRaps.ogg" type="audio/ogg">
 		  <source src="MattyBRaps.mp3" type="audio/mpeg">
 		  Your browser does not support the audio element.
 		</audio> <br><br>
 
 		<b><u><i>span</i></u></b> - Тег является встроенным контейнером, используемым для разметки части текста или частей документа. <br>
-		Тег легко стилизировать с помощью <b>CSS</b> или манипулировать с <b>JavaScript</b>, используя атрибут класса или <b>ID</b>.
-		Тег похож на <b></b>div> элемент, а <DIV> является элементом уровня блока и <span>является встроенным элементом.
+		Тег легко стилизировать с помощью <b>CSS</b> или манипулировать с <b>JavaScript</b>, используя атрибут класса или <b>ID</b>. <br>
+		Тег похож на <b>div</b> элемент, а <b>DIV</b> является элементом уровня блока и <b>span</b> является встроенным элементом.
+		<br>ПРИМЕР: My mother has <span style="color:blue">blue</span> eyes. <br><br>
 
+		<b><u><i>strong</i></u></b> - Тег используются для определения текста с сильным значением. Содержимое внутри обычно отображается жирным шрифтом. Лучше использовать тег <b>b</b>. 
+		<br>ПРИМЕР: <strong>This text is important!</strong> <br><br>
+
+		<b><u><i>style</i></u></b> - Тег используется для определения стиля информации <b>CSS</b> для документа. Внутри <b>style</b> элемента вы указываете, как элементы HTML должны отображаться в браузере.
+		<br>АТРИБУТЫ: <b>media</b>="media_query", <b>type</b>="text/css"
+		<br>ПРИМЕР: 
+		<style>
+		  span b {color:red;}
+		  span i {color:blue;}
+		</style>
+
+		<span><b>A heading</b> <i>A paragraph.</i></span> <br><br>
+
+		<b><u><i>sub</i></u></b> - Тэг определяет подстрочный текст. Он появляется на пол символа ниже обычной строки и иногда отображается более мелким шрифтом. Может использоваться для химических формул. 
+		<br>ПРИМЕР: This text contains <sub>subscript</sub> text. H<sub>2</sub>O <br><br>
+
+		<b><u><i>summary</i></u></b> - Тэг определяет видимый заголовок для <b>details</b> элемента. Заголовок можно нажать, чтобы просмотреть / скрыть детали. Элемент должен быть первым дочерним элементом элемента <b>details</b>.
+		<br>ПРИМЕР: смотреть пример в <b><u><i>details</i></u></b> <br><br>
+
+		<b><u><i>sup</i></u></b> - Тэг определяет надстрочный текст. Появляется на пол символа над обычной строкой и иногда отображается мелким шрифтом. Можно использовать для сносок.
+		<br>ПРИМЕР: This text contains <sup>superscript</sup> text. WWW<sup>[1]</sup> <br><br>
+
+		<b><u><i>svg</i></u></b> - Тег определяет контейнер для SVG - графики. SVG имеет несколько методов для рисования контуров, прямоугольников, кругов, текста и графических изображений.
+		<br>ПРИМЕР: 
+		<svg width="50" height="50">
+		  <circle cx="25" cy="25" r="20" stroke="green" stroke-width="4" fill="yellow" />
+		</svg> <br><br>
+
+		<b><u><i>table</i></u></b> - Тег определяет таблицу HTML. Она состоит из одного <b>table</b> элемента и одного или нескольких элементов <b>tr, th, td</b>. <br>
+		<b>tr</b> - определяет строку таблицы. <b>th</b> - определяет заголовок таблицы. <b>td</b> - определяет ячейку таблицы. HTML-таблица может также включать элементы <b>caption, colgroup, thead, tfoot, tbody</b>.
+		<br>ПРИМЕР: 
+		<table>
+		  <tr>
+		    <th>Month</th>
+		    <th>Savings</th>
+		  </tr>
+		  <tr>
+		    <td>January</td>
+		    <td>$100</td>
+		  </tr>
+		</table> <br>
+
+		<b><u><i>tbody</i></u></b> - Тег используется для группы содержания тела в HTML - таблице.
+
+		<b>tbody</b> Элемент используется в сочетании с <b>THEAD</b> и <b>TFOOT</b> элементов, чтобы указать каждую часть таблицы (body, header, footer). 
+		<br>Элемент должен иметь один или более <b>TR</b> теги внутри. 
+		Тег должен использоваться в следующем контексте: Как ребенок из <b>table</b> элемента, после любого <b>caption, COLGROUP, THEAD</b> элементов.
+		<br>ПРИМЕР: 
+		<table>
+		  <thead>
+		    <tr>
+		      <th>Month</th>
+		      <th>Savings</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr>
+		      <td>January</td>
+		      <td>$100</td>
+		    </tr>
+		    <tr>
+		      <td>February</td>
+		      <td>$80</td>
+		    </tr>
+		  </tbody>
+		  <tfoot>
+		    <tr>
+		      <td>Sum</td>
+		      <td>$180</td>
+		    </tr>
+		  </tfoot>
+		</table> <br>
+	
+		<b><u><i>td</i></u></b> - Тег определяет стандартную ячейку данных в HTML - таблице. HTML-таблица имеет два вида ячеек: <b>th, td</b> <br>
+		<b>th</b> - Ячейки заголовка - содержит информацию заголовка, по умолчанию выделен жирным шрифтом и центрирован<br>
+		<b>td</b> - Ячейки данных - содержит данные, по умолчанию обычный и выровненный по левому краю.	
+		<br>АТРИБУТЫ: <b>colspan</b>="number", <b>headers</b>="header_id", <b>rowspan</b>="number"
+		<br>ПРИМЕР:
+		<table>
+		  <tr>
+		    <td>Cell A</td>
+		    <td>Cell B</td>
+		  </tr>
+		  <tr>
+		    <td>Cell C</td>
+		    <td>Cell D</td>
+		  </tr>
+		</table> <br>
+
+		<b><u><i>template</i></u></b> - Тег используется в качестве контейнера для хранения некоторой HTML - содержимого скрытом от пользователя при загрузке страницы и может быть отображено позже с помощью <b>JavaScript</b>. <br>
+		Можно использовать тег <b>template</b>, если есть HTML-код, который нужно использовать снова и снова, но не до тех пор, пока вы его не попросите. <br>
+		Чтобы сделать это без в <b>template</b> теге, нужно создать HTML - код с <b>JavaScript</b>, чтобы предотвратить браузер от предоставления кода. После клика на кнопку, ображение будет после <b>footer</b>
+		<br>ПРИМЕР:
+		<button onclick="showContent()">Show hidden content</button>
+
+		<template>
+			<h2>Flower</h2>
+			<img src="challange19_2.0.png" width="214" height="204">
+		    <div class="myClass">I like: </div>
+		</template>
+
+		<script>
+		var myArr = ["Audi", "BMW", "Ford", "Honda", "Jaguar", "Nissan"];
+
+		//img
+		function showContent() {
+		  var temp = document.getElementsByTagName("template")[0];
+		  var clon = temp.content.cloneNode(true);
+		  document.body.appendChild(clon);
+		
+		//txt
+		  var temp, item, a, i;
+		  temp = document.getElementsByTagName("template")[0];
+		  item = temp.content.querySelector("div");
+		  for (i = 0; i < myArr.length; i++) {
+		    a = document.importNode(item, true);
+		    a.textContent += myArr[i];
+		    document.body.appendChild(a);
+		  }
+		}
+
+		//txt brows
+		if (document.createElement("template").content) {
+		  document.write("Your browser supports template!");
+		} else {
+		  document.write("Your browser does not supports template!");
+		}
+		</script> <br><br>
+
+		<b><u><i>textarea</i></u></b> - Тег определяет элемент управления вводом текста из нескольких строк. Часто используется в форме для сбора данных, вводимых пользователем, как комментарии или отзывы. <br>
+		Текстовая область может содержать неограниченное количество символов, а текст отображается шрифтом фиксированной ширины (обычно Courier).
+		Размер текстовой области задается с помощью <b>cols, rows</b>атрибутов (или с помощью CSS). <br>
+		<b>name</b> Атрибут необходим для ссылки на данных формы после отправки формы (если опустить <b>name</b> атрибут, никаких данных из текстовой области будут представлены). <br>
+		<b>id</b> Атрибут необходим, чтобы связать текстовую область с этикеткой. 
+		всегда добавляйте тег <b>label</b> для лучшей практики доступности!
+		<br>АТРИБУТЫ:<br>
+		<b>autofocus</b>="autofocus", <b>cols</b>="number", <b>dirname</b>="textareaname.dir", <b>disabled</b>="disabled", <b>form</b>="form_id", <b>maxlength</b>="number", <b>name</b>="text", <b>placeholder</b>="text", <b>readonly</b>="readonly", <b>required</b>="required", <b>rows</b>="number", <b>wrap</b>="hard", "soft"
+		<br>ПРИМЕР:
+		<label for="w3review">Review of W3Schools:</label>
+		<textarea id="w3review" name="w3review" rows="2" cols="40">
+		At w3schools.com you will learn how to make a website.
+		</textarea> <br><br>
+
+		<b><u><i>tfoot</i></u></b> - тег используется для группировки содержимого нижнего колонтитула в таблице HTML. Используется в сочетании с <b>THEAD</b> и <b>TBODY</b> элементов, чтобы указать каждую часть таблицы (footer, header, body). <br>
+		Браузеры могут использовать эти элементы для включения прокрутки тела таблицы независимо от верхнего и нижнего колонтитула. <br>
+		При печати большой таблицы, которая занимает несколько страниц, эти элементы могут позволить печатать верхний и нижний колонтитулы таблицы вверху и внизу каждой страницы. <br>
+		Элемент должен иметь один или более <b>TR</b> теги внутри.
+		<br>ПРИМЕР: смотреть <b><u><i>tbody</i></u></b>  <br><br>
+
+		<b><u><i>th</i></u></b> - Тег определяет ячейку заголовка в HTML - таблице. Текст в элементах по умолчанию выделен жирным шрифтом и центрирован.
+		<br>АТРИБУТЫ:<br>
+		<b>abbr</b>="text", <b>colspan</b>="number", <b>headers</b>="header_id", <b>rowspan</b>="number", <b>scope</b>="col", "colgroup", "row", "rowgroup"
+		<br>ПРИМЕР: смотреть <b><u><i>table</i></u></b> <br><br>
+
+		<b><i><u>thead</u></i></b> - Тег используется для содержания заголовка группы в HTML - таблице. Элемент используется в сочетании с <b>TBODYT, FOOT</b> элементами , чтобы указать каждую часть таблицы (header, body, footer). <br>
+		Элемент должен иметь один или более <b>TR</b> теги внутри. <b>thead , TBODY, TFOOT</b> элементы не будут влиять на расположение таблицы по умолчанию.
+		<br>ПРИМЕР: смотреть <b><u><i>tbody</i></u></b>  <br><br>
+
+		<b><i><u>time</u></i></b> - Тэг определяет время , конкретное (или <b>DateTime</b>). <br>
+		<b>datetime</b> для перевода время в машиночитаемом формат, так что браузеры могут предложить, чтобы добавить дату напоминания через календарь пользователя, и поисковые системы могут производить умные результаты поиска.
+		<br>АТРИБУТЫ: <b>datetime</b>="datetime"
+		<br>ПРИМЕР: 
+		Open from <time>10:00</time> to <time>21:00</time> every weekday.
+		I have a date on <time datetime="2008-02-14 20:00">Valentines day</time>. <br><br>
+
+		<b><u><i>title</i></u></b> - Тег определяет заголовок документа. Название должно быть только текстовым, оно отображается в строке заголовка браузера или на вкладке страницы. <br><br>
+
+		<b><u><i>tr</i></u></b> - Тэг определяет строку в HTML - таблице. Элемент содержит один или более <b>th</b> или <b>td</b> элементы.
+		<br>ПРИМЕР: смотреть <b><u><i>table</i></u></b> <br><br>
+
+		<b><u><i>track</i></u></b> - тег указывает текст песни для <b>audio</b> или <b>video</b> элементов.<br>
+		Этот элемент используется для указания субтитров, файлов титров или других файлов, содержащих текст, который должен быть виден во время воспроизведения мультимедиа.
+		<br>АТРИБУТЫ: <br>
+		<b>default</b>="default", <b>kind</b>="captions", "chapters", "descriptions", "metadata", "subtitles", <b>label</b>="text", <b>src</b>="URL", <b>srclang</b>="language_code"
+		<br>ПРИМЕР:
+		<video width="220" height="140" controls>
+		  <source src="forrest_gump.mp4" type="video/mp4">
+		  <source src="forrest_gump.ogg" type="video/ogg">
+		  <track src="fgsubtitles_en.vtt" kind="subtitles" srclang="en" label="English">
+		  <track src="fgsubtitles_no.vtt" kind="subtitles" srclang="no" label="Norwegian">
+		</video> <br><br>
+
+		<b><i><u>u</u></i></b> - Тег представляет собой некоторый текст, невнятный и стиль отличается от обычного текста. <br>
+		Содержимое внутри обычно отображается с подчеркиванием. Избегайте использования <b>u</b> элемента, где он может быть перепутан с гиперссылкой!
+		<br>ПРИМЕР: some <u>mispeled</u> text <br><br>
+
+		<b><u><i>ul</i></u></b> - Тэг определяет неупорядоченный (маркированный) список.
+		<br>ПРИМЕР:
+		<ul>
+		  <li>Coffee</li>
+		  <li>Tea</li>
+		  <li>Milk</li>
+		</ul> 
+
+		<b><u><i>var</i></u></b> - Тег используется для Определяет переменную в программировании или в математическом выражении. Содержимое внутри обычно отображается курсивом.
+		<br>ПРИМЕР: The area of a triangle is: 1/2 x <var>b</var> x <var>h</var>, where <var>b</var> is the base, and <var>h</var> is the vertical height. <br><br>
+
+		<b><u><i>video</i></u></b> - Тег используется, чтобы вставлять видео контент в документе, такие как фрагмент ролика или другие потоки видео. <br>
+		Cодержит один или несколько <b>source</b> тегов с различными источниками видеосигнала. Браузер выберет первый источник, который он поддерживает. <br>
+		Текст между <b>video</b> тегами будет отображаться только в браузерах, не поддерживающих элемент <b>video</b>. Существует три поддерживаемых формата видео в HTML: <b>MP4, WebM и OGG.</b> 
+		<br>НЕОБЯЗАТЕЛЬНЫЕ АТРИБУТЫ <br>
+		<b>autoplay</b>="autoplay", <b>controls</b>="controls", <b>height</b>="pixels", <b>loop</b>="loop", <b>muted</b>="muted", <b>poster</b>="URL", <b>preload</b>="auto", "metadata", "none", <b>src</b>="URL", <b>width</b>="pixels"
+		<br>ПРИМЕР:
+		<video width="220" height="140" controls>
+		  <source src="movie.mp4" type="video/mp4">
+		  <source src="movie.ogg" type="video/ogg">
+		  Your browser does not support the video tag.
+		</video> <br><br>
+
+		<b><u><i>wbr</i></u></b> - тег указывает, где добавить разрыв строки. Если слово слишком длинное, браузер может разбить его не в том месте. Можно использовать <b>wbr</b> элемент, чтобы добавить возможности разрыва слова.
+		<br>ПРИМЕР: To learn AJAX, you must be familiar with the XML<wbr>Http<wbr>Request Object.
+ 
 	 </section> 
 </main>
-<footer></footer>
+	<footer></footer>
 
 </body>
 </html>
