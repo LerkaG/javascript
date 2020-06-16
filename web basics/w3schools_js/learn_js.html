@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<style>
+		body {
+			font-family: Arial;
+			font-size: 15px;
+		}
+		h1, h2, h3 {
+			margin-bottom: 4px;
+			margin-top: 15px;
+		}
+		p {
+			margin-top: 0px;
+		}
+	</style>
+	<h1>Вывод JavaScript</h1>
+	методы JavaScript HTML: <br>
+	<b>getElementById()</b> - document.getElementById("demo").innerHTML = "Hello JavaScript";
+
+	<h2>Возможности отображения JavaScript</h2>
+	innerHTML - Запись в элемент HTML. <br>
+	document.write() - Запись в вывод HTML. <br>
+	window.alert() - Запись в окно предупреждения. <br>
+	console.log() - Запись в консоль браузера. <br>
+
+	<h2>Использование innerHTML</h2>
+	Чтобы получить доступ к элементу HTML, JavaScript может использовать <b>document.getElementById(id)</b>метод.
+	id -Атрибут определяет HTML - элемент. <br> <b>innerHTML</b> Свойство определяет содержание HTML
+	<br>ПРИМЕР: <br>
+	<span> First page </span>
+	<p>document.getElementById("demo").innerHTML = 5 + 6</p>
+	<p id="demo"> </p>
+	<script>
+		document.getElementById("demo").innerHTML = 5 + 6;
+	</script>
+
+	<h2>Использование document.write()</h2>
+	Удобно использовать в целях тестирования и должен использоваться только для тестирования
+	<br>ПРИМЕР:
+	<button type="button" onclick="document.write(5+6)">не нажимай </button> <!--после клика по кнопке, удаляется все содержимое на странице и остается это значение -->
+	<script> document.write(5+62); // отображается значение  </script>
+
+	<h2>Использование window.alert()</h2>
+	Можно использовать окно предупреждения для отображения данных. Можно не использовать ключевое слово <b>window</b>
+	<br>ПРИМЕР: <b>window.alert(5+6);</b> или <b>alert(5+6);</b>
+	<!-- <script> window.alert(5+6);</script> -->
+
+	<h2>Использование console.log ()</h2>
+	В целях отладки можно вызвать <b>console.log();</b> метод в браузере для отображения данных.
+	<br>ПРИМЕР: <b>console.log(5 + 6);</b>
+	<script> console.log(5 + 6); </script>
+
+	<h2> JavaScript Print</h2>
+	В JavaScript нет объектов печати или методов печати. Нельзя получить доступ к устройствам вывода из JavaScript. <br>
+	Единственным исключением является то, что вы можете вызвать <b>window.print()</b> метод в браузере для печати содержимого текущего окна.
+	<br>ПРИМЕР: <button onclick="window.print()"> Print This page</button>
+
+	<h1>Statements JS (Инструкции)</h1>
+	<h2>Программы JavaScript</h2>
+	Программа на JavaScript - это список программных операторов.
+
+	<h2>Заявления JavaScript</h2>
+	Операторы JavaScript состоят из: <b>Значения, операторов, выражений, ключевых слов и комментариев.</b> <br>
+	Это утверждение говорит браузеру: написать <b>«Привет, Долли».</b> внутри элемента HTML с <b>id = "demo"</b>: <br>
+	<b>document.getElementById("demo").innerHTML = "Hello Dolly.";</b>
+	<br>ПРИМЕР: Hello, <b id="name"></b>!
+	<script> document.getElementById("name").innerHTML = "pupkin"</script>
+</body>
+</html>
