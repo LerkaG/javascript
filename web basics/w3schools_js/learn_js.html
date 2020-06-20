@@ -17,6 +17,16 @@
 		p {
 			margin-top: 0px;
 		}
+		footer {
+			margin-top: 300px;
+		}
+		pre {
+			margin-top: 5px;
+			margin-bottom: -15px;
+  			line-height: 19px;
+  			left: -120px;
+  			position: relative;
+		}
 	</style>
 	<h1>Вывод JavaScript</h1>
 	методы JavaScript HTML: <br>
@@ -265,5 +275,102 @@
 	<br>ПРИМЕР: var car = ""; <b>// The value is "", the typeof is "string"</b>
 
 	<h2>null</h2>
+	В JavaScript <b>null</b> это «ничего». Предполагается, что это нечто, чего не существует. В JavaScript тип данных <b>null</b> является объектом. <br>
+	Можно очистить объект, установив его в <b>null</b> 
+
+	<h2>Разница между undefined и null</h2>
+	<b>undefined</b> и <b>null</b> равны по значению, но различаются по типу 
+	<br>ПРИМЕР: <br>
+	<p id="test"></p>
+	<script>
+		document.getElementById("test").innerHTML =
+		"typeof undefined //" + "<b>" + typeof undefined + "</b><br>" +
+		"typeof null //" + "<b>" + typeof null + "</b> <br><br>" +
+		"null === undefined //" + "<b>" + (null === undefined) + "</b> <br>" +
+		"null == undefined //" + "<b>" + (null == undefined) + "<b>";
+	</script>
+
+	<h2>Примитивные данные</h2>
+	Примитивное значение данных - это одно простое значение данных без дополнительных свойств и методов. <b>typeof</b> Оператор может вернуть один из этих примитивных типов:
+	<b>string, number, boolean, undefined</b>
+
+	<h2>Комплексные данные</h2>
+	<b>typeof</b> Оператор может возвращать одно из двух сложных типов: <b>function, object</b> <br>
+	<b>typeof</b> Возвращает оператор <b>object</b> для <b>объектов, массивов, и null</b>, но НЕ возвращает для <u>функций</u>. <b>typeof</b> возвращает оператор <b>object</b> для<b> массивов</b>, так как в массивах JavaScript являются объектами.
+	<br>ПРИМЕР: <br>
+	<p id="data"></p>
+	<script>
+		document.getElementById("data").innerHTML = 
+		"typeof {name:'dfdf', age:34} - " + "<b>" + typeof {name:"dfdf", age:34} + "</b><br>" +
+		"typeof [1,2,3,4] - " + "<b>" + typeof [1,2,3,4] + "</b><br>" +
+		"typeof function my_func(){} - " + "<b>" + typeof function my_func(){} + "</b>"
+	</script>
+
+	<h1>Функции JavaScript</h1>
+	Функция JavaScript - это блок кода, предназначенный для выполнения конкретной задачи. Функция JavaScript выполняется, когда «что-то» ее вызывает.
+
+	<h2>Синтаксис функции JavaScript</h2>
+	Имена функций могут содержать <b>буквы, цифры, подчеркивания</b> и <b>знаки доллара</b> (те же правила, что и для переменных). <br>
+	Круглые скобки в определении функции могут включать имена параметров, разделенные запятыми. <br>
+	<b>Аргументы(параметры)</b> функции - это значения, полученные функцией при ее вызове. Внутри функции аргументы ведут себя как локальные переменные.
+	<br>ПРИМЕР: <br>
+	function name(parameter_1, parameter_2, parameter_3) { //code }
+
+	<h2>Вызов функции</h2>
+	Код внутри функции будет выполняться, когда «что-то» вызывает (вызывает) функцию: <br>
+	<b>Когда происходит событие</b> (когда пользователь нажимает кнопку) <br>
+	<b>Когда он вызывается</b> (вызывается) из кода JavaScript <br>
+	<b>Автоматически</b> (самостоятельно вызывается)
+
+	<h2>Возврат функции</h2>
+	Когда JavaScript достигает <b>return</b> оператора, функция прекращает выполнение. Если функция была вызвана из оператора, JavaScript «вернется» для выполнения кода после вызова оператора.
+	Функции часто вычисляют возвращаемое значение. Возвращаемое значение «возвращается» обратно «вызывающему»:
+	<br>ПРИМЕР: <br>
+	<pre>
+		var x = my_function(4, 3);
+		function my_function(a, b) {
+		   return a * b;
+		} 
+		// x = <span id="function"></span>
+	</pre> 
+	<script>
+		var x = my_function(4, 3);
+		function my_function(a, b) {
+			return a * b;
+		}
+		document.getElementById("function").innerHTML = x;
+	</script>
+
+	<h2>Функции, используемые в качестве переменных</h2>
+	Функции можно использовать так же, как вы используете переменные, во всех типах формул, назначений и вычислений.
+	<br>ПРИМЕР: <br>
+	var text = "The temperature is " + new_function(23) + " Celsius"; <br>
+	text //The temperature is <span id="new_function"> </span> Celsius
+	<script>
+		function new_function(temter) {
+			return (5/9) * (temter-32);
+		}
+		document.getElementById("new_function").innerHTML = new_function(23);
+	</script>
+
+	<h2>Локальные переменные</h2>
+	Переменные, объявленные в функции JavaScript, становятся ЛОКАЛЬНЫМИ для этой функции. Доступ к локальным переменным возможен только из функции. <br>
+	Поскольку локальные переменные распознаются только внутри их функций, переменные с одинаковым именем могут использоваться в разных функциях. <br>
+	Локальные переменные создаются при запуске функции и удаляются при ее завершении.
+	<br>ПРИМЕР: <br>
+	<pre>
+		<i>//Not use car</i>
+		function car_function () {
+		    var car = "Volvo";
+		    <i>//use car</i>
+		}
+		//Not use car
+	</pre>
+
+	<h1>JavaScript объекты</h1>
+
+
+
+<footer></footer>
 </body>
 </html>
