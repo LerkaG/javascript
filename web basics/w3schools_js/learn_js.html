@@ -8,7 +8,7 @@
 	<style>
 		body {
 			font-family: Arial;
-			font-size: 15px;
+			font-size: 16px;
 		}
 		h1, h2, h3 {
 			margin-bottom: 4px;
@@ -70,5 +70,200 @@
 	<b>document.getElementById("demo").innerHTML = "Hello Dolly.";</b>
 	<br>ПРИМЕР: Hello, <b id="name"></b>!
 	<script> document.getElementById("name").innerHTML = "pupkin"</script>
+
+	<h2>Разрывы строк</h2>
+	 document.getElementById("name").innerHTML =  <br>"pupkin";
+	
+	<h1> Синтаксис JS</h1>
+	<h2>Значения JavaScript</h2>
+	Синтаксис JavaScript определяет два типа значений: <b>фиксированные значения</b> и <b>значения переменных</b>. <br>
+	<u>Фиксированные значения</u> называются <b>литералами</b>. <u>Значения переменных</u> называются <b>переменными</b>.
+
+	<h2>Выражения JavaScript</h2>
+	<b>Выражение</b> - это комбинация значений, переменных и операторов, которая вычисляет значение. <br>
+	Вычисление называется оценкой. Например, 5 * 10 оценивает до 50
+
+	<h2>Ключевые слова JavaScript</h2>
+	Ключевые слова JavaScript используются для определения действий, которые необходимо выполнить.
+	<b>var</b> Ключевое слово указывает браузеру, чтобы создать переменные
+
+	<h2>Комментарии JavaScript</h2>
+	однострочный - // <br>
+	многострочный -  /* */
+
+	<h2>Идентификаторы JavaScript</h2>
+	Идентификаторы - это имена. Идентификаторы используются для именования переменных (и ключевых слов, и функций, и меток). <br>
+	Первый символ должен быть <b>буквой</b>, или подчеркиванием <b>(_)</b>, или знаком доллара <b>($)</b>. Последующие символы могут быть <b>буквами, цифрами, подчеркиванием</b> или <b>знаком доллара</b>.
+
+	<h2>Набор символов JavaScript</h2>
+	JavaScript использует набор символов <b>Unicode</b>. Юникод охватывает (почти) все символы, знаки препинания и символы в мире.
+
+	<h1>Переменные JS</h1>
+	<h2>Идентификаторы JavaScript</h2>
+	Все переменные JavaScript должны быть идентифицированы с уникальными именами они называются идентификаторами. <br>
+	Зарезервированные слова (например, ключевые слова JavaScript) не могут использоваться в качестве имен
+
+	<h1>JavaScript арифметика</h1>
+	<h2>Oстаток</h2>
+	Оператор модуля ( %) возвращает остаток от деления. 
+	<br>ПРИМЕР: var x = 5;	var y = 3;	var z = x % y; <br>
+	z = <b id="ostatok"></b>
+	<script>
+		var x = 5;
+		var y = 3;
+		var z = x % y;
+		document.getElementById("ostatok").innerHTML = z;
+	</script>
+
+	<h2>Приращение</h2>
+	Оператор приращения ( ++) увеличивает число.
+	<br>ПРИМЕР: var x = 3; x++; var z = x; <br>
+	z = <b id="double_plus"></b>
+	<script>
+		var x = 3;
+		x++;
+		var z = x;
+		document.getElementById("double_plus").innerHTML = z;
+	</script>
+
+	<h2>Уменьшение номера</h2>
+	Оператор декремента ( --) уменьшает число.
+	<br>ПРИМЕР: var x = 3; x++; var z = x; <br>
+	z = <b id="double_minus"></b>
+	<script>
+		var x = 3;
+		x--;
+		var z = x;
+		document.getElementById("double_minus").innerHTML = z;
+	</script>
+
+	<h2>Возведение</h2>
+	Оператор возведения в степень ( **) возводит первый операнд в степень второго операнда. <br>
+	<b>х ** у</b> дает тот же результат, что и <b>Math.pow(x,y)</b>:
+	<br>ПРИМЕР 1: var x = 5; var z = x ** 2; <br>
+	z = <b id="stepen"> </b> <br>
+	<br>ПРИМЕР 2: var x = 5; var y = Math.pow(x,2); <br>
+	y = <b id="stepen_math"> </b>
+	<script>
+		var x = 5;
+		var z = x ** 2;
+		var y = Math.pow(x,2);
+		document.getElementById("stepen").innerHTML = z;
+		document.getElementById("stepen_math").innerHTML = y;
+	</script>
+
+	<h1>Операторы назначения JavaScript</h1>
+	<h2>присваивание</h2>
+	Оператор <b>+=</b> присваивания добавляет значение в переменную. 
+	<br>ПРИМЕР: var x = 5; x += 5; x = <b id="plus"> </b> <br><br>
+	Оператор <b>-=</b> вычитает значение из переменной.
+	<br>ПРИМЕР: var y = 5; y -= 5; y = <b id="minus"> </b> <br><br>
+	Оператор <b>*=</b> умножает переменную.
+	<br>ПРИМЕР: var z = 5; z *= 5; z = <b id="umnishit"> </b> <br><br>
+	Оператор <b>/=</b> делит переменную.
+	<br>ПРИМЕР: var q = 5; q /= 5; q = <b id="delit"> </b> <br><br>
+	Оператор <b>%=</b> присваивает остаток переменной.
+	<br>ПРИМЕР: var w = 10; w %= 5; w = <b id="procent"> </b> <br><br>
+	<script>
+		var x = 5; x += 5;
+		var y = 5; y -= 5;
+		var z = 5; z *= 5;
+		var q = 5; q /= 5;
+		var w = 10; w %= 5;
+		document.getElementById("plus").innerHTML = x;
+		document.getElementById("minus").innerHTML = y;
+		document.getElementById("umnishit").innerHTML = z;
+		document.getElementById("delit").innerHTML = q;
+		document.getElementById("procent").innerHTML = w;
+	</script>
+
+	<h1>Типы данных JavaScript</h1>
+	Переменные JavaScript могут содержать много типов данных : числа, строки, объекты и многое другое
+	<br>ПРИМЕР: <br>
+	var length = 16; // <b>Number</b><br>
+	var last_name = "Johson"; // <b>String</b><br>
+	var x = {first_name: "John", last_name: "Doe" }; //	<b>Object</b><br>
+
+	<h2>Концепция типов данных</h2>
+	При добавлении числа и строки JavaScript будет обрабатывать число как строку.
+	<br>ПРИМЕР: <br>
+	var x = 16 + 4 + "Volvo"; //<b> 20Volvo //Number, string</b> <br>
+	var x = "Volvo" + 16 + 4; // <b>Volvo164 //String</b> 
+
+	<h2>Типы JavaScript являются динамическими</h2>
+	JavaScript имеет динамические типы. Это означает, что одна и та же переменная может использоваться для хранения разных типов данных:
+	<br>ПРИМЕР: <br>
+	var x;      <b> // Now x is undefined</b> <br>
+	x = 5;      <b> // Now x is a Number</b> <br>
+	x = "John"; <b> // Now x is a String</b>
+
+	<h2>Строки JavaScript</h2>
+	Строки пишутся с одинарными или двойными кавычками. Можно использовать кавычки внутри строки, если они не соответствуют кавычкам, окружающим строку.
+	<br>ПРИМЕР: <br>
+	var carName1 = "Volvo XC60"; - <b id="carName1"></b><br>
+	var carName2 = 'Volvo XC60'; - <b id="carName2"></b> <br>
+	var answer2 = "He is called 'Johnny'"; - <b id="answer2"></b> <br> 
+	var answer3 = 'He is called "Johnny"'; - <b id="answer3"></b>
+
+	<script>
+		var carName1 = "Volvo XC60";   
+		var carName2 = 'Volvo XC60';  
+		var answer2 = "He is called 'Johnny'"; 
+		var answer3 = 'He is called "Johnny"';  
+		document.getElementById("carName1").innerHTML = carName1;
+		document.getElementById("carName2").innerHTML = carName2;
+		document.getElementById("answer2").innerHTML = answer2;
+		document.getElementById("answer3").innerHTML = answer3;
+	</script>
+
+	<h2>JavaScript Number</h2>
+	JavaScript имеет только один тип чисел. Числа могут быть записаны с десятичными знаками или без них. Очень большие или очень маленькие числа могут быть написаны с научной (экспоненциальной) нотацией:
+	<br>ПРИМЕР: <br>
+	var y = 123e5; <u>// 12300000</u> <br> var z = 123e-5; <u> // 0.00123</u>
+	
+	<h2>JavaScript Booleans</h2>
+	Логические значения могут иметь только два значения: true или false.
+	<br>ПРИМЕР: <br>
+	var x = 5;	var y = 5;	var z = 6; <br>
+	(x == y); (x == z) <br>
+	<b id="bool"></b>
+
+	<script>
+	var x = 5;
+	var y = 5;
+	var z = 6;
+	document.getElementById("bool").innerHTML =
+	(x == y) + "<br>" + (x == z);
+	</script>
+
+	<h2>Массивы JavaScript</h2>
+	<br>ПРИМЕР: var cars = <b>["Saab", "Volvo", "BMW"];</b>
+
+	<h2>JavaScript объекты</h2>
+	Объекты JavaScript пишутся с помощью фигурных скобок {}. Свойства объекта записываются как пары имя: значение, разделенные запятыми.
+	<br>ПРИМЕР: var person = <b>{firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};</b>
+
+	<h2>Тип оператора</h2>
+	Можно использовать <b>typeof</b> оператор JavaScript, чтобы найти тип переменной JavaScript. <b>typeof</b> Оператор возвращает тип переменной или выражением
+	<br>ПРИМЕР: <br>
+	<b id="type"></b>
+	<script>
+		document.getElementById("type").innerHTML = 
+		'typeof "" - ' + typeof "" + '<br> ' +
+		'typeof "John" - ' + typeof "John" + '<br> ' +
+		'typeof "John Doe" - ' + typeof "John Doe" + '<br> ' +
+		'typeof 0 - ' + typeof 0 + "<br>" +
+		'typeof 3.14 - ' + typeof 3.14 + "<br>" +
+		'typeof (3 + 4) - ' + typeof (3 + 4) + "<br>"
+	</script>
+
+	<h2>undefined</h2>
+	В JavaScript переменная без значения имеет тип и значение <b>undefined</b>. Любую переменную можно очистить, установив значение в <b>undefined</b> (тип тоже будет undefined)
+
+	<h2>Пустые значения</h2>
+	Пустая строка имеет допустимое значение и тип.
+	<br>ПРИМЕР: var car = ""; <b>// The value is "", the typeof is "string"</b>
+
+	<h2>null</h2>
 </body>
 </html>
