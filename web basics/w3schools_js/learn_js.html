@@ -6,11 +6,19 @@
 </head>
 <body>
 	<style>
+		h1 {
+			background-color: grey;
+			width: 650px;
+		}
+		h2 {
+			background-color: #FFCC99;
+			width: 650px;
+		}
 		body {
 			font-family: Arial;
 			font-size: 16px;
 		}
-		h1, h2, h3 {
+		h1, h2{
 			margin-bottom: 4px;
 			margin-top: 15px;
 		}
@@ -329,7 +337,7 @@
 	<pre>
 		var x = my_function(4, 3);
 		function my_function(a, b) {
-		   return a * b;
+		  return a * b;
 		} 
 		// x = <span id="function"></span>
 	</pre> 
@@ -361,13 +369,225 @@
 	<pre>
 		<i>//Not use car</i>
 		function car_function () {
-		    var car = "Volvo";
-		    <i>//use car</i>
+		  var car = "Volvo";
+		  <i>//use car</i>
 		}
 		//Not use car
 	</pre>
 
 	<h1>JavaScript объекты</h1>
+	Объекты - переменные, которые могут содержать много значений. Значения записываются как пары имя: значение (имя и значение разделяются двоеточием). <br>
+	Объекты JavaScript - это контейнеры для именованных значений, называемых свойствами или методами.
+	<br>ПРИМЕР: var car = { type: "Fiat", model:"500", color:"white" };
+
+	<h2>Определение объекта</h2>
+	Нужно определить (и создать) объект JavaScript с литералом объекта. Пробелы и разрывы строк не важны. Определение объекта может занимать несколько строк:
+	<br>ПРИМЕР: <br>
+	<pre>
+		var person = {
+		  first_name: "John",
+		  last_name : "Doe",
+		  age       : 50,
+		  eye_color : "blue"
+		};
+	</pre>
+
+	<h2>Свойства объекта</h2>
+	Имя: значения пар в объектах JavaScript называются свойствами:
+	<br>ПРИМЕР: <i>first_name</i> - <b>свойство</b>; <i>"John"</i> - <b>значение</b>.
+
+	<h2>Доступ к свойствам объекта</h2>
+	Можно получить доступ к свойствам объекта двумя способами: object_name.property_name; 2. object_name["property_name"];
+	<br>ПРИМЕР: <br>
+	person.first_name; person["last_name"]; = <b id="person_object"></b> 
+	<script>
+		var person = {
+		  first_name: "John",
+		  last_name : "Doe",
+		  age       : 50,
+		  eye_color : "blue"
+		};
+		document.getElementById("person_object").innerHTML = 
+		person.first_name + " " + person["last_name"];
+	</script>
+
+	<h2>Методы объекта</h2>
+	Объекты также могут иметь методы. Метод - это функция, хранящаяся как свойство. Методы - это действия, которые можно выполнять над объектами. Методы хранятся в свойствах как определения функций
+	<br>ПРИМЕР: <br>
+	<pre>
+		var person = {
+		  first_name: "John",
+		  last_name : "Doe",
+		  id        : 5566,
+		  full_name : function () {
+		    return this.first_name + " " + this.last_name;
+		  }
+		};
+	</pre>
+
+	<h2>Ключевое слово this</h2>
+	В определении функции <b>this</b> относится к «владельцу» функции. В приведенном выше примере <b>this</b> это объект <b>person</b>, которому «принадлежит» <b>full_name</b> функция. <b>this.first_name</b> означает <b>first_name</b> свойство этого объекта.
+
+	<h2>Доступ к объектным методам</h2>
+	Можно получить доступ к объектному методу со следующим синтаксисом <i><b>object_name.method_name()</b></i>
+	<br>ПРИМЕР: person.full_name(); = <b id="full_name"></b>
+	<script>
+		var person = {
+		  first_name: "John",
+		  last_name : "Doe",
+		  id        : 5566,
+		  full_name : function () {
+		    return this.first_name + " " + this.last_name;
+		  }
+		};
+		document.getElementById("full_name").innerHTML = person.full_name();
+	</script>
+
+	<h2>ЧЕГО НЕ СТОИТ ДЕЛАТЬ</h2>
+	Не объявляйте <b>String, Number</b> и <b>Boolean</b> как объекты! Они усложняют код и замедляют скорость выполнения.
+	Когда переменная JavaScript объявляется с ключевым словом <b>" new"</b>, переменная создается как объект.
+	<br>ПРИМЕР как делать НЕЛЬЗЯ: <br>
+	<pre>
+		var x = new String();
+		var y = new Number();
+		var z = new Boolean();
+	</pre>
+
+	<h1>События JavaScript</h1>
+	События HTML - это «вещи», которые происходят с элементами HTML. Когда JavaScript используется на страницах HTML, JavaScript может «реагировать» на эти события.
+
+	<h2>HTML события</h2>
+	HTML-событие может быть тем, что делает браузер, или тем, что делает пользователь. Несколько примеров событий HTML: <br>
+	<i>1. HTML-страница закончила загрузку; 2. Поле ввода HTML было изменено; 3. Была нажата кнопка HTML.</i> <br>
+	Когда происходят события, JavaScript позволяет выполнять код при обнаружении событий. HTML позволяет добавлять атрибуты обработчика событий с кодом JavaScript к элементам HTML.
+	<br><u> ПРИМЕР с кавычками </u><br> 
+	<span id="element_1"> </span>
+	<br><u> ПРИМЕР с кнопкой </u><br> 
+	<b>onclick</b> атрибут (с кодом) добавляется к <b>button</b> элементу: <br>
+	<span id="element_2"> </span> <br>
+	<button onclick="document.getElementById('btn').innerHTML = Date()"> The time is? </button>
+
+	<script>
+		document.getElementById("element_1").innerHTML = 
+		"С одинарными кавычками: <b> < element event = 'some JS'> </b>" + "<br>" +
+		'С двойными кавычками: <b> < element event = "some JS"> </b>' 
+
+		document.getElementById("element_2").innerHTML = 
+		"<b> < button onclick='document.getElementById('btn').innerHTML = Date()'> The time is? < /button>";
+	</script>
+
+	<h2>Общие события HTML</h2>
+	Распространенные событий HTML: <br>
+	<b>onchange</b>(по изменению) - HTML-элемент был изменен; <br>
+	<b>onclick</b>(по щелчку) - Пользователь щелкает элемент HTML; <br>
+	<b>onmouseover</b>(при наведении мыши) - Пользователь наводит указатель мыши на элемент HTML; <br>
+	<b>onmouseout</b>(на мышке) - Пользователь отодвигает мышь от элемента HTML; <br>
+	<b>onkeydown</b>(на ключ) - Пользователь нажимает клавишу клавиатуры; <br>
+	<b>onload</b>(в процессе) - Браузер завершил загрузку страницы; 
+
+	<h2>Что может сделать JavaScript?</h2>
+	Обработчики событий могут использоваться для обработки и проверки ввода пользователя, действий пользователя и действий браузера. <br>
+	Можно использовать много разных методов, чтобы позволить JavaScript работать с событиями
+
+	<h1>Строки JavaScript</h1>
+	Строки JavaScript используются для хранения и манипулирования текстом.
+
+	<h2>Строки JavaScript</h2>
+	Строка может быть пустой или содержать большое количество символов, заключенных в одинарные <b>' '</b> или двойные <b>" "</b> кавычки. <br>
+	Можно использовать кавычки внутри строки, если они не соответствуют кавычкам, окружающим строку.
+	<br> ПРИМЕР: <b>var man = "John 23 'alone'"</b>
+
+	<h2>Длина строки</h2>
+	Чтобы найти длину строки, можно воспользоваться встроенным length свойством:
+	<br> ПРИМЕР:
+	<pre>
+		var txt = "bobocococ";
+		txt.length; //<b id="length_txt"></b>
+	</pre>
+	
+	<script>
+		var txt = "bobocococ";
+		document.getElementById("length_txt").innerHTML = txt.length;
+	</script>
+
+	<h2>Escape символ</h2>
+	Экранирующий <b>\</b> символ обратной косой черты превращает специальные символы в строковые символы:
+	<br> ПРИМЕР: <b id="escape"></b> <br>
+	<script>
+		document.getElementById("escape").innerHTML = "var x = \"We are the so-called \"Vikings\" from the north.\"";
+	</script>
+
+	Шесть других escape-последовательностей допустимы в JavaScript: <br>
+	<b>\b</b> - Backspace;
+	<b>\f</b> - Form Feed (Подача формы);
+	<b>\n</b> - New Line;
+	<b>\r</b> - Carriage Return;
+	<b>\t</b> - Horizontal Tabulator;
+	<b>\v</b> - Vertical Tabulator
+
+	<h2>Ломка длинных строк кода</h2>
+	Для читабельности лучше использовать не длиннее 80 символов строк кода. Если оператор JavaScript не помещается в одну строку, лучше всего его разбить после оператора<br>
+	Можно разбить строку кода внутри текстовой строки с помощью одной обратной косой <b>\</b> черты, но этот способ поддерживают не все браузеры
+	<br> ПРИМЕР:
+	<pre>
+		document.getElementById("string_test_1.0").innerHTML = "hello \
+		dolly";
+	</pre> 
+	<b id="string_test_1.0"></b> <br>
+	Более безопасный способ разбить строку, это использовать добавление строки:
+	<pre>
+		document.getElementById("string_test_1.1").innerHTML = "hello " +
+		"dolly";
+	</pre>
+	<b id="string_test_1.1"></b> <br>
+	
+	<script>
+		document.getElementById("string_test_1.0").innerHTML = "hello \
+		dolly";
+		document.getElementById("string_test_1.1").innerHTML = "hello " +
+		"dolly";
+	</script>
+
+	<h2>Строки могут быть объектами</h2>
+	Строки могут быть определены как объекты с ключевым словом <b>new</b>. Но лучше не создавать строки как объекты. Это замедляет скорость выполнения. Ключевое слово усложняет код. Это может привести к неожиданным результатам.
+	<br> ПРИМЕР: 
+	<pre> 
+		<b>var x = "John";</b> // <span id="string_test_2.0"> </span>
+		<b>var y = new String("John");</b> // <span id="string_test_2.1"> </span>
+	</pre> <br>
+		При использовании <b>==</b> оператора равные строки равны
+	<pre>
+		<b>(x == y)</b> // <span id="string_test_2.2"> </span> (because x and y have equal values)
+	</pre> <br>
+		При использовании <b>===</b> оператора одинаковые строки не равны, поскольку <b>===</b> оператор ожидает равенства как по типу, так и по значению
+	<pre>
+		<b>(x === y)</b> // <span id="string_test_2.3"> </span> (because x and y have different types - string and object)
+	</pre> <br>
+	Объекты нельзя сравнивать. Сравнение двух объектов JavaScript всегда вернет <b>false</b>.
+	<pre>
+		<b>var y = new String("John");</b>
+		<b>var z = new String("John");</b> 
+		<b>(y == z)</b> // <span id="string_test_2.4"> </span> (because x and y are different objects)
+		<b>(y === z)</b> // <span id="string_test_2.5"> </span> (because x and y are different objects)
+	</pre>
+
+	<script>
+		var x = "John";
+		var y = new String("John");
+		var z = new String("John");
+		document.getElementById("string_test_2.0").innerHTML = (typeof x);
+		document.getElementById("string_test_2.1").innerHTML = (typeof y);
+		document.getElementById("string_test_2.2").innerHTML = (x == y);
+		document.getElementById("string_test_2.3").innerHTML = (x === y);
+		document.getElementById("string_test_2.4").innerHTML = (y == z);
+		document.getElementById("string_test_2.5").innerHTML = (y === z);
+	</script>
+
+	<h1>Строковые методы JavaScript</h1>
+
+
+
+
 
 
 
