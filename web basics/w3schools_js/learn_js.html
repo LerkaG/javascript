@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+`<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -584,6 +584,150 @@
 	</script>
 
 	<h1>Строковые методы JavaScript</h1>
+	Строковые методы помогают работать со строками.
+
+	<h2>Строковые методы и свойства</h2>
+	Примитивные значения, такие как «Джон Доу», не могут иметь свойств или методов (потому что они не являются объектами). <br>
+	Но с JavaScript методы и свойства также доступны для примитивных значений, потому что JavaScript обрабатывает примитивные значения как объекты при выполнении методов и свойств.
+
+	<h2>Длина строки</h2>
+	<b>length</b> - Свойство возвращает длину строки
+	<br> ПРИМЕР: 
+	<pre>
+		var txt = "Please locate where 'locate' occurs!";
+		txt.length; //<b id="string_txt_2.0"></b>
+	</pre>
+		
+	<h2>В поисках строки в строке</h2>
+	<b>indexOf()</b> - Метод возвращает индекс (положение) на first вхождения указанного текста в строке:
+	<pre>
+		txt.indexOf("locate"); //<b id="string_txt_2.1"></b>
+	</pre>
+
+	<b>lastIndexOf()</b> - Метод возвращает индекс последнего вхождения указанного текста в строке:
+	<pre>
+		txt.lastIndexOf("locate"); //<b id="string_txt_2.2"></b>
+	</pre>
+
+	Если текст не найден, то и <b>indexOf()</b>, и <b>lastIndexOf()</b> возвращают <b>-1</b>
+	<pre>
+		txt.lastIndexOf("John"); //<b id="string_txt_2.3"></b>
+	</pre> <br>
+
+	Оба метода принимают второй параметр в качестве начальной позиции для поиска. <br>
+	Метод <b>lastIndexOf()</b> выполняет поиск в обратном направлении (от конца к началу), что означает: если второй параметр - 15 поиск начинается с позиции 15 и выполняется поиск в начале строки.
+	<pre>
+		txt.lastIndexOf("locate", 15); //<b id="string_txt_2.4"></b>
+		txt.indexOf("locate", 15); //<b id="string_txt_2.5"></b> 
+	</pre>
+
+	<h2>Поиск строки в строке</h2>
+	В <b>search()</b> методе ищет строку для указанного значения и возвращает позицию матча:
+	<br> ПРИМЕР: <br>
+	<pre>
+		txt.search("locate"); //<b id="string_txt_2.6"></b>
+	</pre>
+
+	<h2>Разница между indexOf() и search()</h2>
+	Два метода НЕ равны. Это различия: <br>
+	<b>search()</b> Метод не может принимать второй аргумент позиции начала. <br>
+	<b>indexOf()</b> Метод не может принимать мощные значения поиска (регулярные выражения).
+
+	<h2>Извлечение струнных частей</h2>
+	Есть 3 метода для извлечения части строки: <b>slice(<i>start, end</i>); substring(<i>start, end</i>); substr(<i>start, length</i>)</b>
+	<h2> Метод slice() </h2>
+	<b>slice()</b> извлекает часть строки и возвращает извлеченную часть в новой строке. Метод принимает 2 параметра: начальную позицию и конечную позицию (конечная позиция не включена). <br>Отрицательные позиции не работают в Internet Explorer 8 и более ранних версиях.
+	<br> ПРИМЕР: <br>
+	<pre>
+		Вырезать часть строки из позиции 7 в позицию 12 (13-1):
+		var str = "Apple, Banana, Kiwi";
+		str.slice(7, 13); //<b id="string_txt_2.7"></b> 
+
+		Если параметр отрицательный, позиция отсчитывается от конца строки
+		str.slice(-12, -6); //<b id="string_txt_2.8"></b> 
+
+		Если опустить второй параметр, метод будет вырезать остальную часть строки:
+		str.slice(7); //<b id="string_txt_2.9"></b> 
+		str.slice(-12); //<b id="string_txt_2.10"></b> 
+	</pre>
+
+	<h2>Метод substring()</h2>
+	Разница <b>substring()</b> между <b>slice()</b>, в том, что <b>substring()</b> нельзя принимать отрицательные показатели.
+	<br> ПРИМЕР: <br>
+	<pre>
+		str.substring(7, 12); //<b id="string_txt_2.11"></b> 
+		str.substring(7); //<b id="string_txt_2.12"></b> 
+	</pre>
+
+	<h2>Метод substr()</h2>
+	Разница <b>substr()</b> между <b>slice()</b> в том, что второй параметр указывает длину извлеченной части.
+	<br> ПРИМЕР: <br>
+	<pre>
+		str.substr(7, 12); //<b id="string_txt_2.13"></b> 
+		str.substr(7, 6); //<b id="string_txt_2.14"></b> 
+		str.substr(7); //<b id="string_txt_2.15"></b> 
+
+		Если первый параметр отрицателен, позиция отсчитывается от конца строки.
+		str.substr(-4); //<b id="string_txt_2.16"></b> 
+	</pre>
+	
+	<h2>Замена содержимого строки</h2>
+	<b>replace()</b> метод заменяет указанное значение с другим значением в строке. Метод не изменяет строку когда она вызвана, а возвращает новую строку
+	<br> ПРИМЕР: <br>
+	<pre>
+		str.replace("Banana"); //<b id="string_txt_2.17"></b> 
+
+		По умолчанию метод заменяет только первое совпадение:
+		str.replace("Banana", "Kiwi"); //<b id="string_txt_2.18"></b> 
+	</pre>
+	<pre>
+		<b>< i id= 'replace_it'> "Apple, Banana, Kiwi "< /i> 
+		< button onclick="func_replace()">Click me< /button>
+		function func_replace() {
+		   var str = document.getElementById("replace_it").innerHTML;
+		   var txt = str.replace("Banana", "Orange");
+		   document.getElementById("replace_it").innerHTML = txt;
+		}</b>
+		<i id="replace_it">"Apple, Banana, Kiwi"</i> <button onclick="func_replace()">Click me</button>
+	</pre>
+
+	<script>
+		var txt = "Please locate where 'locate' occurs!";
+		var last_index_of_2 = txt.lastIndexOf("John");
+
+		var str = "Apple, Banana, Kiwi";
+
+		document.getElementById("string_txt_2.0").innerHTML = txt.length;
+		document.getElementById("string_txt_2.1").innerHTML = txt.indexOf("locate");
+		document.getElementById("string_txt_2.2").innerHTML = txt.lastIndexOf("locate");
+		document.getElementById("string_txt_2.3").innerHTML = last_index_of_2;
+		document.getElementById("string_txt_2.4").innerHTML = txt.lastIndexOf("locate", 15);
+		document.getElementById("string_txt_2.5").innerHTML = txt.indexOf("locate", 15);
+
+		document.getElementById("string_txt_2.6").innerHTML = txt.search("locate");
+
+		document.getElementById("string_txt_2.7").innerHTML = str.slice(7, 13);
+		document.getElementById("string_txt_2.8").innerHTML = str.slice(-12, -6);
+		document.getElementById("string_txt_2.9").innerHTML = str.slice(7);
+		document.getElementById("string_txt_2.10").innerHTML = str.slice(-12);
+
+		document.getElementById("string_txt_2.11").innerHTML = str.substring(7, 12);
+		document.getElementById("string_txt_2.12").innerHTML = str.substring(7);
+
+		document.getElementById("string_txt_2.13").innerHTML = str.substr(7, 12);
+		document.getElementById("string_txt_2.14").innerHTML = str.substr(7, 6);
+		document.getElementById("string_txt_2.15").innerHTML = str.substr(7);
+		document.getElementById("string_txt_2.16").innerHTML = str.substr(-4);
+
+		document.getElementById("string_txt_2.17").innerHTML = str.replace("Banana");
+		document.getElementById("string_txt_2.18").innerHTML = str.replace("Banana", "Kiwi");
+
+		function func_replace() {
+			var str = document.getElementById("replace_it").innerHTML;
+			var txt = str.replace("Banana", "Orange");
+			document.getElementById("replace_it").innerHTML = txt;
+		}
+	</script>
 
 
 
