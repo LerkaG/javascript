@@ -8,11 +8,11 @@
 	<style>
 		h1 {
 			background-color: grey;
-			width: 650px;
+			width: 750px;
 		}
 		h2 {
 			background-color: #FFCC99;
-			width: 650px;
+			width: 750px;
 		}
 		body {
 			font-family: Arial;
@@ -643,6 +643,10 @@
 		var str = "Apple, Banana, Kiwi";
 		str.slice(7, 13); //<b id="string_txt_2.7"></b> 
 
+		var txt_test = "I can eat bananas all day";
+		txt_test.slice(10, -8); //<b id="test_slice_1"></b>	
+		txt_test.slice(10, 17); //<b id="test_slice_2"></b>	
+
 		Если параметр отрицательный, позиция отсчитывается от конца строки
 		str.slice(-12, -6); //<b id="string_txt_2.8"></b> 
 
@@ -651,7 +655,7 @@
 		str.slice(-12); //<b id="string_txt_2.10"></b> 
 	</pre>
 
-	<h2>Метод substring()</h2>
+	<h2>Метод .substring()</h2>
 	Разница <b>substring()</b> между <b>slice()</b>, в том, что <b>substring()</b> нельзя принимать отрицательные показатели.
 	<br> ПРИМЕР: <br>
 	<pre>
@@ -659,7 +663,7 @@
 		str.substring(7); //<b id="string_txt_2.12"></b> 
 	</pre>
 
-	<h2>Метод substr()</h2>
+	<h2>Метод .substr()</h2>
 	Разница <b>substr()</b> между <b>slice()</b> в том, что второй параметр указывает длину извлеченной части.
 	<br> ПРИМЕР: <br>
 	<pre>
@@ -672,12 +676,13 @@
 	</pre>
 	
 	<h2>Замена содержимого строки</h2>
-	<b>replace()</b> метод заменяет указанное значение с другим значением в строке. Метод не изменяет строку когда она вызвана, а возвращает новую строку
+	<b>replace()</b> метод заменяет указанное значение с другим значением в строке. Метод не изменяет строку когда она вызвана, а возвращает новую строку. Метод чувствителен к регистру.
 	<br> ПРИМЕР: <br>
 	<pre>
 		str.replace("Banana"); //<b id="string_txt_2.17"></b> 
 
 		По умолчанию метод заменяет только первое совпадение:
+		var str_2 = "Apple, Banana, Kiwi, Banana";
 		str.replace("Banana", "Kiwi"); //<b id="string_txt_2.18"></b> 
 	</pre>
 	<pre>
@@ -689,13 +694,91 @@
 		   document.getElementById("replace_it").innerHTML = txt;
 		}</b>
 		<i id="replace_it">"Apple, Banana, Kiwi"</i> <button onclick="func_replace()">Click me</button>
+
+		Можно сделать не чувсвительность к регистру, использовавши регулярное выражение с <b>/i</b> флагом (нечувствительный):
+		str.replace(/BANANA/i, "Kiwi"); //<b id="string_txt_2.19"></b> нечувствительный к регистру
+		str.replace("BANANA", "Kiwi"); //<b id="string_txt_2.20"></b> чувствительный к регистру
+
+		Чтобы заменить все совпадения, используйте регулярное выражение с <b>/g</b> флагом (глобальное совпадение):
+		str_2.replace(/Banana/g, "Kiwi"); //<b id="string_txt_2.21"></b>
+	</pre>
+
+	<h2>Преобразование в верхний и нижний регистр</h2>
+	<b>toUpperCase()</b> - Строка преобразуется в верхний регистр; <b>toLowerCase()</b> - Строка преобразуется в нижний регистр;
+	<br> ПРИМЕР: <br>
+	<pre>
+		str.toLowerCase(); //<b id="string_txt_2.22"></b>
+		str.toUpperCase(); //<b id="string_txt_2.23"></b>
+	</pre>
+
+	<h2>Метод .concat ()</h2>
+	<b>concat()</b> - объединяет две или более строки. Этот метод может быть использован вместо оператора <b>плюс</b>. Все строковые методы возвращают новую строку. Строки не могут быть изменены, только заменены.
+	<br> ПРИМЕР: <br>
+	<pre>
+		txt.concat(" ", str); //<b id="string_txt_2.24"></b>
+		var new_txt = "It is New".concat(" ", "concat");
+		new_txt.concat(" ", str); //<b id="string_txt_2.25"></b>
+	</pre>
+
+	<h2>Метод .trim ()</h2>
+	<b>trim()</b> - метод удаляет пробельные символы с обеих сторон строки. Mетод не поддерживается в Internet Explorer 8 или ниже.
+	<br> ПРИМЕР: <br>
+	<pre>
+		txt.trim(); //<b id="string_txt_2.26"></b>
+	</pre>
+
+	<h2>Извлечение строковых символов</h2>
+	Есть 3 метода для извлечения строковых символов: <b>charAt(position), charCodeAt(position), Доступ к недвижимости [ ]</b> 
+	<br> ПРИМЕР: <br>
+	<pre>
+		<b>charAt()</b> - Метод возвращает символ по указанному индексу (позиции) в строке. Если символ не найден, <b>charAt()</b> возвращает пустую строку.
+		str.charAt(0); //<b id="string_txt_2.27"></b>
+		str.charAt(22); //<b id="string_txt_2.28"></b>
+
+		<b>charCodeAt()</b> - Метод возвращает юникод символа в заданном индексе в строке. Метод возвращает код UTF-16 (целое число от 0 до 65535).
+		str.charCodeAt(0); //<b id="string_txt_2.29"></b>
+
+		<b>[ ]</b> - доступ к свойству  для строк (ECMAScript 5 (2009)). Доступ к недвижимости может быть немного непредсказуемым:
+		Это не работает в Internet Explorer 7 или более ранней версии;
+		Это делает строки похожими на массивы (но это не так);
+		Если символ не найден, <b>[]</b> возвращает <b>undefined</b>;
+		Это только для чтения. str[0] = "B" не дает ошибок (но не работает!).
+		str[0]; //<b id="string_txt_2.30"></b>
+		str[0] = "B"; //<b id="string_txt_2.31"></b>
+		str[22]; //<b id="string_txt_2.32"></b>
+	</pre>
+
+	<h2>Преобразование строки в массив</h2>
+	Строка может быть преобразована в массив с помощью <b>split()</b> метода:
+	<br> ПРИМЕР: 
+	<pre>
+		Если разделитель опущен, возвращаемый массив будет содержать всю строку в индексе [0]. 
+		Если разделитель равен <b>""</b>, возвращаемый массив будет массивом из отдельных символов
+		str.split(""); //<b id="string_txt_2.33"></b>
+
+		str.split(","); //<b id="string_txt_2.34"></b>
+		str.split("|"); //<b id="string_txt_2.35"></b>
+		str.split(" "); //<b id="string_txt_2.36"></b>
+
+		var num_test = "1,2,3,4,5,6,7";
+		num_test.split(" "); //<b id="string_txt_2.37"></b>
+		num_test.split(""); //<b id="string_txt_2.38"></b>
+		num_test.split(","); //<b id="string_txt_2.39"></b>
+		num_test.split("|"); //<b id="string_txt_2.40"></b>
+		typeof num_test.split(" "); //<b id="string_txt_2.41"></b>
+		typeof num_test; //<b id="string_txt_2.42"></b>
 	</pre>
 
 	<script>
-		var txt = "Please locate where 'locate' occurs!";
+		var txt = "  Please locate where 'locate' occurs!  ";
 		var last_index_of_2 = txt.lastIndexOf("John");
 
 		var str = "Apple, Banana, Kiwi";
+		var str_2 = "Apple, Banana, Kiwi, Banana";
+		var new_txt = "It is New".concat(" ", "concat");
+		var num_test = "1,2,3,4,5,6,7";
+
+		var txt_test = "I can eat bananas all day";
 
 		document.getElementById("string_txt_2.0").innerHTML = txt.length;
 		document.getElementById("string_txt_2.1").innerHTML = txt.indexOf("locate");
@@ -710,6 +793,8 @@
 		document.getElementById("string_txt_2.8").innerHTML = str.slice(-12, -6);
 		document.getElementById("string_txt_2.9").innerHTML = str.slice(7);
 		document.getElementById("string_txt_2.10").innerHTML = str.slice(-12);
+		document.getElementById("test_slice_1").innerHTML = txt_test.slice(10, -8);
+		document.getElementById("test_slice_2").innerHTML = txt_test.slice(10, 17);
 
 		document.getElementById("string_txt_2.11").innerHTML = str.substring(7, 12);
 		document.getElementById("string_txt_2.12").innerHTML = str.substring(7);
@@ -720,7 +805,37 @@
 		document.getElementById("string_txt_2.16").innerHTML = str.substr(-4);
 
 		document.getElementById("string_txt_2.17").innerHTML = str.replace("Banana");
-		document.getElementById("string_txt_2.18").innerHTML = str.replace("Banana", "Kiwi");
+		document.getElementById("string_txt_2.18").innerHTML = str_2.replace("Banana", "Kiwi");
+		document.getElementById("string_txt_2.19").innerHTML = str.replace(/BANANA/i, "Kiwi");
+		document.getElementById("string_txt_2.20").innerHTML = str.replace("BANANA", "Kiwi");
+		document.getElementById("string_txt_2.21").innerHTML = str_2.replace(/Banana/g, "Kiwi");
+
+		document.getElementById("string_txt_2.22").innerHTML = str.toLowerCase();
+		document.getElementById("string_txt_2.23").innerHTML = str.toUpperCase();
+
+		document.getElementById("string_txt_2.24").innerHTML = txt.concat(" ", str);
+		document.getElementById("string_txt_2.25").innerHTML = new_txt.concat(" ", str);
+
+		document.getElementById("string_txt_2.26").innerHTML = txt.trim();
+
+		document.getElementById("string_txt_2.27").innerHTML = str.charAt(0);
+		document.getElementById("string_txt_2.28").innerHTML = str.charAt(22);
+		document.getElementById("string_txt_2.29").innerHTML = str.charCodeAt(0);
+		document.getElementById("string_txt_2.30").innerHTML = str[0];
+		document.getElementById("string_txt_2.31").innerHTML = str[0] = "B";
+		document.getElementById("string_txt_2.32").innerHTML = str[22];
+
+		document.getElementById("string_txt_2.33").innerHTML = str.split("");
+		document.getElementById("string_txt_2.34").innerHTML = str.split(",");
+		document.getElementById("string_txt_2.35").innerHTML = str.split("|");
+		document.getElementById("string_txt_2.36").innerHTML = str.split(" ");
+
+		document.getElementById("string_txt_2.37").innerHTML = num_test.split(" ");
+		document.getElementById("string_txt_2.38").innerHTML = num_test.split("");
+		document.getElementById("string_txt_2.39").innerHTML = num_test.split(",");
+		document.getElementById("string_txt_2.40").innerHTML = num_test.split("|");
+		document.getElementById("string_txt_2.41").innerHTML = typeof num_test.split(" ");
+		document.getElementById("string_txt_2.42").innerHTML = typeof num_test;
 
 		function func_replace() {
 			var str = document.getElementById("replace_it").innerHTML;
@@ -729,10 +844,278 @@
 		}
 	</script>
 
+	<h1>JavaScript Numbers</h1>
+	JavaScript имеет только один тип чисел. Числа могут быть написаны с или без десятичных знаков. Очень большие или очень маленькие числа могут быть написаны с научной (показательной) нотацией
+	<br>ПРИМЕР<br>
+	<pre>
+		var x = 123e5; //<b id="num_1"></b>
+		var y = 123e-5; //<b id="num_2"></b>
+	</pre>
 
+	<h2>Числа JavaScript всегда 64-битные с плавающей точкой</h2>
+	JavaScript <b>не</b> определяет различные типы чисел, такие как целые, короткие, длинные, с плавающей точкой и т. Д. <br>
+	Числа JavaScript всегда хранятся в виде <b>чисел с плавающей запятой двойной точности</b> в соответствии с международным стандартом <b>IEEE 754.</b><br>
+	Этот формат хранит числа в <b>64 битах</b>, где число (дробь) хранится в 52 битах <b>с 0 по 51</b>, показатель степени в 11 битах <b>с 52 по 62 </b>и знак в 1 бите (63)
 
+	<h2>Точность</h2>
+	Целые числа (числа без точки или обозначения периода) имеют точность до 15 цифр. Максимальное количество десятичных знаков равно <b>17</b>
+	<br>ПРИМЕР<br>
+	<pre>
+		x = 999999999999999; // <b id="num_3"></b>
+		y = 9999999999999999; // <b id="num_4"></b>
 
+		Арифметика с плавающей запятой не всегда точна на 100%!
+		var z = 0.2 + 0.1; // <b id="num_5"></b>
 
+		Чтобы решить эту проблему,  помогает умножить и разделить
+		var q = (0.2 * 10 + 0.1 * 10) /10; // <b id="num_6"></b>
+	</pre>
+
+	<h2>Добавление чисел и строк</h2>
+	JavaScript использует оператор <b>+</b> как для <b>сложения</b>, так и для <b></b>объединения.
+	<br>ПРИМЕР:<br>
+	<pre>
+		var w = 20 + 20;   // <b id="num_7"> </b> 
+		var t = 20;        // <b id="num_10"> </b>
+		var y = "20";      // <b id="num_11"> </b>
+
+		Если добавить число и строку или наоборот, то результатом будет <b>конкатенация</b> строк:
+		var e = "20" + 20; // <b id="num_8"> </b>
+		var r = 20 + "20"; // <b id="num_9"> </b>
+		var u = t + t + y; // <b id="num_12"> </b>
+		var i = y + t + t; // <b id="num_13"> </b>
+	</pre>
+
+	<h2>Числовые строки</h2>
+	Строки JavaScript могут иметь числовое содержимое. JavaScript попытается преобразовать строки в числа во всех числовых операциях:
+	<br>ПРИМЕР
+	<pre>
+		t = "10";
+		t / y; // <b id="num_14"> </b>    работает
+		t * y; // <b id="num_15"> </b>  работает
+		t - y; // <b id="num_16"> </b>    работает
+		t + y; // <b id="num_17"> </b> не работает
+	</pre>
+
+	<h2>NaN (Not a Number) - не число</h2>
+	<b>NaN</b> является зарезервированным словом JavaScript, указывающим, что число не является допустимым числом. <br>
+	Попытка выполнить арифметику с нечисловой строкой приведет к <b>NaN</b> (не числу), а если строка содержит числовое значение, результатом будет число. <b>NaN</b> возвращает <b>number</b>
+	<br>ПРИМЕР
+	<pre>
+		h = "Apple";
+		h / y // <b id="num_18"> </b> 
+		t / h; // <b id="num_19"> </b> 
+
+		Можно использовать глобальную функцию JavaScript, <b>isNaN()</b> чтобы узнать, является ли значение числом:
+		var b = t / h;
+		isNaN(t / h); // <b id="num_20"> </b> 
+		isNaN(b); // <b id="num_21"> </b> 
+		isNaN(t * y) + " " + t * y; // <b id="num_22"> </b> 
+
+		Если использовать <b>NaN</b> в математической операции, результат также будет <b>NaN</b> или результатом может быть конкатенация:
+		var m = NaN;
+		m + "Apple"; // <b id="num_23"> </b> 
+		m + 5; // <b id="num_24"> </b> 
+		m + "5"; // <b id="num_25"> </b> 
+		typeof m; // <b id="num_26"> </b> 
+	</pre>
+
+	<h2>Infinity</h2>
+	<b>Infinity</b>(или <b>-Infinity</b>) - это значение, которое JavaScript вернет, если вычислить число за пределами максимально возможного числа.
+	<br>ПРИМЕР
+	<pre>
+		var my_number = 2;
+		while (my_number != Infinity) {
+		   my_number = my_number * my_number;
+		}
+		my_number; // <b id="num_infinity"> </b>
+
+		var my_number_2 = 2;
+		var num_test = "";
+		while (my_number_2 != Infinity) {
+			my_number_2 = my_number_2 * my_number_2;
+			num_test = num_test + my_number_2;
+		}
+		num_test; // <b id="num_infinity_2"> </b>
+		my_number_2; // <b id="num_infinity_3"> </b>
+
+		Деление на 0 (ноль) также генерирует Infinity
+		4 / 0 // <b id="num_infinity_4"> </b>
+
+		<b>Infinity</b> это число возвращает <b>number</b>.
+		typeof Infinity //<b id="num_infinity_5"> </b>
+	</pre>
+
+	<h2>Шестнадцатеричный</h2>
+	JavaScript интерпретирует числовые константы как шестнадцатеричные, если им предшествует 0x.  <br>
+	Нельзя писать число с начальным нулем (например, 07). Некоторые версии JavaScript интерпретируют числа как восьмеричные, если они написаны с начальным нулем.
+	<br>ПРИМЕР
+	<pre>
+		0x333; // <b id="num_sixteen_1"> </b>
+
+		По умолчанию, JavaScript отображает числа в качестве основы 10 знаков после запятой.
+		Можно использовать <b>toString()</b> метод для вывода чисел от базы 2 до базы 36.
+		var t = 20;
+		t.toString(16); // <b id="num_string_1"></b>    16. 
+		t.toString(10); // <b id="num_string_2"></b>    10. 
+		t.toString(8);  // <b id="num_string_3"></b>     8. 
+		t.toString(2);  // <b id="num_string_4"></b>  2.
+	</pre>
+
+	<h2>Числа могут быть объектами</h2>
+	Обычно числа JavaScript являются примитивными значениями, созданными из литералов. Но числа также могут быть определены как <i>объекты</i> с ключевым словом <b>new</b>. <br>
+	Не нужно создавать объекты <b>Number</b>. Это замедляет скорость выполнения. Ключевое слово усложняет код. Это может привести к неожиданным результатам: <b>new</b>
+	<br>ПРИМЕР
+	<pre>
+		var i = 123; // литерал
+		var p = new Number(123); // объект
+		i; // <b id="num_no_object"> </b> 
+		p; // <b id="num_object"> </b> 
+
+		При использовании <b>==</b> оператора равные числа равны:
+		i == p; // <b id="num_no_object_2"> </b>
+
+		При использовании <b>===</b>оператора равные числа не равны, поскольку <b>===</b> оператор ожидает равенства как по типу, так и по значению.
+		i === p; // <b id="num_no_object_3"> </b>
+
+		Объекты нельзя сравнивать. Сравнение двух объектов JavaScript всегда вернет <b>false</b>.
+		var z = new Number(123);
+		z === p; // <b id="num_no_object_4"> </b>
+		z == p; // <b id="num_no_object_5"> </b>
+	</pre>
+
+	<script>
+		var x = 123e5;
+		var y = 123e-5;
+		document.getElementById("num_1").innerHTML = x;
+		document.getElementById("num_2").innerHTML = y;
+
+		x = 999999999999999; 
+		y = 9999999999999999; 
+		var z = 0.2 + 0.1;
+		var q = (0.2 * 10 + 0.1 * 10) /10;
+
+		var w = 20 + 20;
+		var e = "20" + 20;
+		var r = 20 + "20";
+		var t = 20;
+		var y = "20";
+		var u = t + t + y;
+		var i = y + t + t;
+		document.getElementById("num_3").innerHTML = x;
+		document.getElementById("num_4").innerHTML = y;
+		document.getElementById("num_5").innerHTML = z;
+		document.getElementById("num_6").innerHTML = q;
+
+		document.getElementById("num_7").innerHTML = w + " type - " + typeof w;
+		document.getElementById("num_8").innerHTML = e + " type - " + typeof e;
+		document.getElementById("num_9").innerHTML = r + " type - " + typeof r;
+		document.getElementById("num_10").innerHTML = t + " type - " + typeof t;
+		document.getElementById("num_11").innerHTML = y + " type - " + typeof y;
+		document.getElementById("num_12").innerHTML = u + " type - " + typeof u;
+		document.getElementById("num_13").innerHTML = i + " type - " + typeof i;
+
+		h = "Apple";
+		var b = t / h;
+		var m = NaN;
+		document.getElementById("num_14").innerHTML = t / y;
+		document.getElementById("num_15").innerHTML = t * y;
+		document.getElementById("num_16").innerHTML = t - y;
+		document.getElementById("num_17").innerHTML = t + y;
+
+		document.getElementById("num_18").innerHTML = h / y;
+		document.getElementById("num_19").innerHTML = t / h;
+		document.getElementById("num_20").innerHTML = isNaN(t / h);
+		document.getElementById("num_21").innerHTML = isNaN(b);
+		document.getElementById("num_22").innerHTML = isNaN(t * y) + " " + t * y;
+
+		document.getElementById("num_23").innerHTML = m + "Apple" + " type: " + typeof (m + h);
+		document.getElementById("num_24").innerHTML = m + 5 + " type: " + typeof (m + y);
+		document.getElementById("num_25").innerHTML = m + "5" + " type: " + typeof (m + t);
+		document.getElementById("num_26").innerHTML = typeof m;
+
+		var my_number = 2;
+
+		while (my_number != Infinity) {
+			my_number = my_number * my_number;
+		};
+		document.getElementById("num_infinity").innerHTML = my_number;
+
+		var my_number_2 = 2;
+		var num_test = "";
+		while (my_number_2 != Infinity) {
+			my_number_2 = my_number_2 * my_number_2;
+			num_test = num_test + my_number_2 + "   ";
+		}
+		document.getElementById("num_infinity_2").innerHTML = num_test;
+		document.getElementById("num_infinity_3").innerHTML = my_number_2;
+
+		document.getElementById("num_infinity_4").innerHTML = 4 / 0;
+		document.getElementById("num_infinity_5").innerHTML = typeof Infinity;
+
+		document.getElementById("num_sixteen_1").innerHTML = 0x333;
+
+		document.getElementById("num_string_1").innerHTML = t.toString(16);
+		document.getElementById("num_string_2").innerHTML = t.toString(10);
+		document.getElementById("num_string_3").innerHTML = t.toString(8);
+		document.getElementById("num_string_4").innerHTML = t.toString(2);
+
+		var i = 123; 
+		var p = new Number(123);
+		document.getElementById("num_no_object").innerHTML = i + "; type: " + typeof i;
+		document.getElementById("num_object").innerHTML = p + "; type: " + typeof p;
+		document.getElementById("num_no_object_2").innerHTML = (p == i) + "; type: " + typeof (p == i);
+		document.getElementById("num_no_object_3").innerHTML = (p === i) + "; type: " + typeof (p === i);
+
+		var z = new Number(123);
+		document.getElementById("num_no_object_4").innerHTML = (z === p) + "; type: " + typeof (z === p);
+		document.getElementById("num_no_object_5").innerHTML = (z == p) + "; type: " + typeof (z == p);
+	</script>
+
+	<h1>Числовые методы</h1>
+	Числовые методы помогут работать с числами.
+
+	<h2>Числовые методы и свойства</h2>
+	Примитивные значения (например, <b>3.14</b> или <b>2014</b>) не могут иметь свойств и методов, потому что <i>они не являются объектами</i>. <br>
+	Но с JavaScript <b>методы</b> и <b>свойства</b> также доступны <b>для примитивных значений</b>, потому что JavaScript <i>обрабатывает примитивные значения как объекты при выполнении методов и свойств.</i>
+
+	<h2>Метод toString()</h2>
+	<b>toString()</b> - Метод возвращает число в виде строки. <br>
+	Все числовые методы могут быть использованы для любого типа чисел (литералов, переменных или выражений):
+	<br>ПРИМЕР
+	<pre>
+		var x = 123;
+		x.toString();          // <b id="num_method_1"> </b>
+		(123).toString();      // <b id="num_method_2"> </b>
+		(100 + 23).toString(); // <b id="num_method_3"> </b>
+	</pre>
+
+	<h2>Метод toExponential()</h2>
+	<b>toExponential()</b> - возвращает строку, число которой округлено и записано с использованием экспоненциальной записи. Параметр определяет количество символов за десятичной точкой.
+	<br>ПРИМЕР
+	<pre>
+		var x = 9.656;
+		x.toExponential(2); // <b id="num_method_4"> </b>
+		x.toExponential(4); // <b id="num_method_5"> </b>
+		x.toExponential(6); // <b id="num_method_6"> </b>
+
+		Параметр является необязательным. Если не указать это, JavaScript не будет округлять число.
+		x.toExponential();  // <b id="num_method_7"> </b>
+	</pre>
+
+	<script>
+		var x = 123;
+		document.getElementById("num_method_1").innerHTML = x.toString() + " type:" + typeof x.toString();
+		document.getElementById("num_method_2").innerHTML = (123).toString() + " type:" + typeof (123).toString();
+		document.getElementById("num_method_3").innerHTML = (100 + 23).toString() + " type:" + typeof (100 + 23).toString();
+
+		var x = 9.656;
+		document.getElementById("num_method_4").innerHTML = x.toExponential(2);
+		document.getElementById("num_method_5").innerHTML = x.toExponential(4);
+		document.getElementById("num_method_6").innerHTML = x.toExponential(6);
+		document.getElementById("num_method_7").innerHTML = x.toExponential();
+	</script>
+	
 
 
 <footer></footer>
