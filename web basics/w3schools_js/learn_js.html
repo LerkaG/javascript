@@ -8,11 +8,11 @@
 	<style>
 		h1 {
 			background-color: grey;
-			width: 750px;
+			width: 850px;
 		}
 		h2 {
 			background-color: #FFCC99;
-			width: 750px;
+			width: 850px;
 		}
 		body {
 			font-family: Arial;
@@ -33,6 +33,13 @@
 			margin-bottom: -15px;
   			line-height: 19px;
   			left: -120px;
+  			position: relative;
+		}
+		code ul {
+			margin-top: -5px;
+			margin-bottom: -15px;
+  			line-height: 19px;
+  			left: 0px;
   			position: relative;
 		}
 	</style>
@@ -1073,7 +1080,7 @@
 	</script>
 
 	<h1>Числовые методы</h1>
-	Числовые методы помогут работать с числами.
+	Числовые методы помогут работать с числами.	Все типы данных JavaScript имеют <b>valueOf()</b> и <b>toString()</b> метод.
 
 	<h2>Числовые методы и свойства</h2>
 	Примитивные значения (например, <b>3.14</b> или <b>2014</b>) не могут иметь свойств и методов, потому что <i>они не являются объектами</i>. <br>
@@ -1103,6 +1110,124 @@
 		x.toExponential();  // <b id="num_method_7"> </b>
 	</pre>
 
+	<h2>Метод toFixed()</h2>
+	<b>toFixed()</b> - возвращает строку с числом, записанным с указанным количеством десятичных знаков. <b>toFixed(2)</b> идеально подходит для работы с деньгами.
+	<br>ПРИМЕР
+	<pre>
+		x.toFixed(0); // <b id="num_method_8"> </b>
+		x.toFixed(2); // <b id="num_method_9"> </b>
+		x.toFixed(4); // <b id="num_method_10"> </b>
+		x.toFixed(6); // <b id="num_method_11"> </b>
+	</pre>
+
+	<h2>Метод toPrecision()</h2>
+	<b>toPrecision()</b> - возвращает строку с записанным числом указанной длины:
+	<br>ПРИМЕР
+	<pre>
+		x.toPrecision();  // <b id="num_method_12"> </b>
+		x.toPrecision(2); // <b id="num_method_13"> </b>
+		x.toPrecision(4); // <b id="num_method_14"> </b>
+		x.toPrecision(6); // <b id="num_method_15"> </b>
+	</pre>
+
+	<h2>Метод valueOf()</h2>
+	<b>valueOf()</b> - возвращает число как число.
+	<br>ПРИМЕР
+	<pre>
+		x.valueOf(); // <b id="num_method_16"> </b>
+		(9.656).valueOf(); // <b id="num_method_17"> </b>
+		(9 + 0.656).valueOf(); // <b id="num_method_18"> </b>
+	</pre>
+
+	<h2>Преобразование переменных в числа. Глобальные методы</h2>
+	Существует 3 метода JavaScript, которые можно использовать для преобразования переменных в числа <b>Number(), parseInt(), parseFloat()</b>. Эти методы не являются цифровыми методами, но глобальные методы JavaScript. <br>
+	Глобальные методы JavaScript могут использоваться для всех типов данных JavaScript. Это наиболее актуальные методы при работе с числами: <br>
+	<b>Number()</b> - Возвращает число, преобразованное из его аргумента; <br>
+	<b>parseFloat()</b> - Разбирает аргумент и возвращает число с плавающей точкой; <br>
+	<b>parseInt()</b> - Разбирает аргумент и возвращает целое число. 
+
+	<h2>Метод Number()</h2>
+	<b>Number()</b> - может использоваться для преобразования переменных JavaScript в числа. Если число не может быть преобразовано, возвращается <b>NaN</b>(не число).
+	<br>ПРИМЕР:
+	<pre>
+		Number(true);    // <b id="num_global_1"> </b>
+		Number(false);   // <b id="num_global_2"> </b>
+		Number("10");    // <b id="num_global_3"> </b>
+		Number(" 10");   // <b id="num_global_4"> </b>
+		Number("10 ");   // <b id="num_global_5"> </b>
+		Number(" 10 ");  // <b id="num_global_6"> </b>
+		Number("10.33"); // <b id="num_global_7"> </b>
+		Number("10,33"); // <b id="num_global_8"> </b>
+		Number("10 33"); // <b id="num_global_9"> </b>
+		Number("John");  // <b id="num_global_10"> </b>
+
+		Также <b>Number()</b> можно преобразовать дату в число. Метод возвращает количество миллисекунд, прошедших с 00:00:00 1 Января 1970 года.
+		Number(new Date("2020-06-28"));  // <b id="num_global_11"> </b>
+	</pre>
+
+	<h2>Метод parseInt()</h2>
+	<b>parseInt()</b> - анализирует строку и возвращает целое число. Пробелы разрешены. Только первый номер возвращается. Если число не может быть преобразовано, возвращается <b>NaN</b>(не число).
+	<br>ПРИМЕР
+	<pre>
+		parseInt("10");       // <b id="num_global_12"> </b>
+		parseInt("10.33");    // <b id="num_global_13"> </b>
+		parseInt("10 20 30"); // <b id="num_global_14"> </b>
+		parseInt("10 years"); // <b id="num_global_15"> </b>
+		parseInt("years 10"); // <b id="num_global_16"> </b>
+	</pre>	
+
+	<h2>Метод parseFloat()</h2>
+	<b>parseFloat()</b> - разбирает строку и возвращает число. Пробелы разрешены. Только первый номер возвращается. Если число не может быть преобразовано, <b>NaN</b>(не число) возвращается.
+	<br>ПРИМЕР
+	<pre>
+		parseFloat("10");       // <b id="num_global_17"> </b>
+		parseFloat("10.33");    // <b id="num_global_18"> </b>
+		parseFloat("10 20 30"); // <b id="num_global_19"> </b>
+		parseFloat("10 years"); // <b id="num_global_20"> </b>
+		parseFloat("years 10"); // <b id="num_global_21"> </b>
+	</pre>	
+
+	<h2>Свойства номера</h2>
+	<b>MAX_VALUE</b> - Возвращает наибольшее возможное число в JavaScript <br>
+	<b>MIN_VALUE</b> - Возвращает наименьшее возможное число в JavaScript <br>
+	<b>POSITIVE_INFINITY</b> - Представляет бесконечность (возвращается при переполнении) <br>
+	<b>NEGATIVE_INFINITY</b> - Представляет отрицательную бесконечность (возвращается при переполнении) <br>
+	<b>NaN</b> - Представляет значение "не число"
+
+	<h2>MIN_VALUE, MAX_VALUE, POSITIVE_INFINITY, NEGATIVE_INFINITY</h2>
+	<b>MAX_VALUE</b> возвращает максимально возможное число. <b>MIN_VALUE</b> возвращает минимально возможное число. <br>
+	<b>POSITIVE_INFINITY</b> возвращается при переполнении. <b>NEGATIVE_INFINITY</b> возвращается при переполнении.
+	<br>ПРИМЕР
+	<pre>
+		var mm = Number.MAX_VALUE; // так создаются переменные с такими свойствами
+
+		Number.MAX_VALUE; //<b id="num_global_22"> </b>
+		Number.MIN_VALUE; //<b id="num_global_23"> </b>
+
+		Number.POSITIVE_INFINITY; //<b id="num_global_24"> </b>
+		1 / 0;                    //<b id="num_global_25"> </b>
+
+		Number.NEGATIVE_INFINITY; //<b id="num_global_26"> </b>
+		-1 / 0;                   //<b id="num_global_27"> </b>
+	</pre>
+
+	<h2>NaN - не число </h2>
+	<b>NaN</b> является зарезервированным словом JavaScript, указывающим, что число не является допустимым числом. Попытка выполнить арифметику с нечисловой строкой приведет к <b>NaN</b>(не числу):
+	<br>ПРИМЕР
+	<pre>
+		Number.NaN;    //<b id="num_global_28"> </b>
+		100 / "Apple"; //<b id="num_global_29"> </b>
+	</pre>
+
+	<h2>Свойства чисел нельзя использовать в переменных</h2>
+	Числовые свойства принадлежат обертке числового объекта JavaScript под названием <b>Number</b>. Эти свойства могут быть доступны только как <b>Number.MAX_VALUE</b>. <br>
+	Использование <b>x.MAX_VALUE</b>, где <b>x</b> - это переменная, выражение или значение, вернет <b>undefined</b>:
+	<br>ПРИМЕР
+	<pre>
+		var x = 6;
+		x.MAX_VALUE; //<b id="num_global_30"> </b>
+	</pre>
+
 	<script>
 		var x = 123;
 		document.getElementById("num_method_1").innerHTML = x.toString() + " type:" + typeof x.toString();
@@ -1114,8 +1239,276 @@
 		document.getElementById("num_method_5").innerHTML = x.toExponential(4);
 		document.getElementById("num_method_6").innerHTML = x.toExponential(6);
 		document.getElementById("num_method_7").innerHTML = x.toExponential();
+
+		document.getElementById("num_method_8").innerHTML = x.toFixed(0);
+		document.getElementById("num_method_9").innerHTML = x.toFixed(2);
+		document.getElementById("num_method_10").innerHTML = x.toFixed(4);
+		document.getElementById("num_method_11").innerHTML = x.toFixed(6);
+
+		document.getElementById("num_method_12").innerHTML = x.toPrecision();
+		document.getElementById("num_method_13").innerHTML = x.toPrecision(2);
+		document.getElementById("num_method_14").innerHTML = x.toPrecision(4);
+		document.getElementById("num_method_15").innerHTML = x.toPrecision(6);
+		
+		document.getElementById("num_method_16").innerHTML = x.valueOf();
+		document.getElementById("num_method_17").innerHTML = (9.656).valueOf();
+		document.getElementById("num_method_18").innerHTML = (9 + 0.656).valueOf();
+
+		document.getElementById("num_global_1").innerHTML = Number(true);
+		document.getElementById("num_global_2").innerHTML = Number(false);
+		document.getElementById("num_global_3").innerHTML = Number("10");
+		document.getElementById("num_global_4").innerHTML = Number(" 10");
+		document.getElementById("num_global_5").innerHTML = Number("10 ");
+		document.getElementById("num_global_6").innerHTML = Number(" 10 ");
+		document.getElementById("num_global_7").innerHTML = Number("10.33");
+		document.getElementById("num_global_8").innerHTML = Number("10,33");
+		document.getElementById("num_global_9").innerHTML = Number("10 33");
+		document.getElementById("num_global_10").innerHTML = Number("John");
+		document.getElementById("num_global_11").innerHTML = Number(new Date("2020-06-28"));
+
+		document.getElementById("num_global_12").innerHTML = parseInt("10");
+		document.getElementById("num_global_13").innerHTML = parseInt("10.33");
+		document.getElementById("num_global_14").innerHTML = parseInt("10 20 30");
+		document.getElementById("num_global_15").innerHTML = parseInt("10 years");
+		document.getElementById("num_global_16").innerHTML = parseInt("years 10");
+
+		document.getElementById("num_global_17").innerHTML = parseFloat("10");
+		document.getElementById("num_global_18").innerHTML = parseFloat("10.33");
+		document.getElementById("num_global_19").innerHTML = parseFloat("10 20 30");
+		document.getElementById("num_global_20").innerHTML = parseFloat("10 years");
+		document.getElementById("num_global_21").innerHTML = parseFloat("years 10");
+
+		document.getElementById("num_global_22").innerHTML = Number.MAX_VALUE;
+		document.getElementById("num_global_23").innerHTML = Number.MIN_VALUE;
+		document.getElementById("num_global_24").innerHTML = Number.POSITIVE_INFINITY;
+		document.getElementById("num_global_25").innerHTML = 1/0;
+		document.getElementById("num_global_26").innerHTML = Number.NEGATIVE_INFINITY;
+		document.getElementById("num_global_27").innerHTML = -1/0;
+
+		document.getElementById("num_global_28").innerHTML = Number.NaN;
+		document.getElementById("num_global_29").innerHTML = 100 / "Apple";
+
+		var x = 6;
+		document.getElementById("num_global_30").innerHTML = x.MAX_VALUE;
 	</script>
+
+	<h1>Массивы JavaScript</h1>
+	Массивы JavaScript используются для хранения нескольких значений в одной переменной. <i>var cars = ["Saab", "Volvo", "BMW"];</i>
+
+	<h2>Что такое массив?</h2>
+	<b>Массив</b> - это специальная переменная, которая может содержать более одного значения за раз (много значений под одним именем), получить доступ к значениям можно по индексному номеру.
+
+	<h2>Создание массива</h2>
+	Использование литерала массива - это самый простой способ создания массива JavaScript. Пробелы и разрывы строк не важны. Объявление может занимать несколько строк. <br>
+	Для простоты, читабельности и скорости выполнения использовать этот метод (литерала массива)
+	<br>ПРИМЕР
+	<pre>
+		Синтаксис:
+		var array_name = [item1, item2, ...];   
+
+		var cars = ["Saab", "BMW", "Audi"]; // <b id="array_1"> </b>
+
+		var cars = [
+		  "Saab", 
+		  "BMW", 
+		  "Audi"
+		]; // <b id="array_2"> </b>
+	</pre>
+
+	<h2>Использование ключевого слова JavaScript new</h2>
+	Cоздаем массив и присваиваем ему значения.
+	<br>ПРИМЕР
+	<pre>
+		var cars = new Array("Saab", "BMW", "Audi"); // <b id="array_3"> </b>
+	</pre>
+
+	<h2>Доступ к элементам массива</h2>
+	Получить доступ к элементу массива, можно ссылаясь на номер индекса. Индексы массива начинаются с 0.
+	<br>ПРИМЕР
+	<pre>
+		cars[0]; //<b id="array_4"> </b>
+	</pre>
+
+	<h2>Изменение элемента массива</h2>
+	<br>ПРИМЕР
+	<pre>
+		cars[0] = "Opel"; //<b id="array_5"> </b>
+	</pre>
+
+
+	<h2>Доступ к полному массиву</h2>
+	Полный массив можно получить, обратившись к имени массива:
+	<br>ПРИМЕР
+	<pre>
+		cars; //<b id="array_6"> </b>
+	</pre>
 	
+	<h2>Массивы являются объектами</h2>
+	<b>Массивы</b> - это особый тип объектов. <b>typeof</b> Оператор возвращает <b>«объект»</b> для массивов. Но массивы лучше всего описывать как массивы. 
+	<pre>
+		var person_1 = ["John", "Doe", 46]; // массив
+		var person_2 = {first_name:"John", last_name:"Doe", age:46}; // объект
+
+		Массивы используют числа для доступа к своим «элементам».
+		person_1[0] //<b id="array_7"> </b>
+		
+		Объекты используют имена для доступа к своим «членам».
+		person_2["first_name"] //<b id="array_8"> </b>
+	</pre>
+	
+	<h2>Элементы массива могут быть объектами</h2>
+	Переменные могут быть объектами. Массивы - это особые виды объектов. Из-за этого можно иметь переменные разных типов в одном массиве, объекты в массиве, функции в массиве, массивы в массиве:
+	<br>ПРИМЕР
+	<pre>
+		my_array[0] = Date.now;
+		my_array[1] = my_function;
+		my_array[2] = my_var;
+	</pre>
+	
+	<h2>Свойства и методы массива</h2>
+	Настоящая сила JavaScript-массивов - это встроенные свойства и методы массива. <br>
+	<b>length</b> Свойство массива возвращает длину массива (количество элементов массива). Свойство всегда больше , чем один максимальный индекс массива.
+	<br>ПРИМЕР
+	<pre>
+		cars.length; //<b id="array_9"> </b>
+		cars.sort(); //<b id="array_10"> </b>
+	</pre>
+	
+	<h2>Доступ к первому и к последнему элементам массива</h2>
+	<br>ПРИМЕР
+	<pre>
+		var car = cars[0]; //<b id="array_11"> </b>
+		var last_car = cars[cars.length - 1]; //<b id="array_12"> </b>
+	</pre>
+	
+	<h2>Looping Array Elements</h2>
+	Самый безопасный способ перебрать массив - использовать <b>for</b> цикл:
+	<br>ПРИМЕР
+	<pre>
+		var fruits, text, f_len, i;
+		fruits = ["Banana", "Orange", "Apple", "Mango"];
+		f_len = fruits.length;
+
+		text = "< ul>";
+		for (i = 0; i < f_len; i++) {
+		   text += "< li>" + fruits[i] + "< /li>";
+		}
+		text += "< /ul>";
+
+		text; //
+	</pre>
+	<code> <b id="array_13"></b></code> <br><br>
+	Также можно использовать <b>Array.forEach()</b> функцию:
+	<pre>
+		var fruits, text;
+		fruits = ["Banana", "Orange", "Apple", "Mango"];
+
+		text = "< ul>";
+		fruits.forEach(my_function);
+		text += "< /ul>";
+
+		function my_function(value) {
+		   text += "< li>" + value + "</ li>";
+		}
+
+		text; //
+	</pre>
+	<code> <b id="array_14"></b></code> <br>
+
+	<h2>Добавление элементов массива</h2>
+	Самый простой способ добавить новый элемент в массив - использовать метод <b>push()</b>  или используя свойство <b>length</b>.
+
+	<br>ПРИМЕР
+	<pre>
+		fruits.push("Lemon"); // <b id="array_15"> </b>
+
+		fruits[fruits.length] = "Pulm";
+		fruits; // <b id="array_16"> </b>
+
+		Добавление элементов с высокими индексами может создать неопределенные «дыры» в массиве:
+		fruits[7] = "Grape"; // <b id="array_17"> </b>
+	</pre>
+	
+	<h2>Ассоциативные массивы</h2>
+	<br>ПРИМЕР
+	<pre>
+	</pre>
+	
+	<h2></h2>
+	<br>ПРИМЕР
+	<pre>
+	</pre>
+	
+	<h2></h2>
+	<br>ПРИМЕР
+	<pre>
+	</pre>
+
+
+	<script>
+		var cars = [
+		  "Saab", 
+		  "BMW", 
+		  "Audi"
+		];
+		
+		document.getElementById("array_1").innerHTML = ["Saab", "BMW", "Audi"];
+		document.getElementById("array_2").innerHTML = cars;
+		document.getElementById("array_3").innerHTML = new Array("Saab", "BMW", "Audi");
+		document.getElementById("array_4").innerHTML = cars[0];
+
+		cars[0] = "Opel"
+		document.getElementById("array_5").innerHTML = cars[0];
+		document.getElementById("array_6").innerHTML = cars;
+
+		var person_1 = ["John", "Doe", 46];
+		var person_2 = {first_name:"John", last_name:"Doe", age:46};
+		document.getElementById("array_7").innerHTML = person_1[0] + " type:" + typeof person_1;
+		document.getElementById("array_8").innerHTML = person_2["first_name"] + " type:" + typeof person_2;
+
+		document.getElementById("array_9").innerHTML = cars.length;
+		document.getElementById("array_10").innerHTML = cars.sort();
+		
+		var car = cars[0];
+		var last_car = cars[cars.length - 1];
+		document.getElementById("array_11").innerHTML = car;
+		document.getElementById("array_12").innerHTML = last_car;
+
+		var fruits, text, f_len, i;
+		fruits = ["Banana", "Orange", "Apple", "Mango"];
+		f_len = fruits.length;
+
+		text = "<ul>";
+		for (i = 0; i < f_len; i++) {
+			text += "<li>" + fruits[i] + "</li>";
+		}
+		text += "</ul>";
+		document.getElementById("array_13").innerHTML = text;
+
+
+		var fruits, text;
+		fruits = ["Banana", "Orange", "Apple", "Mango"];
+
+		text = "<ul>";
+		fruits.forEach(my_function);
+		text += "</ul>";
+
+		function my_function(value) {
+			text += "<li>" + value + "</li>";
+		}
+		document.getElementById("array_14").innerHTML = text;
+
+		document.getElementById("array_15").innerHTML = fruits.push("Lemon") + "; " + fruits;
+		fruits[fruits.length] = "Pulm";
+		document.getElementById("array_16").innerHTML = fruits;
+		fruits[7] = "Grape";
+		document.getElementById("array_17").innerHTML = fruits;
+
+
+
+
+	</script>
+
 
 
 <footer></footer>
