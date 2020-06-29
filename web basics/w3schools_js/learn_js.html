@@ -1430,20 +1430,67 @@
 	</pre>
 	
 	<h2>Ассоциативные массивы</h2>
+	<b>Ассоциативными массивами</b> (или хэшами) - называются массивы с <i><u>именованными индексами</u></i>.<br>
+	JS не поддерживает массивы с <i><u>именованными индексами</u></i>. В JS массивы всегда используют <b>пронумерованные индексы</b>.
 	<br>ПРИМЕР
 	<pre>
-	</pre>
-	
-	<h2></h2>
-	<br>ПРИМЕР
-	<pre>
-	</pre>
-	
-	<h2></h2>
-	<br>ПРИМЕР
-	<pre>
-	</pre>
+		var person_2 = [];
+		person_2[0] = "John";
+		person_2[1] = "Doe";
+		person_2[2] = 46;
+		person_2.length; // <b id="array_18"> </b>
+		person_2[0];     // <b id="array_19"> </b>
 
+		Если использовать <i><u>именованные индексы</u></i>, JS переопределит массив в стандартный объект. Некоторые методы и свойства массива будут давать неверные результаты.
+		var person_3 = [];
+		person_3["first_name"] = "John";
+		person_3["last_name"] = "Doe";
+		person_3["age"] = 46;
+		person_3.length; // <b id="array_20"> </b>
+		person_3[0];     // <b id="array_21"> </b>
+	</pre>
+	
+	<h2>Когда использовать массивы и объекты</h2>
+	Использовать <b>объекты</b>, когда вы хотите, чтобы имена элементов были строками (текст). <br>
+	Использовать <b>массивы</b>, когда хотите, чтобы имена элементов были числами. <br>
+	
+	<h2>Избегайте new Array()</h2>
+	Нет необходимости использовать встроенный в JavaScript конструктор <b>new</b> массива <b>Array()</b>. Вместо этого использовать <b>[ ]</b>. <br>
+	<br>ПРИМЕР
+	<pre>
+		Эти два разных оператора создают новый пустой массив с именем points:
+		Ключевое <b>new</b> слово только усложняет код. Это также может привести к неожиданным результатам
+		var points_0 = new Array(40, 100, 1);   // <b id="array_22"> </b>
+		points_0[0]                             // <b id="array_23"> </b>
+		var points_0 = new Array(40); 
+		points_0[0];                            // <b id="array_24"> </b>
+
+		var points = [40, 100, 1];            // <b id="array_25"> </b>
+		points[0];                            // <b id="array_26"> </b>
+		var points = [40]; 
+		points[0];                            // <b id="array_27"> </b>
+	</pre>
+	
+	<h2>Как распознать массив</h2>
+Есть три варианта: <b>Array.isArray()</b>, создать <b>свою функцию</b> и воспользоваться оператором <b>instanceof </b>
+	<br>ПРИМЕР
+	<pre>
+		1.ECMAScript 5 определяет новый метод . Этот метод не поддерживается в старых браузерах 
+		  Array.isArray(points);   // <b id="array_28"> </b>
+		  Array.isArray(person_2); // <b id="array_29"> </b>
+		  Array.isArray(person_3); // <b id="array_30"> </b>
+
+		2.функция возвращает <b>true</b>, если прототип объекта содержит слово <b>«Array»</b>.
+		  function my_array(x) {
+		     return x.constructor.toString().indexOf("Array") > -1;
+		  }
+		  my_array(points);        // <b id="array_31"> </b>
+
+		3.<b>instanceof</b> Оператор возвращает истину, если объект создается с помощью конструктора
+		  points instanceof Array;   // <b id="array_32"> </b>
+		  points_0 instanceof Array; // <b id="array_33"> </b>
+		  person_3 instanceof Array; // <b id="array_34"> </b>
+	</pre>
 
 	<script>
 		var cars = [
@@ -1504,11 +1551,236 @@
 		fruits[7] = "Grape";
 		document.getElementById("array_17").innerHTML = fruits;
 
+		var person_2 = [];
+		person_2[0] = "John";
+		person_2[1] = "Doe";
+		person_2[2] = 46;
+		document.getElementById("array_18").innerHTML = person_2.length;
+		document.getElementById("array_19").innerHTML = person_2[0];
 
+		var person_3 = [];
+		person_3["first_name"] = "John";
+		person_3["last_name"] = "Doe";
+		person_3["age"] = 46;
+		document.getElementById("array_20").innerHTML = person_3.length;
+		document.getElementById("array_21").innerHTML = person_3[0];
+
+		var points_0 = new Array(40, 100, 1); 
+		document.getElementById("array_22").innerHTML = points_0;
+		document.getElementById("array_23").innerHTML = points_0[0];
+		var points_0 = new Array(40); 
+		document.getElementById("array_24").innerHTML = points_0[0];
+
+		var points = [40, 100, 1]; 
+		document.getElementById("array_25").innerHTML = points;
+		document.getElementById("array_26").innerHTML = points[0];
+		var points = [40]; 
+		document.getElementById("array_27").innerHTML = points[0];
+
+		document.getElementById("array_28").innerHTML = Array.isArray(points_0);
+		document.getElementById("array_29").innerHTML = Array.isArray(points);
+		document.getElementById("array_30").innerHTML = Array.isArray(person_3);
+
+		function my_array(x) {
+			return x.constructor.toString().indexOf("Array") > -1;
+		}
+		document.getElementById("array_31").innerHTML = my_array(points);
+		document.getElementById("array_32").innerHTML = points instanceof Array;
+		document.getElementById("array_33").innerHTML = points_0 instanceof Array;
+		document.getElementById("array_34").innerHTML = person_3 instanceof Array;
+	</script>
+
+
+	<h1>Методы массива JS</h1>
+
+	<h2>Преобразование массивов в строки</h2>
+	<b>toString()</b> - Метод преобразует массив в строку (разделенных запятыми) значений массива. <br>
+	<b>join()</b> - Метод объединяет все элементы массива в строку. Он ведет себя так же, как <b>toString()</b>, но еще,можно указать разделитель 
+	<br>ПРИМЕР
+	<pre>
+		var person_4 = ["man", "woman", "kids"];
+
+		person_4.toString();   //<b id="method_array_1"> </b>
+
+		person_4.join(" ");    //<b id="method_array_2"> </b>
+		person_4.join(" -> "); //<b id="method_array_3"> </b>
+	</pre>
+
+	<h2>Удалить, добавить элемент массива</h2>
+	<b>pop()</b> - Метод удаляет последний элемент из массива <br>
+	<b>push()</b> - Метод добавляет новый элемент в массив (в конце) <br>
+	<b>shift()</b> - Метод удаляет первый элемент массива и «сдвиги» все другие элементы к более низкому индексу. <br>
+	<b>unshift()</b> - Метод добавляет новый элемент в массиве (в начале) <br>
+	<b>length</b> - Свойство обеспечивает простой способ для добавления нового элемента в массив <br>
+	<b>delete</b> - оператор, можно удалять элементы. Использование его может оставить неопределенные дыры в массиве. Вместо этого использовать <b>pop()</b> или <b>shift()</b>
+	<br>ПРИМЕР
+	<pre>
+		<button onclick="person_func_pop()"> Click Me</button>
+		person_4.pop();          //<b id="method_array_4"> </b> - что удалили (в конце)
+		person_4;                //<b id="method_array_5"> </b>
+
+		<button onclick="person_func_push()"> Click Me</button>
+		person_4.push("dogs");   //<b id="method_array_6"> </b> - количество элементов 
+		person_4;                //<b id="method_array_7"> </b>
+
+		<button onclick="person_func_shift()"> Click Me</button>
+		person_4.shift();        //<b id="method_array_8"> </b> - что удалили (в начале)
+		person_4;                //<b id="method_array_9"> </b>
+
+		<button onclick="person_func_unshift()"> Click Me</button>
+		person_4.unshift("Bob"); //<b id="method_array_10"> </b> - количество элементов 
+		person_4;                //<b id="method_array_11"> </b>
+		
+		person_4[person_4.length] = ("bobby");  //<b id="method_array_12"> </b>
+
+		delete person_4[0];                     //<b id="method_array_13"> </b>
+	</pre>
+
+	<h2>Сращивание массива и удаления элементов splice()</h2>
+	<b>splice()</b> - Метод может быть использован для добавления новых элементов в массив.
+	<br>ПРИМЕР
+	<pre>
+		Первый параметр (2) определяет положение. Второй параметр (0) определяет, сколько элементов должно быть удалено.
+		Остальные параметры определяют новые элементы, которые будут добавлены.
+		person_4.splice(2, 0, "Kiwi"); //<b id="method_array_14"> </b>
+
+		Метод возвращает массив удаленных элементов:
+		person_4.splice(0, 1, "BBF"); //<b id="method_array_15"> </b>
+
+		<button onclick="person_func_splice_1()"> Click Me</button>
+		function person_func_splice_1() {
+		   var removed = person_4.splice(0, 1, "Kikibu");
+		   document.getElementById("method_array_18").innerHTML = person_4;
+		   document.getElementById("method_array_19").innerHTML = removed;
+		}
+		<b id="method_array_16"> </b> //new array
+		<b id="method_array_17"> </b> //removed
+
+		Можно использовать <b>splice()</b> для удаления элементов, не оставляя «дыр» в массиве.
+		Первый параметр (0) определяет позицию. Второй параметр (1) определяет, сколько элементов должно быть удалено.
+		Остальные параметры опущены. Новые элементы не будут добавлены.
+		person_4.splice(0, 1);         // <b id="method_array_18"> </b>
+
+		<button onclick="person_func_splice()"> Click Me</button>
+		function person_func_splice() {
+		   person_4.splice(0, 1);
+		   document.getElementById("method_array_17").innerHTML = person_4;
+		}
+		<b id="method_array_19"> </b>
+	</pre>
+
+	<h2>Объединение (конкантинация) массивов</h2>
+	<b>concat()</b> - Метод создает новый массив путем слияния (конкатенации) существующих массивов. <br>
+	Он не изменяет существующие массивы, а всегда возвращает новый массив
+	<br>ПРИМЕР
+	<pre>
+		var girls = ["Lone", "Natali"];
+		var boys = ["Emil", "Linus"];
+		girls.concat(boys);           // <b id="merge_array_1"> </b>
+
+		<b>concat()</b> Метод может принимать любое количество аргументов массива
+		var animal = ["dog", "cat"];
+		girls.concat(boys, animal);   // <b id="merge_array_2"> </b>
+
+		также может принимать строки в качестве аргументов
+		girls.concat(boys, "animal"); // <b id="merge_array_3"> </b>
+		girls.concat("animal");       // <b id="merge_array_4"> </b>
+	</pre>
+
+	<h2>Нарезка массива</h2>
+	<b>slice()</b> - Метод нарезает из куска массива в новый массив, не удаляет какие-либо элементы из исходного массива.
+	<br>ПРИМЕР
+	<pre>
+		girls.slice(1); // <b id="merge_array_5"> </b>
+		girls;          // <b id="merge_array_6"> </b>
+		
+		вырезает все из массива, после заданого элемента 
+		var new_arrays = girls.concat(boys, animal);
+		new_arrays;          // <b id="merge_array_7"> </b>
+		new_arrays.slice(3); // <b id="merge_array_8"> </b>
+
+		Метод может принимать два аргумента. при этом, последний элемент аргумента остается.
+		new_arrays.slice(1, 4); // <b id="merge_array_9"> </b>
+	</pre>
+
+	<h2>Автоматический toString()</h2>
+	<br>ПРИМЕР
+	<pre>
+	</pre>
+
+	<h2></h2>
+	<br>ПРИМЕР
+	<pre>
+	</pre>
+
+	<script>
+		var person_4 = ["man", "woman", "kids"];
+		document.getElementById("method_array_1").innerHTML = person_4.toString();
+
+		document.getElementById("method_array_2").innerHTML = person_4.join(" ");
+		document.getElementById("method_array_3").innerHTML = person_4.join(" -> ");
+		
+		function person_func_pop() {
+			document.getElementById("method_array_4").innerHTML = person_4.pop();
+			document.getElementById("method_array_5").innerHTML = person_4;
+		}
+
+		function person_func_push() {
+			document.getElementById("method_array_6").innerHTML = person_4.push("dogs");
+			document.getElementById("method_array_7").innerHTML = person_4;
+		}
+
+		function person_func_shift() {
+			document.getElementById("method_array_8").innerHTML = person_4.shift();
+			document.getElementById("method_array_9").innerHTML = person_4;
+		}
+		function person_func_unshift() {
+			document.getElementById("method_array_10").innerHTML = person_4.unshift("Bob");
+			document.getElementById("method_array_11").innerHTML = person_4;
+		}
+		person_4[person_4.length] = ("bobby");
+		document.getElementById("method_array_12").innerHTML = person_4;
+		delete person_4[0];
+		document.getElementById("method_array_13").innerHTML = person_4;
+
+		person_4.splice(2, 0, "Kiwi")
+		document.getElementById("method_array_14").innerHTML = person_4;
+
+		person_4.splice(0, 1, "BBF")
+		document.getElementById("method_array_15").innerHTML = person_4;
+
+		function person_func_splice_1() {
+			var removed = person_4.splice(0, 1, "Kikibu");
+			document.getElementById("method_array_16").innerHTML = person_4;
+			document.getElementById("method_array_17").innerHTML = removed;
+		}
+
+		person_4.splice(0, 1);
+		document.getElementById("method_array_18").innerHTML = person_4;
+
+		function person_func_splice() {
+			person_4.splice(0, 1);
+			document.getElementById("method_array_19").innerHTML = person_4;
+		}
+
+		var girls = ["Lone", "Natali"];
+		var boys = ["Emil", "Linus"];
+		var animal = ["dog", "cat"];
+		document.getElementById("merge_array_1").innerHTML = girls.concat(boys);
+		document.getElementById("merge_array_2").innerHTML = girls.concat(boys, animal);
+		document.getElementById("merge_array_3").innerHTML = girls.concat(boys, "animal");
+		document.getElementById("merge_array_4").innerHTML = girls.concat("animal");
+
+		document.getElementById("merge_array_5").innerHTML = girls.slice(1);
+		document.getElementById("merge_array_6").innerHTML = girls;
+
+		var new_arrays = girls.concat(boys, animal);
+		document.getElementById("merge_array_7").innerHTML = new_arrays;
+		document.getElementById("merge_array_8").innerHTML = new_arrays.slice(3);
+		document.getElementById("merge_array_9").innerHTML = new_arrays.slice(1, 4);
 
 
 	</script>
-
 
 
 <footer></footer>
