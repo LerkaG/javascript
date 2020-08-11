@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Преобразование типов</title>
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<a href="javascript:scroll(0,10000)" >
+		<button class="btn">⇩</button>
+	</a>
+	<a href="#" title="наверх">
+		<button class="btn_down">⇧</button>
+	</a>
+	<b id="link"></b>
+	
+	<h1>Преобразование типов JS</h1>
+	<b>Number()</b> конвертирует в <i>Number</i>, <b>String()</b> конвертирует в <i>String</i>, <b>Boolean()</b> конвертирует в <i>Boolean</i>.
+
+	<h2>Типы данных JS</h2>
+	Есть 5 различных типов данных, которые могут содержать значения: <b>string, number, boolean, object, function</b> <br>
+	Есть 6 типов объектов: <b>Object, Date, Array, String, Number, Boolean </b> <br>
+	И 2 типа данных, которые не могут содержать значения: <b>null</b> и <b>undefined</b>
+
+	<h2>Тип оператора </h2>
+	Можно использовать <b>typeof</b> оператор, чтобы найти тип данных переменной JS. <br>
+	Нельзя использовать, <b>typeof</b> чтобы определить, является ли объект JS массивом (или датой).
+	<br>ПРИМЕР
+	<code><ul id="type_0"> </ul></code> <br>
+
+	<h2>Тип данных typeof</h2>
+	<b>typeof</b> Оператор не является переменной. Это оператор. Операторы (+ - * /) не имеют данных любого типа. <br>
+	Но <b>typeof</b> оператор всегда возвращает строку (содержащую тип операнда).
+
+	<h2>Свойство constructor</h2>
+	<b>constructor</b> Свойство возвращает функцию конструктора для всех переменных JS.
+	<br>ПРИМЕР
+	<pre>
+		Можно проверить свойство конструктора, чтобы узнать, является ли объект <b>Array</b> (содержит слово «Массив»)
+		var fruits = ["Banana", "Orange", "Apple", "Mango"];
+		function is_array(my_array) {
+		   return my_array.constructor.toString().indexOf("Array") > -1;
+		}
+		is_array(fruits); // <b id = "array_0"></b>
+
+		Или еще, можно проверить, является ли объект функцией Array:
+		function is_array_1(my_array) {
+		   return my_array.constructor === Array;
+		}
+		is_array_1(fruits); // <b id = "array_1"></b>
+
+		Можно проверить свойство конструктора, чтобы узнать, является ли объект <b>Date</b>(содержит слово «Дата»):
+		var my_date = new Date();
+		function is_date(my_date) {
+		   return my_date.constructor.toString.indexOf("Date") > -1;
+		}
+		is_date(my_date); // <b id="date_0"></b>
+
+		function is_date_1(my_date) {
+		   return my_date.constructor === Date;
+		}
+		is_date_1(my_date); // <b id="date_1"></b>
+	</pre><br>
+	<code><ul id="type_1"></ul></code> <br>
+
+	<h2>Преобразование типов JS</h2>
+	Переменные JS могут быть преобразованы в новую переменную и другой тип данных: С помощью функции и Автоматически с помощью самого JS
+
+	<h2>Преобразование чисел в строки</h2>
+	Глобальный метод <b>String()</b> может преобразовывать числа в строки. Он может быть использован для любого типа чисел, литералов, переменных или выражений:
+	<br>ПРИМЕР
+	<pre>
+		var x = 123;
+		String(x)        // <b id="date_num_1"></b>
+		String(123)      // <b id="date_num_2"></b>
+		String(100 + 23) // <b id="date_num_3"></b>
+
+		Метод <b>.toString()</b> делает то же самое.
+		x.toString();          // <b id="date_num_4"></b>
+		(123).toString();      // <b id="date_num_5"></b>
+		(100 + 23).toString(); // <b id="date_num_6"></b>
+	</pre>
+
+	<h2>Преобразование логических значений в строки</h2>
+	ПРИМЕР
+	<pre>
+		Глобальный метод <b>String()</b> может преобразовывать логические значения в строки.
+		String(true)  // <b id="date_num_7"></b>
+		String(false) // <b id="date_num_8"></b>
+
+		Булевый метод <b>String()</b> делает то же самое.
+		true.toString()  // <b id="date_num_9"></b>
+		false.toString() // <b id="date_num_10"></b>
+	</pre>
+
+	<h2>Преобразование дат в строки</h2>
+	ПРИМЕР
+	<pre>
+		Глобальный метод <b>String()</b> может конвертировать даты в строки.
+		String(Date());    // <b id="date_string_0"></b>
+
+		Метод Date <b>toString()</b> делает то же самое.
+		Date().toString(); // <b id="date_string_1"></b>
+	</pre>
+
+	<h2>Преобразование строк в числа</h2>
+	Глобальный метод <b>Number()</b> может преобразовывать строки в числа. Строки, содержащие числа (напр, «3.14»), преобразуются в числа (напр, 3.14). <br>
+	Пустые строки конвертируются в 0. Все остальное конвертируется в <b>NaN</b>(не число).
+	<br>ПРИМЕР
+	<pre>
+		Number("3.14");  // <b id="num_0"></b>
+		Number(" ");     // <b id="num_1"></b>
+		Number("");      // <b id="num_2"></b>
+		Number("99 99"); // <b id="num_3"></b>
+	</pre>
+
+	<h2>Унарный + Оператор</h2>
+	Унарный оператор <b>+</b> может быть использован для преобразования переменного в число
+	<br>ПРИМЕР
+	<pre>
+		var y = "5";
+		var x = + y;
+		y; // <b id="unarn_operator_0"> </b>
+		x; // <b id="unarn_operator_1"> </b>
+
+		Если переменная не может быть преобразована, она все равно станет числом, но со значением <b>NaN</b>(не числом):
+		var z = "John";
+		var u = + z;
+		u; // <b id="unarn_operator_2"> </b>
+		z; // <b id="unarn_operator_3"> </b>
+	</pre>
+
+	<h2>Преобразование логических чисел в числа</h2>
+	Глобальный метод <b>Number()</b> также может преобразовывать логические значения в числа.
+	<br>ПРИМЕР
+	<pre>
+		Number(true);  // <b id="num_4"> </b>
+		Number(false); // <b id="num_5"> </b>
+	</pre>
+
+	<h2>Преобразование дат в числа</h2>
+	Глобальный метод <b>Number()</b> может быть использован для преобразования дат в числа.
+	<br>ПРИМЕР
+	<pre>
+		var d = new Date();
+		Number(d); // <b id="num_date_0"></b>
+
+		Метод даты <b>getTime()</b> делает то же самое.
+		d.getTime(); // <b id="num_date_1"></b>
+	</pre>
+
+	<h2>Автоматическое преобразование типов</h2>
+	Когда JS пытается работать с «неправильным» типом данных, он пытается преобразовать значение в «правильный» тип.
+	<br>ПРИМЕР
+	<pre>
+		Результат не всегда такой, который можно ожидать:
+		5 + null;   // <b id="num_type_0"></b>
+		"5" + null; // <b id="num_type_1"></b>
+		"5" + 2;    // <b id="num_type_2"></b>
+		"5" - 2;    // <b id="num_type_3"></b>
+		"5" * "2";  // <b id="num_type_4"></b>
+		"5" / "2";  // <b id="num_type_5"></b>
+	</pre>
+
+	<h2>Автоматическое преобразование строк</h2>
+	JS автоматически вызывает <b>toString()</b> функцию переменной, когда вы пытаетесь «вывести» объект или переменную:
+	<br>ПРИМЕР
+	<pre>
+		var my_var;
+		my_var_0 = {name:"Fjohn"}; // <b id="auto_0"></b>
+		my_var_1 = [1,2,3,4];      // <b id="auto_1"></b>
+		my_var_2 = new Date();     // <b id="auto_2"></b>
+
+		Числа и логические значения также преобразуются, но это не очень заметно:
+		my_var_3 = 123;   // <b id="auto_3"></b>
+		my_var_4 = true;  // <b id="auto_4"></b>
+		my_var_5 = false; // <b id="auto_5"></b>
+	</pre>
+	<code><ul> <b id=""></b> </ul></code> <br>
+
+	<h2>Таблица преобразования типов JS</h2>
+	Результат преобразования различных значений JS в <b>Number, String</b> и <b>Boolean</b>:
+	<br>ПРИМЕР
+	<code><ul id="convert_type"> <b id=""></b> </ul></code> <br>
+
+	<script>
+		document.getElementById("type_0").innerHTML = 
+		"typeof 'John' - <b>" + typeof 'John' + " </b><br>" +		
+		"typeof 3.14 - <b>" + typeof 3.14 + "</b><br>" +
+		"typeof NaN - <b>" + typeof NaN + "</b><br>" +
+		"typeof false - <b>" + typeof false + "</b><br>" +
+		"typeof [1,2,3,4] - <b>" + typeof [1,2,3,4] + "</b><br>" +
+		"typeof {name:'John', age:34} - <b>" + typeof {name:'John', age:34} + "</b><br>" +
+		"typeof new Date()  - <b>" + typeof new Date()  + "</b><br>" +
+		"typeof function () {} - <b>" + typeof function () {} + "</b><br>" +
+		"typeof myCar - <b>" + typeof myCar + "</b><br>" +
+		"typeof null - <b>" + typeof null + "</b><br>";
+
+		document.getElementById("type_1").innerHTML = 	
+		"'John'.constructor - <b>" + 'John'.constructor + " </b><br>" +		
+		"3.14.constructor - <b>" + 3.14.constructor + "</b><br>" +
+		"NaN.constructor - <b>" + NaN.constructor + "</b><br>" +
+		"false.constructor - <b>" + false.constructor + "</b><br>" +
+		"[1,2,3,4].constructor - <b>" + [1,2,3,4].constructor + "</b><br>" +
+		"{name:'John', age:34}.constructor - <b>" + {name:'John', age:34}.constructor + "</b><br>" +
+		"new Date().constructor  - <b>" + new Date().constructor  + "</b><br>" +
+		"function () {}.constructor - <b>" + function () {}.constructor + "</b><br>";
+
+		var fruits = ["Banana", "Orange", "Apple", "Mango"];
+		function is_array(my_array) {
+			return my_array.constructor.toString().indexOf("Array") > -1;
+		}
+		document.getElementById("array_0").innerHTML = is_array(fruits);
+
+		function is_array_1(my_array) {
+			return my_array.constructor === Array;
+		}
+		document.getElementById("array_1").innerHTML = is_array_1(fruits);
+
+		var my_date = new Date();
+		function is_date(my_date) {
+			return my_date.constructor.toString().indexOf("Date") > -1;
+		}
+		document.getElementById("date_0").innerHTML = is_date(my_date);
+
+		function is_date_1(my_date) {
+			return my_date.constructor === Date;
+		}
+		document.getElementById("date_1").innerHTML = is_date_1(my_date);
+		
+		var x = 123;
+		document.getElementById("date_num_1").innerHTML = String(x) + " " + typeof String(x);
+		document.getElementById("date_num_2").innerHTML = String(123)  + " " + typeof String(123);
+		document.getElementById("date_num_3").innerHTML = String(100 + 23) + " " + typeof String(100 + 23);
+
+		document.getElementById("date_num_4").innerHTML = x.toString() + " " + typeof x.toString();
+		document.getElementById("date_num_5").innerHTML = (123).toString() + " " + typeof (123).toString();
+		document.getElementById("date_num_6").innerHTML = (100 + 23).toString() + " " + typeof (100 + 23).toString();
+
+		document.getElementById("date_num_7").innerHTML = String(true) + " " + typeof String(true);
+		document.getElementById("date_num_8").innerHTML = String(false) + " " + typeof String(false);
+
+		document.getElementById("date_num_9").innerHTML = true.toString() + " " + typeof true.toString();
+		document.getElementById("date_num_10").innerHTML = false.toString() + " " + typeof false.toString();
+
+		document.getElementById("date_string_0").innerHTML = String(Date()) + " " + typeof String(Date());
+		document.getElementById("date_string_1").innerHTML = Date().toString() + " " + typeof Date().toString();
+
+		document.getElementById("num_0").innerHTML = Number("3.14") + " " + typeof Number("3.14");
+		document.getElementById("num_1").innerHTML = Number(" ") + " " + typeof Number(" ");
+		document.getElementById("num_2").innerHTML = Number("") + " " + typeof Number("");
+		document.getElementById("num_3").innerHTML = Number("99 99") + " " + typeof Number("99 99");
+
+		var y = "5";
+		var x = + y;
+		var z = "John";
+		var u = + z;
+		document.getElementById("unarn_operator_0").innerHTML = y + " " + typeof y;
+		document.getElementById("unarn_operator_1").innerHTML = x + " " + typeof x;
+		document.getElementById("unarn_operator_2").innerHTML = z + " " + typeof z;
+		document.getElementById("unarn_operator_3").innerHTML = u + " " + typeof u;
+
+		document.getElementById("num_4").innerHTML = Number(true);
+		document.getElementById("num_5").innerHTML = Number(false);
+
+		var d = new Date();
+		document.getElementById("num_date_0").innerHTML = Number(d);
+		document.getElementById("num_date_1").innerHTML = d.getTime();
+
+		document.getElementById("num_type_0").innerHTML = 5 + null + " " + typeof (5 + null);
+		document.getElementById("num_type_1").innerHTML = "5" + null + " " + typeof ("5" + null);
+		document.getElementById("num_type_2").innerHTML = "5" + 2 + " " + typeof ("5" + 2);
+		document.getElementById("num_type_3").innerHTML = "5" - 2 + " " + typeof ("5" - 2);
+		document.getElementById("num_type_4").innerHTML = "5" * "2" + " " + typeof ("5" * "2");
+		document.getElementById("num_type_5").innerHTML = "5" / "2" + " " + typeof ("5" / "2");
+
+		var my_var;
+		my_var_0 = {name:"Fjohn"};
+		my_var_1 = [1,2,3,4];
+		my_var_2 = new Date();
+		my_var_3 = 123;
+		my_var_4 = true;
+		my_var_5 = false;
+		document.getElementById("auto_0").innerHTML = my_var_0 + " " + typeof my_var_0;
+		document.getElementById("auto_1").innerHTML = my_var_1 + " " + typeof my_var_1;
+		document.getElementById("auto_2").innerHTML = my_var_2 + " " + typeof my_var_2;
+		document.getElementById("auto_3").innerHTML = my_var_3 + " " + typeof my_var_3;
+		document.getElementById("auto_4").innerHTML = my_var_4 + " " + typeof my_var_4;
+		document.getElementById("auto_5").innerHTML = my_var_5 + " " + typeof my_var_5;
+
+		var var_false = false;
+		var var_true = true;
+		var var_0 = 0;
+		var var_1 = 1;
+		var var_str_0 = "0";
+		var var_str_1 = "1";
+		var var_nan = NaN;
+		var var_infinity = Infinity;
+		var var_minus_infinity = -Infinity;
+		var var_empty= "";
+		var var_20= "20";
+		var var_mass = [ ];
+		var var_mass_20 = [20];
+		var var_mass_1020 = [10,20];
+		var var_mass_twenty = ["twenty"];
+		var var_mass_ten_twenty = ["ten","twenty"];
+		var var_func = function(){};
+		var var_scob = { };
+		var var_null = null;
+		var var_undefined = undefined;
+		document.getElementById("convert_type").innerHTML = 
+		"<table><tr> <td> false </td> <td>= Number:<b>" + Number(var_false) + ";</b></td><td>String:<b>" + 
+		String(var_false) + ";</td></b><td>Boolean:<b>" + Boolean(var_false) + "</b></td></tr>" +
+
+		"<tr> <td> true </td> <td>= Number:<b>" + Number(var_true) + ";</b></td><td>String:<b>" + 
+		String(var_true) + ";</td></b><td>Boolean:<b>" + Boolean(var_true) + "</b></td></tr>" +
+
+		"<tr> <td> 0 </td> <td>= Number:<b>" + Number(var_0) + ";</b></td><td>String:<b>" + 
+		String(var_0) + ";</td></b><td>Boolean:<b>" + Boolean(var_0) + "</b></td></tr>" +
+
+		"<tr> <td> 1 </td> <td>= Number:<b>" + Number(var_1) + ";</b></td><td>String:<b>" + 
+		String(var_1) + ";</td></b><td>Boolean:<b>" + Boolean(var_1) + "</b></td></tr>" +
+
+		"<tr> <td> '0' </td> <td>= Number:<b>" + Number(var_str_0) + ";</b></td><td>String:<b>" + 
+		String(var_str_0) + ";</td></b><td>Boolean:<b>" + Boolean(var_str_0) + "</b></td></tr>" +
+
+		"<tr> <td> '1' </td> <td>= Number:<b>" + Number(var_str_1) + ";</b></td><td>String:<b>" + 
+		String(var_str_1) + ";</td></b><td>Boolean:<b>" + Boolean(var_str_1) + "</b></td></tr>" +
+
+		"<tr> <td> NaN </td> <td>= Number:<b>" + Number(var_nan) + ";</b></td><td>String:<b>" + 
+		String(var_nan) + ";</td></b><td>Boolean:<b>" + Boolean(var_nan) + "</b></td></tr>" +
+
+		"<tr><td>Infinity </td><td>= Number:<b>" + Number(var_infinity) + ";</b></td><td>String:<b>" + 
+		String(var_infinity) + ";</td></b><td>Boolean:<b>" + Boolean(var_infinity) + "</b></td></tr>" +
+
+		"<tr><td>-Infinity </td><td>= Number:<b>" + Number(var_minus_infinity) + ";</b></td><td>String:<b>" + 
+		String(var_minus_infinity) + ";</td></b><td>Boolean:<b>" + Boolean(var_minus_infinity) + "</b></td></tr>" +
+
+		"<tr><td> '' </td><td>= Number:<b>" + Number(var_empty) + ";</b></td><td>String:<b>" + 
+		String(var_empty) + ";</td></b><td>Boolean:<b>" + Boolean(var_empty) + "</b></td></tr>" +
+
+		"<tr><td> '20' </td><td>= Number:<b>" + Number(var_20) + ";</b></td><td>String:<b>" + 
+		String(var_20) + ";</td></b><td>Boolean:<b>" + Boolean(var_20) + "</b></td></tr>" +
+
+		"<tr><td> [ ] </td><td>= Number:<b>" + Number(var_mass) + ";</b></td><td>String:<b>" + 
+		String(var_mass) + ";</td></b><td>Boolean:<b>" + Boolean(var_mass) + "</b></td></tr>" +
+
+		"<tr><td> [20] </td><td>= Number:<b>" + Number(var_mass_20) + ";</b></td><td>String:<b>" + 
+		String(var_mass_20) + ";</td></b><td>Boolean:<b>" + Boolean(var_mass_20) + "</b></td></tr>" +
+
+		"<tr><td>[10,20] </td><td>= Number:<b>" + Number(var_mass_1020) + ";</b></td><td>String:<b>" + 
+		String(var_mass_1020) + ";</td></b><td>Boolean:<b>" + Boolean(var_mass_1020) + "</b></td></tr>" +
+
+		"<tr><td>['twenty'] </td><td>= Number:<b>" + Number(var_mass_twenty) + ";</b></td><td>String:<b>" + 
+		String(var_mass_twenty) + ";</td></b><td>Boolean:<b>" + Boolean(var_mass_twenty) + "</b></td></tr>" +
+
+		"<tr><td>['ten','twenty'] </td><td>= Number:<b>" + Number(var_mass_ten_twenty) + ";</b></td><td>String:<b>" + 
+		String(var_mass_ten_twenty) + ";</td></b><td>Boolean:<b>" + Boolean(var_mass_ten_twenty) + "</b></td></tr>" +
+
+		"<tr><td>function(){} </td><td>= Number:<b>" + Number(var_func) + ";</b></td><td>String:<b>" + 
+		String(var_func) + ";</td></b><td>Boolean:<b>" + Boolean(var_func) + "</b></td></tr>" +
+
+		"<tr><td>{} </td><td>= Number:<b>" + Number(var_scob) + ";</b></td><td>String:<b>" + 
+		String(var_scob) + ";</td></b><td>Boolean:<b>" + Boolean(var_scob) + "</b></td></tr>" +
+
+		"<tr><td>null </td><td>= Number:<b>" + Number(var_null) + ";</b></td><td>String:<b>" + 
+		String(var_null) + ";</td></b><td>Boolean:<b>" + Boolean(var_null) + "</b></td></tr>" +
+
+		"<tr><td>undefined </td><td>= Number:<b>" + Number(var_undefined) + ";</b></td><td>String:<b>" + 
+		String(var_undefined) + ";</td></b><td>Boolean:<b>" + Boolean(var_undefined) + "</b></td></tr> </table>";
+	</script>	
+
+	<b id="link"></b>
+	
+<footer></footer>
+<script type ="text/javascript" src="list.js" charset="utf-8"> </script>
+</body>
+</html>

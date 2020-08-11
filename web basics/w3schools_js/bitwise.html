@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Побитовые операции JS</title>
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<a href="javascript:scroll(0,10000)" >
+		<button class="btn">⇩</button>
+	</a>
+	<a href="#" title="наверх">
+		<button class="btn_down">⇧</button>
+	</a>
+	<b id="link"></b>
+	
+	<h1>Побитовые операции JS</h1>
+	
+	<h2>Битовые операторы JavaScript</h2>
+	<br>ПРИМЕР
+	<pre>
+		&   (И)   - возвращает 1, если оба бита равны 1.               
+		|   (ИЛИ) - возвращается 1, если один из битов равен 1.       
+		^   (XOR) - возвращается 1, если биты разные.  
+		~   (НЕ)  - инвертирует все биты.
+		<<  (Нулевое заполнение левого смещения) - Сдвиг влево, толкая нули справа и оставляя самые левые биты. 
+		>>  (Подпись вправо сдвиг) - Сдвиг вправо, толкая копии самого левого бита слева, и пусть самые правые биты падают
+		>>> (Нулевое заполнение вправо сдвиг) - Сдвиг вправо, толкая нули слева, и пусть самые правые биты падают
+		
+		5 & 1;   //<b id="bite_0"></b>
+		5 | 1;   //<b id="bite_1"></b>
+		5 ^ 1;   //<b id="bite_2"></b>
+		  ~ 5;   //<b id="bite_3"></b>
+		5 << 1;  //<b id="bite_4"></b>
+		5 >> 1;  //<b id="bite_5"></b>
+		5 >>> 1; //<b id="bite_6"></b>
+	</pre>
+	<script>
+		document.getElementById("bite_0").innerHTML = 5 & 1;
+		document.getElementById("bite_1").innerHTML = 5 | 1;
+		document.getElementById("bite_2").innerHTML = 5 ^ 1;
+		document.getElementById("bite_3").innerHTML = ~ 5;
+		document.getElementById("bite_4").innerHTML = 5 << 1;
+		document.getElementById("bite_5").innerHTML = 5 >> 1;
+		document.getElementById("bite_6").innerHTML = 5 >>> 1;
+	</script>
+
+	<h2>JS (нулевое заполнение) битовое смещение влево <b><<</b></h2>
+	Это смещение нуля влево. Один или несколько нулевых битов вставляются справа, и самые левые биты падают:
+	<br>ПРИМЕР
+	<pre>
+		15 << 10;  //<b id="bite_7"></b>
+	</pre>
+
+	<h2>JS (сохранение знака) Битовый сдвиг вправо <b>>></b></h2>
+	Это знак сохранения правого сдвига. Копии самого левого бита вставляются слева, а самые правые биты падают:
+	<br>ПРИМЕР
+	<pre>
+		-5 >> 1; //<b id="bite_8"></b>
+	</pre>
+
+	<h2>JS (нулевая заливка) вправо Shift <b>>>></b></h2>
+	Это смещение нуля вправо. Один или несколько нулевых битов вставляются слева, а самые правые биты падают:
+	<br>ПРИМЕР
+	<pre>
+		5 >>> 1; //<b id="bite_9"></b>
+	</pre>
+
+	<h2>Преобразование десятичного числа в двоичное</h2>
+	<br>ПРИМЕР
+	<pre>
+		function dec_to_bin(dec) {
+		   return (dec >>> 0).toString(2);
+		}
+		dec_to_bin(40); //<b id="bite_10"></b>
+	</pre>
+	<code><ul id=""> </ul></code> <br>
+
+	<h2>Преобразование двоичного в десятичное</h2>
+	<br>ПРИМЕР
+	<pre>
+		function bin_to_dec(bin) {
+		   return parseInt(bin, 2).toString(10);
+		}
+		bin_to_dec(101000); //<b id="bite_11"></b>
+	</pre>
+
+	<script>
+		document.getElementById("bite_7").innerHTML = 15 << 10;
+		document.getElementById("bite_8").innerHTML = -5 >> 1;
+		document.getElementById("bite_9").innerHTML = 5 >>> 1;
+
+		function dec_to_bin(dec) {
+			return (dec >>> 0).toString(2);
+		}
+		document.getElementById("bite_10").innerHTML = dec_to_bin(40);
+
+		function bin_to_dec(bin) {
+			return parseInt(bin, 2).toString(10);
+		}
+		document.getElementById("bite_11").innerHTML = bin_to_dec(101000);
+	</script>
+
+	<h1>Регулярные выражения JavaScript</h1>
+	Регулярное выражение - это последовательность символов, образующая шаблон поиска .
+
+	<h2>Что такое регулярное выражение?</h2>
+	<br>СИНТАКСИС
+	<pre>
+		/pattern/modifiers;
+	</pre>
+	<br>ПРИМЕР
+	<pre>
+		var patt = /w3schools/i;
+		
+	</pre>
+	<b>/ w3schools / i </b>- это регулярное выражение. <b>w3schools</b>       - это шаблон (для поиска). <br>
+	<b>i</b>               -  является модификатором (модифицирует поиск, чтобы быть нечувствительным к регистру).
+	
+	<h2>Использование строковых методов</h2>
+	В JS регулярные выражения часто используются с двумя строковыми методами : <b>search()</b> и <b>replace()</b>. <br>
+	<b>search()</b> - Метод использует выражение для поиска соответствия, и возвращает позицию матча. <br>
+	<b>replace()</b> - Метод возвращает модифицированную строку , в которой заменяется шаблон.
+	
+	<h2>Использование строки search() со строкой</h2>
+	В <b>search()</b> методе ищет строку для указанного значения и возвращает позицию матча:
+	<br>ПРИМЕР
+	<pre>
+		var str = "Visit schools!";
+		var n = str.search("schools");
+		n; // <b id="reg_0"></b>
+	</pre>
+	
+	<h2>Использование строки search() с регулярным выражением</h2>
+	<br>ПРИМЕР
+	<pre>
+		var str = "Visit schools!";
+		var n = str.search(/schools/i);
+		n; // <b id="reg_1"></b>
+	</pre>
+	
+	<h2>Использование строки replace() </h2>
+	<b>replace()</b> - Метод заменяет указанное значение с другим значением в строке
+	<br>ПРИМЕР
+	<pre>
+		var str_1 = "Visit Microsoft!";
+		var res = str_1.replace("Microsoft", "schools");
+		res;
+		<button onclick="func_replace()">click me</button> 
+		<b id="reg_2">Visit Microsoft!</b>
+	</pre>
+
+	<h2>Использование строки replace() с регулярным выражением</h2>
+	Используйте регулярное выражение без учета регистра, чтобы заменить Microsoft на W3Schools в строке:
+	<br>ПРИМЕР
+	<pre>
+		function func_replace_1() {
+		   var str = document.getElementById("reg_3").innerHTML;
+		   var res = str.replace(/microsoft/i, "Schools");
+		   res;
+		}
+		<button onclick="func_replace_1()">click me</button> 
+		<b id="reg_3">Please visit Microsoft and Microsoft!</b>
+	</pre>
+	
+	<h2>Модификаторы регулярных выражений</h2>
+	Модификаторы можно использовать для выполнения глобальных поисков без учета регистра: <br>
+	<b>i</b> - Выполнить сопоставление без учета регистра <br>
+	<b>g</b> - Выполнить глобальное совпадение (найти все совпадения, а не останавливаться после первого совпадения)<br>
+	<b>m</b> - Выполнить многострочное сопоставление
+	<br>ПРИМЕР
+	<pre>
+		function func_match_0() {
+		   var str = document.getElementById("match_0").innerHTML;
+		   var txt = /microsoft/i;
+		   var res = str.match(txt);
+		   res;
+		}
+		<button onclick="func_match_0()">click me</button> 
+		<b id="match_0">Please visit Microsoft and Microsoft!</b>
+		
+		function func_match_1() {
+		   var str = "Please visit Microsoft and Microsoft!"
+		   var txt = /microsoft/g;
+		   var res = str.match(txt);
+		   res;
+		}
+		<button onclick="func_match_1()">click me</button> 
+		<b id="match_1">Please visit Microsoft and Microsoft!</b>
+
+		function func_match_2() {
+		   var str = "Please visit Microsoft and Microsoft!"
+		   var txt = /^microsoft/m;
+		   var res = str.match(txt);
+		   res;
+		}
+		<button onclick="func_match_2()">click me</button> 
+		<b id="match_2">Please visit Microsoft and Microsoft!</b>
+	</pre>
+	
+	<h2>Шаблоны регулярных выражений</h2>
+	Скобки используются для поиска диапазона символов: <b>[abc], [0-9], (x|y)</b> <br>
+	Метасимволы - это символы с особым значением: <b>\d, \s, \b, \uxxxx </b>
+	<br>ПРИМЕР
+	<pre>
+		<b>[abc]</b> - Найдите любой из символов в скобках 
+		var str = "Please visit Microsoft and Microsoft!"
+		var txt = /[e]/g;
+		var res = str.match(txt);
+		res; <button onclick="func_match_3()">Click Me</button>
+		<b id="match_3">Please visit Microsoft and Microsoft!</b>
+
+		<b>[0-9]</b> - Найдите любую из цифр в скобках
+		var str = "1234567890"
+		var txt = /[1-5]/g;
+		var res = str.match(txt);
+		res; <button onclick="func_match_4()">Click Me</button>
+		<b id="match_4">1234567890</b>
+
+		<b>(x|y)</b> - Найдите любую из альтернатив, разделенных <b>| </b>
+		var str = "re, green, red, green, gren, gr, blue, yellow"
+		var txt = /(red|green)/g;
+		var res = str.match(txt);
+		res; <button onclick="func_match_5()">Click Me</button>
+		<b id="match_5">re, green, red, green, gren, gr, blue, yellow</b>
+
+		Метасимволы - это символы с особым значением:
+		<b>\d</b> - Найти цифру
+		var str = "Give 100%"
+		var txt = /\d/g;
+		var res = str.match(txt);
+		res;
+		<button onclick="func_meta_0()">Click Me</button>
+		<b id="meta_0">Give 100%</b>
+
+		<b>\s</b> - Найти пробел
+		var str = "Is this all there is?"
+		var txt = /\s/g;
+		var res = str.match(txt);
+		res;<button onclick="func_meta_1()">Click Me</button>
+		<b id="meta_1"> Is this all there is?</b>
+
+		<b>\b</b> - Найти совпадение в начале первого слова - <b>\b</b>WORD, в конце первого слова -  WORD<b>\b</b>.
+		var str = "HELLO, LOOK AT YOU!";
+
+		var txt_start = /\bLO/;
+		var res_start = str.search(txt_start);
+		"start: " + res_start;
+		<b id="meta_2">HELLO, LOOK AT YOU!</b>
+		
+		var txt_end = /LO\b/;
+		var res_end = str.search(txt_end);
+		"end: " + res_end;
+		<b id="meta_3">HELLO, LOOK AT YOU!</b>
+		<button onclick="func_meta_2()">Click Me</button>
+
+		<b>\uxxxx</b> - Найти символ Unicode, указанный шестнадцатеричным числом xxxx
+		var str = "Visit W3Schools. Hello World!";
+		var patt = /\u0057/g;
+		var res = str.match(patt);
+		res; <button onclick="func_meta_3()">Click Me</button>
+		<b id="meta_4">Visit W3Schools. Hello World!</b>
+
+		Квантификаторы определяют количества: <b>n+, n*, n? </b>
+		<b>n+</b> - Соответствует любой строке, содержащей хотя бы одно n
+		var str = "Visit W3Schools. Hello World!";
+		var patt = /o+/g;
+		var res = str.match(patt);
+		res; <button onclick="func_quantifier_0()">Click Me</button>
+		<b id="quan_0">Visit W3Schools. Hello World!</b>
+
+		<b>n*</b> - Соответствует любой строке, которая содержит ноль или более вхождений n
+		var str = "1, 100 or 1000?";
+		var patt = /10*/g;
+		var res = str.match(patt);
+		res; <button onclick="func_quantifier_1()">Click Me</button>
+		<b id="quan_1">1, 100 or 1000?</b>
+
+		<b>n?</b> - Соответствует любой строке, которая содержит ноль или одно вхождение n
+		var str = "1, 100 or 1000?";
+		var patt = /10?/g;
+		var res = str.match(patt);
+		res; <button onclick="func_quantifier_2()">Click Me</button>
+		<b id="quan_2">1, 100 or 1000?</b>
+	</pre>
+	
+	<h2>Использование объекта RegExp</h2>
+	В JS объект <b>RegExp</b> является объектом регулярного выражения с предопределенными свойствами и методами.
+	
+	<h2>Использование test()</h2>
+	<b>test()</b> - Способ представляет собой способ выражения <b>RegExp</b>. Он ищет строку для шаблона и возвращает <b>true</b> или <b>false</b>, в зависимости от результата.
+	<br>ПРИМЕР
+	<pre>
+		Поиск строки для символа «e»:
+		Вариант 1:
+		var patt = /e/;
+		var result = patt.test("The best things");
+		result;	<button onclick="func_test_0()"> Click Me</button>
+		<b id="test_0">The best things</b>
+		
+		Вариант 2:
+		var patt = /e/.test("The best things");
+		patt;<button onclick="func_test_1()"> Click Me</button>
+		<b id="test_1">The best things</b>
+
+		Вариант 3:
+		var text = document.getElementById("text").innerHTML;
+		document.getElementById("test_1").innerHTML = /e/.test(text);
+		< i id="text_0">"The best things"< /i>
+		<i id="text_0">"The best things" </i>// <b id="test_2"></b>
+
+		Вариант 4:
+		var text = /e/.test("The best things");
+		text;
+		"The best things" // <b id="test_3"></b>
+	</pre>
+
+	<h2>Использование exec()</h2>
+	<b>exec()</b> - Способ представляет собой способ выражения <b>RegExp</b>. Он ищет строку для указанного шаблона и возвращает найденный текст как объект. <br>
+	Если совпадений не найдено, возвращается пустой (<b>null</b>) объект.
+	<br>ПРИМЕР
+	<pre>
+		поиск строки для символа «e»:
+		Вариант 1:
+		var text_1 = /e/.exec("The best things");
+		text_1; // <b id="exec_0"></b>
+		
+		пустой:
+		var text_2 = /w/.exec("The best things");
+		text_2; // <b id="exec_1"></b>
+
+		Вариант 2:
+		var text_3 = /e/.exec("The best things");
+		document.getElementById("exec_2").innerHTML = 
+		"Found < b>" + text_3[0] + "<\b> in position < b>" + text_3.index + "<\b> in the text: < b>" + text_3.input + "<\b>" 
+		<i id="exec_2"></i>
+	</pre>
+
+	<script>
+		var str = "Visit schools!";
+		var n = str.search("schools");
+		document.getElementById("reg_0").innerHTML = n;
+
+		var n = str.search(/schools/i);
+		document.getElementById("reg_1").innerHTML = n;
+
+		function func_replace() {
+			var str = document.getElementById("reg_2").innerHTML;
+			var res = str.replace("Microsoft", "schools");
+			document.getElementById("reg_2").innerHTML = res;
+		}
+		function func_replace_1() {
+			var str = document.getElementById("reg_3").innerHTML;
+			var res = str.replace(/microsoft/i, "Schools");
+			document.getElementById("reg_3").innerHTML = res;
+		}
+
+		function func_match_0() {
+			var str = document.getElementById("match_0").innerHTML;
+			var txt = /microsoft/i;
+			var res = str.match(txt);
+			document.getElementById("match_0").innerHTML = res;
+		}
+		function func_match_1() {
+			var str = "Please visit Microsoft and Microsoft!";
+			var txt = /Microsoft/g;
+			var res = str.match(txt);
+			document.getElementById("match_1").innerHTML = res;
+		}
+		function func_match_2() {
+			var str = "Please visit Microsoft and Microsoft!";
+			var txt = /Microsoft/m;
+			var res = str.match(txt);
+			document.getElementById("match_2").innerHTML = res;
+		}
+		function func_match_3() {
+			var str = "Please visit Microsoft and Microsoft!";
+			var txt = /[e]/g;
+			var res = str.match(txt);
+			document.getElementById("match_3").innerHTML = res;
+		}
+		function func_match_4() {
+			var str = "1234567890";
+			var txt = /[1-5]/g;
+			var res = str.match(txt);
+			document.getElementById("match_4").innerHTML = res;
+		}
+		function func_match_5() {
+			var str = "re, green, red, green, gren, gr, blue, yellow";
+			var txt = /(red|green)/g;
+			var res = str.match(txt);
+			document.getElementById("match_5").innerHTML = res;
+		}
+		function func_meta_0() {
+			var str = "Give 100%";
+			var txt = /\d/g;
+			var res = str.match(txt);
+			document.getElementById("meta_0").innerHTML = res;
+		}
+		function func_meta_1() {
+			var str = "Is this all there is?";
+			var txt = /\s/g;
+			var res = str.match(txt);
+			document.getElementById("meta_1").innerHTML = res;
+		}
+
+		function func_meta_2() {
+			var str = "HELLO, LOOK AT YOU!";
+			var txt_start = /\bLO/;
+			var res_start = str.search(txt_start);
+			document.getElementById("meta_2").innerHTML = "start: " + res_start;
+
+			var txt_end = /LO\b/;
+			var res_end = str.search(txt_end);
+			document.getElementById("meta_3").innerHTML = "end: " + res_end;
+		}
+
+		function func_meta_3() {
+			var str = "Visit W3Schools. Hello World!";
+			var patt = /\u0057/g;
+			var res = str.match(patt);
+			document.getElementById("meta_4").innerHTML = res;
+		}
+
+		function func_quantifier_0() {
+			var str = "Visit W3Schools. Hello World!";
+			var patt = /o+/g;
+			var res = str.match(patt);
+			document.getElementById("quan_0").innerHTML = res;
+		}
+		function func_quantifier_1() {
+			var str = "1, 100 or 1000?";
+			var patt = /10*/g;
+			var res = str.match(patt);
+			document.getElementById("quan_1").innerHTML = res;
+		}
+		function func_quantifier_2() {
+			var str = "1, 100 or 1000?";
+			var patt = /10?/g;
+			var res = str.match(patt);
+			document.getElementById("quan_2").innerHTML = res;
+		}
+
+		function func_test_0(){
+			var patt = /e/;
+			var result = patt.test("The best things");
+			document.getElementById("test_0").innerHTML = result;
+		}
+		function func_test_1(){
+			var patt = /e/.test("The best things");
+			document.getElementById("test_1").innerHTML = patt;
+		}
+		var text = document.getElementById("text_0").innerHTML;
+		document.getElementById("test_2").innerHTML = /e/.test(text);
+
+		var text = /e/.test("The best things");
+		document.getElementById("test_3").innerHTML = text;
+
+		var text_1 = /e/.exec("The best things");
+		document.getElementById("exec_0").innerHTML = text_1;
+		var text_2 = /w/.exec("The best things");
+		document.getElementById("exec_1").innerHTML = text_2;
+
+		var text_3 = /e/.exec("The best things");
+		document.getElementById("exec_2").innerHTML = 
+		"Found <b>" + text_3[0] + "</b> in position <b>" + text_3.index + "</b> in the text: <b>" + text_3.input + "</b>";
+	</script>
+	 
+<footer></footer>
+
+<script type ="text/javascript" src="list.js" charset="utf-8"> </script>
+</body>
+</html>

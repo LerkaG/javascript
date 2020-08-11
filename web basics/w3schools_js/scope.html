@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset='UTF-8'>
+	<title>Область JS. JS Hoisting</title>
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<a href="javascript:scroll(0,10000)" >
+		<button class="btn">⇩</button>
+	</a>
+	<a href="javascript:scroll(0,0)" title="наверх">
+		<button class="btn_down">⇧</button>
+	</a>
+	<b id="link"></b> 
+	<h1>Область JS</h1>
+	Область действия определяет доступность (видимость) переменных.
+
+	<h2>Область функций JS</h2>
+	В JS есть два типа области видимости: <b>Локальный охват, Глобальная сфера</b> <br>
+	JS имеет область действия: каждая функция создает новую область. <br>
+	Область действия определяет доступность (видимость) этих переменных. <br>
+	Переменные, определенные внутри функции, не доступны (не видны) снаружи функции.
+
+	<h2>Локальные переменные JS</h2>
+	Переменные, объявленные в функции, становятся <b>ЛОКАЛЬНЫМИ</b> для этой функции. <br>
+	Локальные переменные имеют область действия функции: доступ к ним можно получить только из функции <br>
+	Локальные переменные создаются при запуске функции и удаляются при ее завершении.
+	<br>ПРИМЕР
+	<pre>
+		function local_var_0() {
+		   var car_name_0 = 'Volvo_0';
+		   car_name_0; // <button onclick='local_var_0()'> Click Me </button> <b id='local_var_0'></b>
+		}
+		car_name_0; // <b id='local_var_1'></b>
+	</pre>
+	
+	<h2>Глобальные переменные JS</h2>
+	Переменная, объявленная вне функции, становится <b>GLOBAL</b>. <br>
+	Глобальная переменная имеет глобальную область действия: все скрипты и функции на веб-странице могут получить к ней доступ. 
+	<br>ПРИМЕР
+	<pre>
+		var car_name_1 = 'Volvo_1';
+		global_var_1;
+		function global_var_1() {
+   		   car_name_1; //<b id='global_var_1'></b>
+		} 
+	</pre>
+	
+	<h2>Переменные JavaScript</h2>
+	В JS <b>объекты</b> и <b>функции</b> также являются переменными. <br>
+	Область действия определяет доступность переменных, объектов и функций из разных частей кода.
+
+	<h2>Автоматически Глобальный</h2>
+	Если присвоить значение переменной, которая не была объявлена, она автоматически станет глобальной переменной. <br>
+	<br>ПРИМЕР
+	<pre>
+		Объявлена ​​глобальная переменная car_name, даже если значение назначено внутри функции.
+		global_var_2();
+		// code here can use car_name
+		car_name_2; // <b id='global_var_2'></b>
+		function global_var_2() {
+		   car_name_2 = 'Volvo_2';	
+		}
+		car_name_2; // <b id='global_var_3'></b>
+	</pre>
+	
+	<h2>Строгий режим</h2>
+	Все современные браузеры поддерживают запуск JS в <b>«Строгом режиме»</b>. <br>
+	В <b>«строгом режиме»</b> необъявленные переменные не являются автоматически глобальными.
+
+	<h2>Глобальные переменные в HTML</h2>
+	С помощью JS глобальная область является полной средой JS. <br>
+	В HTML глобальной областью является объект окна. Все глобальные переменные принадлежат объекту окна.
+	<br>ПРИМЕР
+	<pre>
+		var car_name_3 = 'BMW';
+		window.car_name_3; // <b id='global_var_4'></b>
+	</pre>
+	
+	<h2>Предупреждение</h2>
+	Глобальные переменные (или функции) могут перезаписывать оконные переменные (или функции). <br>
+	Любая функция, включая объект окна, может перезаписать ваши глобальные переменные и функции.
+
+	<h2>Время жизни переменных JS</h2>
+	Время жизни переменной JS начинается с момента ее объявления. <br>
+	Локальные переменные удаляются после завершения функции. <br>
+	В веб-браузере глобальные переменные удаляются при закрытии окна браузера (или вкладки).
+
+	<h2>Аргументы функции</h2>
+	Аргументы функции (параметры) работают как локальные переменные внутри функций.
+
+	<h1>JS Hoisting</h1>
+	Подъем - это поведение JS по умолчанию при перемещении объявлений в начало.
+
+	<h2>Объявления JavaScript подняты</h2>
+	В JS переменная может быть использована до того, как она была объявлена. <br>
+	Подъем - это поведение JS по умолчанию, при котором все объявления перемещаются в верхнюю часть <br>текущей области (в верхнюю часть текущего сценария или текущей функции).
+	<br>ПРИМЕР
+	<pre>
+		Пример 1 дает тот же результат, что и пример 2 :
+		1.
+		x = 5;
+		elem_x = document.getElementById('hois_0');
+		elem_x.innerHTML = x;
+		var x; // <b id='hois_0'></b>
+		
+		2.
+		var y;
+		y = 5;
+		elem_y = document.getElementById('hois_1');
+		elem_y.innerHTML = y; // <b id='hois_1'></b>
+	</pre>
+
+	<h2>Ключевые слова let и const</h2>
+	Переменные и константы, объявленные с letили constне отображаются!
+
+
+	<h2>Инициализации JavaScript не поднимаются</h2>
+	JS только поднимает объявления, а не инициализации.
+	<br>ПРИМЕР
+	<pre>
+		Пример 1 никак не дают тот же результат , как и в примере 2 :
+		var x = 6;
+		var y = 9;
+		elem_yx = document.getElementById('hois_2');
+		elem_yx.innerHTML = x + ' ' + y;
+		<b id='hois_2'></b>
+		
+		var q = 6;
+		elem_q = document.getElementById('hois_3');
+		elem_q.innerHTML = q + ' ' + w;
+		var w = 9;
+		<b id='hois_3'></b>
+
+		Аналогичная запись предыдущего примера, только с инициализацией.
+		Из-за подъема <b>r</b> был объявлен до его использования, но поскольку 
+		инициализация не была поднята, значение y не определено.
+		var e = 6;
+		var r;
+		elem_e = document.getElementById('hois_4');
+		elem_e.innerHTML = e + ' ' + r;
+		r = 9;
+		<b id='hois_4'></b>
+	</pre>
+
+	<h2>Объявите переменные наверху!</h2>
+	Чтобы избежать ошибок, всегда объявляйте все переменные в начале каждой области видимости. <br>
+	Так как JS интерпретирует код, это всегда хорошее правило. JS в строгом режиме не позволяет использовать переменные, если они не объявлены.
+	<br>ПРИМЕР
+	<pre>
+	</pre>
+	<code><ul> <b id=''></b> </ul></code> <br>
+
+	<script>
+		function local_var_0() {
+			var car_name_0 = 'Volvo_0';
+			document.getElementById('local_var_0').innerHTML = typeof car_name_0 + ' ' + car_name_0;
+		}
+		document.getElementById('local_var_1').innerHTML = typeof car_name_0;
+
+		var car_name_1 = 'Volvo_1';
+		global_var_1();
+		function global_var_1() {
+   		document.getElementById('global_var_1').innerHTML = typeof car_name_1 + ' ' + car_name_1;
+		}
+
+		global_var_2();
+		// code here can use car_name
+		document.getElementById('global_var_2').innerHTML = typeof car_name_2 + ' ' + car_name_2;
+		function global_var_2() {
+		   car_name_2 = 'Volvo_2';
+		}
+		document.getElementById('global_var_3').innerHTML = typeof car_name_2 + ' ' + car_name_2;
+		
+		var car_name_3 = 'BMW';
+		document.getElementById('global_var_4').innerHTML = window.car_name_3;
+
+		x = 5;
+		elem_x = document.getElementById('hois_0');
+		elem_x.innerHTML = x;
+		var x;
+
+		var y;
+		y = 5;
+		elem_y = document.getElementById('hois_1');
+		elem_y.innerHTML = y; 
+
+		var x = 6;
+		var y = 9;
+		elem_yx = document.getElementById('hois_2');
+		elem_yx.innerHTML = x + ' ' + y;
+		
+		var q = 6;
+		elem_q = document.getElementById('hois_3');
+		elem_q.innerHTML = q + ' ' + w;
+		var w = 9;
+
+		var e = 6;
+		var r;
+		elem_e = document.getElementById('hois_4');
+		elem_e.innerHTML = e + ' ' + r;
+		r = 9; 
+	</script>
+
+	<h1>JS Строгий режим</h1>
+	<b>'use strict';</b> - Определяет, что код JavaScript должен выполняться в «строгом режиме». Она распознается только в начале скрипта или функции.
+
+	<h2>Директива об использовании строгих правил</h2>
+	<b>'use strict'</b> - Директива нового в ECMAScript версии 5. Это буквальное выражение, игнорируемое более ранними версиями JS. <br>
+	Цель <b>'use strict'</b> состоит в том, чтобы указать, что код должен выполняться в «строгом режиме». <br>
+	В строгом режиме нельзя, например, использовать необъявленные переменные. <br>
+	Все современные браузеры поддерживают «строгое использование», кроме Internet Explorer 9 и ниже. <br>
+	Можно использовать строгий режим во всех программах. Это помогает писать более чистый код, например, предотвращает использование необъявленных переменных. <br>
+	<b>'use strict'</b> это просто строка, поэтому IE 9 не выдаст ошибку, даже если он ее не понимает.
+
+	<h2>Объявление строгого режима</h2>
+	Строгий режим объявляется путем добавления <b>'use strict';</b> в начале сценария или функции. <br>
+	Объявленный в начале скрипта, он имеет глобальную область действия (весь код в скрипте будет выполняться в строгом режиме):
+	<br>ПРИМЕР
+	<pre>
+		будет ошибка
+		'use strict';
+		m = 3.14;
+		m; <b id='strict_0'></b> // This will cause an error (y is not defined)
+
+		'use strict';
+		func_strick_0();
+		function func_strick_0() {
+		   m = 3.14;
+		   m; // <b id='strict_1'></b> // This will cause an error (y is not defined)
+		}
+
+		Объявленный внутри функции, он имеет локальную область (только код внутри функции находится в строгом режиме)
+
+		m = 3.14; // This will not cause an error.
+		func_strick_0();
+		function func_strick_0() {
+		   m = 3.14;
+		   document.getElementById('strict_2').innerHTML = m;  // <b id='strict_2'></b> // This will cause an error (y is not defined)
+		}
+	</pre>
+
+	<h2>Не допускается в строгом режиме</h2>
+	<br>ПРИМЕР
+	<pre>
+		Использование переменной без ее объявления запрещено:
+		'use strict';
+		x = 3.14; // This will cause an error
+
+		Объекты тоже переменные.
+		Использование объекта без его объявления запрещено:
+		'use strict';
+		x = {p1:10, p2:20}; // This will cause an error
+
+		Удаление переменной (или объекта) не допускается.
+		'use strict';
+		var x = 3.14;
+		delete x; // This will cause an error
+
+		Удаление функции не допускается.
+		'use strict';
+		function x(p1, p2) {};
+		delete x; // This will cause an error
+
+		Дублирование имени параметра не допускается: 
+		'use strict';
+		function x(p1, p1) {}; // This will cause an error
+
+		Восьмеричные числовые литералы не допускаются:
+		'use strict';
+		var x = 010; // This will cause an error
+
+		Восьмеричные escape-символы не допускаются:
+		'use strict';
+		var x = '\010'; // This will cause an error
+
+		Запись в свойство только для чтения не допускается:
+		'use strict';
+		var obj = {};
+		Object.defineProperty(obj, 'x', {value:0, writable:false});
+		obj.x = 3.14; // This will cause an error
+
+		Запись в свойство get-only не допускается:
+		'use strict';
+		var obj = {get x() {return 0} };
+		obj.x = 3.14; // This will cause an error
+
+		Удаление не подлежащего удалению свойства не допускается:
+		'use strict';
+		delete Object.prototype; // This will cause an error
+
+		Слово evalне может быть использовано в качестве переменной:
+		'use strict';
+		var eval = 3.14; // This will cause an error
+
+		Слово <b>arguments</b> не может быть использовано в качестве переменной:
+		'use strict';
+		var arguments = 3.14; // This will cause an error
+
+		<b>with</b> Заявление не допускается:
+		'use strict';
+		with (Math){x = cos(2)}; // This will cause an error
+
+		Из соображений безопасности <b>eval()</b> запрещено создавать переменные в области, из которой они были вызваны:
+		'use strict';
+		eval ('var x = 2');
+		alert (x); // This will cause an error
+	</pre>
+	<b>this</b> Ключевое слово в функции ведет себя по-разному в строгом режиме, оно относится к объекту, который вызвал функцию. <br>
+	Если объект не указан, функции в строгом режиме вернутся, <b>undefined</b> а функции в обычном режиме вернут глобальный объект (окно):
+	<pre>		
+		'use strict';
+		function myFunction() {
+		  alert(this); // will alert 'undefined'
+		}
+		myFunction();
+	</pre>
+
+	<h2>На будущее!</h2>
+	Ключевые слова, зарезервированные для будущих версий JS, НЕ могут использоваться в качестве имен переменных в строгом режиме.
+	<br>ПРИМЕР
+	<pre>
+		'use strict';
+		var public = 1500;   // This will cause an error 
+
+		implements
+		interface
+		let
+		package
+		private
+		protected
+		public
+		static
+		yield
+	</pre>
+	
+	<script>
+		// 'use strict';
+		// m = 3.14;
+		// document.getElementById('strict_0').innerHTML = m; // This will cause an error (y is not defined)
+
+		'use strict';
+		// func_strick_0();
+		// function func_strick_0() {
+		// 	m = 3.14;
+		// 	document.getElementById('strict_1').innerHTML = m; // This will cause an error (y is not defined)
+		// }
+
+		// m = 3.14;
+		// func_strick_0();
+		// function func_strick_0() {
+		// 	m = 3.14;
+		// 	document.getElementById('strict_2').innerHTML = m; 
+		// }
+
+	</script>
+
+<footer></footer>
+<script type ="text/javascript" src="list.js" charset="utf-8"> </script>
+</body>
+</html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Date</title>
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<a href="javascript:scroll(0,10000)" >
+		<button class="btn">⇩</button>
+	</a>
+	<a href="javascript:scroll(0,0)" title="наверх">
+		<button class="btn_down">⇧</button>
+	</a>
+	<b id="link"></b> 
+
+	<h1>JavaScript Date Objects </h1>
+	По умолчанию JS будет использовать часовой пояс браузера и отображать дату в виде полнотекстовой строки <br>
+	<b>Вс 05 июл 2020 13:29:17 GMT + 0300 (Восточная Европа, летнее время)</b>
+
+	<h2>Создание объектов Date</h2>
+	Объекты <b>Date</b> создаются с помощью <b>new Date()</b> конструктора.
+	Есть 4 способа создать новый объект даты:
+	<br>ПРИМЕР
+	<pre>
+		new Date();
+		new Date(year, month, day, hours, minutes, seconds, milliseconds);
+		new Date(milliseconds);
+		new Date(date string);
+	</pre>
+
+	<h2>new Date()</h2>
+	<b>new Date()</b> - создает новый объект даты с текущей датой и временем. <br>
+	Объекты <b>Date</b> являются статическими. Время компьютера тикает, а объекты даты - нет
+	<br>ПРИМЕР
+	<pre>
+		var d = new Date(); // <b id="date_1"> </b>
+	</pre>
+
+	<h2>new Date(year, month, ...)</h2>
+	<b><u><i>new Date(year, month, ...)</i></u></b> - создает новый объект даты с указанной датой и временем.
+	7 чисел указывают год, месяц, день, час, минуту, секунду и миллисекунду (в указанном порядке). <br>
+	JS считает месяцы от 0 до 11. Нельзя пропустить месяц. Если указать только один параметр, он будет считаться миллисекундами
+	<br>ПРИМЕР
+	<pre>
+		var new_date_1 = new Date(2020, 11, 24, 10, 33, 30, 0);
+		new_date_1; //<b id="new_date_1"></b>
+
+		var new_date_2 = new Date(2020, 11, 24, 10, 33, 30);
+		new_date_2; //<b id="new_date_2"></b>
+
+		var new_date_3 = new Date(2020, 11, 24, 10, 33);
+		new_date_3; //<b id="new_date_3"></b>
+
+		var new_date_4 = new Date(2020, 11, 24, 10);
+		new_date_4; //<b id="new_date_4"></b>
+
+		var new_date_5 = new Date(2020, 11, 24);
+		new_date_5; //<b id="new_date_5"></b>
+
+		var new_date_6 = new Date(2020, 11);
+		new_date_6; //<b id="new_date_6"></b>
+
+		var new_date_7 = new Date(2020);
+		new_date_7; //<b id="new_date_7"></b>
+	</pre>
+
+	<h2>Предыдущий век</h2>
+	Год с одной и двумя цифрами будет интерпретироваться как 19xx
+	<br>ПРИМЕР
+	<pre>
+		var new_date = new Date(99, 11, 24);
+		new_date; //<b id="new_date_8"></b>
+
+		var new_date = new Date(9, 11, 24);
+		new_date; //<b id="new_date_9"></b>
+	</pre>
+
+	<h2>new Date(dateString)</h2>
+	<b><u><i>new Date(dateString)</i></u></b> - создает новый объект даты из строки даты
+	<br>ПРИМЕР
+	<pre>
+		var new_date = new Date("October 13, 2014 11:13:00");
+		new_date; //<b id="new_date_10"></b>
+	</pre>
+
+	<h2>JavaScript хранит даты в миллисекундах</h2>
+	JS хранит даты в виде количества миллисекунд с 01 января 1970 года, 00:00:00 UTC (Всемирное координированное время). <br>
+	Нулевое время 01 января 1970 г. 00:00:00 UTC.
+
+	<h2>new Date(milliseconds)</h2>
+	<b><u><i>new Date(milliseconds)</i></u></b> - создает новый объект даты как нулевое время плюс миллисекунды <br>
+	(24 часа) составляет 86 400 000 миллисекунд
+	<br>ПРИМЕР
+	<pre>
+		var d = new Date(0);
+		d; // <b id="new_date_11"></b>
+
+		01 января 1970 года плюс 100 000 000 000 миллисекунд - это приблизительно 3 марта 1973 года:
+		var d = new Date(100000000000);
+		d; // <b id="new_date_12"></b>
+
+		01 января 1970 года минус 100 000 000 000 миллисекунд составляет примерно 31 октября 1966 года:
+		var d = new Date(-100000000000);
+		d; // <b id="new_date_13"></b>
+
+		var d = new Date(1595000000000);
+		d; // <b id="new_date_14"></b>
+	</pre>
+
+	<h2>Отображение дат</h2>
+	JS по умолчанию выводит даты в формате полнотекстовой строки. При отображении объекта даты в HTML, он автоматически преобразуется в строку с помощью <b>toString()</b> метода. <br>
+	<b>toUTCString()</b> - Метод преобразует дату в строку UTC (стандартный дисплей даты). <br>
+	<b>toDateString()</b> - Метод преобразует дату в более читаемый формат
+	<br>ПРИМЕР
+	<pre>
+		var d = new Date();		
+
+		Одинаковый результат
+		d;            // <b id="new_date_15"></b>
+		d.toString(); // <b id="new_date_16"></b>
+
+		d.toUTCString();  // <b id="new_date_17"></b>
+		d.toDateString(); // <b id="new_date_18"></b>
+	</pre>
+
+	<script>
+		var d = new Date();
+		var new_date_1 = new Date(2020, 11, 24, 10, 33, 30, 0);
+		var new_date_2 = new Date(2020, 11, 24, 10, 33, 30);
+		var new_date_3 = new Date(2020, 11, 24, 10, 33);
+		var new_date_4 = new Date(2020, 11, 24, 10);
+		var new_date_5 = new Date(2020, 11, 24);
+		var new_date_6 = new Date(2020, 11);
+		var new_date_7 = new Date(2020);
+		document.getElementById("date_1").innerHTML = d;
+		document.getElementById("new_date_1").innerHTML = new_date_1;
+		document.getElementById("new_date_2").innerHTML = new_date_2;
+		document.getElementById("new_date_3").innerHTML = new_date_3;
+		document.getElementById("new_date_4").innerHTML = new_date_4;
+		document.getElementById("new_date_5").innerHTML = new_date_5;
+		document.getElementById("new_date_6").innerHTML = new_date_6;
+		document.getElementById("new_date_7").innerHTML = new_date_7;
+
+
+		var new_date = new Date(99, 11, 24);
+		document.getElementById("new_date_8").innerHTML = new_date;
+
+		var new_date = new Date(9, 11, 24);
+		document.getElementById("new_date_9").innerHTML = new_date;
+
+		var new_date = new Date("October 13, 2014 11:13:00");
+		document.getElementById("new_date_10").innerHTML = new_date;
+
+		var d = new Date(0);
+		document.getElementById("new_date_11").innerHTML = d;
+		var d = new Date(100000000000);
+		document.getElementById("new_date_12").innerHTML = d;
+		var d = new Date(-100000000000);
+		document.getElementById("new_date_13").innerHTML = d;
+		var d = new Date(1595000000000);
+		document.getElementById("new_date_14").innerHTML = d;
+
+		var d = new Date();		
+		document.getElementById("new_date_15").innerHTML = d;
+		document.getElementById("new_date_16").innerHTML = d.toString();
+		document.getElementById("new_date_17").innerHTML = d.toUTCString();
+		document.getElementById("new_date_18").innerHTML = d.toDateString();
+	</script>
+
+	<h1>Форматы дат JavaScript</h1>
+
+	<h2>JavaScript ввод/вывод даты</h2>
+	есть 3 типа форматов ввода даты в JavaScript:  <br>
+	Формат ISO соответствует строгим стандартам JS. Другие форматы не так хорошо определены и могут зависеть от браузера.
+	<br>ПРИМЕР
+	<pre>
+		Дата ISO    <b>«2015-03-25»</b> (Международный стандарт)
+		Короткая дата <b>"03/25/2015"</b>.
+		Длинная дата  <b>"Mar 25 2015"</b> или <b>"25 Mar 2015"</b>
+	</pre>
+
+	<h2>Вывод даты в JavaScript</h2>
+	Независимо от формата ввода, JS будет (по умолчанию) выводить даты в формате полнотекстовой строки
+	<br>ПРИМЕР
+	<pre>
+		Wed Mar 25 2015 02:00:00 GMT+0200 (Восточная Европа, стандартное время)
+	</pre>
+
+	<h2>JS ISO  8601 даты</h2>
+	(ГГГГ-ММ-ДД) - Вычисленная дата будет относительно вашего часового пояса. <br>
+	(ГГГГ-ММ) - Часовые пояса будут отличаться результатом выше между 28 февраля и 01 марта. <br>
+	(ГГГГ) - Часовые пояса будут отличаться от указанных выше результатов в период с 31 декабря 2014 года по 01 января 2015 года.
+	<br>ПРИМЕР
+	<pre>
+		var d = new Date("2020-06-22");
+		d; // <b id="format_date_1"></b>
+
+		var d = new Date("2020-06");
+		d; // <b id="format_date_2"></b>
+
+		var d = new Date("2020");
+		d; // <b id="format_date_3"></b>
+
+	</pre>
+
+	<h2>Даты ISO (Дата-Время)</h2>
+	Т - разделитель Даты и время.
+	Z - определяется Время UTC. <br>
+	UTC (всемирное координированное время) совпадает с GMT (среднее время по Гринвичу).  <br>
+	Пропуск T или Z в строке даты и времени может давать разные результаты в разных браузерах.
+	<br>ПРИМЕР
+	<pre>
+		var d = new Date("2015-03-25T12:00:00Z");
+		d; // <b id="format_date_4"></b>
+
+		var d = new Date("2015-03-25T12:00:00-06:30");
+		d; // <b id="format_date_5"></b>
+	</pre>
+
+	<h2>Короткие Даты</h2>
+	Краткие даты записываются с синтаксисом «MM/DD/YYYY»
+	<br>ПРИМЕР
+	<pre>
+		var d = new Date("03/25/2015");
+		d; // <b id="format_date_7"></b>
+
+		В некоторых браузерах месяцы или дни без начальных нулей могут привести к ошибке
+		var d = new Date("2015-3-25");
+		d; // <b id="format_date_8"></b>
+
+		Некоторые браузеры пытаются угадать формат. Некоторые вернут NaN.
+		var d = new Date("2015/03/25");
+		d; // <b id="format_date_6"></b>
+		var d = new Date("25-03-2015");
+		d; // <b id="format_date_9"></b>
+	</pre>
+
+	<h2>Длинные даты</h2>
+	Длинные даты чаще всего пишутся с синтаксисом «MMM DD YYYY». Месяц и день могут быть в любом порядке. <br>
+	Месяц может быть записан полностью или сокращенно. Запятые игнорируются. Имена нечувствительны к регистру
+	<br>ПРИМЕР
+	<pre>
+		var d = new Date("25 Mar 2015");
+		d; // <b id="format_date_11"></b>
+
+		var d = new Date("Mar 25 2015");
+		d; // <b id="format_date_10"></b>
+		var d = new Date("March 25 2015");
+		d; // <b id="format_date_12"></b>
+
+		var d = new Date("MARCH, 25, 2015");
+		d; // <b id="format_date_13"></b>
+	</pre>
+
+	<h2>Ввод даты - даты разбора</h2>
+	 <b>Date.parse()</b> метод можно использовать если есть допустимая строка даты, для ее преобразования в миллисекунды.
+	
+	<br>ПРИМЕР
+	<pre>
+		var msec = Date.parse("March 21, 2012");
+		msec; // <b id="format_date_14"></b>
+
+		Затем можно использовать количество миллисекунд, чтобы преобразовать его в объект даты
+		var d = new Date(msec);
+		d; // <b id="format_date_15"></b>
+
+		var milsec = 345353453;
+		var date_on_milsec = new Date(milsec);	
+		date_on_milsec; // <b id="format_date_16"></b>
+	</pre>
+
+	<script>
+		var d = new Date("2020-06-22");
+		document.getElementById("format_date_1").innerHTML = d;
+		var d = new Date("2020-06");
+		document.getElementById("format_date_2").innerHTML = d;
+		var d = new Date("2020");
+		document.getElementById("format_date_3").innerHTML = d;
+
+		var d = new Date("2015-03-25T12:00:00Z");
+		document.getElementById("format_date_4").innerHTML = d;
+
+		var d = new Date("2015-03-25T12:00:00-06:30");
+		document.getElementById("format_date_5").innerHTML = d;
+
+		var d = new Date("2015/03/25");
+		document.getElementById("format_date_6").innerHTML = d;
+		var d = new Date("03/25/2015");
+		document.getElementById("format_date_7").innerHTML = d;
+		var d = new Date("2015-3-25");
+		document.getElementById("format_date_8").innerHTML = d;
+		var d = new Date("25-03-2015");
+		document.getElementById("format_date_9").innerHTML = d;
+
+		var d = new Date("Mar 25 2015");
+		document.getElementById("format_date_10").innerHTML = d;
+		var d = new Date("25 Mar 2015");
+		document.getElementById("format_date_11").innerHTML = d;
+		var d = new Date("March 25 2015");
+		document.getElementById("format_date_12").innerHTML = d;
+		var d = new Date("MARCH, 25, 2015");
+		document.getElementById("format_date_13").innerHTML = d;
+
+		var msec = Date.parse("March 21, 2012");
+		document.getElementById("format_date_14").innerHTML = msec;
+		var d = new Date(msec);
+		document.getElementById("format_date_15").innerHTML = d;
+
+		var milsec = 345353453;
+		var date_on_milsec = new Date(milsec);	
+		document.getElementById("format_date_16").innerHTML = date_on_milsec;
+	</script>
+
+
+	<h1>Get Date Методы</h1>
+	Методы для получения информации от объекта даты  
+	<br>ПРИМЕР
+	<pre>
+		getFullYear()     - Получить год в виде четырехзначного числа (гггг) 
+		getMonth()        - Получить месяц (0-11) 
+		getDate()         - Получить месяц (1-31) 
+		getHours()        - Получить часы (0-23) 
+		getMinutes()      - Получить минуты (0-59) 
+		getSeconds()      - Получить секунды (0-59) 
+		getMilliseconds() - Получить милисекунды (0-999) 
+		getTime()         - Получить время (миллисекунды с January 1, 1970 ) 
+		getDay()          - Получить день недели (0-6) 
+		Date.now()        - Получить время. ECMAScript 5. 
+	</pre>
+
+	<h2>Методы</h2>
+	В JS первый день недели (0) означает «воскресенье», даже если некоторые страны мира считают первый день недели «понедельником».
+	<br>ПРИМЕР
+	<pre>
+		var date = new Date();
+		var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+		var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+		date.getTime();         //<b id="get_method_1"></b>
+		date.getFullYear();     //<b id="get_method_2"></b>
+
+		date.getMonth();        //<b id="get_method_3"></b>
+		month[date.getMonth()]; //<b id="get_method_3.1"></b>
+
+		date.getDate();         //<b id="get_method_4"></b>
+		date.getHours();        //<b id="get_method_5"></b>
+		date.getMinutes();      //<b id="get_method_6"></b>
+		date.getSeconds();      //<b id="get_method_7"></b>
+		date.getMilliseconds(); //<b id="get_method_8"></b>
+
+		date.getDay();          //<b id="get_method_9"></b>
+		days[date.getDay()];    //<b id="get_method_10"></b>
+	</pre>
+
+	<script>
+		var date = new Date();
+		var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+		var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+		document.getElementById("get_method_1").innerHTML = date.getTime();
+		document.getElementById("get_method_2").innerHTML = date.getFullYear();
+
+		document.getElementById("get_method_3").innerHTML = date.getMonth();
+		document.getElementById("get_method_3.1").innerHTML = month[date.getMonth()];
+
+		document.getElementById("get_method_4").innerHTML = date.getDate();
+		document.getElementById("get_method_5").innerHTML = date.getHours();
+		document.getElementById("get_method_6").innerHTML = date.getMinutes();
+		document.getElementById("get_method_7").innerHTML = date.getSeconds();
+		document.getElementById("get_method_8").innerHTML = date.getMilliseconds();
+
+		document.getElementById("get_method_9").innerHTML = date.getDay();
+		document.getElementById("get_method_10").innerHTML = days[date.getDay()];
+	</script>
+
+	<h1>Set Date Методы</h1>
+	Методы Set Date позволяют устанавливать значения даты (годы, месяцы, дни, часы, минуты, секунды, миллисекунды) для объекта Date.
+
+	<h2>Методы установки даты</h2>
+	Методы Set Date используются для установки части даты
+	<br>ПРИМЕР
+	<pre>
+		setDate()         - Установите день как число (1-31)
+		setFullYear()     - Установите год (необязательно месяц и день)
+		setHours()        - Установите часы (0-23)
+		setMilliseconds() - Установите милисекунды (0-999)
+		setMinutes()      - Установите минуты (0-59)
+		setMonth()        - Установите месяца (0-11)
+		setSeconds()      - Установите секунды (0-59)
+		setTime()         - Установите время (миллисекунды с January 1, 1970 ) 
+	</pre>
+
+	<h2>Методы</h2>
+	<b>setFullYear()</b> - Метод может при необходимости установить месяц и день
+	<b>setDate()</b> - метод также можно использовать для добавления дней к дате
+	<br>ПРИМЕР
+	<pre>
+		date.setDate(20);                  //<b id="set_method_1"> </b>
+		Если добавление дней сдвигает месяц или год, изменения обрабатываются объектом Date автоматически.
+		date.setDate(date.getDate() + 20); //<b id="set_method_1.1"> </b>
+
+		date.setFullYear(2010);            //<b id="set_method_2"> </b>
+		date.setFullYear(2020, 11, 3);     //<b id="set_method_2.1"> </b>
+
+		date.setHours(4);                  //<b id="set_method_3"> </b>
+		date.setMinutes(50);               //<b id="set_method_4"> </b>
+		date.setMilliseconds(230);         //<b id="set_method_5"> </b>
+		date.setSeconds(20);               //<b id="set_method_6"> </b>
+		date.setTime(20);                  //<b id="set_method_7"> </b>
+		date.setMonth(10);                 //<b id="set_method_8"> </b>
+	</pre>
+
+	<h2>Сравнить даты</h2>
+	<br>ПРИМЕР
+	<pre>
+		var today, someday, text;
+		today = new Date();
+		someday = new Date();
+		someday.setFullYear(2100, 0, 14);
+		if (someday > today) {
+		   text = "Today is before January 14, 2100";
+		} else {
+		   text = "Today is after January 14, 2100";
+		}
+		text; //<b id="set_method_9"> </b>
+	</pre>
+	<script>
+		var date = new Date();
+		date.setDate(20);
+		document.getElementById("set_method_1").innerHTML = date;
+		date.setDate(date.getDate() + 20);
+		document.getElementById("set_method_1.1").innerHTML = date;
+
+		date.setFullYear(2010);
+		document.getElementById("set_method_2").innerHTML = date;
+		date.setFullYear(2020, 11, 3);
+		document.getElementById("set_method_2.1").innerHTML = date;
+
+		date.setHours(4);
+		document.getElementById("set_method_3").innerHTML = date;
+		date.setMinutes(50);
+		document.getElementById("set_method_4").innerHTML = date;
+		date.setMilliseconds(230);
+		document.getElementById("set_method_5").innerHTML = date;
+		date.setSeconds(20);
+		document.getElementById("set_method_6").innerHTML = date;
+		date.setTime(20);
+		document.getElementById("set_method_7").innerHTML = date;
+		date.setMonth(10);
+		document.getElementById("set_method_8").innerHTML = date;
+
+		var today, someday, text;
+		today = new Date();
+		someday = new Date();
+		someday.setFullYear(2100, 0, 14);
+		if (someday > today) {
+			text = "Today is before January 14, 2100";
+		} else {
+			text = "Today is after January 14, 2100";
+		}
+		document.getElementById("set_method_9").innerHTML = text;
+	</script>
+
+<footer></footer>
+<script type ="text/javascript" src="list.js" charset="utf-8"> </script>
+</body>
+</html>

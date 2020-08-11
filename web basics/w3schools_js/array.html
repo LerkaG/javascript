@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Array</title>
+<link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<a href="javascript:scroll(0,10000)" >
+		<button class="btn">⇩</button>
+	</a>
+	<a href="#" title="наверх">
+		<button class="btn_down">⇧</button>
+	</a>
+	<b id="link"></b>
+	<h1>Методы массива JS</h1>
+
+	<h2>Преобразование массивов в строки</h2>
+	<b>toString()</b> - Метод преобразует массив в строку (разделенных запятыми) значений массива. <br>
+	<b>join()</b> - Метод объединяет все элементы массива в строку. Он ведет себя так же, как <b>toString()</b>, но еще,можно указать разделитель 
+	<br>ПРИМЕР
+	<pre>
+		var person_4 = ["man", "woman", "kids"];
+
+		person_4.toString();   //<b id="method_array_1"> </b>
+
+		person_4.join(" ");    //<b id="method_array_2"> </b>
+		person_4.join(" -> "); //<b id="method_array_3"> </b>
+	</pre>
+
+	<h2>Удалить, добавить элемент массива</h2>
+	<b>pop()</b> - Метод удаляет последний элемент из массива <br>
+	<b>push()</b> - Метод добавляет новый элемент в массив (в конце) <br>
+	<b>shift()</b> - Метод удаляет первый элемент массива и «сдвиги» все другие элементы к более низкому индексу. <br>
+	<b>unshift()</b> - Метод добавляет новый элемент в массиве (в начале) <br>
+	<b>length</b> - Свойство обеспечивает простой способ для добавления нового элемента в массив <br>
+	<b>delete</b> - оператор, можно удалять элементы. Использование его может оставить неопределенные дыры в массиве. Вместо этого использовать <b>pop()</b> или <b>shift()</b>
+	<br>ПРИМЕР
+	<pre>
+		<button onclick="person_func_pop()"> Click Me</button>
+		person_4.pop();          //<b id="method_array_4"> </b> - что удалили (в конце)
+		person_4;                //<b id="method_array_5"> </b>
+
+		<button onclick="person_func_push()"> Click Me</button>
+		person_4.push("dogs");   //<b id="method_array_6"> </b> - количество элементов 
+		person_4;                //<b id="method_array_7"> </b>
+
+		<button onclick="person_func_shift()"> Click Me</button>
+		person_4.shift();        //<b id="method_array_8"> </b> - что удалили (в начале)
+		person_4;                //<b id="method_array_9"> </b>
+
+		<button onclick="person_func_unshift()"> Click Me</button>
+		person_4.unshift("Bob"); //<b id="method_array_10"> </b> - количество элементов 
+		person_4;                //<b id="method_array_11"> </b>
+		
+		person_4[person_4.length] = ("bobby");  //<b id="method_array_12"> </b>
+
+		delete person_4[0];                     //<b id="method_array_13"> </b>
+	</pre>
+
+	<h2>Сращивание массива и удаления элементов splice()</h2>
+	<b>splice()</b> - Метод может быть использован для добавления новых элементов в массив.
+	<br>ПРИМЕР
+	<pre>
+		Первый параметр (2) определяет положение. Второй параметр (0) определяет, сколько элементов должно быть удалено.
+		Остальные параметры определяют новые элементы, которые будут добавлены.
+		person_4.splice(2, 0, "Kiwi"); //<b id="method_array_14"> </b>
+
+		Метод возвращает массив удаленных элементов:
+		person_4.splice(0, 1, "BBF"); //<b id="method_array_15"> </b>
+
+		<button onclick="person_func_splice_1()"> Click Me</button>
+		function person_func_splice_1() {
+		   var removed = person_4.splice(0, 1, "Kikibu");
+		   document.getElementById("method_array_18").innerHTML = person_4;
+		   document.getElementById("method_array_19").innerHTML = removed;
+		}
+		<b id="method_array_16"> </b> //new array
+		<b id="method_array_17"> </b> //removed
+
+		Можно использовать <b>splice()</b> для удаления элементов, не оставляя «дыр» в массиве.
+		Первый параметр (0) определяет позицию. Второй параметр (1) определяет, сколько элементов должно быть удалено.
+		Остальные параметры опущены. Новые элементы не будут добавлены.
+		person_4.splice(0, 1);         // <b id="method_array_18"> </b>
+
+		<button onclick="person_func_splice()"> Click Me</button>
+		function person_func_splice() {
+		   person_4.splice(0, 1);
+		   document.getElementById("method_array_17").innerHTML = person_4;
+		}
+		<b id="method_array_19"> </b>
+	</pre>
+
+	<h2>Объединение (конкантинация) массивов</h2>
+	<b>concat()</b> - Метод создает новый массив путем слияния (конкатенации) существующих массивов. <br>
+	Он не изменяет существующие массивы, а всегда возвращает новый массив
+	<br>ПРИМЕР
+	<pre>
+		var girls = ["Lone", "Natali"];
+		var boys = ["Emil", "Linus"];
+		girls.concat(boys);           // <b id="merge_array_1"> </b>
+
+		<b>concat()</b> Метод может принимать любое количество аргументов массива
+		var animal = ["dog", "cat"];
+		girls.concat(boys, animal);   // <b id="merge_array_2"> </b>
+
+		также может принимать строки в качестве аргументов
+		girls.concat(boys, "animal"); // <b id="merge_array_3"> </b>
+		girls.concat("animal");       // <b id="merge_array_4"> </b>
+	</pre>
+
+	<h2>Нарезка массива</h2>
+	<b>slice()</b> - Метод нарезает из куска массива в новый массив, не удаляет какие-либо элементы из исходного массива.
+	<br>ПРИМЕР
+	<pre>
+		girls.slice(1); // <b id="merge_array_5"> </b>
+		girls;          // <b id="merge_array_6"> </b>
+		
+		вырезает все из массива, после заданого элемента 
+		var new_arrays = girls.concat(boys, animal);
+		new_arrays;          // <b id="merge_array_7"> </b>
+		new_arrays.slice(3); // <b id="merge_array_8"> </b>
+
+		Метод может принимать два аргумента. при этом, последний элемент аргумента остается.
+		new_arrays.slice(1, 4); // <b id="merge_array_9"> </b>
+	</pre>
+
+	<h2>Автоматический toString()</h2>
+	JavaScript автоматически преобразует массив в строку через запятую, когда ожидается примитивное значение, когда выводить массив. <br>	
+	Все объекты JavaScript имеют метод <b>toString()</b>.
+	<br>ПРИМЕР	
+	<pre>
+		animal; // <b id="merge_array_10"> </b>
+		animal.toString(); // <b id="merge_array_11"> </b>
+	</pre>
+
+	<h1>Сортировка массивов</h1>
+	<b>sort()</b> - Метод сортирует массив по алфавиту
+
+	<h2>Реверсировать массив</h2>
+	<b>reverse()</b> - Метод изменяет элементы в массиве. Можно его использовать для сортировки массива в порядке убывания
+	<br>ПРИМЕР
+	<pre>
+		var sort_var = ["Lone", "Natali", "Emil", "Linus", "Dog", "Cat"];
+		sort_var.sort(); //<b id="sort_array_1"> </b>  
+		sort_var.reverse(); //<b id="sort_array_2"> </b> 
+	</pre>
+
+	<h2>Числовая сортировка</h2>
+	По умолчанию <b>sort()</b> функция сортирует значения в виде строк. Для сортировке чисел, нужно сделать функцию сравнения:
+	<br>ПРИМЕР
+	<pre>
+		var sort_num = [1, 122, 3, 54, 5, 62];
+		sort_num.sort(function(a, b){return a - b }); // <b id="sort_array_3"> </b> 
+		sort_num.sort(function(a, b){return b - a }); // <b id="sort_array_4"> </b> 
+	</pre>
+
+	<h2>Функция сравнения</h2>
+	Цель функции сравнения - определить альтернативный порядок сортировки. <br>
+	Функция сравнения должна возвращать отрицательное, нулевое или положительное значение в зависимости от аргументов<br>
+	Когда <b>sort()</b> функция сравнивает два значения, она отправляет значения в функцию сравнения и сортирует  <br>значения в соответствии с возвращенным (отрицательным, нулевым, положительным) значением. <br>
+	Если результат отрицательный a, сортируется раньше b. Если результат положительный b, сортируется раньше a. <br>
+	Если результат равен 0, никакие изменения не производятся с порядком сортировки двух значений.
+	<br>ПРИМЕР
+	<pre>
+		function(a, b){return a - b} //<b id="sort_array_5"></b>
+		<button onclick="my_func_array_1()"> Click Me (sort Alphabet)</button>
+		function my_func_array_1() {
+		    sort_num.sort();
+		    document.getElementById("sort_array_6").innerHTML = sort_num;
+		}
+		<b id="sort_array_6"></b>
+
+		
+		<button onclick="my_func_array_2()"> Click Me (sort Number)</button>
+		function my_func_array_2() {
+		    sort_num.sort(function(a, b){return a - b });	
+		    document.getElementById("sort_array_7").innerHTML = sort_num;
+		}
+		<b id="sort_array_7"></b>
+	</pre>
+	
+	<h2>Сортировка массива в случайном порядке</h2>
+	Этот массив <b>.sort()</b>, не точен, он предпочтет некоторые числа перед другими.
+	<br>ПРИМЕР
+	<pre>
+		<button onclick="my_func_array_3()"> Click me. sort Random </button>
+		sort_num.sort(function(a, b){return 0.5 - Math.random() }); // <b id="sort_array_8"></b>
+	</pre>
+	
+	<h2>Метод Фишера Йетса</h2>
+	Самый популярный правильный метод, называется shuffle Фишера-Йетса, был введен в науку о данных еще в 1938 году.
+	<br>ПРИМЕР
+	<pre>
+		<button onclick="my_func_array_4()">Click Me</button>
+		function my_func_array_4() {
+		   var i, j, k;
+		   for (i = sort_num.length -1; i > 0; i--) {
+		      j = Math.floor(Math.random() * i)
+		      k = sort_num[i]
+		      sort_num[i] = sort_num[j]
+		      sort_num[j] = k
+		   }
+		   document.getElementById("sort_array_9").innerHTML = sort_num;
+		}
+		<b id="sort_array_9"></b>
+	</pre>
+	
+	<h2>Найти самое высокое (или самое низкое) значение массива</h2>
+	Нет встроенных функций для поиска максимального или минимального значения в массиве. <br>
+	После сортировки массива можно использовать индекс для получения самых высоких и самых низких значений. <br>
+	Сортировка целого массива - очень <b>неэффективный метод</b>, если нужно найти только самое высокое/низкое значение. 
+	<br>ПРИМЕР
+	<pre>
+		Сортировка по возрастанию:
+		sort_num.sort(function(a, b){return a - b });
+		sort_num[0] //<b id="sort_array_10"></b>
+
+		Сортировка по убыванию:
+		sort_num.sort(function(a, b){return b - a });
+		sort_num[0] //<b id="sort_array_11"></b>
+	</pre>
+
+	<h2>Использование Math.max() и Math.min() для массива</h2>
+	Можно использовать, <b>Math.max.apply</b> и <b>Math.min.apply</b> чтобы найти <i>наибольшее и наименьшее</i> число в массиве.
+	<br>ПРИМЕР
+	<pre>
+		<b>Math.max.apply(null, [1, 2, 3])</b> эквивалентно <b>Math.max(1, 2, 3).</b>
+		function func_max_array(arr) {
+		   return Math.max.apply(null, arr);
+		}
+		func_max_array(sort_num); //<b id="sort_array_12"> </b>
+
+		<b>Math.min.apply(null, [1, 2, 3])</b> эквивалентно <b>Math.min(1, 2, 3).</b>
+		function func_min_array(arr) {
+		   return Math.min.apply(null, arr);
+		}
+		func_min_array(sort_num); //<b id="sort_array_13"> </b>
+	</pre>
+		
+	<h2>Собственные min/max методы</h2>
+	Самым быстрым решением является использование «домашнего» метода.
+	<br>ПРИМЕР
+	<pre>
+		Функция просматривает массив, сравнивая каждое значение с <b>наибольшим</b> найденным значением:
+		function func_max_array(arr) {
+		   var len = arr.length;
+		   var max = -Infinity;
+		   while (len--) {
+		      if (arr[len] > max) {
+		         max = arr[len];
+		      }
+		   }
+		   return max;
+		}
+		func_max_array(sort_num); //<b id="sort_array_14"> </b>
+
+		Функция просматривает массив, сравнивая каждое значение с <b>наименьшим</b> найденным значением:
+		function func_min_array(arr) {
+		   var len = arr.length;
+		   var min = Infinity;
+		   while (len--) {
+		      if (arr[len] < min) {
+	        	min = arr[len];
+		      }
+		   }
+		   return min;
+		}
+		func_min_array(sort_num); //<b id="sort_array_15"> </b>
+	</pre>
+
+	<h2>Сортировка массивов объектов</h2>
+	Даже если объекты имеют свойства разных типов данных, <b>sort()</b> метод можно использовать для сортировки массива.
+	<br>ПРИМЕР
+	<pre>
+		var my_cars = [
+		{name: "BMW", year: 2019},
+		{name: "Ferarri", year: 2024},
+		{name: "Audi", year: 2004}
+		];
+		displays_cars();
+
+		function func_cars() {
+		   my_cars.sort(function(a, b){return a.year - b.year});
+		   displays_cars();
+		}
+		function displays_cars() {
+		   document.getElementById("sort_array_16").innerHTML = 
+		   my_cars[0].name + " " + my_cars[0].year +   
+		   my_cars[1].name + " " + my_cars[1].year +  
+		   my_cars[2].name + " " + my_cars[2].year;
+		}
+
+		<button onclick="func_cars()"> Click Me</button>
+	</pre>
+	<code> <ul> <b id="sort_array_16"> </b> <br><br></ul></code>
+
+	<h2>Сравнение свойств строки</h2>
+	<br>ПРИМЕР
+	<pre>
+		var my_cars = [
+		{name: "BMW", year: 2019},
+		{name: "Ferarri", year: 2024},
+		{name: "Audi", year: 2004}
+		];
+		displays_cars_2();
+
+		function func_cars_2() {
+		   my_cars.sort(function(a, b) {
+		      var x = a.name.toLowerCase();
+		      var y = b.name.toLowerCase();
+		      if (x < y) { return -1; }
+		      if (x > y) { return 1; }
+		      return 0;
+		   });
+		   displays_cars_2();
+		}
+		function displays_cars_2() {
+		   document.getElementById("sort_array_17").innerHTML = 
+		   my_cars[0].name + " " + my_cars[0].year +   
+		   my_cars[1].name + " " + my_cars[1].year +  
+		   my_cars[2].name + " " + my_cars[2].year;
+		}
+		<button onclick="func_cars_2()"> Click Me</button>
+	</pre>
+	<code> <ul> <b id="sort_array_17"> </b> <br><br></ul></code>
+
+	<script>
+		var person_4 = ["man", "woman", "kids"];
+		document.getElementById("method_array_1").innerHTML = person_4.toString();
+
+		document.getElementById("method_array_2").innerHTML = person_4.join(" ");
+		document.getElementById("method_array_3").innerHTML = person_4.join(" -> ");
+		
+		function person_func_pop() {
+			document.getElementById("method_array_4").innerHTML = person_4.pop();
+			document.getElementById("method_array_5").innerHTML = person_4;
+		}
+
+		function person_func_push() {
+			document.getElementById("method_array_6").innerHTML = person_4.push("dogs");
+			document.getElementById("method_array_7").innerHTML = person_4;
+		}
+
+		function person_func_shift() {
+			document.getElementById("method_array_8").innerHTML = person_4.shift();
+			document.getElementById("method_array_9").innerHTML = person_4;
+		}
+		function person_func_unshift() {
+			document.getElementById("method_array_10").innerHTML = person_4.unshift("Bob");
+			document.getElementById("method_array_11").innerHTML = person_4;
+		}
+		person_4[person_4.length] = ("bobby");
+		document.getElementById("method_array_12").innerHTML = person_4;
+		delete person_4[0];
+		document.getElementById("method_array_13").innerHTML = person_4;
+
+		person_4.splice(2, 0, "Kiwi")
+		document.getElementById("method_array_14").innerHTML = person_4;
+
+		person_4.splice(0, 1, "BBF")
+		document.getElementById("method_array_15").innerHTML = person_4;
+
+		function person_func_splice_1() {
+			var removed = person_4.splice(0, 1, "Kikibu");
+			document.getElementById("method_array_16").innerHTML = person_4;
+			document.getElementById("method_array_17").innerHTML = removed;
+		}
+
+		person_4.splice(0, 1);
+		document.getElementById("method_array_18").innerHTML = person_4;
+
+		function person_func_splice() {
+			person_4.splice(0, 1);
+			document.getElementById("method_array_19").innerHTML = person_4;
+		}
+
+		var girls = ["Lone", "Natali"];
+		var boys = ["Emil", "Linus"];
+		var animal = ["dog", "cat"];
+		document.getElementById("merge_array_1").innerHTML = girls.concat(boys);
+		document.getElementById("merge_array_2").innerHTML = girls.concat(boys, animal);
+		document.getElementById("merge_array_3").innerHTML = girls.concat(boys, "animal");
+		document.getElementById("merge_array_4").innerHTML = girls.concat("animal");
+
+		document.getElementById("merge_array_5").innerHTML = girls.slice(1);
+		document.getElementById("merge_array_6").innerHTML = girls;
+
+		var new_arrays = girls.concat(boys, animal);
+		document.getElementById("merge_array_7").innerHTML = new_arrays;
+		document.getElementById("merge_array_8").innerHTML = new_arrays.slice(3);
+		document.getElementById("merge_array_9").innerHTML = new_arrays.slice(1, 4);
+
+		document.getElementById("merge_array_10").innerHTML = animal;
+		document.getElementById("merge_array_11").innerHTML = animal.toString();
+
+		var sort_var = ["Lone", "Natali", "Emil", "Linus", "Dog", "Cat"];
+		document.getElementById("sort_array_1").innerHTML = sort_var.sort();
+		document.getElementById("sort_array_2").innerHTML = sort_var.reverse();
+
+		var sort_num = [1, 122, 3, 54, 5, 62];
+		document.getElementById("sort_array_3").innerHTML = sort_num.sort(function(a, b){return a - b });
+		document.getElementById("sort_array_4").innerHTML = sort_num.sort(function(a, b){return b - a });
+
+		document.getElementById("sort_array_5").innerHTML = sort_num;
+		function my_func_array_1() {
+			sort_num.sort();	
+			document.getElementById("sort_array_6").innerHTML = sort_num;
+		}
+		function my_func_array_2() {
+			sort_num.sort(function(a, b){return a - b });	
+			document.getElementById("sort_array_7").innerHTML = sort_num;
+		}
+
+		function my_func_array_3() {
+			sort_num.sort(function(a, b){return 0.5 - Math.random() });	
+			document.getElementById("sort_array_8").innerHTML = sort_num;
+		}
+
+		function my_func_array_4() {
+			var i, j, k;
+			for (i = sort_num.length -1; i > 0; i--) {
+				j = Math.floor(Math.random() * i)
+				k = sort_num[i]
+				sort_num[i] = sort_num[j]
+				sort_num[j] = k
+			}
+			document.getElementById("sort_array_9").innerHTML = sort_num;
+		}
+
+		sort_num.sort(function(a, b){return a - b });	
+		document.getElementById("sort_array_10").innerHTML = sort_num[0];
+		sort_num.sort(function(a, b){return b - a });	
+		document.getElementById("sort_array_11").innerHTML = sort_num[0];
+
+		function func_max_array(arr) {
+			return Math.max.apply(null, arr);
+		}
+		document.getElementById("sort_array_12").innerHTML = func_max_array(sort_num);
+
+		function func_min_array(arr) {
+			return Math.min.apply(null, arr);
+		}
+		document.getElementById("sort_array_13").innerHTML = func_min_array(sort_num);
+
+		function func_max_array(arr) {
+			var len = arr.length;
+			var max = -Infinity;
+			while (len--) {
+				if (arr[len] > max) {
+					max = arr[len];
+				}
+			}
+			return max;
+		}
+		document.getElementById("sort_array_14").innerHTML = func_max_array(sort_num);
+
+		function func_min_array(arr) {
+			var len = arr.length;
+			var min = Infinity;
+			while (len--) {
+				if (arr[len] < min) {
+					min = arr[len];
+				}
+			}
+			return min;
+		}
+		document.getElementById("sort_array_15").innerHTML = func_min_array(sort_num);
+
+		var my_cars = [
+		{name: "BMW", year: 2019},
+		{name: "Ferarri", year: 2024},
+		{name: "Audi", year: 2004}
+		];
+		displays_cars();
+		displays_cars_2();
+
+		function func_cars() {
+			my_cars.sort(function(a, b){return a.year - b.year});
+			displays_cars();
+		}
+		function displays_cars() {
+			document.getElementById("sort_array_16").innerHTML = 
+			my_cars[0].name + " " + my_cars[0].year + "<br>" +  
+			my_cars[1].name + " " + my_cars[1].year + "<br>" +  
+			my_cars[2].name + " " + my_cars[2].year;
+		}
+
+		function func_cars_2() {
+			my_cars.sort(function(a, b) {
+				var x = a.name.toLowerCase();
+				var y = b.name.toLowerCase();
+				if (x < y) { return -1; }
+				if (x > y) { return 1; }
+				return 0;
+			});
+			displays_cars_2();
+		}
+		function displays_cars_2() {
+			document.getElementById("sort_array_17").innerHTML = 
+			my_cars[0].name + " " + my_cars[0].year + "<br>" +  
+			my_cars[1].name + " " + my_cars[1].year + "<br>" +  
+			my_cars[2].name + " " + my_cars[2].year;
+		}
+	</script>
+
+	<h1>Методы итерации массивов JS</h1>
+	Методы итерации массива работают с каждым элементом массива.
+
+	<h2>.forEach()</h2>
+	<b><i><u>forEach()</u></i></b> - Метод вызывает функцию (функцию обратного вызова) один раз для каждого элемента массива. <br>
+	Принимает 3 аргумента <b>value, index, array</b>
+	<br>ПРИМЕР
+	<pre>
+		var txt = "";
+		var numbers = [45, 4, 9, 23, 54];
+		numbers.forEach(func_array_iteration_1); 
+		function func_array_iteration_1(value) {
+		   txt = txt + value + "< br>";
+		};
+		txt;
+	</pre>
+	<code><ul><b id="array_iteration_1"> </b></ul></code>
+
+	<h2>.map()</h2>
+	<b><u><i>map()</i></u></b> - Метод создает новый массив, выполняя функцию для каждого элемента массива. <br>
+	Метод не изменяет исходный массив и не выполняет функцию для элементов массива без значений. <br>
+	Принимает 3 аргумента <b>value, index, array</b>
+	<br>ПРИМЕР
+	<pre>
+		var double_two = numbers.map(func_array_iteration_2);
+		function func_array_iteration_2(value) {
+		   return value * 2;
+		}
+		double_two; // <b id="array_iteration_2"> </b>
+	</pre>
+	
+	<h2>.filter()</h2>
+	<b><u><i>filter()</i></u></b> - Метод создает новый массив с элементами массива, проходит тест. <br>
+	Принимает 3 аргумента <b>value, index, array</b>
+	<br>ПРИМЕР
+	<pre>
+		var over_twenty = numbers.filter(func_array_iteration_3);
+		function func_array_iteration_3(value) {
+		   return value > 20;
+		}
+		over_twenty; // <b id="array_iteration_3"> </b>
+	</pre>
+
+	<h2>.reduce()</h2>
+	<b><u><i>reduce()</i></u></b> - Метод запускает функцию для каждого элемента массива, чтобы произвести (уменьшить его до) одно значение. <br>
+	Метод работает слева направо в массиве и не уменьшает исходный массив.
+	Принимает 4 аргумента <b>total, value, index, array</b>
+	<br>ПРИМЕР
+	<pre>
+		var sum = numbers.reduce(func_array_iteration_4);
+		function func_array_iteration_4(total, value) {
+		   return total + value;
+		}
+		sum; // <b id="array_iteration_4"> </b>
+
+		reduce()Метод может принимать начальное значение:
+		var sum_2 = numbers.reduce(func_array_iteration_5, 100);
+		function func_array_iteration_5(total, value) {
+		   return total + value;
+		}
+		sum_2; // <b id="array_iteration_5"> </b>
+	</pre>
+		
+	<h2>.reduceRight()</h2>
+	<b><i><u>reduceRight()</u></i></b> - Метод запускает функцию для каждого элемента массива, чтобы произвести (уменьшить его до) одно значение. <br>
+	В <b>reduceRight()</b> работах от справа налево в массиве. Метод не уменьшает исходный массив. <br>
+	Принимает 4 аргумента <b>total, value, index, array</b>
+	<br>ПРИМЕР
+	<pre>
+		var sum_2 = numbers.reduce(func_array_iteration_6, 10);
+		function func_array_iteration_6(total, value) {
+		   return total + value;
+		}
+		sum_2; // <b id="array_iteration_6"> </b>
+	</pre>
+
+	<h2>.every()</h2>
+	<b><u><i>every()</i></u></b> - Проверка метода , если все значения массива пройти тест. <br>
+	Функция принимает 3 аргумента <b> value, index, array</b>
+	<br>ПРИМЕР
+	<pre>
+		var all_over_18 = numbers.every(func_array_iteration_7);
+		function func_array_iteration_7(value) {
+		   return value > 18;
+		}
+		all_over_18; // <b id="array_iteration_7"> </b>
+	</pre>
+
+	<h2>.some()</h2>
+	<b><u><i>some()</i></u></b> - Проверка метода , если некоторые значения массива пройти тест. <br>
+	Функция принимает 3 аргумента <b> value, index, array</b>
+	<br>ПРИМЕР
+	<pre>
+		var some_over_18 = numbers.some(func_array_iteration_8);
+		function func_array_iteration_8(value) {
+		   return value > 18;
+		}
+		some_over_18; // <b id="array_iteration_8"> </b>
+	</pre>
+
+	<h2>.indexOf()</h2>
+	<b><u><i>indexOf()</i></u></b> - Метод ищет массив для значения элемента и возвращает его позицию. Первый элемент имеет позицию 0. <br> 
+	Если элемент был не найден, то выбивает позицию <b>-1 </b>. Если элемент присутствует более одного раза, он возвращает позицию первого вхождения.
+ 	<br>Синтаксис
+ 	<pre>
+ 		array.indexOf(item, start)
+ 		item - Необходимые. Элемент для поиска.
+ 		start - По желанию. С чего начать поиск. Отрицательные значения начнутся с заданной позиции, считая от конца, и начнут поиск до конца.
+ 	</pre>
+ 	<br>ПРИМЕР
+	<pre>
+		var numbers = [45, 4, 9, 23, 54];
+		var string_array = ["Apple", "Orange", "Plum", "Apple"];
+	</pre>
+	<code> <ul><nav id="array_index_1"> </nav></ul></code>
+	
+	<h2>.lastIndexOf()</h2>
+	<b><u><i>.lastIndexOf()</i></u></b> - такой же, как <b>.indexOf()</b>, но возвращает позицию последнего вхождения указанного элемента.
+	<br>Синтаксис
+ 	<pre>
+ 		array.lastIndexOf(item, start)
+ 		item - Необходимые. Элемент для поиска.
+ 		start - По желанию. С чего начать поиск. Отрицательные значения начнутся с заданной позиции, считая с конца, и начнут поиск до начала
+ 	</pre>
+	<br>ПРИМЕР
+	<pre>
+		string_array.lastIndexOf("Apple"); // <b id="array_index_2"> </b>
+	</pre>
+
+	<h2>.find()</h2>
+	<b><u><i>find()</i></u></b> - Метод возвращает значение первого элемента массива, который проходит тестовую функцию. <br>
+	Функция принимает 3 аргумента <b> value, index, array</b>
+	<br>ПРИМЕР
+	<pre>
+		var find_first_over_18 = numbers.find(func_array_iteration_9);
+		function func_array_iteration_9(value) {
+		   return value > 18;
+		}
+		find_first_over_18; // <b id="array_iteration_9"> </b>
+	</pre>
+	
+	<h2>.findIndex()</h2>
+	<b><u><i>findIndex()</i></u></b> - Метод возвращает индекс первого элемента массива, который проходит тестовую функцию. <br>
+	Функция принимает 3 аргумента <b> value, index, array</b>
+	<br>ПРИМЕР
+	<pre>
+		var find_index_first_over_18 = numbers.findIndex(func_array_iteration_10);
+		function func_array_iteration_9(value) {
+		   return value > 18;
+		}
+		find_index_first_over_18; // <b id="array_iteration_10"> </b>
+	</pre>
+	<script>
+		var txt = "";
+		var numbers = [45, 4, 9, 23, 54];
+		numbers.forEach(func_array_iteration_1);
+		function func_array_iteration_1(value) {
+			txt = txt + value + "<br>";
+		};
+		document.getElementById("array_iteration_1").innerHTML = txt;
+
+		var double_two = numbers.map(func_array_iteration_2);
+		function func_array_iteration_2(value) {
+			return value * 2;
+		}
+		document.getElementById("array_iteration_2").innerHTML = double_two;
+
+		var over_twenty = numbers.filter(func_array_iteration_3);
+		function func_array_iteration_3(value) {
+			return value > 20;
+		}
+		document.getElementById("array_iteration_3").innerHTML = over_twenty;
+
+		var sum = numbers.reduce(func_array_iteration_4);
+		function func_array_iteration_4(total, value) {
+			return total + value;
+		}
+		document.getElementById("array_iteration_4").innerHTML = sum;
+
+		var sum_2 = numbers.reduce(func_array_iteration_5, 100);
+		function func_array_iteration_5(total, value) {
+			return total + value;
+		}
+		document.getElementById("array_iteration_5").innerHTML = sum_2;
+
+		var sum_2 = numbers.reduceRight(func_array_iteration_6, 10);
+		function func_array_iteration_6(total, value) {
+			return total + value;
+		}
+		document.getElementById("array_iteration_6").innerHTML = sum_2;
+
+		var all_over_18 = numbers.every(func_array_iteration_7);
+		function func_array_iteration_7(value) {
+			return value > 18;
+		}
+		document.getElementById("array_iteration_7").innerHTML = all_over_18;
+
+		var some_over_18 = numbers.some(func_array_iteration_8);
+		function func_array_iteration_8(value) {
+			return value > 18;
+		}
+		document.getElementById("array_iteration_8").innerHTML = some_over_18;
+
+		var string_array = ["Apple", "Orange", "Plum", "Apple"];
+		document.getElementById("array_index_1").innerHTML = 
+		'numbers.indexOf("\9")' + " // <b>" + numbers.indexOf("9") + "</b><br>" + 
+		'numbers.indexOf(9)' + " // <b> " + numbers.indexOf(9) + "</b><br>" + 
+		'numbers.indexOf(10)' + " // <b>" + numbers.indexOf(10) + "</b><br><br>" +
+		'string_array.indexOf("Apple")' + " // <b>" + string_array.indexOf("Apple") + "</b><br>" + 
+		'string_array.indexOf("Banana")' + " // <b>" + string_array.indexOf("Banana") + "</b>";
+
+		document.getElementById("array_index_2").innerHTML = string_array.lastIndexOf("Apple");
+
+		var find_first_over_18 = numbers.find(func_array_iteration_9);
+		function func_array_iteration_9(value) {
+			return value > 18;
+		}
+		document.getElementById("array_iteration_9").innerHTML = find_first_over_18;
+
+		var find_index_first_over_18 = numbers.findIndex(func_array_iteration_10);
+		function func_array_iteration_10(value) {
+			return value > 18;
+		}
+		document.getElementById("array_iteration_10").innerHTML = find_index_first_over_18;
+	</script>
+
+<footer></footer>
+<script type ="text/javascript" src="list.js" charset="utf-8"> </script>
+</body>
+</html>

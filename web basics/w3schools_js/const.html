@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset='UTF-8'>
+	<title>Const, Функция стрелки, Debugging</title>
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<a href="javascript:scroll(0,10000)" >
+		<button class="btn">⇩</button>
+	</a>
+	<a href="javascript:scroll(0,0)" title="наверх">
+		<button class="btn_down">⇧</button>
+	</a>
+	<b id="link"></b> 
+
+	<h1>JavaScript Const</h1>
+	
+	<h2>ECMAScript 2015</h2>
+	ES2015 представил два ключевых слова JS: <b>let</b> и <b>const</b>. <b>Const</b> ведут себя как <b>let</b> переменные, но их нельзя переназначить:
+	<br>ПРИМЕР
+	<pre>
+		const PI = 3.141592653589793;
+		PI = 3.14; 
+		PI; // <b>Uncaught TypeError: Assignment to constant variable.</b>
+		PI = PI +10;
+		PI; //<b>Uncaught TypeError: Assignment to constant variable.</b>
+	</pre>
+	
+	<h2>Область действия блока</h2>
+	Объявление переменной с помощью <b>const</b> аналогично тому, <b>let</b> когда дело доходит до области действия блока.
+	
+	<br>ПРИМЕР
+	<pre>
+		В этом примере <b>x</b>, объявленный в блоке, не совпадает с <b>x</b>, объявленным вне блока:
+		var x = 10;
+		{
+		   const x = 2;
+		}
+		x; //<b id="const_0"></b>
+	</pre>
+	
+	<h2>Назначено при объявлении</h2>
+	<b>const</b> Переменным JS должно быть присвоено значение при их объявлении:
+	<br>ПРИМЕР
+	<pre>
+		Некорректный
+		const PI;
+		PI = 3.14159265359;
+		PI; //<b>Uncaught SyntaxError: Missing initializer in const declaration</b>
+		
+		Верный
+		const PI = 3.14159265359;
+		PI; //<b id="const_1"></b>
+	</pre>
+	
+	<h2>Не настоящие константы</h2>
+	<b>const</b> НЕ определяет постоянное значение, а определяет постоянную ссылку на значение. <br>
+	Поэтому нельзя изменять постоянные примитивные значения, но можно изменять свойства постоянных объектов.
+	
+	<h2>Примитивные ценности</h2>
+	Если присвоить константе примитивное значение, нельзя будет изменить примитивное значение: 
+	<br>ПРИМЕР
+	<pre>
+		const PI = 3.141592653589793;
+		PI = 3.14; 
+		PI; // <b id="const"></b>
+
+	</pre>
+	
+	<h2>Постоянные объекты могут изменяться</h2>
+	Можно изменить свойства постоянного объекта:
+	<br>ПРИМЕР
+	<pre>
+		const car = {type:"Fiat", model:"500", color:"white"};
+		JSON.stringify(car); //<b id="car_0"> </b>
+		car.color = "red"; // change
+		car.owner = "Johnson"; // add
+		JSON.stringify(car); //<b id="car_1"> </b>
+
+		Но НЕЛЬЗЯ переназначить постоянный объект:
+
+		try {
+		   const car = {type:"Fiat", model:"500", color:"white"};
+		   car = {type:"BMW", model:"100", color:"blue"};
+		} catch (err) {
+		   err; //<b id="car_2"> </b>
+		}
+	</pre>
+	
+	<h2>Постоянные массивы могут изменяться</h2>
+	Можно изменить элементы постоянного массива:
+	<br>ПРИМЕР
+	<pre>
+		const cars = ["BMW", "Audi", "Saab"];
+		cars[0]; // <b id="cars_0"></b>
+		cars[0] = "Toyota";
+		cars; // <b id="cars_1"></b>
+		cars.push("Volvo"); // <b id="cars_2"></b>
+		cars; // <b id="cars_3"></b>
+
+		НЕЛЬЗЯ переназначить постоянный массив:
+		try {
+		   const cars = ["BMW", "Audi", "Saab"];
+		   cars = ["Audi", "Saab", "BMW"];
+		} catch (err) {
+		   err; // <b id="cars_4"></b>
+		}
+	</pre>
+	
+	<h2>Повторное объявление</h2>
+	<br>ПРИМЕР
+	<pre>
+		Повторное объявление <b>var</b> переменной JS разрешено в любом месте программы:
+		var x = 2;// <b id="redeclaring_0"></b>
+		var x = 5;// <b id="redeclaring_1"></b>
+		x = 3;    // <b id="redeclaring_2"></b>
+
+		Повторное объявление или переназначение существующей переменной <b>var, let, const</b> в той же области или в том же блоке не допускается:
+		var x = 10; //<b>10</b>
+		const x = 1; // <b>Uncaught SyntaxError: Identifier 'test' has already been declared</b>
+		{
+		   let x = 2; //<b>2</b>
+		   const x = 4; //<b>Uncaught SyntaxError: Identifier 'x' has already been declared</b>
+		} 
+		
+		Повторное объявление или переназначение существующей const в той же области/блоке не допускается:
+		const x = 2;       // <b>2</b>
+		const x = 3;       // <b>Not allowed</b>
+		x = 3;             // <b>Not allowed</b>
+		var x = 3;         // <b>Not allowed</b>
+		let x = 3;         // <b>Not allowed</b>
+		Повторное объявление <b>const</b> в другой области/ блоке разрешено:
+		{
+		  const x = 2;   // <b>2</b>
+		  const x = 3;   // <b>Not allowed</b>
+		  x = 3;         // <b>Not allowed</b>
+		  var x = 3;     // <b>Not allowed</b>
+		  let x = 3;     // <b>Not allowed</b>
+		}
+	</pre>
+	
+	<h2>Hoisting</h2>
+	Переменные, определенные с помощью <b>var</b>, поднимаются наверх. <br>
+	Переменные, определенные с помощью <b>const</b>, не поднимаются наверх.
+	<br>ПРИМЕР
+	<pre>
+		Можно использовать <b>var</b> переменную до ее объявления:
+		car_name_0 = "BMW";
+		var car_name_0; 
+		car_name_0; <b id="car_name_0"></b>
+
+		<b>const</b> Переменная не может быть использована, прежде чем он объявлен:
+		car_name_1 = "BMW";
+		const car_name_1; 
+		car_name_1; <b id="car_name_1"></b>
+	</pre>
+
+	<script>
+
+		try {
+			const PI = 3.141592653589793;
+			PI = 3.14; 
+		} catch (err) {
+			document.getElementById("const").innerHTML = err;
+		}
+
+		var x = 10;
+		{
+			const x = 2;
+		}
+		document.getElementById("const_0").innerHTML = x;
+
+		const PI = 3.14159265359;
+		document.getElementById("const_1").innerHTML = PI;
+
+		const car = {type:"Fiat", model:"500", color:"white"};
+		document.getElementById("car_0").innerHTML = JSON.stringify(car);
+		car.color = "red";
+		car.owner = "Johnson";
+		document.getElementById("car_1").innerHTML = JSON.stringify(car);
+
+		try {
+			const car = {type:"Fiat", model:"500", color:"white"};
+			car = {type:"BMW", model:"100", color:"blue"};
+		} catch (err) {
+			document.getElementById("car_2").innerHTML = err;
+		}
+
+		const cars = ["BMW", "Audi", "Saab"];
+		document.getElementById("cars_0").innerHTML = cars[0];
+		cars[0] = "Toyota";
+		document.getElementById("cars_1").innerHTML = cars;
+		document.getElementById("cars_2").innerHTML = cars.push("Volvo");
+		document.getElementById("cars_3").innerHTML = cars;
+
+		try {
+			const cars = ["BMW", "Audi", "Saab"];
+			cars = ["Audi", "Saab", "BMW"];
+		} catch (err) {
+			document.getElementById("cars_4").innerHTML = err;
+		}
+
+		var x = 2;
+		document.getElementById("redeclaring_0").innerHTML = x;
+		var x = 5;
+		document.getElementById("redeclaring_1").innerHTML = x;
+		x = 3;
+		document.getElementById("redeclaring_2").innerHTML = x;
+
+		var x = 10;
+		// const x= 1; 
+		{ let x = 2;
+			// const x = 4;
+		} 
+
+		car_name_0 = "BMW";
+		var car_name_0; 
+		document.getElementById("car_name_0").innerHTML = car_name_0;
+
+		try {
+			car_name_1 = "BMW";
+			const car_name_1 = "BMW"; 
+		} catch (err) {
+			document.getElementById("car_name_1").innerHTML = err;
+		}
+	</script>
+
+	<h1>Функция стрелки</h1>
+	Стрелочные функции позволяют писать более короткий синтаксис функций.
+	Это работает, только если функция имеет только один оператор.
+	<br>ПРИМЕР
+	<pre>
+		hello = function() {
+		   return "hello world";
+		}
+		hello();  // <b id="arrow_0"></b>
+
+		hello_1 = () => {
+		   return "hello world";
+		}
+		hello_1(); // <b id="arrow_1"></b>
+
+		Значение по умолчанию, возвращаемое стрелочными функциями:
+		hello_2 = () => "hello world";
+		hello_2(); // <b id="arrow_2"></b>
+
+		Если есть параметры, нужно их передать в скобках:
+		hello_3 = (val) => "hello world" + val;
+		hello_3("everyone"); // <b id="arrow_3"></b>
+
+		Фактически, если есть только один параметр, можно пропустить круглые скобки:
+		hello_4 = val => "hello world" + val;
+		hello_4(" everyone"); // <b id="arrow_4"></b>
+	</pre>
+
+	<h2>What About this?</h2>
+	Обработка <b>this</b> стрелочных функций отличается от обычных функций, cо стрелочными функциями нет привязки  <b>this</b>. <br>
+
+	В обычных функциях  <b>this</b> представляет объект, вызывающий функцию, который может быть окном, документом, кнопкой или чем-то еще. <br>
+	В стрелочных функциях  <b>this</b> всегда представляет объект, определяющий стрелочную функцию.
+	<br>ПРИМЕР
+	<pre>
+		Метод вызывается дважды: сначала при загрузке страницы, и еще раз, когда пользователь нажимает кнопку.
+
+		С помощью обычной функции <b>this</b> представляет объект, который вызывает функцию:
+		возвращает два разных объекта (окно и кнопку).
+		func_0 = function() {
+		   document.getElementById("func_0").innerHTML += this; 
+		}
+		window.addEventListener("load", func_0); 
+		document.getElementById("func_0_btn").addEventListener("click", func_0);  
+		<button id="func_0_btn">Click Me</button> <b id="func_0"></b>
+
+
+		Со стрелкой функция <b>this</b> представляет владельца функции:
+		возвращает объект окна дважды, потому что объект окна является «владельцем» функции
+		func_1 = () => {
+		   document.getElementById("func_1").innerHTML += this; 
+		}
+		window.addEventListener("load", func_1);
+		document.getElementById("func_1_btn").addEventListener("click", func_1); 
+		<button id="func_1_btn">Click Me</button> <b id="func_1"></b>
+	</pre>
+	
+	<script>
+		hello = function() {
+			return "hello world";
+		}
+		document.getElementById("arrow_0").innerHTML = hello();
+
+		hello_1 = () => {
+			return "hello world";
+		}
+		document.getElementById("arrow_1").innerHTML = hello_1();
+
+		hello_2 = () => "hello world";
+		document.getElementById("arrow_2").innerHTML = hello_2();
+
+		hello_3 = (val) => "hello world" + val;
+		document.getElementById("arrow_3").innerHTML = hello_3(" everyone");
+
+		hello_4 = val => "hello world" + val;
+		document.getElementById("arrow_4").innerHTML = hello_4(" everyone");
+
+		func_0 = function() {
+			document.getElementById("func_0").innerHTML += this; 
+		}
+		window.addEventListener("load", func_0);
+		document.getElementById("func_0_btn").addEventListener("click", func_0); 
+
+		func_1 = () => {
+			document.getElementById("func_1").innerHTML += this; 
+		}
+		window.addEventListener("load", func_1);
+		document.getElementById("func_1_btn").addEventListener("click", func_1); 
+	</script>
+
+	<h1>JavaScript Debugging(Отладка)</h1>
+	<h2>Отладка кода</h2>
+	 <b>Oтладкой кода</b> - поиск (и исправление) ошибок в программном коде, может содержать синтаксические/ логические ошибки.
+
+	<h2>Отладчики JS</h2>
+	все современные браузеры имеют встроенный отладчик JavaScript.  <br>
+	Встроенные отладчики можно включать и выключать, заставляя пользователя сообщать об ошибках. <br>
+	Можно устанавливать точки останова (места, где выполнение кода может быть остановлено) и проверять переменные во время выполнения кода.
+
+	<h2>Метод console.log()</h2>
+	<b>console.log()</b> - для отображения значений JS в окне отладчика:
+	<br>ПРИМЕР
+	<pre>
+		a = 5;
+		b = 10;
+		console.log(a + b);
+	</pre>
+
+	<h2>Установка точек останова</h2>
+	В окне отладчика можно установить точки останова в коде JS.	В каждой точке останова JS прекращает выполнение и позволяет проверять значения JS. <br>
+	После изучения значений можно возобновить выполнение кода (обычно с помощью кнопки воспроизведения).
+
+	<h2>Ключевое слово отладчика</h2>
+	<b>debugger</b> - Ключевое слово останавливает выполнение JS и вызовы (если таковые имеются) функции отладки. <br>
+	Это та же функция, что и установка точки останова в отладчике. Если отладка недоступна, инструкция отладчика не действует. <br>
+	Если отладчик включен, этот код перестанет выполняться до того, как выполнит третью строку.
+	<br>ПРИМЕР
+	<pre>
+		var x = 15 * 5;
+		debugger;
+		x; // <b id="debug_0"></b>
+	</pre>
+
+	<script>
+		a = 5;
+		b = 10;
+		console.log(a + b);
+
+		var x = 15 * 5;
+		debugger;
+		document.getElementById("debug_0").innerHTML = x;
+	</script>
+
+<footer></footer>
+<script type ="text/javascript" src="list.js" charset="utf-8"> </script>
+</body>
+</html>

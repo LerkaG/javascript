@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Math</title>
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<a href="javascript:scroll(0,10000)" >
+		<button class="btn">⇩</button>
+	</a>
+	<a href="javascript:scroll(0,0)" title="наверх">
+		<button class="btn_down">⇧</button>
+	</a>
+	<b id="link"></b> 
+	
+	<h1>Math Object</h1>
+	Объект JS Math позволяет выполнять математические задачи над числами.
+	<pre>
+		Math.PI; // <b id="math_1"></b>
+	</pre>
+	<h2>Math.round()</h2>
+	<b>Math.round(x)</b> - возвращает значение x, округленное до ближайшего целого числа
+	<br>ПРИМЕР
+	<pre>
+		Math.round(2.33); // <b id="math_2"></b>
+		Math.round(2.63); // <b id="math_3"></b>
+	</pre>
+
+	<h2>Math.pow()</h2>
+	<b>Math.pow(x, y)</b> - возвращает значение x в степень y
+	<br>ПРИМЕР
+	<pre>
+		Math.pow(2, 4); // <b id="math_4"></b>
+	</pre>
+
+	<h2>Math.sqrt()</h2>
+	<b>Math.sqrt(x)</b> - возвращает квадратный корень из x
+	<br>ПРИМЕР
+	<pre>
+		Math.sqrt(4); // <b id="math_5"></b>
+	</pre>
+
+	<h2>Math.abs()</h2>
+	<b>Math.abs(x)</b> - возвращает абсолютное (положительное) значение x:
+	<br>ПРИМЕР
+	<pre>
+		Math.abs(-4.7); // <b id="math_6"></b>
+	</pre>
+	
+	<h2>Math.ceil()</h2>
+	<b>Math.ceil(x)</b> - возвращает значение x, округленное до ближайшего целого числа
+	<br>ПРИМЕР
+	<pre>
+		Math.ceil(-4.7); // <b id="math_7"></b>
+		Math.ceil(4.7);  // <b id="math_8"></b>
+	</pre>
+
+	<h2>Math.floor()</h2>
+	<b>Math.floor(x)</b> - возвращает значение х округляется вниз до ближайшего целого числа
+	<br>ПРИМЕР
+	<pre>
+		Math.floor(-4.7); // <b id="math_9"></b>
+		Math.floor(4.7);  // <b id="math_10"></b>
+	</pre>
+
+	<h2>Math.sin() и Math.cos()</h2>
+	<b>Math.sin(x)</b> - возвращает синус (значение от -1 до 1) угла x (в радианах). <br>
+	<b>Math.cos(x)</b> -  возвращает косинус (значение между -1 и 1) угла x (в радианах). <br>
+	Можно использовать градусы вместо радиан, для этого нужно конвертировать градусы в радианы:	Угол в радианах = Угол в градусах х PI / 180.
+	<br>ПРИМЕР
+	<pre>
+		
+		Math.sin(90 * Math.PI / 180); // <b id="math_11"></b> Значение синуса 90 градусов равно 1
+		Math.sin(0 * Math.PI / 180);  // <b id="math_12"></b>
+
+		Math.cos(90 * Math.PI / 180); // <b id="math_13"></b>
+		Math.cos(0 * Math.PI / 180);  // <b id="math_14"></b>
+	</pre>
+		
+	<h2>Math.min() и Math.max()</h2>
+	<b>Math.min()</b>и <b>Math.max()</b> - может использоваться, чтобы найти самое низкое или самое высокое значение в списке аргументов:
+	<br>ПРИМЕР
+	<pre>
+		Math.min(0, 180, 43, 55);  <b id="math_15"></b> 
+		Math.max(0, 180, 43, 55);  <b id="math_16"></b>
+	</pre>
+		
+	<h2>Math.random()</h2>
+	<b>Math.random()</b> - возвращает случайное число от 0 (включительно) до 1 (исключая):
+	<br>ПРИМЕР
+	<pre>
+		Math.random(); <b id="math_17"></b> 
+	</pre>
+		
+	<h2>Математические свойства (константы)</h2>
+	JS предоставляет 8 математических констант, к которым можно обращаться с помощью объекта Math:
+	<br>ПРИМЕР
+	<pre>
+		Math.E       // returns Euler's number //<b id="math_18"></b> 
+		Math.PI      // returns PI.            //<b id="math_1"></b> 
+		Math.SQRT2   // возвращает квадратный корень из 2    //<b id="math_19"></b> 
+		Math.SQRT1_2 // возвращает квадратный корень из 1/2  //<b id="math_20"></b> 
+		Math.LN2     // возвращает натуральный логарифм 2    //<b id="math_21"></b> 
+		Math.LN10    // returns the natural logarithm of 10  //<b id="math_22"></b> 
+		Math.LOG2E   // возвращает основание 2 логарифм Е         //<b id="math_23"></b> 
+		Math.LOG10E  // returns base 10 logarithm of E       //<b id="math_24"></b> 
+	</pre>
+		
+	<h2>Математический конструктор</h2>
+	В отличие от других глобальных объектов, объект <b>Math</b> не имеет конструктора. Методы и свойства являются статическими. <br>
+	Все методы и свойства (константы) могут использоваться без предварительного создания объекта <b>Math</b>.
+
+	<script type="text/javascript">
+		document.getElementById("math_1").innerHTML = Math.PI;
+
+		document.getElementById("math_2").innerHTML = Math.round(2.33);
+		document.getElementById("math_3").innerHTML = Math.round(2.63);
+
+		document.getElementById("math_4").innerHTML = Math.pow(2, 4);
+		document.getElementById("math_5").innerHTML = Math.sqrt(4);
+
+		document.getElementById("math_6").innerHTML = Math.abs(-4.7);
+
+		document.getElementById("math_7").innerHTML = Math.ceil(-4.7);
+		document.getElementById("math_8").innerHTML = Math.ceil(4.7);
+
+		document.getElementById("math_9").innerHTML = Math.floor(-4.7);
+		document.getElementById("math_10").innerHTML = Math.floor(4.7);
+
+		document.getElementById("math_11").innerHTML = Math.sin(90 * Math.PI / 180);
+		document.getElementById("math_12").innerHTML = Math.sin(0 * Math.PI / 180);
+
+		document.getElementById("math_13").innerHTML = Math.cos(90 * Math.PI / 180);
+		document.getElementById("math_14").innerHTML = Math.cos(0 * Math.PI / 180);
+
+		document.getElementById("math_15").innerHTML = Math.min(0, 180, 43, 55);
+		document.getElementById("math_16").innerHTML = Math.max(0, 180, 43, 55);
+
+		document.getElementById("math_17").innerHTML = Math.random();
+
+		document.getElementById("math_18").innerHTML = Math.E;
+		document.getElementById("math_19").innerHTML = Math.SQRT2;
+		document.getElementById("math_20").innerHTML = Math.SQRT1_2;
+		document.getElementById("math_21").innerHTML = Math.LN2;
+		document.getElementById("math_22").innerHTML = Math.LN10;
+		document.getElementById("math_23").innerHTML = Math.LOG2E;
+		document.getElementById("math_24").innerHTML = Math.LOG10E;
+	</script>
+
+	<h1>random</h1>
+	<h2>Math.random()</h2>
+	<b>Math.random()</b> - возвращает случайное число от 0 (включительно) до 1 (исключая), всегда возвращает число ниже 1.
+	<br>ПРИМЕР
+	<pre>
+		Math.random(); //<b id="random_1"></b>
+	</pre>
+
+	<h2>случайные целые числа</h2>
+	<b>Math.random()</b> используется с <b>Math.floor()</b> может быть использована для получения случайных чисел
+	<br>ПРИМЕР
+	<pre>
+		Math.floor(Math.random() * 10);     //<b id="random_2"></b> - 0 to 9
+		Math.floor(Math.random() * 11);     //<b id="random_3"></b> - 0 to 10
+		Math.floor(Math.random() * 10) + 1; //<b id="random_4"></b> - 0 to 10
+	</pre>
+
+	<h2>Правильная случайная функция</h2>
+	Эта функция JavaScript всегда возвращает случайное число между min (включенным) и max (исключенным):
+	<br>ПРИМЕР
+	<pre>
+		function random_func_1(min, max) {
+		   return Math.floor(Math.random() * (max - min)) + min;
+		}
+		<button onclick="document.getElementById('random_5').innerHTML = random_func_1(20, 29)">Click Me</button>
+		 random_func_1(20, 29) //<b id="random_5"></b> 
+
+		Эта функция JavaScript всегда возвращает случайное число между min и max (оба включены):
+		function random_func_2(min, max) {
+		   return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+		<button onclick="document.getElementById('random_6').innerHTML = random_func_2(20, 29)">Click Me</button>
+		 random_func_2(20, 29) //<b id="random_6"></b> 
+	</pre>
+
+	<script>
+		document.getElementById('random_1').innerHTML = Math.random();
+		document.getElementById('random_2').innerHTML = Math.floor(Math.random() * 10);
+		document.getElementById('random_3').innerHTML = Math.floor(Math.random() * 11);
+		document.getElementById('random_4').innerHTML = Math.floor(Math.random() * 10) + 1;
+
+		function random_func_1(min, max) {
+			return Math.floor(Math.random() * (max - min)) + min;
+		}
+
+		function random_func_2(min, max) {
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+	</script>
+
+	<h1>Booleans</h1>
+	JavaScript Boolean представляет одно из двух значений: <b>true</b> или <b>false</b>.
+
+	<h2>Boolean() функция</h2>
+	<b>Boolean()</b> функцию - чтобы узнать, является ли выражение (или переменная) истинным
+	<br>ПРИМЕР
+	<pre>
+		Boolean(10 < 9); // <b id="boolean_1"></b>
+		Boolean(10 > 9); // <b id="boolean_2"></b>
+		10 > 9;          // <b id="boolean_3"></b>
+	</pre>
+	
+	<h2>Когда считается true и false</h2>
+	Все со значением считается <b>true</b>. Все без значения считается <b>false</b>.
+	<br>ПРИМЕР
+	<pre>
+		<b>true</b>
+		Boolean("Word");   // <b id="boolean_4"></b>
+		Boolean(109);      // <b id="boolean_5"></b>
+		Boolean(-109);     // <b id="boolean_6"></b>
+		Boolean(-2 - 9);   // <b id="boolean_7"></b>
+
+		<b>false</b>
+		Boolean(0);        // <b id="boolean_8"></b>
+		Boolean(-0);       // <b id="boolean_9"></b>
+		Boolean("");       // <b id="boolean_10"></b>
+		Boolean();         // <b id="boolean_11"></b>
+		Boolean(null);     // <b id="boolean_12"></b>
+		Boolean(false);    // <b id="boolean_13"></b>
+		Boolean(10 / "H"); // <b id="boolean_14"></b>
+	</pre>
+	
+	<h2>Логические значения могут быть объектами</h2>
+	Обычно логические значения JS являются примитивными значениями, созданными из литералов: <b><i>var x = false;</i></b> <br>
+	Но логические значения также могут быть определены как объекты с ключевым словом <b>new: <i>var y = new Boolean(false);</i></b> <br>
+	Не нужно создавать логические объекты. Это замедляет скорость выполнения, ключевое слово усложняет код и может привести к неожиданным результатам: <b>new</b>
+	<br>ПРИМЕР
+	<pre>
+		var x = false;
+		var y = new Boolean(false);
+		var z = new Boolean(false);
+		typeof x; // <b id="boolean_15"></b>
+		typeof y; // <b id="boolean_16"></b>
+
+		При использовании <b>==</b> оператора равные логические значения равны
+		x == y;   // <b id="boolean_17"></b>
+
+		При использовании <b>===</b> оператора равные логические значения не равны, поскольку <b>===</b> оператор ожидает равенства как по типу, так и по значению.
+		x === y;   // <b id="boolean_18"></b>
+
+		Объекты нельзя сравнивать
+		z == y;    // <b id="boolean_19"></b>
+		z === y;   // <b id="boolean_20"></b>
+	</pre>
+
+	<script type="text/javascript">
+		document.getElementById("boolean_1").innerHTML = Boolean(10 < 9);
+		document.getElementById("boolean_2").innerHTML = Boolean(10 > 9);
+		document.getElementById("boolean_3").innerHTML = 10 > 9;
+
+		document.getElementById("boolean_4").innerHTML = Boolean("Word");
+		document.getElementById("boolean_5").innerHTML = Boolean(109);
+		document.getElementById("boolean_6").innerHTML = Boolean(-109);
+		document.getElementById("boolean_7").innerHTML = Boolean(-2 - 9);
+
+		document.getElementById("boolean_8").innerHTML = Boolean(0);
+		document.getElementById("boolean_9").innerHTML = Boolean(-0);
+		document.getElementById("boolean_10").innerHTML = Boolean("");
+		document.getElementById("boolean_11").innerHTML = Boolean();
+		document.getElementById("boolean_12").innerHTML = Boolean(null);
+		document.getElementById("boolean_13").innerHTML = Boolean(false);
+		document.getElementById("boolean_14").innerHTML = Boolean(10 / "H");
+
+		var x = false;
+		var y = new Boolean(false);
+		var z = new Boolean(false);
+		document.getElementById("boolean_15").innerHTML = typeof x;
+		document.getElementById("boolean_16").innerHTML = typeof y;
+		document.getElementById("boolean_17").innerHTML = x == y;
+		document.getElementById("boolean_18").innerHTML = x === y;
+		document.getElementById("boolean_19").innerHTML = z == y;
+		document.getElementById("boolean_20").innerHTML = z === y;
+	</script>
+	
+	<h1>Сравнение и логические операторы</h1>
+	Сравнение и Логические операторы используются для проверки trueили false.
+	<h2>Операторы сравнения</h2>
+	Операторы сравнения используются в логических выражениях для определения равенства или разницы между переменными или значениями.
+	<br>ПРИМЕР
+	<pre>
+		var x = 5;
+		== - равно
+		x == 7   - <b id="operators_1"> </b>
+		x == 5   - <b id="operators_2"> </b>
+		x == "5" - <b id="operators_3"> </b>
+
+		=== - равное значение и равный тип
+		x === "5" - <b id="operators_4"> </b>
+		x === 5   - <b id="operators_5"> </b>
+
+		!= - не равно
+		x != "5" - <b id="operators_6"> </b>
+		x != 5   - <b id="operators_7"> </b>
+		x != 8   - <b id="operators_8"> </b>
+
+		!== - не равное значение или не равный тип
+		x !== "5" - <b id="operators_9"> </b>
+		x !== 5   - <b id="operators_10"> </b>
+		x !== 8   - <b id="operators_11"> </b>
+
+		> - больше чем (x больше /число/)
+		x > 5 - <b id="operators_12"> </b>
+		x > 8 - <b id="operators_13"> </b>
+		x > 4 - <b id="operators_14"> </b>
+
+		< - меньше чем (x меньше /число/)
+		x < 5 - <b id="operators_15"> </b>
+		x < 8 - <b id="operators_16"> </b>
+		x < 4 - <b id="operators_17"> </b>
+
+		>= - больше или равно
+		x >= 5 - <b id="operators_18"> </b>
+		x >= 8 - <b id="operators_19"> </b>
+		x >= 4 - <b id="operators_20"> </b>
+
+		<= - меньше или равно
+		x <= 5 - <b id="operators_21"> </b>
+		x <= 8 - <b id="operators_22"> </b>
+		x <= 4 - <b id="operators_23"> </b>
+	</pre>
+	<code id="operators_1"> <ul> </ul></code> 
+	
+	<h2>Как это можно использовать</h2>
+	Операторы сравнения могут использоваться в условных выражениях для сравнения значений и выполнения действий в зависимости от результата
+	<br>ПРИМЕР
+	<pre>
+		if (age < 18) text = "Too young";
+	</pre>
+	
+	<h2>Логические Операторы</h2>
+	Логические операторы используются для определения логики между переменными или значениями.
+	<br>ПРИМЕР
+	<pre>
+		var y = 3;
+		&& - И
+		(x > 3 && y < 5); // <b id="operators_24"> </b>
+		(x < 2 && y > 8); // <b id="operators_25"> </b>
+		(x < 6 && y < 4); // <b id="operators_26"> </b>
+
+		|| - ИЛИ
+		(x > 3 || y < 5); // <b id="operators_27"> </b>
+		(x < 2 || y > 8); // <b id="operators_28"> </b>
+		(x < 6 || y < 4); // <b id="operators_29"> </b>
+
+		! - НЕ
+		!(x > 3);  // <b id="operators_30"> </b>
+		!(x < 2);  // <b id="operators_31"> </b>
+		!(x || y); // <b id="operators_32"> </b>
+	</pre>
+	
+	<h2>Условный (троичный) оператор</h2>
+	JS также содержит условный оператор, который присваивает значение переменной на основе некоторого условия.
+	<br>СИНТАКСИС  <br>
+	<u><i>variablename = (condition) ? value1:value2 </i></u>
+	<br>ПРИМЕР
+	<pre>
+		<input id="age" value="18" />
+		<button onclick="my_function()"> Try it</button> 
+		<b id="three_operator"></b>
+	</pre>
+	
+	<h2>Сравнение разных типов</h2>
+	Сравнение данных разных типов может дать неожиданные результаты. <i>При сравнении строки с числом</i> JS преобразует <b>строку в число</b> при сравнении. <br>	<i>Пустая строка</i> преобразуется в <b>0</b>. <i>Нечисловая строка</i> преобразуется в <b>NaN</b> всегда <b>false</b>
+	<br>ПРИМЕР
+	<pre>
+		2 < 12;      // <b id="different_types_1"></b>
+		2 < '12';    // <b id="different_types_2"></b>
+		2 < "John";  // <b id="different_types_3"></b>
+		2 > "John";  // <b id="different_types_4"></b>
+		2 == "John"; // <b id="different_types_5"></b>
+		"2" < "12";  // <b id="different_types_6"></b>
+
+		При сравнении двух строк «2» будет больше «12», потому что (в алфавитном порядке) 1 меньше 2.
+		"2" > "12";  // <b id="different_types_7"></b>
+		"2" == "12"; // <b id="different_types_8"></b>
+
+		Чтобы обеспечить правильный результат, переменные должны быть преобразованы в правильный тип перед сравнением:
+
+		function function_different_types() {
+		var age, voteable;
+		age = Number(document.getElementById("age_2").value);
+		if (isNaN(age)) {
+		   voteable = "Input is not a number";
+		} else {
+		   voteable = (age < 18) ? "Too young" : "Old enough";
+		}
+		document.getElementById("different_types_9").innerHTML = voteable;
+		}
+
+		<input id="age_2" value="18" />
+		<button onclick="function_different_types()"> Click Me</button>
+		<b id="different_types_9"></b>
+		
+	</pre>
+	<script>
+		var x = 5;
+		document.getElementById("operators_1").innerHTML = (x == 7);
+		document.getElementById("operators_2").innerHTML = (x == 5);
+		document.getElementById("operators_3").innerHTML = (x == "5");
+
+		document.getElementById("operators_4").innerHTML = (x === "5");
+		document.getElementById("operators_5").innerHTML = (x === 5);
+
+		document.getElementById("operators_6").innerHTML = (x != "5");
+		document.getElementById("operators_7").innerHTML = (x != 5);
+		document.getElementById("operators_8").innerHTML = (x != 8);
+
+		document.getElementById("operators_9").innerHTML = (x !== "5");
+		document.getElementById("operators_10").innerHTML = (x !== 5);
+		document.getElementById("operators_11").innerHTML = (x !== 8);
+
+		document.getElementById("operators_12").innerHTML = (x > 5);
+		document.getElementById("operators_13").innerHTML = (x > 8);
+		document.getElementById("operators_14").innerHTML = (x > 4);
+
+		document.getElementById("operators_15").innerHTML = (x < 5);
+		document.getElementById("operators_16").innerHTML = (x < 8);
+		document.getElementById("operators_17").innerHTML = (x < 4);
+
+		document.getElementById("operators_18").innerHTML = (x >= 5);
+		document.getElementById("operators_19").innerHTML = (x >= 8);
+		document.getElementById("operators_20").innerHTML = (x >= 4);
+
+		document.getElementById("operators_21").innerHTML = (x <= 5);
+		document.getElementById("operators_22").innerHTML = (x <= 8);
+		document.getElementById("operators_23").innerHTML = (x <= 4);
+		
+		var y = 3;
+		document.getElementById("operators_24").innerHTML = (x > 3 && y < 5);
+		document.getElementById("operators_25").innerHTML = (x < 2 && y > 8);
+		document.getElementById("operators_26").innerHTML = (x < 6 && y < 4);
+
+		document.getElementById("operators_27").innerHTML = (x > 3 || y < 5);
+		document.getElementById("operators_28").innerHTML = (x < 2 || y > 8);
+		document.getElementById("operators_29").innerHTML = (x < 6 || y < 4);
+
+		document.getElementById("operators_30").innerHTML = !(x > y);
+		document.getElementById("operators_31").innerHTML = !(x < y);
+		document.getElementById("operators_32").innerHTML = !(x || y);
+
+		// Условный (троичный) оператор
+		function my_function() {
+			var age, voreable;
+			age = document.getElementById("age").value;
+			voreable = (age < 18) ? "To young" : "Old enough";
+			document.getElementById("three_operator").innerHTML = voreable + " to vote";
+		}
+
+
+		document.getElementById("different_types_1").innerHTML = 2 < 12; 
+		document.getElementById("different_types_2").innerHTML = 2 < '12';
+		document.getElementById("different_types_3").innerHTML = 2 < "John";
+		document.getElementById("different_types_4").innerHTML = 2 > "John";
+		document.getElementById("different_types_5").innerHTML = 2 == "John";
+		document.getElementById("different_types_6").innerHTML = "2" < "12";
+		document.getElementById("different_types_7").innerHTML = "2" > "12";
+		document.getElementById("different_types_8").innerHTML = "2" == "12";
+
+		function function_different_types() {
+		var age, voteable;
+		age = Number(document.getElementById("age_2").value);
+		if (isNaN(age)) {
+			voteable = "Input is not a number";
+		} else {
+			voteable = (age < 18) ? "Too young" : "Old enough";
+		}
+		document.getElementById("different_types_9").innerHTML = voteable;
+		}
+		
+	</script>
+
+<footer></footer>
+<script type ="text/javascript" src="list.js" charset="utf-8"> </script>
+</body>
+</html>

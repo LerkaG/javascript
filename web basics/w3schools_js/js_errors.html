@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ошибки JS</title>
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<a href="javascript:scroll(0,10000)" >
+		<button class="btn">⇩</button>
+	</a>
+	<a href="javascript:scroll(0,0)" title="наверх">
+		<button class="btn_down">⇧</button>
+	</a>
+	<b id="link"></b> 
+	
+	<h1>Ошибки JS - Throw and Try to Catch</h1>
+	<b>try</b> - Оператор позволяет проверить блок кода на наличие ошибок. <br>
+	<b>catch</b> - Оператор позволяет обрабатывать ошибку. <br>
+	<b>throw</b> - Оператор позволяет создавать пользовательские ошибки. <br>
+	<b>finally</b> - Оператор позволяет выполнить код, после того, как была попытка словить, независимо от результата. 
+
+	<h2>Ошибки будут!</h2>
+	При выполнении кода JavaScript могут возникать разные ошибки. <br>
+	Ошибки могут быть: ошибками кодирования, сделанными программистом, ошибками из-за неправильного ввода и другими непредвиденными вещами.
+	<br>ПРИМЕР
+	<pre>
+		Предупреждение как <i>adddlert</i>, чтобы преднамеренно выдать ошибку.
+		JS отлавливает <b>adddlert</b> как ошибку и выполняет код <b>catch</b> для его обработки.
+		try {
+		   adddlert("Welcom guest!");
+		}
+		catch(err) {
+		   document.getElementById("try_catch_0").innerHTML = err.message;
+		}
+		<b id="try_catch_0"></b>
+	</pre>
+
+	<h2>JS try и catch</h2>
+	<b>try </b>- Утверждение позволяет определить блок кода, который будет испытан на ошибки при его выполнении. <br>
+	<b>catch </b>- Утверждение позволяет определить блок кода, который будет выполняться, если ошибка происходит в блоке <b>try</b>. <br>
+	Операторы <b>try</b> и <b>catch</b> приходят парами:
+	<br>СИНТАКСИС
+	<pre>
+		try {
+		   Block of code to try
+		}
+		catch(err) {
+		   Block of code to handle errors
+		}
+	</pre>
+
+	<h2>JS выдает ошибки</h2>
+	При возникновении ошибки JS обычно останавливается и генерирует сообщение об ошибке. <br>
+	Технический термин для этого: JS будет выдавать исключение <b>(throw an exception)</b> (выдавать ошибку). <br>
+	JS фактически создаст объект <b>Error</b> с двумя свойствами: <b>name</b> и <b>message</b>.
+	
+	<h2>Заявление throw</h2>
+	<b>throw</b> - Заявление позволяет создать пользовательскую ошибку. <br>
+	Технически можно сгенерировать исключение (сгенерировать ошибку). <br>
+	Исключением может быть <b>String, Number, Boolean</b> или <b>Object</b> <br>
+	Если использовать <b>throw</b> вместе с <b>try</b> и <b>catch</b>, то можно контролировать ход программы и генерировать пользовательские сообщения об ошибках.
+	<br>ПРИМЕР
+	<pre>
+		throw "Too big"; // throw a Sting
+		throw 500;      // throw a Number
+	</pre>
+
+	<h2>Проверки входных данных</h2>
+	Этот пример проверяет ввод. Если значение неверно, генерируется исключение (ошибка). <br>
+	Исключение <b>(err)</b> перехватывается оператором <b>catch</b>, и отображается пользовательское сообщение об ошибке:
+	<br>ПРИМЕР
+	<pre>
+		function func_error_0() {
+		   var message, x;
+		   message = document.getElementById("message");
+		   message.innerHTML = "";
+		   x = document.getElementById("test_error_1").value;
+		   try {
+		      if(x == "") throw "empty";
+		      if(isNaN(x)) throw "not a Number";
+		      x = Number(x);
+		      if(x < 5) throw "too low";
+		      if(x > 10) throw "too high";
+		   }
+		   catch(err) {
+		      message.innerHTML = "Input is " + err;
+		   }
+		}
+		< input type="text" id="test_error_1">
+		< button type="button" onclick="func_error_0()"> Test Input< /button>
+		<input type="text" id="test_error_1"><button type="button" onclick="func_error_0()"> Test Input</button>
+		<b id="message"> </b>
+	</pre>
+
+	<h2>Проверка HTML</h2>
+	Современные браузеры часто используют комбинацию JS и встроенной проверки HTML, используя предопределенные правила проверки, определенные в атрибутах HTML:
+	<br>ПРИМЕР
+	<pre>
+		<input type="number" id="" min="5" max="10" step="1">
+	</pre>
+
+	<h2>Последнее заявление</h2>
+	<b>finally</b> - Оператор позволяет выполнить код, после того, как попытаться поймать, независимо от результата:
+	<br>СИНТАКСИС
+	<pre>
+		try {
+		   Block of code to try
+		}
+		catch(err) {
+		   Block of code to handle errors
+		}
+		finally {
+		   Block of code to be executed regardless of the try / catch result
+		}
+	</pre>
+	<br>ПРИМЕР
+	<pre>
+		function func_finally() {
+		   var message, x;
+		   message = document.getElementById("message_1");
+		   message.innerHTML = "";
+		   x = document.getElementById("finally_1").value;
+		   try {
+		      if(x == "") throw "is empty";
+		      if(isNaN(x)) throw "is not a number";
+		      x = Number(x);
+		      if(x > 10) throw "is too high";
+		      if(x < 5) throw "is too low";
+		   }
+		   catch(err) {
+		      message.innerHTML = "Error: " + err + ".";
+		   }
+			finally {
+		      document.getElementById("finally_1").value = "";
+		   }
+		}
+		<input type="text" id="finally_1"><button type="button" onclick="func_finally()"> Test Input</button>
+		<b id="message_1"> </b>
+	</pre>
+
+	<h2>Объект ошибки</h2>
+	В JS есть встроенный объект ошибки, который предоставляет информацию об ошибке при возникновении ошибки. <br>
+	Объект ошибки предоставляет два полезных свойства: <b>имя</b> и <b>сообщение</b>.
+	<br>Свойства объекта ошибки
+	<pre>
+		<b>Название</b>  - Устанавливает или возвращает имя ошибки;
+		<b>Сообщение</b> - Устанавливает или возвращает сообщение об ошибке (строка)
+	</pre>
+
+	<h2>Значения имени ошибки</h2>
+	Шесть разных значений могут быть возвращены свойством имени ошибки:
+	<br>ПРИМЕР
+	<pre>
+		<b>EvalError</b>         - Произошла ошибка в функции <b>eval();</b>
+		<b>RangeError</b>        - Произошло число «вне диапазона»;
+		<b>ReferenceError</b>    - Произошла незаконная ссылка;
+		<b>SyntaxError</b>       - Произошла синтаксическая ошибка;
+		<b>TypeError</b>         - Произошла ошибка типа;
+		<b>URIError</b>          - Произошла ошибка в <b>encodeURI()</b>
+	</pre>
+
+	<h2>Ошибка Eval</h2>
+	<b>EvalError</b> - Указывает на ошибку в функции <b>Eval()</b>. <br>
+	Более новые версии JS не выдают <b>EvalError</b>. Вместо этого можно использовать <b>SyntaxError</b>.
+
+	<h2>Ошибка RangeError</h2>
+	<b>RangeError</b> - выбрасывается, если вы используете число, выходящее за пределы допустимых значений.
+	<br>ПРИМЕР
+	<pre>
+		Нельзя установить количество значащих цифр числа в 500.
+		var num = 1;
+		try {
+		   num.toPrecision(500);
+		}
+		catch(err) {
+		   document.getElementById("range_error").innerHTML = err.name;
+		}
+		<b id="range_error"></b>
+	</pre>
+
+	<h2>Ошибка ReferenceError</h2>
+	<b>ReferenceError</b> - выдается, если вы используете (ссылку) переменную, которая не была объявлена:
+	<br>ПРИМЕР
+	<pre>
+		var x;
+		try {
+		   x = y + 1;
+		}
+		catch(err) {
+		   document.getElementById("reference_error").innerHTML = err.name;
+		}
+		<b id="reference_error"></b>
+	</pre>
+
+	<h2>Ошибка SyntaxError</h2>
+	<b>SyntaxError</b> - выдается, если вы пытаетесь оценить код с синтаксической ошибкой.
+	<br>ПРИМЕР
+	<pre>
+		try {
+		   eval("alert('Hello)");
+		}
+		catch(err) {
+		   document.getElementById("syntax_error").innerHTML = err.name;
+		}
+		<b id="syntax_error"></b>
+	</pre>
+
+	<h2>Ошибка TypeError</h2>
+	<b>TypeError</b> - выдается, если вы используете значение, выходящее за пределы диапазона ожидаемых типов:
+	<br>ПРИМЕР
+	<pre>
+		var num = 1;
+		try {
+		   num.toUpperCase();
+		}
+		catch(err) {
+		   document.getElementById("type_error").innerHTML = err.name;
+		}
+		<b id="type_error"></b>
+	</pre>
+
+	<h2>Ошибка URIError (универсального идентификатора ресурса)</h2>
+	<b>URIError</b> - выдается, если вы используете недопустимые символы в функции URI:
+	<br>ПРИМЕР
+	<pre>
+		try {
+		   decodeURI("%%%");
+		}
+		catch(err) {
+		   document.getElementById("URI_error").innerHTML = err.name;
+		}
+		<b id="URI_error"></b>
+	</pre>
+
+	<h2>Свойства объекта нестандартной ошибки</h2>
+	<i>Mozilla</i> и <i>Microsoft</i> определяют некоторые нестандартные свойства объекта ошибки:
+	<br>ПРИМЕР
+	<pre>
+		<b>fileName   </b>  (Mozilla)
+		<b>lineNumber  </b> (Mozilla)
+		<b>columnNumber</b> (Mozilla)
+		<b>stack </b>       (Mozilla)
+		<b>description</b>  (Microsoft)
+		<b>number</b>       (Microsoft)
+	</pre>
+
+	<script type="text/javascript">
+		try {
+			adddlert("Welcom guest!");
+		}
+		catch(err) {
+			document.getElementById("try_catch_0").innerHTML = err.message;
+		}
+
+		function func_error_0() {
+			var message, x;
+			message = document.getElementById("message");
+			message.innerHTML = "";
+			x = document.getElementById("test_error_1").value;
+			try {
+				if(x == "") throw "empty";
+				if(isNaN(x)) throw "not a Number";
+				x = Number(x);
+				if(x < 5) throw "too low";
+				if(x > 10) throw "too high";
+			}	
+			catch(err) {
+				message.innerHTML = "Input is " + err;
+			}
+		}
+
+		function func_finally() {
+			var message, x;
+			message = document.getElementById("message_1");
+			message.innerHTML = "";
+			x = document.getElementById("finally_1").value;
+			try {
+				if(x == "") throw "is empty";
+				if(isNaN(x)) throw "is not a number";
+				x = Number(x);
+				if(x > 10) throw "is too high";
+				if(x < 5) throw "is too low";
+			}
+			catch(err) {
+				message.innerHTML = "Error: " + err + ".";
+			}
+			finally {
+				document.getElementById("finally_1").value = "";
+			}
+		}
+
+		var num = 1;
+		try {
+			num.toPrecision(500);
+		}
+		catch(err) {
+			document.getElementById("range_error").innerHTML = err.name;
+		}
+
+		var x;
+		try {
+			x = y + 1;
+		}
+		catch(err) {
+			document.getElementById("reference_error").innerHTML = err.name;
+		}
+
+		try {
+			eval("alert('Hello)");
+		}
+		catch(err) {
+			document.getElementById("syntax_error").innerHTML = err.name;
+		}
+
+		var num = 1;
+		try {
+			num.toUpperCase();
+		}
+		catch(err) {
+			document.getElementById("type_error").innerHTML = err.name;
+		}
+
+		try {
+			decodeURI("%%%");
+		}
+		catch(err) {
+			document.getElementById("URI_error").innerHTML = err.name;
+		}
+	</script>
+		
+<footer></footer>
+<script type ="text/javascript" src="list.js" charset="utf-8"> </script>
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Условия</title>
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>	
+	<a href="javascript:scroll(0,10000)" >
+		<button class="btn">⇩</button>
+	</a>
+	<a href="#" title="наверх">
+		<button class="btn_down">⇧</button>
+	</a>
+	<b id="link"></b>
+	
+	<h1>Условия JS</h1>
+	Условные операторы используются для выполнения различных действий в зависимости от условий. <br>
+
+	<h2>Условные заявления</h2>
+	В JS есть следующие условные выражения: <br>
+	<pre>
+		<b>if </b>      - для указания блока кода, который должен быть выполнен, если указанное условие истинно 
+		<b>else </b>    - для указания блока кода, который будет выполнен, если то же условие ложно 
+		<b>else if </b> - чтобы указать новое условие для проверки, если первое условие ложно 
+		<b>switch </b>  - для указания множества альтернативных блоков кода, которые должны быть выполнены
+	</pre>
+	
+	<h2>Заявление if</h2>
+	<b><i><u>if</u></i></b> оператор - используется, чтобы указать блок кода JS, который будет выполнен, если условие истинно.
+	<br>СИНТАКСИС
+	<pre>
+		if (condition) {
+		   //  block of code to be executed if the condition is true
+		}
+	</pre>
+	<br>ПРИМЕР
+	<pre>
+		if (hour > 19) {
+		   greeting = "Good day";
+		}
+		//
+		if (new Date().getHours() > 19) {
+			document.getElementById("if_0").innerHTML = "Good day";
+		}
+		<b id="if_0"> morning</b>
+	</pre>
+
+	<h2>Заявление else</h2>
+	<b><u><i>else</u></i></b> оператор  - используется, чтобы указать блок кода, который будет выполнен, если условие ложно.
+	<br>СИНТАКСИС
+	<pre>
+		if (condition) {
+		   //  block of code to be executed if the condition is true
+		} else {
+		   //  block of code to be executed if the condition is false
+		}
+	</pre>
+	<br>ПРИМЕР
+	<pre>
+		var hour = new Date().getHours();
+		var greeting;
+		if (hour < 12) {
+			greeting = "Good morning";
+		} else {
+			greeting = "Good day";
+		}
+		document.getElementById("if_else_0").innerHTML = greeting;
+		<b id="else_0"> </b>
+	</pre>
+	
+	<h2>Заявление else if</h2>
+	<b><u><i>else if</u></i></b> оператор  - используется, чтобы указать новое условие, если первое условие ложно.
+	<br>СИНТАКСИС
+	<pre>
+		if (condition1) {
+		   //  block of code to be executed if condition1 is true
+		} else if (condition2) {
+		   //  block of code to be executed if the condition1 is false and condition2 is true
+		} else {
+		   //  block of code to be executed if the condition1 is false and condition2 is false
+		}
+	</pre>
+	<br>ПРИМЕР
+	<pre>
+		var hour = new Date().getHours();
+		var greeting;
+		if (hour < 12) {
+		   greeting = "Good morning";
+		} else if (hour < 16){
+		   greeting = "Good day";
+		} else {
+		   greeting = "Good evening"
+		}
+		document.getElementById("if_else_0").innerHTML = greeting;
+		<b id="if_else_0"> </b>
+	</pre>
+		
+	<script>
+		if (new Date().getHours() < 12) {
+			document.getElementById("if_0").innerHTML = "Good day";
+		};
+
+		var hour = new Date().getHours();
+		var greeting;
+		if (hour < 12) {
+			greeting = "Good morning";
+		} else {
+			greeting = "Good day";
+
+		}
+		document.getElementById("else_0").innerHTML = greeting;
+
+		var hour = new Date().getHours();
+		var greeting;
+		if (hour < 12) {
+			greeting = "Good morning";
+		} else if (hour < 16){
+			greeting = "Good day";
+		} else {
+			greeting = "Good evening"
+		}
+		document.getElementById("if_else_0").innerHTML = greeting;	
+	</script>
+
+	<h1>Заявление switch</h1>
+	Оператор switch используется для выполнения различных действий в зависимости от условий.
+	<h2>Заявление о переключении JS</h2>
+	<b><u><i>switch</i></u></b> инструкция, используется чтобы выбрать один из множества блоков кода, которые будут выполнены.
+	<br>СИНТАКСИС
+	<pre>
+		switch(expression) {
+		  case x:
+		    // code block
+		    break;
+		  case y:
+		    // code block
+		    break;
+		  default:
+		    // code block
+		}
+	</pre>
+	Как работает. Выражение переключателя вычисляется один раз. Значение выражения сравнивается со значениями каждого случая. <br>
+	Если есть совпадение, выполняется соответствующий блок кода. Если совпадений нет, выполняется блок кода по умолчанию.
+	<br>ПРИМЕР
+	<pre>
+		var day;
+		switch (new Date().getDay()) {
+		   case 0:
+		     day = "Sunday";
+		     break;
+		   case 1:
+		     day = "Monday";
+		     break;
+		   case 2:
+		     day = "Tuesday";
+		     break;
+		   case 3:
+		     day = "Wadnesday";
+		     break;
+		   case 4:
+		     day = "Thursday";
+		     break;
+		   case 5:
+		     day = "Friday";
+		     break;
+		   case 6:
+		     day = "Saturday";
+		     break;
+		}
+		<b id="switch_0"></b>
+	</pre>
+
+	<h2>Ключевое слово break</h2>
+	Когда JS достигает ключевого слова <b>break</b>, оно выходит из блока переключателей. Это остановит выполнение внутри блока. <br>
+	Нет необходимости разбивать последний случай в блоке переключателей. Блок все равно ломается. <br>
+	Если пропустить оператор <b>break</b>, будет выполнен следующий случай, даже если оценка не соответствует случаю.
+
+	<h2>Ключевое слово default</h2>
+	<b><u><i>default</i></u></b> - Ключевое слово указывает код для запуска, если нет ни одного случая матча. <br>
+	<br>ПРИМЕР
+	<pre>
+		<b>getDay()</b> Метод возвращает день недели как число между 0 и 6.
+		Если сегодня не суббота (6) и не воскресенье (0), можно написать сообщение по умолчанию:
+		var text;
+		switch (new Date().getDay()) {
+		   case 6:
+		     text = "Today is Saturday";
+		     break;
+		   case 0:
+		     text = "Today is Sunday";
+		     break;
+		   default:
+		     text = "Looking forward to the Weekend";
+		}
+		<b id="switch_1"></b>
+
+		Если <b>default</b> это не последний случай в блоке переключателей, нужно завершить случай по умолчанию с <b>break</b>.
+		var text;
+		switch (new Date().getDay()) {		
+		   default:
+		     text = "Looking forward to the Weekend";
+		     break;
+		   case 6:
+		     text = "Today is Saturday";
+		     break;
+		   case 0:
+		     text = "Today is Sunday";
+		     break;
+		}
+		<b id="switch_2"></b>
+	</pre>
+
+	<h2>Общие кодовые блоки</h2>
+	Если нужно, чтобы разные варианты переключения использовали один и тот же код.
+	<br>ПРИМЕР
+	<pre>
+		var text;
+		switch (new Date().getDay()) {			
+		  case 4:
+		  case 5:
+		    text = "Soon it is Weekend";
+		    break;
+		  case 0:
+		  case 6:
+		    text = "It is Weekend";
+		    break;
+		  default:
+		    text = "Looking forward to the Weekend";
+		}
+		<b id="switch_3"></b>
+	</pre>
+
+	<h2>Детали переключения</h2>
+	Если несколько <b>cases</b> соответствуют значению <b>case</b>, выбирается первый случай.  <br>
+	Если подходящих вариантов не найдено, программа переходит к метке <b>default</b>. <br>
+	Если метка <b>default</b> не найдена, программа переходит к инструкциям после переключения.
+
+	<h2>Строгое сравнение</h2>
+	Переключать <b>case(случаи)</b> используют строгое сравнение (<b>===</b>). Значения должны быть одного типа для соответствия. <br>
+	Строгое сравнение может быть верным, только если операнды имеют одинаковый тип.
+	<br>ПРИМЕР
+	<pre>
+		В этом примере не будет совпадения для x:
+		var x = "0";
+		switch (x) {
+		  case 0:
+		    text = "Off";
+		    break;
+		  case 1: 
+		    text = "On";
+		    break;
+		  default:
+		    text = "No value found";
+		}
+		<b id="switch_4"></b>
+	</pre>
+
+	<script type="text/javascript">
+		var day;
+		switch (new Date().getDay()) {
+			case 0:
+				day = "Sunday";
+				break;
+			case 1:
+				day = "Monday";
+				break;
+			case 2:
+				day = "Tuesday";
+				break;
+			case 3:
+				day = "Wadnesday";
+				break;
+			case 4:
+				day = "Thursday";
+				break;
+			case 5:
+				day = "Friday";
+				break;
+			case 6:
+				day = "Saturday";
+				break;
+		}
+		document.getElementById("switch_0").innerHTML = "Today is " + day;
+
+		var text;
+		switch (new Date().getDay()) {
+			case 6:
+		   		text = "Today is Saturday";
+		    	break;
+		    case 0:
+		     	text = "Today is Sunday";
+		     	break;
+	     	default:
+	     		text = "Looking forward to the Weekend";
+		}
+		document.getElementById("switch_1").innerHTML = text;
+
+		var text;
+		switch (new Date().getDay()) {			
+	     	default:
+	     		text = "Looking forward to the Weekend";
+	     		break;
+			case 6:
+		   		text = "Today is Saturday";
+		    	break;
+		    case 0:
+		     	text = "Today is Sunday";
+		     	break;
+		}
+		document.getElementById("switch_2").innerHTML = text;
+
+		var text;
+		switch (new Date().getDay()) {			
+			case 4:
+			case 5:
+		   		text = "Soon it is Weekend";
+		    	break;
+		    case 0:
+		    case 6:
+		     	text = "It is Weekend";
+		     	break;
+		    default:
+			    text = "Looking forward to the Weekend";
+		}
+		document.getElementById("switch_3").innerHTML = text;
+
+		var x = "0";
+		switch (x) {
+			case 0:
+				text = "Off";
+				break;
+			case 1: 
+				text = "On";
+				break;
+			default:
+				text = "No value found";
+		}
+		document.getElementById("switch_4").innerHTML = text;
+ 	</script>
+
+	<b id="link"></b>
+	
+<footer></footer>
+<script type ="text/javascript" src="list.js" charset="utf-8"> </script>
+</body>
+</html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Циклы</title>
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<a href="javascript:scroll(0,10000)" >
+		<button class="btn">⇩</button>
+	</a>
+	<a href="javascript:scroll(0,0)" title="наверх">
+		<button class="btn_down">⇧</button>
+	</a>
+	<b id="link"></b> 
+
+	<h1>Цикл for</h1>
+	Циклы могут выполнять блок кода несколько раз.
+
+	<h2>Циклы JS</h2>
+	Циклы удобны, если нужно запускать один и тот же код снова и снова, каждый раз с другим значением. Часто это имеет место при работе с массивами
+	<br>ПРИМЕР
+	<pre>
+		var cars = ["Volvo", "Audi", "BMW"];
+		var text = " ";
+
+		Вместо этого:
+		text += cars[0] + "< br>";
+		text += cars[1] + "< br>";
+		text += cars[2] + "< br>";
+
+		можно написать это:
+		var i;
+		for (i = 0; i < cars.length; i++) {
+		   text += cars[i] + "< br>";
+		}
+	</pre>
+	<code><ul> <b id="for_0"></b> </ul></code> <br>
+
+
+	<h2>Различные виды Loops</h2>
+	JavaScript поддерживает различные виды циклов:
+	<br>ПРИМЕР
+	<pre>
+		<b>for</b>      - перебирает блок кода несколько раз
+		<b>for/in</b>   - перебирает свойства объекта
+		<b>for/of</b>   - перебирает значения повторяемого объекта
+		<b>while</b>    - перебирает блок кода, пока указанное условие выполняется
+		<b>do/while</b> - также перебирает блок кода, пока указанное условие выполняется
+	</pre>
+
+	<h2>Цикл for</h2>
+	<br>СИНТАКСИС
+	<pre>
+		for (statement 1; statement 2; statement 3) {
+		  // code block to be executed
+		}
+	</pre>
+	Оператор 1 выполняется (один раз) перед выполнением блока кода. <br>
+	Оператор 2 определяет условие для выполнения блока кода. <br>
+	Оператор 3 выполняется (каждый раз) после выполнения блока кода.
+	<br>ПРИМЕР
+	<pre>
+		var text_1 = "";
+		for (i = 0; i < 5; i++) {
+		   text_1 += "The number is " + i + "< br>";
+		}
+		(var i = 0) - устанавливает переменную перед началом цикла 
+		(i < 5)     - (я должен быть меньше 5) определяет условие для запуска цикла.
+		(i ++)      - увеличивает значение  каждый раз, когда выполняется блок кода в цикле.
+	</pre>
+	<code><ul> <b id="for_1"></b> </ul></code> <br>
+
+	<h2>Оператор 1</h2>
+	Обычно используют оператор 1 для инициализации переменной, используемой в цикле (i = 0). <br>
+	Заявление 1 не является обязательным. Можно инициировать много значений в операторе 1 (через запятую):
+	<br>ПРИМЕР
+	<pre>
+		var cars = ["Volvo", "Audi", "BMW"];
+		var i, len, text_2;
+		for (i = 0, len = cars.length, text_2 = ""; i < len; i++) {
+		   text_2 += cars[i] + "< br>";
+		}
+	</pre>
+	<code><ul> <b id="for_2"></b> </ul></code> <br>
+	<pre>
+		И можно опустить оператор 1 (например, когда значения установлены до запуска цикла)
+		var cars = ["Volvo", "Audi", "BMW"];
+		var i = 1;
+		var len = cars.length;
+		var text_3 = "";
+		for (; i < len; i++) {
+		   text_3 += cars[i] + "< br>";
+		}
+	</pre>
+	<code><ul> <b id="for_3"></b> </ul></code> <br>
+
+	<h2>Оператор 2</h2>
+	Часто утверждение 2 используется для оценки состояния исходной переменной. Это не всегда так, заявление 2 также необязательно. <br>
+	Если оператор 2 возвращает истину, цикл начнется заново, если он вернет ложь, цикл закончится. <br>
+	Если пропустить оператор 2, нужно обеспечить разрыв внутри цикла. В противном случае цикл никогда не закончится. Это приведет к краху браузера.
+
+	<h2>Оператор 3</h2>
+	Часто утверждение 3 увеличивает значение начальной переменной. Утверждение 3 является необязательным, например когда увеличивается значения внутри цикла. <br>
+	Оператор 3 может делать что-либо, например, отрицательное приращение (i--), положительное приращение (i = i + 15) или что-то еще.
+	<br>ПРИМЕР
+	<pre>
+		var cars = ["Volvo", "Audi", "BMW"];
+		var i = 0;
+		var text_4 = "";
+		var len = cars.length;
+		for (; i < len; ) {
+		   text_4 += cars[i] + "< br>";
+		   i++
+		}
+	</pre>
+	<code><ul> <b id="for_4"></b> </ul></code> <br>
+
+	<h2>For / In Loop</h2>
+	<b><u><i>for/in</i></u></b> - Оператор JS  проходит через свойства объекта:
+	<br>ПРИМЕР
+	<pre>
+		var person = { fname: "John", lname: "Doe", age:25 };
+		var text_5 = "";
+		var x;
+		for (x in person) {
+		   text_5 += person[x] + " ";
+		}
+	</pre>
+	<code><ul> <b id="for_5"></b> </ul></code> <br>
+
+	<h2>For / Of Loop</h2>
+	Оператор JS <b>for/of</b> проходит через значения итерируемых объектов. <br>
+	<b>for/of</b> позволяет циклически повторять структуры данных, такие как массивы, строки, карты, списки узлов и т. д.
+	<br>СИНТАКСИС
+	<pre>
+		for (variable of iterable) {
+		  // code block to be executed
+		}
+	</pre>
+	переменная - для каждой итерации переменной присваивается значение следующего свойства. <br>
+	Переменная может быть объявлена с <b>const, let</b> или <b>var</b>. Итерируемый - объект, имеющий итеративные свойства.
+	<br>ПРИМЕР
+	<pre>
+		<b>Цикл над массивом</b>
+		var cars = ["Volvo", "Audi", "BMW"];
+		var x;
+		for (x of cars) {
+		   document.write(x + "< br >");
+		}
+	</pre>
+	<code><ul> <b>
+		<script>
+			var cars = ["Volvo", "Audi", "BMW"];
+			var x;
+			for (x of cars) {
+				document.write(x + "<br >");
+			}
+		</script> 
+	</b></ul></code> <br><br>
+
+	<pre>
+		<b>Цикл над строкой</b>
+		var string = "JavaScript";
+		var x;
+		for (x of string) {
+		   document.write(x + "< br >");
+		}
+	</pre>
+	<code><ul> <b>
+		<script>
+			var string = "JavaScript";
+			var x;
+			for (x of string) {
+				document.write(x + "<br >");
+			}
+		</script> 
+	</b></ul></code> <br>
+
+	<script>
+		var cars = ["Volvo", "Audi", "BMW"];
+		var text = " ";
+		var i;
+		for (i = 0; i < cars.length; i++) {
+			text += cars[i] + "<br>";
+		}
+		document.getElementById("for_0").innerHTML = text;
+
+		var text_1 = "";
+		for (i = 0; i < 5; i++) {
+			text_1 += "The number is " + i + "<br>";
+		}
+		document.getElementById("for_1").innerHTML = text_1;
+
+		var cars = ["Volvo", "Audi", "BMW"];
+		var i, len, text_2;
+		for (i = 0, len = cars.length, text_2 = ""; i < len; i++) {
+			text_2 += cars[i] + "<br>";
+		}
+		document.getElementById("for_2").innerHTML = text_2;
+
+		var cars = ["Volvo", "Audi", "BMW"];
+		var i = 1;
+		var len = cars.length;
+		var text_3 = "";
+		for (; i < len; i++) {
+			text_3 += cars[i] + "<br>";
+		}
+		document.getElementById("for_3").innerHTML = text_3;
+
+		var cars = ["Volvo", "Audi", "BMW"];
+		var i = 0;
+		var text_4 = "";
+		var len = cars.length;
+		for (; i < len; ) {
+			text_4 += cars[i] + "<br>";
+			i++
+		}
+		document.getElementById("for_4").innerHTML = text_4;
+
+		var person = { fname: "John", lname: "Doe", age:25 };
+		var text_5 = "";
+		var x;
+		for (x in person) {
+			text_5 += person[x] + " ";
+		}
+		document.getElementById("for_5").innerHTML = text_5;
+	</script>
+
+	<h1>While цикл</h1>
+	Циклы могут выполнять блок кода, пока указанное условие выполняется.
+
+	<h2>Цикл While</h2>
+	Цикл <b><u><i>while</i></u></b> проходит по блоку кода до тех пор, пока указанное условие выполняется. <br>
+	Если не увеличить переменную, используемую в условии, цикл никогда не закончится. Это приведет к краху браузера.
+	<br>СИНТАКСИС
+	<pre>
+		while (condition) {
+		  // code block to be executed
+		}
+	</pre>
+	<br>ПРИМЕР
+	<pre>
+		код в цикле будет выполняться снова и снова, пока переменная (i) меньше 10:
+		var text_while = "";
+		var i = 0;
+		while (i < 10) {
+		   text_while += "The number is " + i + "< br>";
+		   i++;
+		}
+	</pre>
+	<code><ul><b id = "while_0"></b></ul></code> <br>
+
+	<h2>Цикл Do / While</h2>
+	<b><u><i>do/while</i></u></b> - Цикл представляет собой вариант цикла. <br>
+	Этот цикл будет выполнять блок кода один раз, прежде чем проверять, выполнено ли условие, а затем повторять цикл, пока условие выполняется.
+	<br>СИНТАКСИС
+	<pre>
+		do {
+		  // code block to be executed
+		}
+		while (condition);
+	</pre>
+	<br>ПРИМЕР
+	<pre>
+		Цикл всегда будет выполняться по крайней мере один раз, даже если условие ложно, потому что кодовый блок выполняется перед проверкой условия:
+		var i = 0;
+		var text_do_while = "";
+		do {
+		   text_do_while += "The number is " + i + "< br>";
+		   i++;
+		}
+		while (i < 10);
+	</pre>
+	<code><ul><b id = "do_while_0"></b></ul></code> <br>
+
+	<h2>Сравнения For и While</h2>
+	цикл <b>while</b> очень похож на цикл <b>for</b>, но оператор 1 и оператор 3 опущены.
+	<br>ПРИМЕР
+	<pre>
+		var cars = ["Volvo", "Audi", "BMW"];
+		var i = 0;
+		var text = "";
+
+		<b>for</b> цикл для сбора имен автомобилей из массива <b>cars</b>:
+		for (; cars[i];) {
+		   text += cars[i] + "< br>";
+		   i++;
+		};
+	</pre>
+	<code><ul><b id = "for_6"></b></ul></code> <br><br>
+
+	<pre>
+		<b>while</b> цикл для сбора имен автомобилей из массива <b>cars</b>:
+		while (cars[i]) {
+		   text += cars[i] + "< br>";
+		   i++;
+		}
+	</pre>
+	<code><ul><b id = "while_1"></b></ul></code> <br>
+
+	<script>
+		var text_while = "";
+		var i = 0;
+		while (i < 10) {
+			text_while += "The number is " + i + "<br>";
+			i++;
+		}
+		document.getElementById("while_0").innerHTML = text_while;
+
+		var i = 0;
+		var text_do_while = "";
+		do {
+			text_do_while += "The number is " + i + "<br>";
+			i++;
+		}
+		while (i < 10);
+		document.getElementById("do_while_0").innerHTML = text_do_while;
+
+		var cars = ["Volvo", "Audi", "BMW"];
+		var i = 0;
+		var text = "";
+		for (; cars[i];) {
+			text += cars[i] + "<br>";
+			i++;
+		};
+		document.getElementById("for_6").innerHTML = text;
+
+		var cars = ["Volvo", "Audi", "BMW"];
+		var i = 0;
+		var text = "";
+		while (cars[i]) {
+			text += cars[i] + "<br>";
+			i++;
+		}
+		document.getElementById("while_1").innerHTML = text;
+	</script>
+
+
+	<h1>JavaScript Break and Continue</h1>
+	<b>break</b> - Заявление «выпрыгивает» из цикла. <br>
+	<b>continue</b> - Утверждение «перепрыгивает» на одну итерацию в цикле.
+
+	<h2>Заявление Break</h2>
+	Оператор <b>break</b> также может быть использован для выхода из цикла. Он разрывает петлю и продолжает выполнение кода после цикла (если таковые имеются):
+	<br>ПРИМЕР
+	<pre>
+		var text = ""
+		for (i = 0; i < 10; i++) {
+		   if (i === 3) { break; }
+		   text += "The number is " i + "< br>";
+		}
+	</pre>
+	<code><ul><b id = "break_0"></b></ul></code>
+
+	<h2>Заявление continue</h2>
+	<b>continue</b> - Заявление ломается одна итерация (в цикле), если происходит определенное условие, и продолжается со следующей итерации цикла.
+	<br>ПРИМЕР
+	<pre>
+		Этот пример пропускает значение 3:
+		var text = "";
+		var i;
+		for (i = 0; i < 10; i++) {
+		   if (i === 3) { break; }
+		   text += "The number is " i + "< br>";
+		}
+	</pre>
+	<code><ul><b id = "continue_0"></b></ul></code> <br>
+
+	<h2>JavaScript Labels</h2>
+	Чтобы пометить операторы JavaScript, перед оператором нужно указать имя метки и двоеточие. <br>
+	Операторы <b>break и continue</b> являются единственными операторами JavaScript, которые могут «выпрыгнуть» из блока кода. <br>
+	<b>continue</b> Утверждение (с или без ссылки этикетки) могут быть использованы только пропустить одну итерацию цикла. <br>
+	Оператор <b>break</b> без ссылки на метку может быть использован только для выхода из цикла или переключателя. <br>
+	<br>СИНТАКСИС
+	<pre>
+		break labelname;
+		continue labelname;
+	</pre>
+	<br>ПРИМЕР
+	<pre>
+		label:
+		statements
+
+		С помощью ссылки на метку оператор break может использоваться для перехода из любого блока кода :
+		var cars = ["Volvo", "Audi", "BMW"];
+		var text = "";
+		list: {
+		   text += cars[0] + "< br>";
+		   text += cars[1] + "< br>";
+		   break list;
+		   text += cars[2] + "< br>";
+		   text += cars[3] + "< br>";
+		}
+	</pre>
+	<code><ul><b id = "break_1"></b></ul></code>
+
+	<h2></h2>
+	<br>ПРИМЕР
+	<pre>
+	</pre>
+	<code><ul><b id = ""></b></ul></code>
+
+	<script>
+		var text = ""
+		for (i = 0; i < 10; i++) {
+			if (i === 3) { break; }
+			text += "The number is " + i + "<br>";
+		}
+		document.getElementById("break_0").innerHTML = text;
+
+		var text = "";
+		var i;
+		for (i = 0; i < 10; i++) {
+			if (i === 3) { continue; }
+			text += "The number is " + i + "<br>";
+		}
+		document.getElementById("continue_0").innerHTML = text;
+
+		var cars = ["Volvo", "Audi", "BMW"];
+		var text = "";
+		list: {
+			text += cars[0] + "<br>";
+			text += cars[1] + "<br>";
+			break list;
+			text += cars[2] + "<br>";
+			text += cars[3] + "<br>";
+		}
+		document.getElementById("break_1").innerHTML = text;
+	</script>
+	
+	<b id="link"></b>
+	<a href="#up">
+		<button class="btn">⇧ </button>
+	</a>
+	<p><a name="down"></a></p>
+	
+<footer></footer>
+<script type ="text/javascript" src="list.js" charset="utf-8"> </script>
+</body>
+</html>

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset='UTF-8'>
+	<title>Ключевое слово this. Let</title>
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<a href="javascript:scroll(0,10000)" >
+		<button class="btn">⇩</button>
+	</a>
+	<a href="javascript:scroll(0,0)" title="наверх">
+		<button class="btn_down">⇧</button>
+	</a>
+	<b id="link"></b> 
+		   
+	<h1>Ключевое слово this</h1>
+
+	<br>ПРИМЕР
+	<pre>
+		var person = {
+		   first_name: 'John',
+		   last_name : 'Doe',
+		   id        : 1234,
+		   full_name : function() {
+		      return this.first_name + ' ' + this.last_name;
+		   }
+		};
+		person.full_name(); <b id='this_0'></b>
+	</pre>
+
+	<h2>Что такое this</h2>
+	<b>this</b> - Ключевое слово JS относится к объекту, которому оно принадлежит.
+	Он имеет разные значения в зависимости от того, где он используется:
+	<br>ПРИМЕР
+	<pre>
+		В методе <b>this</b> относится к объекту-владельцу.
+		Самостоятельно <b>this</b> относится к глобальному объекту.
+		В функции <b>this</b> относится к глобальному объекту.
+		В функции в строгом режиме <b>this</b> есть <b>undefined</b>.
+		В событии <b>this</b> относится к элементу, получившему событие.
+		Такие методы, как <b>call()</b>и <b>apply()</b> могут относиться <b>this</b> к любому объекту.
+	</pre>
+
+	<h2>this в методе</h2>
+	В методе объекта <b>this</b> относится к «владельцу» метода. В примере выше <b>this</b> относится к объекту <b>person</b>. 
+	<br>ПРИМЕР
+	<pre>
+		<b>person</b> объект является владельцем от <b>FULLNAME</b> метода.
+		full_name: function() {
+		   return this.first_name + ' ' + this.last_name;
+		}
+	</pre>
+
+	<h2>this один</h2>
+	При использовании отдельно владельцем является глобальный объект, поэтому <b>this</b> относится к глобальному объекту.
+	<br>ПРИМЕР
+	<pre>
+		В окне браузера глобальный объект <b>[object Window]</b>:
+		var this_0 = this;
+		this_0; //<b id='this_1'></b>
+
+		В строгом режиме, когда используется отдельно, <b>this</b> также относится к глобальному объекту <b>[object Window]</b>:
+		'use strict';
+		var this_1 = this;
+		this_1; //<b id='this_2'></b>
+	</pre>
+
+	<h2>this в функции (по умолчанию)</h2>
+	В функции JS владельцем функции является привязка по умолчанию для <b>this</b>. Итак, в функции <b>this</b> имеется ссылка на глобальный объект <b>[object Window]</b>.
+	<br>ПРИМЕР
+	<pre>
+		document.getElementById('this_3').innerHTML = func_this(); // <b id='this_3'></b>
+		function func_this() {
+		   return this; 
+		} 
+	</pre>
+
+	<h2>this в функции (строгое)</h2>
+	Строгий режим JS не допускает привязку по умолчанию. Таким образом, при использовании в функции, в строгом режиме, <b>this</b> есть <b>undefined</b>.
+	<br>ПРИМЕР
+	<pre>
+		НЕ СРАБОТАЛ 
+		'use strict';
+		document.getElementById('this_4').innerHTML = func_this_1(); // <b id='this_4'></b>
+		function func_this_1() {
+		   return this;
+		}
+	</pre>
+
+	<h2>this в обработчиках событий</h2>
+	В обработчиках событий HTML <b>this</b> относится к элементу HTML, получившему событие:
+	<br>ПРИМЕР
+	<pre>
+		< button onclick='this.style.display = 'none''> Click ti remove me</ button>
+		<button onclick='this.style.display = 'none''> Click ti remove me</button>
+	</pre>
+
+	<h2>Привязка метода объекта</h2>
+	В этих примерах <b>this</b> это объект person (объект person является «владельцем» функции): <br>
+	Другими словами: <b>this.first_name</b> означает свойство <b>first_name</b> этого (человека) объекта.
+	<br>ПРИМЕР
+	<pre>
+		var person_2 = {
+		first_name: 'John',
+		last_name : 'Doe',
+		id        : 2231,
+		full_name : function() {
+		   return this;
+		   }
+		};
+		person_2.full_name(); // <b id='this_5'></b> 
+
+		var person = {
+		   first_name: 'John',
+		   last_name : 'Doe',
+		   id        : 1234,
+		   full_name : function() {
+		      return this.first_name + ' ' + this.last_name;
+		   }
+		};
+		person.full_name(); // <b id='this_0'>John Doe</b>
+	</pre>
+
+	<h2>Явная привязка функций</h2>
+	В <b>call()</b> и <b>apply()</b> - методы JS предопределены. Оба они могут использоваться для вызова метода объекта с другим объектом в качестве аргумента. <br>
+	В приведенном ниже примере при вызове person_1.full_name с аргументом person2 this будет ссылаться на person2, даже если это метод person1:
+	<br>ПРИМЕР
+	<pre>
+		var person_3 = {
+		   full_name: function() {
+		      return this.first_name + ' ' + this.last_name;
+		   }
+		}
+		var person_4 {
+		   first_name: 'John',
+		   last_name : 'Doe',
+		}
+		person_3.full_name.call(person_4); // <b id='this_6'></b>
+	</pre>
+
+	<script>
+		var person = {
+			first_name: 'John',
+			last_name : 'Doe',
+			id        : 1234,
+			full_name : function() {
+				return this.first_name + ' ' + this.last_name;
+			}
+		};
+		document.getElementById('this_0').innerHTML = person.full_name();
+
+		var this_0 = this;
+		document.getElementById('this_1').innerHTML = this_0;
+
+		'use strict';
+		var this_1 = this;
+		document.getElementById('this_2').innerHTML = this_1;
+
+		document.getElementById('this_3').innerHTML = func_this();
+		function func_this() {
+			return this;
+		};
+
+		'use strict';
+		document.getElementById('this_4').innerHTML = func_this_1();
+		function func_this_1() {
+			return this;
+		}
+
+		var person_2 = {
+			first_name: 'John',
+			last_name : 'Doe',
+			id        : 2231,
+			full_name : function() {
+				return this;
+			}
+		};
+		document.getElementById('this_5').innerHTML = person_2.full_name();
+
+		var person_3 = {
+			full_name: function() {
+				return this.first_name + ' ' + this.last_name;
+			}
+		};
+		var person_4 = {
+			first_name: 'John',
+			last_name : 'Doe',
+		}
+		document.getElementById('this_6').innerHTML = person_3.full_name.call(person_4);
+	</script>
+
+
+	<h1>JavaScript Let</h1>
+
+	<h2>ECMAScript 2015</h2>
+	ES2015 представил два важных новых ключевых слова JS: <b>let</b> и <b>const</b>. <br>
+	Эти два ключевых слова предоставляют переменные (и константы) <b>области действия блока</b> в JS. <br>
+	Раньше было только два типа области видимости: <b>глобальная область действия</b> и <b>область действия функции</b>. 
+
+	<h2>Глобальная/локальная область действия.</h2>
+	Доступ к глобальным переменным можно получить из любого места в программе JS. <br>
+	Доступ к локальным переменным возможен только изнутри функции, в которой они объявлены.
+	
+	<h2>Область действия блока JS</h2>
+	<b>{}</b> - все что находится внутри, считается блоком <br>
+	Переменные, объявленные <b>var</b>, не могут иметь область действия блока, но можно получить доступ извне блока.
+	<br>ПРИМЕР
+	<pre>
+		x; <b id='block_x_0'></b>
+		{ 
+		   var x = 2;
+		   x; <b id='block_x_1'></b>
+		}
+		x; <b id='block_x_2'></b>
+
+		Переменные, объявленные <b>let</b>, могут иметь область действия блока, но нельзя получить доступ извне блока:
+		{ 
+		   let y = 2;
+		   y; <b id='block_y_0'></b>
+		}
+		y; // y can NOT be used here
+	</pre>
+
+	<h2>Повторное объявление переменных</h2>
+	Повторное объявление переменной с использованием <b>var</b> может вызвать проблемы.
+	<br>ПРИМЕР
+	<pre>
+		Повторное объявление переменной внутри блока также приведет к повторному объявлению переменной вне блока:
+		var x = 10;
+		x; // <b id='block_x_3'></b>
+		{
+		   var x = 2;
+		   x; // <b id='block_x_4'></b>
+		}
+		x; // <b id='block_x_5'></b>
+
+		Повторное объявление переменной <b>let</b>, не приведет к повторному объявлению переменной вне блока:
+		let y = 10;
+		y; // <b id='block_y_1'></b>
+		{
+		   let y = 2;
+		   y; // <b id='block_y_2'></b>
+		}
+		y; // <b id='block_y_3'></b>
+	</pre>
+
+	<h2>Объем цикла</h2>
+	При использовании <b>var</b> переменная, объявленная в цикле, повторно объявляет переменную вне цикла. <br>
+	При использовании <b>let</b> переменная, объявленная в цикле, не повторно объявляет переменную вне цикла. <br>
+	Когда <b>let</b> используется для объявления переменной <b>e</b> в цикле, переменная <b>e</b> будет видна только внутри цикла.
+
+
+	<br>ПРИМЕР
+	<pre>
+		Использование <b>var</b> в цикле:
+		var i = 5;
+		for (var i = 0; i < 10; i++) {
+		   // some statements // <b id='loop_0.1'></b>
+		}
+		i; // <b id='loop_0'></b>
+
+		Использование <b>let</b> в цикле:
+		let e = 5;
+		for (let e = 0; e < 10; e++) {
+		   // some statements // <b id='loop_1.1'></b>
+		}
+		e; // <b id='loop_1'></b>
+	</pre>
+
+	<h2>Объем функций</h2>
+	Переменные, объявленные с помощью <b>var</b> и <b>let</b>, очень похожи при объявлении внутри функции. У них обоих будет область действия:
+	<br>ПРИМЕР
+	<pre>
+		function func_scope_0() {
+		   var car_0 = 'BMW';
+		   car_0; //<button onclick='func_scope_0()'>Click me</button> <b id='func_var_1'></b>
+		}
+
+		function func_scope_1() {
+		   var car_1 = 'BMW';
+		   car_1; //<button onclick='func_scope_1()'>Click me</button> <b id='func_let_1'></b>
+		}
+	</pre>
+
+	<h2>Глобальный масштаб (Global Scope)</h2>
+	Переменные, объявленные с помощью <b>var</b> и <b>let</b>, очень похожи при объявлении вне блока. У них обоих будет Global Scope:
+	<br>ПРИМЕР
+	<pre>
+		var x_0 = 10;
+		x_0; //<b id='global_0'></b>
+		let x_1 = 10;
+		x_1; //<b id='global_1'></b>
+	</pre>
+
+	<h2>Глобальные переменные в HTML</h2>
+	В JS глобальной областью видимости является среда JS.  <br>
+	В HTML глобальной областью видимости является объект окна.
+	<br>ПРИМЕР
+	<pre>
+		Глобальные переменные, определенные с помощью <b>var</b>, принадлежат объекту окна:
+		var car_name_0 = 'BMW';
+		window.car_name_0; // <b id='global_2'></b>
+
+		Глобальные переменные, определенные с помощью <b>let</b>, не принадлежат объекту окна:
+		let car_name_1 = 'BMW';
+		window.car_name_1; // <b id='global_3'></b>
+	</pre>
+
+	<h2>Повторное объявление</h2>
+	ПРИМЕР
+	<pre>
+		Повторное объявление переменной JS с помощью <b>var</b> разрешено в любом месте программы:
+		var x = 5;
+		x; // <b id='global_4'></b>
+		var x = 7;
+		x; // <b id='global_5'></b>
+
+		Повторное объявление <b>var</b> переменной с <b>let</b>, в той же области или в том же блоке не допускается:
+		var x = 2;
+		let x = 4;
+		x; <b>Uncaught SyntaxError: Identifier 'x' has already been declared</b> 
+	
+		{
+		var x = 2;
+		let x = 4;
+		x; <b>Uncaught SyntaxError: Identifier 'x' has already been declared</b> 
+		}
+
+		Повторное объявление <b>let</b> переменной с <b>let</b>, в той же области или в том же блоке не допускается:
+		let x = 2;
+		let x = 4;
+		x; <b>Uncaught SyntaxError: Identifier 'x' has already been declared</b> 
+
+		Повторное объявление переменной <b>let</b> в другой области или в другом блоке разрешено:
+		let q = 10;
+		{
+		   let q = 20;
+		   q; // <b id='global_6'></b>
+		}
+		{
+		   let q = 40;
+		   q; // <b id='global_7'></b>
+		}
+		q; // <b id='global_8'></b>
+	</pre>
+
+	<h2>Подъемно (Hoisting)</h2>
+	Переменные, определенные с помощью <b>var</b>, поднимаются вверх и могут быть инициализированы в любое время. <br>
+	Переменные, определенные с помощью <b>let</b>, поднимаются наверх блока, но не инициализируются. <br>
+	Использование <b>let</b>, переменной до ее объявления приведет к созданию файла <b>ReferenceError</b>. <br>
+	Переменная находится во «временной мертвой зоне» от начала блока до его объявления
+	<br>ПРИМЕР
+	<pre>
+		Можно использовать переменную до ее объявления:
+		car_name_2 = 'BMW';
+		car_name_2; // <b id='hoisting_0'></b>
+		alert(car_name_2);
+		var car_name_2;
+		car_name_2; // <b id='hoisting_1'></b>
+		
+		Блоку кода известно о переменной, но ее нельзя использовать, пока она не будет объявлена.
+		car_name_3 = 'BMW';
+		car_name_3; // <b id='hoisting_2'>Uncaught ReferenceError: Cannot access 'car_name_3' before initialization</b>
+	</pre>
+
+	<script>
+		'use strict'
+		document.getElementById('block_x_0').innerHTML = x;
+		{ 
+			var x = 2;
+			document.getElementById('block_x_1').innerHTML = x;
+		}
+		document.getElementById('block_x_2').innerHTML = x;
+
+		{ 
+			let y = 2;
+			document.getElementById('block_y_0').innerHTML = y;
+		}
+
+		var x = 10;
+		document.getElementById('block_x_3').innerHTML = x;
+		{
+			var x = 2;
+			document.getElementById('block_x_4').innerHTML = x;
+		}
+		document.getElementById('block_x_5').innerHTML = x;
+
+		let y = 10;
+		document.getElementById('block_y_1').innerHTML = y;
+		{
+			let y = 2;
+			document.getElementById('block_y_2').innerHTML = y;
+		}
+		document.getElementById('block_y_3').innerHTML = y;
+
+		var i = 5;
+		for (var i = 0; i < 10; i++) {
+			// some statements
+			document.getElementById('loop_0.1').innerHTML = i;
+		}
+		document.getElementById('loop_0').innerHTML = i;
+
+		let e = 5;
+		for (let e = 0; e < 10; e++) {
+			// some statements
+			document.getElementById('loop_1.1').innerHTML = e;
+		}
+		document.getElementById('loop_1').innerHTML = e;
+
+		function func_scope_0() {
+			var car_0 = 'BMW';
+			document.getElementById('func_var_1').innerHTML = car_0;
+		}
+
+		function func_scope_1() {
+			var car_1 = 'BMW';
+			document.getElementById('func_let_1').innerHTML = car_1;
+		}
+
+		var x_0 = 10;
+		document.getElementById('global_0').innerHTML = x_0;
+		let x_1 = 10;
+		document.getElementById('global_1').innerHTML = x_1;
+
+		var car_name_0 = 'BMW';
+		document.getElementById('global_2').innerHTML = window.car_name_0;
+		let car_name_1 = 'BMW';
+		document.getElementById('global_3').innerHTML = window.car_name_1;
+
+		var x = 5;
+		document.getElementById('global_4').innerHTML = x;
+		var x = 7;
+		document.getElementById('global_5').innerHTML = x;
+		
+		let q = 10;
+		{
+			let q = 20;
+			document.getElementById('global_6').innerHTML = q;
+		}
+		{
+			let q = 40;
+			document.getElementById('global_7').innerHTML = q;
+		}
+		document.getElementById('global_8').innerHTML = q;
+
+		car_name_2 = 'BMW';
+		document.getElementById('hoisting_0').innerHTML = car_name_2;
+		// alert(car_name_2);
+		var car_name_2;
+		document.getElementById('hoisting_1').innerHTML = car_name_2;
+	</script>
+
+	<b id="link"></b>
+<footer></footer>
+<script type ="text/javascript" src="list.js" charset="utf-8"> </script>
+</body>
+</html>
