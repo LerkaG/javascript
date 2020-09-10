@@ -1,0 +1,76 @@
+{ "skeleton": { "images": "D:/spine/_panda/images/" },
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "Layer 39", "bone": "root", "attachment": "Layer 39" },
+	{ "name": "left_hand copy 3", "bone": "root", "attachment": "left_hand copy 3" },
+	{ "name": "left_hand copy 2", "bone": "root", "attachment": "left_hand copy 2" },
+	{ "name": "Layer 33", "bone": "root", "attachment": "Layer 33" },
+	{ "name": "body", "bone": "root", "attachment": "body" },
+	{ "name": "right_hand copy", "bone": "root", "attachment": "right_hand copy" },
+	{ "name": "Layer 37", "bone": "root", "attachment": "Layer 37" },
+	{ "name": "Layer 38", "bone": "root", "attachment": "Layer 38" },
+	{ "name": "eyes_right", "bone": "root", "attachment": "eyes_right" },
+	{ "name": "eyes_left", "bone": "root", "attachment": "eyes_left" },
+	{ "name": "light_eye", "bone": "root", "attachment": "light_eye" },
+	{ "name": "head", "bone": "root", "attachment": "head" },
+	{ "name": "bubble", "bone": "root", "attachment": "bubble" },
+	{ "name": "Layer 34", "bone": "root", "attachment": "Layer 34" },
+	{ "name": "Layer 35", "bone": "root", "attachment": "Layer 35" },
+	{ "name": "Layer 36", "bone": "root", "attachment": "Layer 36" }
+],
+"skins": {
+	"default": {
+		"Layer 39": {
+			"Layer 39": { "x": 990, "y": -540, "width": 1982, "height": 1082 }
+		},
+		"left_hand copy 3": {
+			"left_hand copy 3": { "x": 1393.5, "y": -677, "width": 255, "height": 148 }
+		},
+		"left_hand copy 2": {
+			"left_hand copy 2": { "x": 1357.5, "y": -705, "width": 183, "height": 180 }
+		},
+		"Layer 33": {
+			"Layer 33": { "x": 1234.5, "y": -747, "width": 229, "height": 240 }
+		},
+		"body": {
+			"body": { "x": 1602, "y": -834.5, "width": 728, "height": 493 }
+		},
+		"right_hand copy": {
+			"right_hand copy": { "x": 1633.5, "y": -838.5, "width": 319, "height": 261 }
+		},
+		"Layer 37": {
+			"Layer 37": { "x": 1883.5, "y": -723.5, "width": 177, "height": 277 }
+		},
+		"Layer 38": {
+			"Layer 38": { "x": 1808, "y": -804.5, "width": 304, "height": 239 }
+		},
+		"eyes_right": {
+			"eyes_right": { "x": 1680.5, "y": -529.5, "width": 193, "height": 179 }
+		},
+		"eyes_left": {
+			"eyes_left": { "x": 1484.5, "y": -507.5, "width": 143, "height": 131 }
+		},
+		"light_eye": {
+			"light_eye": { "x": 1568, "y": -494, "width": 224, "height": 40 }
+		},
+		"head": {
+			"head": { "x": 1630.5, "y": -456, "width": 621, "height": 580 }
+		},
+		"bubble": {
+			"bubble": { "x": 1333, "y": -559.5, "width": 90, "height": 91 }
+		},
+		"Layer 34": {
+			"Layer 34": { "x": 1135.5, "y": -716, "width": 71, "height": 72 }
+		},
+		"Layer 35": {
+			"Layer 35": { "x": 1196, "y": -627, "width": 48, "height": 50 }
+		},
+		"Layer 36": {
+			"Layer 36": { "x": 986, "y": -550.5, "width": 36, "height": 35 }
+		}
+	}
+},
+"animations": { "animation": {} }
+}
