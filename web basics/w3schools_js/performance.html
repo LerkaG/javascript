@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset='UTF-8'>
+	<title>Производительность JS. ES5 </title>
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<a href="javascript:scroll(0,10000)" >
+		<button class="btn">⇩</button>
+	</a>
+	<a href="javascript:scroll(0,0)" title="наверх">
+		<button class="btn_down">⇧</button>
+	</a>
+	<b id="link"></b> 
+
+	<h1>Производительность JavaScript</h1>
+
+	<h2>Снижение активности в циклах</h2>
+	Каждый оператор в цикле, включая оператор <b>for</b>, выполняется для каждой итерации цикла. <br>
+	Операторы или присваивания, которые могут быть размещены вне цикла, заставят цикл работать быстрее.
+	<br>ПРИМЕР
+	<pre>
+		ПЛОХОЙ код
+		Код обращается к свойству length массива каждый раз, когда цикл повторяется.
+		var i;
+		for (i = 0; i < arr.length; i++){}
+
+		ЛУЧШИЙ код 
+		Код получает доступ к свойству длины вне цикла и ускоряет выполнение цикла
+		var i;
+		var l = arr.length;
+		for (i = 0; i < l; i++){}
+	</pre>
+
+	<h2>Уменьшить доступ к DOM</h2>
+	Доступ к HTML DOM происходит очень медленно по сравнению с другими операторами JS. <br>
+	Если нужно получить доступ к элементу DOM несколько раз, получить доступ к нему один раз и использовать его как локальную переменную:
+	<br>ПРИМЕР
+	<pre>
+		var obj;
+		obj = document.getElementById("dom_1");
+		obj.innerHTML = "Hello"; // <b id="dom_1"></b>
+	</pre>
+	
+	<h2>Уменьшить размер DOM</h2>
+	ПРИМЕР
+	<pre>
+		- Сохраняйть небольшое количество элементов в HTML DOM.
+		- Это всегда улучшает загрузку страницы и ускоряет рендеринг (отображение страницы), особенно на небольших устройствах.
+		- Каждая попытка поиска в DOM (например, <b>getElementsByTagName</b>) выиграет от меньшего размера DOM.
+	</pre>
+	
+	<h2>Избегайть ненужных переменных</h2>
+	Не создавайть новые переменные, если не планируется сохранять значения.
+	
+	<br>ПРИМЕР
+	<pre>`
+		var first_name = "Lera";
+		var last_name = "G";
+
+		Часто можно заменить такой код:
+		var full_name = first_name + " " + last_name;
+		full_name; //<b id="full_name_0"></b>
+
+		Этим:
+		first_name + " " + last_name; //<b id="full_name_1"></b>
+	</pre>
+	
+	<h2>Отложить загрузку JS</h2>
+	Размещение скриптов <b>внизу тела страницы</b> позволяет браузеру загружать страницу первой. <br>
+	Во время загрузки сценария браузер не будет запускать другие загрузки. <br>
+	Все действия по синтаксическому анализу и рендерингу могут быть заблокированы. <br>
+	Спецификация HTTP определяет, что браузеры не должны загружать более двух компонентов одновременно. <br>
+	Альтернативой является использование <b>defer="true"</b> в теге скрипта.  <br>
+	<b>defer</b> указывает, что сценарий должен выполняться после завершения анализа страницы, работает только для внешних сценариев. <br>
+	Если возможно, можно добавить свой скрипт на страницу по коду после загрузки страницы:
+	<br>ПРИМЕР
+	<pre>
+		window.onload = function() {
+		   var element = document.createElement("script");
+		   element.src = "my_script.js";
+		   document.body.append(element);
+		};
+	</pre>
+	
+	<h2>Избегать использования with</h2>
+	Избегать использования ключевого слова <b>with</b>. Это отрицательно сказывается на скорости и загромождает области JS и не допускается в строгом режиме.
+
+	<script>
+		var obj;
+		obj = document.getElementById("dom_1");
+		obj.innerHTML = "Hello";
+
+		var first_name = "Lera";
+		var last_name = "G";
+		var full_name = first_name + " " + last_name;
+		document.getElementById("full_name_0").innerHTML = full_name;
+		document.getElementById("full_name_1").innerHTML = first_name + " " + last_name;
+
+		// window.onload = function() {
+		// 	var element = document.createElement("script");
+		// 	element.src = "my_script.js";
+		// 	document.body.append(element);
+		// };
+	</script>
+	
+	<h1>Зарезервированные слова JavaScript</h1>
+	<a href="https://www.w3schools.com/js/js_reserved.asp">JavaScript Reserved Words</a>
+	<br>ПРИМЕР
+	<pre>
+		<b>В JS нельзя использовать эти зарезервированные слова в качестве переменных, меток или имен функций:</b>
+		abstract arguments await boolean break byte case catch char class const continue 
+		debugger default delete do double else enum eval export extends false final finally	
+		float for function goto if implements import in instanceof int interface let long native 
+		new null package private protected public return short static super switch synchronized 
+		this throw throws transient true try typeof var void volatile while with yield
+
+		<b>Следует избегать использования названий встроенных объектов, свойств и методов JS:</b>
+		Array: hasOwnProperty isPrototypeOf name String
+		Date: Infinity length Number toString
+		eval: isFinite Math Object undefined
+		function: isNaN NaN prototype valueOf
+		getClass java JavaArray javaClass JavaObject JavaPackage
+
+		<b>Нужно избегать использования имен объектов и свойств HTML и Window:</b>
+		alert all anchor anchors area assign blur button checkbox clearInterval clearTimeout 
+		clientinfo_txtrmation close closed confirm constructor crypto decodeURI defaultStatus
+		decodeURIComponent document element elements embed embeds encodeURI encodeURIComponent 
+		escape event fileUpload focus form forms frame innerHeight innerWidth layer layers link 
+		location mimeTypes navigate navigator frames frameRate hidden history image images 
+		offscreenBuffering open opener option outerHeight outerWidth packages pageXOffset 
+		pageYOffset parent parseFloat parseInt password pkcs11 plugin prompt propertyIsEnum radio 
+		reset screenX screenY scroll secure select self setInterval setTimeout status submit 
+		taint text textarea top unescape untaint window	
+
+		<b>Избегать использования имен всех обработчиков событий HTML.</b>
+		onblur onclick onerror onfocus onkeydown onkeypress onkeyup onmouseover onload 
+		onmouseup onmousedown onsubmit
+	</pre>
+	
+	<h1>ECMAScript 5 - JavaScript 5.</h1>
+	<h2>ES5 Возможности</h2>
+	Эти новые функции были выпущенные в 2009 году:
+	<br>ПРИМЕР
+	<pre>
+		- "use strict"
+		- String.trim()
+		- Array.isArray()
+		- Array.forEach()
+		- Array.map()
+		- Array.filter()
+		- Array.reduce()
+		- Array.reduceRight()
+		- Array.every()
+		- Array.some()
+		- Array.indexOf()
+		- Array.lastIndexOf()
+		- JSON.parse()
+		- JSON.stringify()
+		- Date.now()
+		- Получатели и сеттеры собственности
+		- Новые методы свойств объекта
+	</pre>
+	
+	<h2>Директива "use strict"</h2>
+	<b>"use strict"</b> - это просто строковое выражение, определяет, что код JS должен выполняться в «строгом режиме». <br>
+	Можно использовать строгий режим во всех программах. Это помогает писать более чистый код. <br>
+	Старые браузеры не выдадут ошибку, если они ее не поймут.
+	
+	<h2>String.trim()</h2>
+	<b>String.trim()</b> - удаляет пробелы с обеих сторон строки.
+	<br>ПРИМЕР
+	<pre>
+		var str = "   'hello world'     ";
+		str;        // <b id="trim_0"></b>
+		str.trim(); // <b id="trim_1"></b>
+	</pre>
+	
+	<h2>Array.isArray()</h2>
+	В <b>isArray()</b> методе проверяет, является ли объект массива.
+	<br>ПРИМЕР
+	<pre>
+		function array_0() {
+		  var fruits = ["Banana", "Orange", "Apple"];
+		  var x = document.getElementById("array_0");
+		  x.innerHTML = Array(fruits[1])
+		}
+		<button onclick="array_0()"> Click Me</button>
+		<b id="array_0"></b>
+	</pre>
+	
+	<h2>Array.forEach()</h2>
+	<b>forEach()</b> - Метод вызывает функцию один раз для каждого элемента массива.
+	<br>ПРИМЕР
+	<pre>
+		var txt = "";
+		var numbers = [45, 4, 9, 16];
+		numbers.forEach(func_foreach);
+		txt;
+
+		function func_foreach(value) {
+		  txt = txt + value + "< br>";
+		}
+	</pre>
+	<code><ul> <b id="foreach"></b> </ul></code> <br>
+	
+	<h2>Array.map()</h2>
+	ПРИМЕР
+	<pre>
+		каждое значение массива умножается на 2:
+		var numbers_1 = [45, 4, 9, 16];
+		var numbers_2 = numbers_1.map(func_map);
+		numbers_2; // <b id="map"></b>
+
+		function func_map(value) {
+		  return value * 2;
+		} 
+	</pre>
+
+	<h2>Array.filter()</h2>	
+	ПРИМЕР
+	<pre>
+		создается новый массив из элементов со значением больше 18:
+		var numbers_1 = [45, 4, 9, 16];
+		var over_18 = numbers_1.filter(func_filter);
+		over_18; // <b id="filter"></b>
+
+		function func_filter(value) {
+		  return value > 18;
+		}
+	</pre>
+	
+	<h2>Array.reduce()</h2>
+	ПРИМЕР
+	<pre>
+		выполняется поиск суммы всех чисел в массиве:
+		var numbers_1 = [45, 4, 9, 16];
+		var sum = numbers_1.reduce(func_reduce);
+		// <b id="reduce"></b>
+		function func_reduce(total, value) {
+		   return total + value;
+		}
+	</pre>
+	
+	<h2>Array.reduceRight()</h2>
+	ПРИМЕР
+	<pre>
+		находит сумму всех чисел в массиве:
+		var numbers_1 = [45, 4, 9, 16];
+		var sum = numbers_1.reduceRight(func_reduce_right);
+		sum; // <b id="reduce_right"></b>
+		function func_reduce_right(total, value) {
+		   return total + value;
+		}
+	</pre>
+	
+	<h2>Array.every()</h2>
+	ПРИМЕР
+	<pre>
+		проверяется, все ли значения больше 18:
+		var numbers_1 = [45, 4, 9, 16];
+		var every_18 = numbers_1.every(func_every);
+		every_18; // <b id="every"></b>
+		
+		function func_every(value) {
+		   return value > 18;
+		}
+	</pre>
+	
+	<h2>Array.some()</h2>
+	ПРИМЕР
+	<pre>
+		проверяется, не превышают ли некоторые значения 18:
+		var numbers_1 = [45, 4, 9, 16];
+		var some_18 = numbers_1.some(func_every);
+		some_18; // <b id="some"></b>
+
+		function func_some(value) {
+		   return value > 18;
+		}
+	</pre>
+	
+	<h2>.indexOf() и .lastIndexOf()</h2>
+	<b>.indexOf()</b> - Ищет в массиве значение элемента и возвращает его позицию. <br>
+	<b>.lastIndexOf()</b> - поиск с конца массива.
+	<br>ПРИМЕР
+	<pre>
+		var fruits = ["Banana", "Orange", "Apple", "Mango"];
+		"position:" + fruits.indexOf("Apple"); // <b id="indexOf_1"></b>
+		"position:" + fruits.lastIndexOf("Apple"); // <b id="indexOf_2"></b>
+	</pre>
+
+	<h2>JSON.parse()</h2>
+	Обычно JSON используется для получения данных с веб-сервера. <br>
+	Функция JavaScript JSON.parse() используется для преобразования текста в объект JavaScript:
+	<br>ПРИМЕР
+	<pre>
+		'{"name":"John", "age":30, "city":"New York"}' - текстовая строка с веб-сервера
+
+		var sms = '{"name":"John", "age":30, "city":"New York"}';
+		var obj = JSON.parse(sms);
+		obj.name + obj.age; // <b id="parse_0"></b>
+	</pre> 
+
+	<h2>JSON.stringify()</h2>
+	Обычно JSON используется для отправки данных на веб-сервер. При отправке данных на веб-сервер данные должны быть строкой. <br>
+	Допустим, что у нас есть этот объект в JS: <b>JSON.stringify()</b> - преобразование в строку.
+	<br>ПРИМЕР
+	<pre>
+		var sms_2 = {name:"John", age:30, city:"New York"};
+		var str_obj = JSON.stringify(sms_2);
+		typeof str_obj; // <b id="parse_1"></b>
+	</pre>
+
+	<h2>Date.now()</h2>
+	<b>Date.now()</b> - возвращает количество миллисекунд с нулевой даты (1 января 1970 00:00:00 UTC). <br>
+	<b>Date.now()</b> возвращает то же самое, что и <b>getTime()</b>, выполняемое для <b>Date</b> объекта.
+	<br>ПРИМЕР
+	<pre>
+		Date.now(); //<b id="date_0"></b>
+		var d = new Date();
+		d.getTime(); //<b id="date_1"></b>
+	</pre>
+
+	<h2>Получатели и сеттеры собственности</h2>
+	ES5 позволяет определять методы объекта с синтаксисом, который выглядит как получение или установка свойства.
+	<br>ПРИМЕР
+	<pre>
+		Создается get для свойства с именем <b>full_name</b>:
+		var person = {
+		   first_name: "John",
+		   last_name: "Doe",
+		   get full_name() {
+		      return this.first_name + " " + this.last_name;
+		   }
+		};
+		person.full_name; //<b id="get_0"></b>
+
+		Создаются get и set для свойства языка:
+		var person_get_set = {
+		   language: "No",
+		   get lang() {
+		      return this.language;
+		   },
+		   set lang(value) {
+		      this.language = value;
+		   }
+		};
+		person_get_set.lang = "en";
+		person_get_set.lang; //<b id="get_1"></b>
+
+		Используется set для защиты обновлений языка в верхнем регистре:
+		var person_get_set = {
+		   language: "No",
+		   set lang(value) {
+		      this.language = value.toUpperCase();
+		   }
+		};
+		person_get_set.lang = "en";
+		document.getElementById("get_2").innerHTML = person_get_set.language; //<b id="get_2"></b>
+	</pre>
+
+	<h2>Новые методы свойств объекта</h2>
+	<b>Object.defineProperty()</b> - это новый метод объекта в ES5. <br>
+	Он позволяет определять свойство объекта и / или изменять значение свойства и / или метаданные.
+	<br>ПРИМЕР
+	<pre>
+		var person = {
+		   first_name: "John",
+		   last_name: "Doe",
+		   language: "No",
+		};
+		// change property
+		Object.defineProperty(person, "language", {
+		   value: "EN",
+		   writable: true,
+		   enumerable: true,
+		   configurable: true
+		});
+		// enumerate properties
+		var txt = "";
+		for (var x in person) {
+		   txt += person[x] + " ";
+		}
+		txt; //<b id="define_0"></b>
+
+		это тот же код, за исключением того, что он скрывает свойство языка из перечисления:
+		Object.defineProperty(person, "language", {
+		   value: "EN",
+		   writable: true,
+		   enumerable: <b>false</b>,
+		   configurable: true
+		});
+		txt; //<b id="define_1"></b>
+
+		Cоздаются сеттер и получатель для защиты обновлений языка в верхнем регистре:
+		// change a property
+		Object.defineProperty(person, "language", {
+		   get: function() { return language },
+		   set: function(value) { language = value.toUpperCase() }
+		});
+		// change language
+		person.language = "en";
+		person.language; //<b id="define_2"></b>
+	</pre>
+
+	<h2>Новые методы объекта ES5</h2>
+	<br>ПРИМЕР
+	<pre>
+		// Добавление или изменение свойства объекта
+		Object.defineProperty(object, property, descriptor)
+
+		// Добавление или изменение многих свойств объекта
+		Object.defineProperties(object, descriptors)
+
+		// Доступ к свойствам
+		Object.getOwnPropertyDescriptor(object, property)
+
+		// Возвращает все свойства в виде массива
+		Object.getOwnPropertyNames(object)
+
+		// Возвращает перечислимые свойства в виде массива
+		Object.keys(object)
+
+		// Доступ к прототипу
+		Object.getPrototypeOf(object)
+
+		// Предотвращает добавление свойств к объекту
+		Object.preventExtensions(object)
+		// Возвращает true, если к объекту можно добавить свойства.
+		Object.isExtensible(object)
+
+		// Предотвращает изменение свойств объекта (не значений)
+		Object.seal(object)
+		// Возвращает истину, если объект запечатан
+		Object.isSealed(object)
+
+		// Предотвращает любые изменения объекта
+		Object.freeze(object)
+		// Возвращает истину, если объект заморожен
+		Object.isFrozen(object)
+	</pre>
+
+	<h2>Доступ к свойствам для строк</h2>
+	<b>charAt()</b> - Метод возвращает символ по указанному индексу (позиции) в строке. <br>
+	Доступ к свойству в строке может быть немного непредсказуемым.
+	<br>ПРИМЕР
+	<pre>
+		var str = "Hello world";
+		str.charAt(0); //<b id="charat_0"></b>
+
+		ECMAScript 5 разрешает доступ к свойствам строк:
+		str[0]; //<b id="charat_1"></b>
+	</pre>
+
+	<h2>Завершающие запятые</h2>
+	ES 5 позволяет использовать завершающие запятые в определениях объектов и массивов. JSON не допускает конечных запятых.
+	<br>ПРИМЕР
+	<pre>
+		Пример объекта:
+		person = {
+		  first_name: "John",
+		  last_name: " Doe",
+		}
+
+		Пример массива:
+		points = [
+		  1,
+		  4,
+		  6,
+		  8,
+		];
+
+		Объекты JSON:
+		var person = '{"first_name": "John", "last_name": " Doe" }';
+		var person_1 = '{"first_name": "John", "last_name": " Doe" }';
+		JSON.parse(person); // <b id="json_0"></b>
+		JSON.parse(person_1); // <b> error</b>
+
+		Массивы JSON:
+		points = '[40, 100, 1, 5, 25, 10]';
+		JSON.parse(points);// <b id="json_2"></b>
+		points = '[40, 100, 1, 5, 25, 10,]';
+		JSON.parse(points);// <b>Error</b>
+	</pre>
+
+	<h2>Строки на нескольких строках</h2>
+	ES 5 позволяет использовать строковые литералы на нескольких строках, если они экранированы обратной косой чертой. <br>
+	Некоторые старые браузеры не допускают пробелов после символа <b>\</b> <br>
+	Более безопасный способ разбить строковый литерал - использовать сложение строк:
+	<br>ПРИМЕР
+	<pre>
+		"Hello \
+	</pre>
+	<code><ul> world"; //<b id="string_lit_0"></b></ul></code> <br>
+	<pre>
+		"Hello" + 
+		" world"; //<b id="string_lit_1"></b>
+	</pre><br>
+
+	<h2>Зарезервированные слова как названия свойств</h2>
+	ES 5 позволяет использовать зарезервированные слова в качестве имен свойств:
+	<br>ПРИМЕР
+	<pre>
+		var obj = {name: "John", new: "yes"};
+		obj.new; //<b id="reserve"></b>
+	</pre>
+	<code><ul> <b id=''></b> </ul></code> <br>
+
+	<script>
+		var str = "   'hello world'     ";
+		document.getElementById("trim_0").innerHTML = str;
+		document.getElementById("trim_1").innerHTML = str.trim();
+
+		function array_0() {
+			var fruits = ["Banana", "Orange", "Apple"];
+			var x = document.getElementById("array_0");
+			x.innerHTML = Array(fruits[1])
+		}
+
+		var txt = "";
+		var numbers = [45, 4, 9, 16];
+		numbers.forEach(func_foreach);
+		document.getElementById("foreach").innerHTML = txt;
+
+		function func_foreach(value) {
+			txt = txt + value + "<br>";
+		}
+
+		var numbers_1 = [45, 4, 9, 16];
+		var numbers_2 = numbers_1.map(func_map);
+		document.getElementById("map").innerHTML = numbers_2;
+
+		function func_map(value) {
+			return value * 2;
+		} 
+
+		var over_18 = numbers_1.filter(func_filter);
+		document.getElementById("filter").innerHTML = over_18;
+
+		function func_filter(value) {
+			return value > 18;
+		}
+
+		var sum = numbers_1.reduce(func_reduce);
+		document.getElementById("reduce").innerHTML = sum;
+
+		function func_reduce(total, value) {
+			return total + value;
+		}
+
+		var sum_2 = numbers_1.reduceRight(func_reduce_right);
+		document.getElementById("reduce_right").innerHTML = sum_2;
+		function func_reduce_right(total, value) {
+		   return total + value;
+		}
+
+		var every_18 = numbers_1.every(func_every);
+		document.getElementById("every").innerHTML = every_18;
+
+		function func_every(value) {
+			return value > 18;
+		}
+
+		var some_18 = numbers_1.some(func_every);
+		document.getElementById("some").innerHTML = some_18;
+
+		function func_some(value) {
+			return value > 18;
+		}
+
+		var fruits = ["Banana", "Orange", "Apple", "Mango"];
+		document.getElementById("indexOf_1").innerHTML = "position:" + fruits.indexOf("Apple");
+		document.getElementById("indexOf_2").innerHTML = "position:" + fruits.lastIndexOf("Apple");
+
+		var sms = '{"name": "John", "age":30, "city":"New York"}';
+		var obj = JSON.parse(sms);
+		document.getElementById("parse_0").innerHTML = obj.name + obj.age;
+
+		var sms_2 = {name: " John ", age:30, city:"New York"};
+		var str_obj = JSON.stringify(sms_2);
+		document.getElementById("parse_1").innerHTML = typeof str_obj + str_obj;
+		
+		document.getElementById("date_0").innerHTML = Date.now();
+		var d = new Date();
+		document.getElementById("date_1").innerHTML = d.getTime();
+
+		var person = {
+			first_name: "John",
+			last_name: "Doe",
+			get full_name() {
+				return this.first_name + " " + this.last_name;
+			}
+		};
+		document.getElementById("get_0").innerHTML = person.full_name;
+		
+		var person_get_set = {
+			first_name: "John",
+			last_name: "Doe",
+			language: "No",
+			get lang() {
+				return this.language;
+			},
+			set lang(value) {
+				this.language = value;
+			}
+		};
+		person_get_set.lang = "en";
+		document.getElementById("get_1").innerHTML = person_get_set.lang;
+
+		var person_get_set = {
+			first_name: "John",
+			last_name: "Doe",
+			language: "No",
+			set lang(value) {
+				this.language = value.toUpperCase();
+			}
+		};
+		person_get_set.lang = "en";
+		document.getElementById("get_2").innerHTML = person_get_set.language;
+
+		var person = {
+			first_name: "John",
+			last_name: "Doe",
+			language: "No",
+		};
+		// change property
+		Object.defineProperty(person, "language", {
+			value: "EN",
+			writable: true,
+			enumerable: true,
+			configurable: true
+		});
+		// enumerate properties
+		var txt = "";
+		for (var x in person) {
+			txt += person[x] + " ";
+		}
+		document.getElementById("define_0").innerHTML = txt;
+
+		Object.defineProperty(person, "language", {
+			value: "EN",
+			writable: true,
+			enumerable: false,
+			configurable: true
+		});
+		// enumerate properties
+		var txt = "";
+		for (var x in person) {
+			txt += person[x] + " ";
+		}
+		document.getElementById("define_1").innerHTML = txt;
+
+		// change a property
+		Object.defineProperty(person, "language", {
+			get: function() { return language },
+			set: function(value) { language = value.toUpperCase() }
+		});
+		// change language
+		person.language = "en";
+		document.getElementById("define_2").innerHTML = person.language;
+
+		var str = "Hello world";
+		document.getElementById("charat_0").innerHTML = str.charAt(0);
+		document.getElementById("charat_1").innerHTML = str[0];
+
+		var person_1 = '{"first_name": "John", "last_name": " Doe" }';
+		document.getElementById("json_0").innerHTML = JSON.parse(person_1);
+		
+		var points = '[40, 100, 1, 5, 25, 10]';
+		document.getElementById("json_2").innerHTML = JSON.parse(points);
+		document.getElementById("string_lit_0").innerHTML = "Hello \
+		world";
+		document.getElementById("string_lit_1").innerHTML = "Hello" + 
+		" world";
+
+		var obj = {name: "John", new: "yes"};
+		document.getElementById("reserve").innerHTML = obj.new;
+	</script>
+
+<footer></footer>
+<script type ="text/javascript" src="list.js" charset="utf-8"> </script>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset='UTF-8'>
+	<title>JS Form</title>
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<a href="javascript:scroll(0,10000)" >
+		<button class="btn">⇩</button>
+	</a>
+	<a href="javascript:scroll(0,0)" title="наверх">
+		<button class="btn_down">⇧</button>
+	</a>
+	<b id="link"></b> 
+
+	<h1>JavaScript Forms</h1>
+
+	<h2>Проверка формы JavaScript</h2>
+	Проверка HTML-формы может выполняться с помощью JS. 
+	<br>ПРИМЕР
+	<pre>
+		Если поле формы <i>fname</i> пусто, эта функция предупреждает сообщение и возвращает <b>false</b>, чтобы форма не была отправлена:
+		function validate_form() {
+		  var x = document.forms["my_form"]["fname"].value;
+		  if (x == "") {
+		    alert("name must be filled out");
+		    return false;
+		  }
+		}
+
+		Функцию можно вызвать при отправке формы:
+		< form name="my_form" action="welcome_get.php" onsubmit="return validate_form()" method="post">
+		  Name: < input type="text" name="fname">
+		  < input type="submit" value="Submit">
+		< /form> 
+	</pre>
+	<form name="my_form" action="welcome_get.php" onsubmit="return validate_form()" method="post">
+			Name: <input type="text" name="fname">
+			<input type="submit" value="Submit">
+	</form>
+
+	<h2>JavaScript может проверять числовой ввод</h2>
+	JavaScript часто используется для проверки числового ввода:
+	<br>ПРИМЕР
+	<pre>
+		function my_func_1() {
+		  var x, text;
+		  x = document.getElementById("numb").value;
+		  if (isNaN(x) || x < 1 || x > 10) {
+		    text = "Input not valid";
+		  } else {
+		    text = "Input OK";
+		  }
+		  document.getElementById("result").innerHTML = text;
+		}
+		< input id="numb">< button type="button" onclick="my_func_1()">Click Me< /button>
+		< b id="result">< /b>
+		<input id="numb"><button type="button" onclick="my_func_1()">Click Me</button>
+		<b id="result"></b>
+	</pre>
+
+	<h2>Автоматическая проверка HTML-форм</h2>
+	Проверка HTML-формы может выполняться автоматически браузером. <br> 
+	Автоматическая проверка HTML-формы не работает в Internet Explorer 9 и более ранних версиях. <br>
+	Если поле формы <i>fname</i> пусто, <b>required</b> атрибут предотвращает отправку этой формы:
+	<br>ПРИМЕР
+	<pre>
+		< form action="welcome_get.php" method="post">
+		  < input type="text" name="fname" <b>required</b>>
+		  < input type="submit" value="Submit">
+		< /form>
+	</pre>
+	<form method="post">
+		<input type="text" name="fname" required>
+		<input type="submit" value="Submit">
+	</form>
+
+	<h2>Валидация данных</h2>
+	Проверка данных - это процесс обеспечения того, чтобы вводимые пользователем данные были чистыми, правильными и полезными. <br>
+	Чаще всего цель проверки данных - обеспечить правильный ввод данных пользователем. <br>
+	Валидация может быть определена множеством разных методов и развернута множеством разных способов. <br>
+	Проверка на стороне <b>сервера</b> выполняется веб-сервером после того, как ввод был отправлен на сервер. <br>
+	Проверка на стороне <b>клиента</b> выполняется веб-браузером перед отправкой входных данных на веб-сервер.
+	<pre>
+		Типичные задачи проверки:
+		- Пользователь заполнил все обязательные поля?
+		- Пользователь ввел действительную дату?
+		- Пользователь ввел текст в числовое поле?
+	</pre>
+
+	<h2>Проверка ограничений HTML</h2>
+	HTML5 представил новую концепцию проверки HTML, называемую проверкой ограничений.
+	<pre>
+		Проверка ограничений HTML основана на:
+		- Атрибуты ввода HTML для проверки ограничений
+		- Проверка ограничений Псевдоселекторы CSS
+		- Свойства и методы DOM для проверки ограничений
+	</pre>
+
+	<h2>Атрибуты ввода HTML для проверки ограничений</h2>
+	<pre>
+		<b>disabled </b>- Указывает, что элемент ввода должен быть отключен
+		<b>max      </b>- Задает максимальное значение элемента ввода
+		<b>min      </b>- Задает минимальное значение элемента ввода
+		<b>pattern  </b>- Определяет образец значения входного элемента
+		<b>required </b>- Указывает, что для поля ввода требуется элемент
+		<b>type     </b>- Задает тип входного элемента
+	</pre>
+
+	<h2>Псевдоселекторы CSS с проверкой ограничений</h2>
+	<pre>
+		<b>:disabled </b>- Выбирает элементы ввода с указанным атрибутом <b>disabled</b>
+		<b>:invalid  </b>- Выбирает элементы ввода с недопустимыми значениями
+		<b>:optional </b>- Выбирает элементы ввода без указанного атрибута <b>required</b>
+		<b>:required </b>- Выбирает элементы ввода с указанным атрибутом <b>required</b>
+		<b>:valid    </b>- Выбирает элементы ввода с допустимыми значениями
+	</pre>
+
+	<h1>API проверки JavaScript</h1>
+	<h2>Методы DOM проверки ограничений</h2>
+		<b>checkValidity()</b>	    - Возвращает <b>true</b>, если входной элемент содержит допустимые данные. <br>
+		<b>setCustomValidity()</b> - Задает свойство <b>validationMessage</b> входного элемента.
+	<br>ПРИМЕР
+	<pre>
+		Метод checkValidity():
+		Если поле ввода содержит недопустимые данные, отобразите сообщение:
+		function my_func_2() {
+		  var input_obj = document.getElementById("id_1");
+		  if (!input_obj.checkValidity()) {
+		    document.getElementById("result_1").innerHTML = input_obj.validationMessage;
+		  }
+		}
+		< input id="id_1" type="number" min="100" max="300" required>
+		< button onclick="my_func_2()">OK< /button> 
+		< b id=result_1></b>
+		<input id="id_1" type="number" min="100" max="300" required><button onclick="my_func_2()">OK</button> <b id=result_1></b>
+	</pre>
+
+	<h2>Свойства модели DOM для проверки ограничений</h2>
+	<pre>
+		<b>validity</b>          - Содержит логические свойства, связанные с достоверностью входного элемента.
+		<b>validationMessage</b> - Содержит сообщение, которое браузер отобразит, если действительность ложна.
+		<b>willValidate</b>      - Указывает, будет ли проверяться элемент ввода.
+	</pre>
+
+	<h2>Свойства действительности</h2>
+	Свойство достоверности входного элемента содержит ряд свойств, связанных с достоверностью данных:
+	<pre>
+		<b>customError</b>   	- Установите значение <b>true</b>, если установлено настраиваемое сообщение о достоверности.
+		<b>patternMismatch</b>	- Установите значение <b>true</b>, если значение элемента не соответствует его атрибуту шаблона.
+		<b>rangeOverflow</b> 	- Установите значение <b>true</b>, если значение элемента больше, чем его атрибут <b>max</b>.
+		<b>rangeUnderflow</b>  - Установите значение <b>true</b>, если значение элемента меньше его атрибута <b>min</b>.
+		<b>stepMismatch</b>    - Установите значение <b>true</b>, если значение элемента недопустимо для его атрибута <b>step</b>.
+		<b>tooLong</b>         - Установите значение <b>true</b>, если значение элемента превышает его атрибут <b>maxLength</b>.
+		<b>typeMismatch</b>    - Установите значение <b>true</b>, если значение элемента недопустимо для его атрибута типа.
+		<b>valueMissing</b>    - Установите значение <b>true</b>, если элемент (с обязательным атрибутом) не имеет значения.
+		<b>valid</b>           - Установите значение <b>true</b>, если значение элемента является допустимым.
+	</pre>
+	ПРИМЕР
+	<pre>
+		<b>rangeOverflow</b>
+		function my_func_3() {
+		  var txt = "";
+		  if (document.getElementById("id_2").validity.rangeOverflow) {
+		   txt = "Value too large";
+		   } else {
+		   txt = "Input OK";
+		  }
+		  document.getElementById("result_2").innerHTML = txt;
+	  	}
+	  	input id="id_2" type="number" max="300">
+		< button onclick="my_func_3()">OK< /button> < b id=result_2></ b>
+
+		<input id="id_2" type="number" max="300"><button onclick="my_func_3()">OK</button> <b id=result_2></b>
+
+		Если число в поле ввода меньше 100 ( min атрибут ввода ), <b>rangeUnderflow</b>: 
+		function my_func_4() {
+		  var txt = "";
+		  if (document.getElementById("id_3").validity.rangeUnderflow) {
+		    txt = "Value too SMALL";
+		    } else {
+		    txt = "Input OK";
+		  }
+		  document.getElementById("result_3").innerHTML = txt;
+		}
+		input id="id_3" type="number" min="100">
+		< button onclick="my_func_4()">OK< /button> < b id=result_3></ b>
+		<input id="id_3" type="number" min="100"><button onclick="my_func_4()">OK</button> <b id=result_3></b>
+	</pre>
+	<code><ul id=''> </ul></code> <br>
+
+	<h2></h2>
+	<br>ПРИМЕР
+	<pre>
+	</pre>
+	<code><ul id=''> </ul></code> <br>
+	<script>
+		function validate_form() {
+			var x = document.forms["my_form"]["fname"].value;
+			if (x == "") {
+				alert("name must be filled out");
+				return false;
+			}
+		}
+
+		function my_func_1() {
+			var x, text;
+			x = document.getElementById("numb").value;
+			if (isNaN(x) || x < 1 || x > 10) {
+				text = "Input not valid";
+			} else {
+				text = "Input OK";
+			}
+			document.getElementById("result").innerHTML = text;
+		}
+
+		function my_func_2() {
+			var input_obj = document.getElementById("id_1");
+			if (!input_obj.checkValidity()) {
+				document.getElementById("result_1").innerHTML = input_obj.validationMessage;
+			} else {
+				document.getElementById("result_1").innerHTML = "Input OK";
+			}
+		}
+
+		function my_func_3() {
+			var txt = "";
+			if (document.getElementById("id_2").validity.rangeOverflow) {
+				txt = "Value too large";
+			} else {
+				txt = "Input OK";
+			}
+			document.getElementById("result_2").innerHTML = txt;
+		}
+
+		function my_func_4() {
+			var txt = "";
+			if (document.getElementById("id_3").validity.rangeUnderflow) {
+				txt = "Value too SMALL";
+			} else {
+				txt = "Input OK";
+			}
+			document.getElementById("result_3").innerHTML = txt;
+		}
+	</script>
+
+<footer></footer>
+<script type ="text/javascript" src="list.js" charset="utf-8"> </script>
+</body>
+</html>

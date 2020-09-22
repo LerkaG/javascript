@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset='UTF-8'>
+	<title>JS Browser BOM</title>
+	<link href="style.css" rel="stylesheet">
+	<script>
+		function setCookie(cname,cvalue,exdays) {
+	  var d = new Date();
+	  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+	  var expires = "expires=" + d.toGMTString();
+	  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+	}
+
+	function getCookie(cname) {
+	  var name = cname + "=";
+	  var decodedCookie = decodeURIComponent(document.cookie);
+	  var ca = decodedCookie.split(';');
+	  for(var i = 0; i < ca.length; i++) {
+	    var c = ca[i];
+	    while (c.charAt(0) == ' ') {
+	      c = c.substring(1);
+	    }
+	    if (c.indexOf(name) == 0) {
+	      return c.substring(name.length, c.length);
+	    }
+	  }
+	  return "";
+	}
+
+	function checkCookie() {
+	  var user = getCookie("username");
+	  if (user != "") {
+	    alert("Welcome again " + user);
+	  } else {
+	     user = prompt("Please enter your name:","");
+	     if (user != "" && user != null) {
+	       setCookie("username", user, 30);
+	     }
+	  }
+	}
+	</script>
+</head>
+<!-- <body onload="checkCookie()"> -->
+<body>
+	<a href="javascript:scroll(0,10000)" >
+		<button class="btn">⇩</button>
+	</a>
+	<a href="javascript:scroll(0,0)" title="наверх">
+		<button class="btn_down">⇧</button>
+	</a>
+	<b id="link"></b> 
+
+	<h1>Окно JavaScript - объектная модель браузера</h1>
+	Объектная модель браузера (BOM) позволяет JavaScript «общаться» с браузером.
+
+	<h2>Объектная модель браузера (BOM)</h2>
+	Там нет никаких официальных стандартов для Browser Object Model (BOM). <br>
+	Поскольку современные браузеры реализовали (почти) те же методы и свойства для интерактивности JS, это часто называют методами и свойствами спецификации.
+	
+	<h2>Объект Window</h2>
+	<b>window</b> Объект поддерживается всеми браузерами (представляет собой окно браузера). <br>
+	Все глобальные объекты, функции и переменные JS автоматически становятся членами объекта окна. <br>
+	<b>Глобальные переменные</b> - это свойства оконного объекта. <b>Глобальные функции</b> - это методы объекта окна. <br>
+	Объект документа (HTML DOM) является свойством объекта окна:
+	<br>ПРИМЕР
+	<pre>
+		window.document.getElementById("header");
+		такой же как:
+		document.getElementById("header");
+	</pre>
+
+	<h2>Размер окна</h2>
+	Для определения размера окна браузера можно использовать два свойства. Оба свойства возвращают размеры в пикселях: <br>
+	<b>window.innerHeight</b> - внутренняя высота окна браузера (в пикселях) <br>
+	<b>window.innerWidth</b> - внутренняя ширина окна браузера (в пикселях) <br>
+	Окно браузера (область просмотра) НЕ включает панели инструментов и полосы прокрутки.
+	<br>ПРИМЕР
+	<pre>
+		Для Internet Explorer 8, 7, 6, 5:
+		document.documentElement.clientHeight
+		document.documentElement.clientWidth
+		или
+		document.body.clientHeight
+		document.body.clientWidth
+
+		Практическое решение JavaScript (охватывающее все браузеры):
+		Отображение высоты и ширины окна браузера: (НЕ включая панели инструментов / полосы прокрутки)
+		var w = window.innerWidth
+		|| document.documentElement.clientWidth
+		|| document.body.clientWidth;
+
+		var h = window.innerHeight
+		|| document.documentElement.clientHeight
+		|| document.body.clientHeight;
+
+		var x = document.getElementById("client_w_h");
+		x.innerHTML = "Browser inner window width: " + w + ", height: " + h;
+		//<i id="client_w_h"></i>
+	</pre>
+
+	<h2>Другие методы окна</h2>
+	ПРИМЕР
+	<pre>
+		<b>- window.open();    </b> - открыть новое окно
+		<b>- window.close();   </b> - закрыть текущее окно
+		<b>- window.moveTo();  </b> - переместить текущее окно
+		<b>- window.resizeTo();</b> - изменить размер текущего окна
+	</pre>
+	<script>
+		var w = window.innerWidth
+		|| document.documentElement.clientWidth
+		|| document.body.clientWidth;
+
+		var h = window.innerHeight
+		|| document.documentElement.clientHeight
+		|| document.body.clientHeight;
+
+		var x = document.getElementById("client_w_h");
+		x.innerHTML = "Browser inner window width: <b>" + w + "</b>, height: <b>" + h + "</b>";
+	</script>
+
+	<h1>Экран окна JavaScript</h1>
+	Объект <b>window.screen</b> содержит информацию об экране пользователя.
+
+	<h2>window.screen</h2>
+	window.screenОбъект может быть записан без префикса окна.
+	<br>ПРИМЕР
+	<pre>
+		Свойства: <b>
+		- screen.width
+		- screen.height
+		- screen.availWidth
+		- screen.availHeight
+		- screen.colorDepth
+		- screen.pixelDepth</b>
+	</pre>
+
+	<h2>Window Screen Width/Height (Ширина/высота экрана окна)</h2>
+	<b>screen.width</b> - Свойство возвращает ширину экрана посетителя в пикселях. <br>
+	<b>screen.height</b> - Свойство возвращает высоту экрана посетителя в пикселях.
+	<br>ПРИМЕР
+	<pre>
+		screen.width; //<b id="screen_w_0"></b>
+		screen.height; //<b id="screen_h_0"></b>
+	</pre>
+
+	<h2>Доступная ширина/высота оконного экрана</h2>
+	<b>screen.availWidth</b> - Свойство возвращает ширину экрана посетителя в пикселях минус интерфейс функции, такие как панель задач Windows. <br>
+	<b>screen.availHeight</b> - Свойство возвращает высоту экрана посетителя в пикселях минус интерфейс функции, такие как панель задач Windows.
+	<br>ПРИМЕР
+	<pre>
+		screen.availWidth; //<b id="screen_w_1"></b>
+		screen.availHeight; //<b id="screen_h_1"></b>
+	</pre>
+
+	<h2>Глубина цвета экрана окна</h2>
+	В <b>screen.colorDepth</b> возвращает собственность количество битов, используемых для отображения одного цвета. <br>
+	Все современные компьютеры используют 24-битное или 32-битное оборудование для цветового разрешения: <br>
+	<b>24 бита = 16 777 216 различных «истинных цветов» <br>
+	32 бита = 4 294 967 296 различных «глубоких цветов»</b> <br>
+	Старые компьютеры использовали 16 бит: 65 536 различных разрешений «High Colours». <br>
+	Очень старые компьютеры и старые сотовые телефоны использовали 8 бит: 256 различных «цветов VGA».
+	<br>ПРИМЕР
+	<pre>
+		screen.colorDepth; //<b id="screen_color"></b>
+	</pre>
+
+	<h2>Глубина пикселей экрана окна</h2>
+	<b>screen.pixelDepth</b> - Свойство возвращает глубину экрана в пикселах. <br>
+	Для современных компьютеров глубина цвета и глубина пикселей равны 
+	<br>ПРИМЕР
+	<pre>
+		screen.pixelDepth; //<b id="screen_pixel"></b>
+	</pre>
+	<script>
+		document.getElementById("screen_w_0").innerHTML = screen.width;
+		document.getElementById("screen_h_0").innerHTML = screen.height;
+		document.getElementById("screen_w_1").innerHTML = screen.availWidth;
+		document.getElementById("screen_h_1").innerHTML = screen.availHeight;
+		document.getElementById("screen_color").innerHTML = screen.colorDepth;
+		document.getElementById("screen_pixel").innerHTML = screen.pixelDepth;
+	</script>
+
+
+	<h1>Расположение окна JavaScript</h1>
+	Этот <b>window.location</b> объект можно использовать для получения адреса текущей страницы (URL) и для перенаправления браузера на новую страницу.
+
+	<h2>Расположение окна</h2>
+	<b>window.location</b> Объект может быть записан без префикса окна.
+	<br>ПРИМЕР
+	<pre>
+		<b>window.location.href    </b> - возвращает <b>href</b> (URL) текущей страницы
+		<b>window.location.hostname</b> - возвращает доменное имя веб-хостинга
+		<b>window.location.pathname</b> - возвращает путь и имя файла текущей страницы
+		<b>window.location.protocol</b> - возвращает используемый веб-протокол <b>http: или https</b>
+		<b>window.location.assign()</b> - загружает новый документ
+
+		window.location.href;     //<b id="location_window_0"></b>
+		window.location.hostname; //<b id="location_window_1"></b>
+		window.location.pathname; //<b id="location_window_2"></b>
+		window.location.protocol; //<b id="location_window_3"></b>
+		window.location.assign(); <input type="button" onClick="new_doc()" value="Click"> // Метод загружает новый документ.
+		window.location.port;     //<b id="location_window_5"></b> - возвращает число интернет-порт (текущей страницы).
+	</pre>
+
+	<script>
+		document.getElementById("location_window_0").innerHTML = window.location.href;
+		document.getElementById("location_window_1").innerHTML = window.location.hostname;
+		document.getElementById("location_window_2").innerHTML = window.location.pathname;
+		document.getElementById("location_window_3").innerHTML = window.location.protocol;
+		document.getElementById("location_window_5").innerHTML = window.location.port;
+
+		function new_doc() {
+			window.location.assign("https://www.google.com.ua/?hl=ru");
+		}
+	</script>
+
+	<h1>История окон JavaScript</h1>
+	<b>window.history</b> - Объект содержит историю браузеров.
+
+	<h2>История окон</h2>
+	<b>window.history</b> - Объект может быть записан без префикса окна. <br>
+	Для защиты конфиденциальности пользователей существуют ограничения на доступ JS к этому объекту.
+	<br>ПРИМЕР
+	<pre>
+		Некоторые методы:
+		<b>history.back()   </b> - то же самое, что вернуться в браузер
+		<b>history.forward()</b> - то же самое, что и щелчок вперед в браузере
+	</pre>
+
+	<h2>История окна Назад и Вперед</h2>
+	<b>history.back()</b> - Метод загружает предыдущий URL в списке хронологии (нажимание на кнопку «Назад» в браузере); <br>
+	<b>history.forward()</b> - Метод загружает следующий URL в списке хронологии (нажимание кнопки «Вперед» в браузере)
+	<br>ПРИМЕР
+	<pre>
+		Создание кнопки возврата на странице:
+		function history_back() {
+		   history.back();
+		}
+		<button onclick="history_back()">Back</button>
+
+		Создание кнопки перехода на страницу:
+		function history_forward() {
+		   history.forward();
+		}
+		<button onclick="history_forward()">Next</button>
+	</pre>
+
+
+	<h1>JavaScript Window Navigator</h1>
+	<b>window.navigator</b> - Объект содержит информацию о браузере посетителя.
+
+	<h2>Оконный навигатор</h2>
+	<b>window.navigator</b> - Объект может быть записан без префикса окна.
+	<br>ПРИМЕР
+	<pre>
+		Некоторые примеры:<b>
+		- navigator.appName
+		- navigator.appCodeName
+		- navigator.platform</b>
+	</pre>
+
+	<h2>Файлы cookie браузера</h2>
+	<b>cookieEnabled</b> - Свойство возвращает истину, если включены куки, в противном случае неверно:
+	<br>ПРИМЕР
+	<pre>
+		navigator.cookieEnabled; // cookieEnabled is <b id="cookie_0"></b>
+	</pre>
+
+	<h2>Имя приложения браузера</h2>
+	<b>appName</b> - Свойство возвращает имя приложения в браузере. <br>
+	<i>Netscape</i> - это имя приложения для IE11, Chrome, Firefox и Safari.
+	<br>ПРИМЕР
+	<pre>
+		navigator.appName; //<b id="app_name_0"></b>
+	</pre>
+
+	<h2>Кодовое имя приложения браузера</h2>
+	<b>appCodeName</b> - Свойство возвращает имя кода приложения в браузере. <br>
+	<i>«Mozilla»</i> - это кодовое имя приложения для Chrome, Firefox, IE, Safari и Opera.
+	<br>ПРИМЕР
+	<pre>
+		navigator.appCodeName; //<b id="app_code_name_0"></b>
+	</pre>
+
+	<h2>Движок браузера</h2>
+	<b>product</b> - Свойство возвращает имя продукта браузера двигателя. <br>
+	Не надейтесь на это. Большинство браузеров возвращает <i>"Gecko"</i> в качестве названия продукта !!
+	<br>ПРИМЕР
+	<pre>
+		navigator.product; //<b id="product_0"></b>
+	</pre>
+
+	<h2>Версия браузера</h2>
+	<b>appVersion</b> - Свойство возвращает информацию о версии браузера:
+	<br>ПРИМЕР
+	<pre>
+		navigator.appVersion; 
+		//<b id="version_0"></b>
+	</pre>
+
+	<h2>Агент браузера</h2>
+	<b>userAgent</b> - Свойство возвращает заголовок агента пользователя, отправленный браузером на сервер:
+	<br>ПРИМЕР
+	<pre>
+		navigator.userAgent; 
+		//<b id="user_agent_0"></b>
+	</pre>
+	
+	<h2>Предупреждение!!!</h2>
+	Информация из объекта навигатора часто может вводить в заблуждение, и ее не следует использовать для определения версий браузера, потому что:
+	<pre>
+		- В разных браузерах можно использовать одно и то же имя
+		- Данные навигатора могут быть изменены владельцем браузера.
+		- Некоторые браузеры неправильно идентифицируют себя, чтобы обойти тесты сайта
+		- Браузеры не могут сообщать о новых операционных системах, выпущенных позже, чем браузер.
+	</pre>
+
+	<h2>Платформа браузера</h2>
+	<b>platform</b> - Свойство возвращает платформу браузера (операционная система):
+	<br>ПРИМЕР
+	<pre>
+		navigator.platform; //<b id="platform_0"></b>
+	</pre>
+
+	<h2>Язык браузера</h2>
+	<b>language</b> - Свойство возвращает язык браузера:
+	<br>ПРИМЕР
+	<pre>
+		navigator.language; //<b id="language_0"></b>
+	</pre>
+
+	<h2>Браузер в сети?</h2>
+	<b>onLine</b> - Свойство возвращает истину , если браузер онлайн:
+	<br>ПРИМЕР
+	<pre>
+		navigator.onLine; //<b id="online_0"></b>
+	</pre>
+
+	<h2>Включена ли Java?</h2>
+	<b>javaEnabled()</b> - Метод возвращает истину, если Java включена:
+	<br>ПРИМЕР
+	<pre>
+		navigator.javaEnabled(); //<b id="java_0"></b>
+	</pre>
+
+	<script>
+		function history_back() {
+			history.back();
+		}
+
+		function history_forward() {
+			history.forward();
+		}
+
+		document.getElementById("cookie_0").innerHTML = navigator.cookieEnabled;
+		document.getElementById("app_name_0").innerHTML = navigator.appName;
+		document.getElementById("app_code_name_0").innerHTML = navigator.appCodeName;
+		document.getElementById("product_0").innerHTML = navigator.product;
+		document.getElementById("version_0").innerHTML = navigator.appVersion;
+		document.getElementById("user_agent_0").innerHTML = navigator.userAgent;
+		document.getElementById("platform_0").innerHTML = navigator.platform;
+		document.getElementById("language_0").innerHTML = navigator.language;
+		document.getElementById("online_0").innerHTML = navigator.onLine;
+		document.getElementById("java_0").innerHTML = navigator.javaEnabled();
+	</script>
+
+
+	<h1>JavaScript Popup Boxes</h1>
+	В JS есть всплывающие окна трех типов: окно <b>предупреждения</b>, окно <b>подтверждения</b> и окно <b>подсказки</b>.
+
+	<h2>Окно предупреждения</h2>
+	Окно предупреждения часто используется, нужно убедиться, что информация доходит до пользователя. <br>
+	Когда появится окно с предупреждением, пользователь должен будет нажать «ОК», чтобы продолжить. <br>
+	<b>window.alert()</b> - Метод может быть записан без префикса окна.
+	<br>СИНТАКСИС
+	<pre>
+		window.alert("sometext");
+	</pre>
+	ПРИМЕР
+	<pre>
+		function alert_0() {
+		   window.alert("work window alert");
+		}
+		<button onclick="alert_0()">Click -> alert</button>
+	</pre>
+
+	<h2>Подтвердить поле</h2>
+	Поле подтверждения часто используется, если нужно, чтобы пользователь что-то подтвердил или принял. <br>
+	Когда появится окно подтверждения, пользователь должен будет нажать <b>ОК</b> или <b>Отмена</b>, чтобы продолжить. <br>
+	Если пользователь нажимает <b>ОК</b>, поле возвращает <b>true</b> . Если пользователь нажимает <b>Отмена</b>, поле возвращает <b>false</b>. <br>
+	<b>window.confirm()</b> - Метод может быть записан без префикса окна.
+	<br>СИНТАКСИС
+	<pre>
+		window.confirm("sometext");
+	</pre>
+	<br>ПРИМЕР
+	<pre>
+		Вариант 1:
+		function alert_confirm() {
+		  var txt = "";
+		  if (confirm("Press a button")) {
+		    txt = "You pressed OK";
+		  } else {
+		    txt = "You pressed Cancel";
+		  }
+		  document.getElementById("txt").innerHTML = txt;
+		}
+		< button onclick="alert_confirm()">Click -> alert</ button>
+
+		Вариант 2:
+		function alert_confirm() {
+		  if (confirm("Press a button")) {
+		    document.getElementById("txt").innerHTML = "You pressed OK";
+		  } else {
+		    document.getElementById("txt").innerHTML = You pressed Cancel";
+		  }
+		}
+		< button onclick="alert_confirm()">Click -> alert</ button>
+		<button onclick="alert_confirm()">Click -> alert</button>
+		<b id="txt"></b>
+	</pre>
+	
+	<h2>Подсказка</h2>
+	Поле подсказки часто используется, если нужно, чтобы пользователь ввел значение перед входом на страницу. <br>
+	Когда всплывает окно подсказки, пользователь должен будет нажать <b>ОК</b> или <b>Отмена</b>, чтобы продолжить после ввода входного значения. <br>
+	Если пользователь нажимает <b>ОК</b>, поле возвращает введенное значение, а если нажимает <b>Отмена</b>, поле возвращает значение <b>null</b>. <br>
+	<b>window.prompt()</b> - Метод может быть записан без префикса окна.
+	<br>СИНТАКСИС
+	<pre>
+		window.prompt("sometext","defaultText");
+	</pre>
+	<br>ПРИМЕР
+	<pre>
+		function alert_prompt() {
+		   var person = prompt("Enter your name:", "name");
+		   var txt = "";
+		   if (person === null || person === "") {
+		      txt = "User cancelled the prompt";
+		   } else {
+		      txt = "hello " + person;
+		   }
+		   document.getElementById("txt_prompt").innerHTML = txt;
+		}
+		<button onclick="alert_prompt()">Click -> alert</button>
+		<b id="txt_prompt"></b>
+	</pre>
+
+	<h2>Разрывы строк</h2>
+	<b>\n</b> - Чтобы отобразить разрывы строк внутри всплывающего окна.
+	<br>ПРИМЕР
+	<pre>
+		< button onclick="alert('Hello\nLera')">Click -> alert</ button>
+		<button onclick="alert('Hello\nLera')">Click -> alert</button>
+	</pre>
+
+	<script>
+		function alert_0() {
+			window.alert("work WINDOW.ALERT");
+		}
+
+		function alert_confirm() {
+			if (confirm("Press a button")) {
+				document.getElementById("txt").innerHTML = "You pressed OK";
+			} else {
+				document.getElementById("txt").innerHTML = "You pressed Cancel";
+			}
+		}
+
+		function alert_prompt() {
+			var person = prompt("Enter your name:", "name");
+			var txt = "";
+			if (person === null || person === "") {
+				txt = "User cancelled the prompt";
+			} else {
+				txt = "hello " + person;
+			}
+			document.getElementById("txt_prompt").innerHTML = txt;
+		}
+	</script>
+
+	<h1>События времени JavaScript</h1>
+	JS может выполняться через определенные промежутки времени. Это называется <b>синхронизацией событий.</b>
+	
+	<h2>Время событий</h2>
+	<b>window</b> - Объект позволяет выполнение кода через определенные промежутки времени, называются <b>временными событиями</b>. <br>
+	<b>setTimeout()</b> и <b>setInterval()</b> оба метода объекта HTML DOM Window. <br>
+	Два ключевых метода для использования с JavaScript:
+	<br>ПРИМЕР
+	<pre>
+		<b>setTimeout(function, milliseconds)</b> - Выполняет функцию после ожидания указанного количества миллисекунд.
+
+		<b>setInterval(function, milliseconds)</b> - То же, что и <b>setTimeout()</b>, но повторяет выполнение функции непрерывно.
+	</pre>
+	
+	<h2>Метод setTimeout()</h2>
+	<b>window.setTimeout()</b> - Метод может быть записан без префикса окна. <br>
+	Первый параметр - это <b>функция</b>, которую нужно выполнить. Второй параметр <b>количество миллисекунд</b> до выполнения.
+	<br>СИНТАКСИС
+	<pre>
+		window.setTimeout(function, milliseconds);
+	</pre>
+	<br>ПРИМЕР
+	<pre>
+		Щелкните кнопку. Подождите 1 секунду, и на странице появится сообщение «Привет»:
+		function set_timeout_0() {
+		   alert("Hello");
+		}
+		< button onclick="setTimeout(set_timeout_0, 1000);">Click Me< /button>
+		<button onclick="setTimeout(set_timeout_0, 1000);">Click Me</button>
+	</pre>
+	
+	<h2>Остановка setTimeout</h2>
+	<b>clearTimeout()</b> - Метод останавливает выполнение функции, указанной в <b>SetTimeout()</b>. <br>
+	<b>window.clearTimeout()</b> - Метод может быть записан без префикса окна.
+	<br>СИНТАКСИС
+	<pre>
+		window.clearTimeout(timeoutVariable)
+
+		<b>clearTimeout()</b> - Метод использует переменный возвращаемые <b>setTimeout()</b>:
+		myVar = setTimeout(function, milliseconds);
+		clearTimeout(myVar);
+	</pre>
+	<br>ПРИМЕР
+	<pre>
+		Если функция еще не была выполнена, можно остановить выполнение, вызвав <b>clearTimeout()</b> метод:
+		< button onclick="new_var = setTimeout(set_timeout_0, 2000);">Start interval< /button>
+		< button onclick="clearTimeout(new_var)">Stop interval< /button>
+		<button onclick="new_var = setTimeout(set_timeout_0, 2000);">Start interval</button>
+		<button onclick="clearTimeout(new_var)">Stop interval</button>
+	</pre>
+
+	<h2>Метод setInterval()</h2>
+	<b>setInterval()</b> - Метод повторяет заданную функцию в каждый данный интервал времени.
+	<br>СИНТАКСИС
+	<pre>
+		window.setInterval(function, milliseconds);
+	</pre>
+	<b>window.setInterval()</b> - Метод может быть записан без префикса окна. <br>
+	Первый параметр - это функция, которую нужно выполнить. Второй параметр длина интервала времени между каждым выполнением. 
+	<br>ПРИМЕР
+	<pre>
+		В этом примере один раз в секунду выполняется функция <i>my_timer</i> (как в цифровых часах).
+		var set_interval = setInterval(my_timer, 1000);
+		function my_timer() {
+		   var d = new Date();
+		   document.getElementById("set_interval_0").innerHTML = d.toLocaleTimeString();
+		}
+		<b id="set_interval_0"></b>
+	</pre>
+	
+	<h2>Остановка setInterval()</h2>
+	<b>clearInterval()</b> - Метод останавливает расстрелы функции, указанной в методе <b>setInterval()</b>. <br>
+	<b>window.clearInterval()</b> - Метод может быть записан без префикса окна.
+	<br>СИНТАКСИС
+	<pre>
+		window.clearInterval(timerVariable);
+
+		использует переменный возвращаемые <b>setInterval()</b>:
+		myVar = setInterval(function, milliseconds);
+		clearInterval(myVar);
+	</pre>
+	<br>ПРИМЕР
+	<pre>
+		< button onclick="clearInterval(set_interval)">< /button>
+		<b id="set_interval_1"></b>
+		<button onclick="clearInterval(set_interval)">Stop setInterval</button>
+	</pre>
+
+	<script>
+		function set_timeout_0() {
+			alert("Hello");
+		}
+
+		var set_interval = setInterval(my_timer, 1000);
+		function my_timer() {
+			var d = new Date();
+			document.getElementById("set_interval_0").innerHTML = d.toLocaleTimeString();
+			document.getElementById("set_interval_1").innerHTML = d.toLocaleTimeString();
+		}
+	</script>
+
+
+	<h1>Файлы cookie JavaScript</h1>
+	Файлы <b>cookie</b> позволяют хранить информацию о пользователях на веб-страницах.
+
+	<h2>Что такое файлы cookie?</h2>
+	Файлы <b>cookie</b> - это данные, которые хранятся в небольших текстовых файлах на вашем компьютере. <br>
+	Когда веб-сервер отправляет веб-страницу в браузер, соединение отключается, и сервер забывает все о пользователе. <br> <br>
+	Файлы <b>cookie</b> были придуманы для решения проблемы «как запомнить информацию о пользователе»: <br>
+	Когда пользователь посещает веб-страницу, его имя может быть сохранено в файле <b>cookie</b>. <br>
+	В следующий раз, когда пользователь посещает страницу, <b>cookie</b> «запоминает» его имя. <br> <br>
+	Файлы <b>cookie</b> сохраняются в парах имя-значение, например: <i>username = John Doe</i> <br>
+	Когда браузер запрашивает веб-страницу с сервера, в запрос добавляются файлы <b>cookie</b>, принадлежащие странице. <br>
+	Таким образом сервер получает необходимые данные для «запоминания» информации о пользователях. <br><br>
+	Если в браузере отключена поддержка локальных файлов <b>cookie</b>, ничего не будет работать.
+
+	<h2>Создайте файл cookie с помощью JavaScript</h2>
+	JavaScript может создавать, читать и удалять файлы <b>cookie</b> с помощью <b>document.cookie</b> свойства.
+	<br>ПРИМЕР
+	<pre>
+		С помощью JS <b>cookie</b> можно создать следующим образом:
+		document.cookie = "username=John Doe";
+		<button onclick="set_cookie()">Set Cookie</button>
+		var cookie_read = document.cookie;
+		cookie_read; //<b id="cookie_1"></b>
+
+		Также можно добавить <b>дату истечения</b> срока действия (по времени UTC). 
+		По умолчанию <b>cookie</b> удаляется при закрытии браузера:
+		document.cookie = "username=John Doe; expires=Sun, 12 Sep 2020 21:00:00 UTC";
+
+		С помощью параметра пути можно <b>указать</b> браузеру, к какому <b>пути</b> принадлежит файл <b>cookie</b>. По умолчанию <b>cookie</b> принадлежит текущей странице.
+		document.cookie = "username=John Doe; path=/";
+	</pre>
+
+	<h2>Прочтите файл cookie с помощью JavaScript</h2>
+	С помощью JavaScript файлы cookie можно читать. <br>
+	<b>document.cookie</b> вернет все файлы <b>cookie</b> в одной строке примерно так: cookie1 = value; cookie2 = значение; cookie3 = значение;
+	<br>ПРИМЕР
+	<pre>
+		var x = document.cookie;
+	</pre>
+	
+	<h2>Изменить cookie с помощью JavaScript</h2>
+	С помощью JavaScript вы можете изменить <b>cookie</b> так же, как вы его создали. Старый файл <b>cookie</b> перезаписывается.
+	<br>ПРИМЕР
+	<pre>
+		document.cookie = "username=John Smith; path=/";
+	</pre>
+	
+	<h2>Удалить файл cookie с помощью JavaScript</h2>
+	Что бы удалить <b>cookie</b>, нужно установить параметр <b>expires</b> на прошедшую дату. <br>
+	Нужно определить путь <b>cookie</b>, чтобы убедиться, что удалили правильный файл <b>cookie</b>. <br>
+	Некоторые браузеры не позволяют удалить <b>cookie</b>, если вы не укажете путь.
+	<br>ПРИМЕР
+	<pre>
+		document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+	</pre>
+	
+	<h2>Строка cookie</h2>
+	<b>document.cookie</b> - Свойство выглядит как обычный текстовой строки. Но это не так. <br>
+	Даже если написать целую строку <b>cookie</b> в <b>document.cookie</b>, когда прочитать ее снова, можно увидеть только ее пару имя-значение. <br><br>
+
+	Если установить новый файл <b>cookie</b>, старые файлы <b>cookie</b> не перезаписываются. <br>
+	Новый файл <b>cookie</b> добавляется в <b>document.cookie</b>, поэтому, если снова прочитать <b>document.cookie</b>, будет что-то вроде: <br>
+	cookie1 = значение; cookie2 = значение; <br><br>
+
+	Если нужно найти значение одного указанного файла <b>cookie</b>, нужно написать функцию JS, которая ищет значение файла <b>cookie</b> в строке <b>cookie</b>.
+	
+	<h2>Пример файла cookie JavaScript</h2>
+	Создание файла <b>cookie</b>, в котором будет храниться имя посетителя. <br>
+	Когда посетитель заходит на веб-страницу в первый раз, его попросят ввести свое имя. Затем имя сохраняется в файле <b>cookie</b>. <br>
+	В следующий раз, когда посетитель перейдет на ту же страницу, он получит приветственное сообщение. <br>
+	Для этого нужно создать 3 функции JavaScript:
+	<br>ПРИМЕР
+	<pre>
+		Функция для установки значения <b>cookie</b>
+		Функция для получения значения <b>cookie</b>
+		Функция для проверки значения <b>cookie</b>
+	</pre>
+
+	<h2>Функция для установки файлов cookie</h2>
+	Сначала нужно создать объект <b>function</b>, в котором имя посетителя хранится в переменной <b>cookie</b>. <br><br>
+	<b>Объяснение функции</b> <br>
+	Параметры функции - это имя <b>cook_name</b>, значение <b>cook_value</b> и количество дней до истечения срока действия <b>exdays</b> cookie. <br>
+	Функция устанавливает файл <b>cookie</b>, складывая имя, значение <b>cookie</b> и строку с истекающим сроком действия.
+	<br>ПРИМЕР
+	<pre>
+		function set_cookies(cook_name, cook_value, exdays) {
+		   var d = new Date();
+		   d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+		   var expires = "expires = " + d.toUTCString();
+		   document.cookie = cook_name + " = " + cook_value + "; " + "expires" + ";path=/";
+		}
+	</pre>
+	
+	<h2>Функция для получения файла cookie</h2>
+	Затем создаем объект, <b>function</b> который возвращает значение указанного файла <b>cookie</b>. <br><br>
+
+	Если файл cookie не найден, верните "".
+	<br>ПРИМЕР
+	<pre>
+		function get_cookies(cook_name) { // В качестве параметра имени куки возьмем <b>cook_name</b>
+		  var name = cook_name + " = ";  // Создаем переменную (имя) с текстом для поиска <b>cook_name + "="</b>
+		 
+		  // Расшифруйте строку <b>cookie</b> для обработки файлов <b>cookie</b> со специальными символами, например '$'
+		  var decoded_cookie = decodeURIComponent(document.cookie); 
+
+		  //Разделить <b>document.cookie</b> точками с запятой в массив с именем ca <b>ca = decodedCookie.split (';')</b>.
+		  var ca = decoded_cookie.split(';');
+
+		  //Прокрутите массив ca <b>(i = 0; i < ca.length; i ++)</b> и прочтите каждое значение <b>c = ca [i]</b>.
+		  for (var i = 0; i < ca.length; i++) {
+		    var c = ca [i];
+		    while (c.charAt(0) == ' ') {
+		      c = c.substring(1);
+		    }
+		    
+		    //Если cookie-файл найден <b>c.indexOf (name) == 0</b>, верните значение cookie <b>c.substring(name.length, c.length)</b>.
+		    if (c.indexOf(name) == 0) {
+		      return c.substring(name.length, c.length);
+		    }
+		  }
+		  return "";
+		}
+	</pre>
+	
+	<h2>Функция проверки файлов cookie</h2>
+	Функция которая проверяет, установлен ли <b>cookie</b>. Если установлен, он отобразит приветствие. <br>
+	Если файл не установлен, он отобразит окно подсказки с запросом имени пользователя и сохранит файл <b>cookie</b> <br>имени пользователя в течение 365 дней, вызвав <b>set_cookies</b> функцию:
+
+	<br>ПРИМЕР
+	<pre>
+		function checkCookie() {
+		  var user = get_cookies("username");
+		  if (user != "") {
+		    alert("Welcome again " + user);
+		  } else {
+		    user = prompt("Please enter your name:","");
+		    if (user != "" && user != null) {
+		      set_cookies("username", user, 30);
+		    }
+		  }
+		}
+	</pre>
+
+	<script>
+		function set_cookie() {
+			var cookie_read = document.cookie;
+
+			cookie_read = "username=John Doe";		
+			document.getElementById("cookie_1").innerHTML = cookie_read;
+		}
+		document.cookie = "username=John Doe; path=/";
+
+		document.cookie = "username=John Smith; path=/";
+	</script>
+
+
+<footer></footer>
+<script type ="text/javascript" src="list.js" charset="utf-8"> </script>
+</body>
+</html>

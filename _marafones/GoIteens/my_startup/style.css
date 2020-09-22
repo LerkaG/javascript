@@ -477,8 +477,8 @@ header {
 }
  
 .footer-link {
-  width: 43px;
-  height: 43px;
+  /*width: none;*/
+  /*height: 43px;*/
   display: inline-block;
   background-color: #3b5997;
   background-repeat: no-repeat;

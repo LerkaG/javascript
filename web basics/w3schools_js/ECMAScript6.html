@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset='UTF-8'>
+	<title>ES6. JS JSON</title>
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<a href="javascript:scroll(0,10000)" >
+		<button class="btn">⇩</button>
+	</a>
+	<a href="javascript:scroll(0,0)" title="наверх">
+		<button class="btn_down">⇧</button>
+	</a>
+	<b id="link"></b> 
+
+	<h1>ECMAScript 6 - ECMAScript 2015</h1>
+	ECMAScript 6 также известен как ES6 и ECMAScript 2015. Некоторые называют это JavaScript 6.
+
+	<h2>JavaScript let, const</h2>
+	<b>let</b> оператор позволяет объявить переменную с областью видимости блока. <br>
+	<b>const</b> оператор позволяет объявить константу (переменную JS с постоянным значением). <br>
+	Константы аналогичны <b>let</b> переменным, за исключением того, что значение нельзя изменить.
+	<br>ПРИМЕР
+	<pre>
+		<b>let</b>
+		var x = 10;
+		// Here x is 10
+		{
+		  let x = 2;
+		  // Here x is 2
+		}
+		// Here x is 10
+
+		<b>const</b>
+		var x = 10;
+		// Here x is 10
+		{
+		  const x = 2;
+		  // Here x is 2
+		}
+		// Here x is 10
+	</pre>
+
+	<h2>Стрелочные функции</h2>
+	Стрелочные функции позволяют использовать короткий синтаксис для написания функциональных выражений. <br>
+	Не нужны function ключевое слово, return ключевое слово и фигурные скобки. Стрелочные функции не имеют своих <b>this</b> <br>
+	Плохо подходят для определения методов объекта, не поднимаются, должны быть определены перед использованием. <br>
+	Использование <b>const</b> более безопасно, чем использование <b>var</b>, потому что выражение функции всегда является постоянным значением.	
+	<br>ПРИМЕР
+	<pre>
+		// ES5
+		var x = function(x, y) {
+		  return x * y;
+		}
+		x(2,4); // <b id="arrow"></b>
+		
+		// ES6
+		const w = (w, y) => w * y; 
+		w(2,4); // <b id="arrow_0"></b>
+
+		Можно опустить <b>return</b> ключевое слово и фигурные скобки, только если функция является одним оператором. 
+		Из-за этого может быть хорошей привычкой всегда держать их:
+		const q = (q, y) => { return q * y }; 
+		q(2,4); // <b id="arrow_1"></b>
+	</pre>
+
+	<h2>Классы. ES6 представил классы</h2>
+	Класс - это тип функции, но вместо ключевого слова <b>function</b>, используем <b>class</b>, а свойства назначаются внутри <b>constructor()</b> метода. <br>
+	Использовать <b>class</b> для создания класса и всегда добавлять метод конструктора, он вызывается каждый раз при инициализации объекта класса.
+	<br>ПРИМЕР
+	<pre>
+		Простое определение класса с именем «Автомобиль»:		
+		class Car {
+		   constructor(brand) {
+		      this.carname = brand;
+		   } 
+		}
+		var my_car = new Car("Ford");
+		my_car.carname; // <b id="class_0"></b>	
+	</pre>
+
+	<h2>Значения параметров по умолчанию</h2>
+	ES6 позволяет параметрам функции иметь значения по умолчанию.
+	<br>ПРИМЕР
+	<pre>
+		function my_function(x, y = 10) {
+		   return x + y;
+		}
+		my_function(3); //<b id="func_0"></b>
+	</pre>
+
+	<h2>Array.find()</h2>
+	<b>find()</b> - Метод возвращает значение первого элемента массива, который проходит тестовую функцию.
+	<br>ПРИМЕР
+	<pre>
+		Выполняется поиск (возвращается значение) первого элемента больше 18:
+		var number = [4, 9, 16, 25, 29];
+		var first = number.find(my_function_2);
+		function my_function_2(value, index, array) {
+		   return value > 18;
+		}
+		first; //<b id="func_1"></b>
+
+		Функция принимает 3 аргумента:
+		Стоимость предмета
+		Индекс предмета
+		Сам массив
+	</pre>
+
+	<h2>Array.findIndex()</h2>
+	<b>findIndex()</b> - Метод возвращает индекс первого элемента массива, который проходит тестовую функцию.
+	<br>ПРИМЕР
+	<pre>
+		Выполняется поиск индекса первого элемента, который больше 18:
+		var number = [4, 9, 16, 25, 29];
+		var second = number.findIndex(my_function_2);
+		function my_function_2(value, index, array) {
+		   return value > 18;
+		}
+		second; //<b id="func_2"></b>
+	</pre>
+
+	<h2>Новые свойства числа</h2>
+	ES6 добавил следующие свойства к объекту <i>Number</i>: <b>EPSILON, MIN_SAFE_INTEGER, MAX_SAFE_INTEGER</b>
+	<br>ПРИМЕР
+	<pre>
+		"EPSILON: " + Number.EPSILON +	"; MIN_SAFE_INTEGER: " + Number.MIN_SAFE_INTEGER + "; MAX_SAFE_INTEGER: " + Number.MAX_SAFE_INTEGER;
+		 <b id="propert_0"></b>
+	</pre>
+
+	<h2>Новые числовые методы. Number.isInteger() и Number.isSafeInteger()</h2>
+	ES6 добавил к объекту <b>Number</b> 2 новых метода. <br>
+	<b>Number.isInteger()</b> - Метод возвращает, <b>true</b> если аргумент является целым числом. <br>
+	<b>Number.isSafeInteger()</b> - Метод возвращает, <b>true</b> если аргумент является безопасным числом. <br>
+	Безопасное целое число - это целое число, которое может быть точно представлено как число двойной точности. <br>
+	Безопасные целые числа - это целые числа от - (2 в 53 степени - 1) до + (2 в 53 степени - 1).
+	Это безопасно: 9007199254740991. Это небезопасно: 9007199254740992.
+	<br>ПРИМЕР
+	<code><ul id='num_1'> </ul></code> <br>
+
+	<h2>Глобальные методы isFinite() и isNaN()</h2>
+	<b>isFinite()</b> - Глобальный метод возвращается <b>false</b>, если аргументом является <b>Infinity</b> или <b>NaN</b>. В противном случае возвращается <b>true</b>. <br>
+	 <b>isNaN()</b> - Глобальный метод возвращается, <b>true</b> если аргумент равен <b>NaN</b>. В противном случае возвращается <b>false</b>:
+	<br>ПРИМЕР
+	<pre>
+		isFinite(10/0); <b id="is_finite_0"></b>
+		isFinite(10/1); <b id="is_finite_1"></b>
+		isFinite("Hello"); <b id="is_finite_2"></b>
+
+		isNaN(10/0); <b id="is_nan_0"></b>
+		isNaN(10/1); <b id="is_nan_1"></b>
+		isNaN("Hello"); <b id="is_nan_2"></b>
+	</pre>
+
+	<h2>Оператор возведения в степень</h2>
+	Оператор возведения в степень (<b>**</b>) возводит первый операнд в степень второго операнда. <br>
+	<b>x ** y</b> дает тот же результат, что и <b>Math.pow(x,y)</b>
+	<br>ПРИМЕР
+	<pre>
+		var a = 3;
+		2 ** 2; <b id="stepen_0"></b>
+		a ** 2; <b id="stepen_1"></b>
+		Math.pow(a,2); <b id="stepen_2"></b>
+	</pre>
+
+	<script>
+		var x = function(x, y) {
+			return x * y;
+		}
+		document.getElementById("arrow").innerHTML = x(2,4);
+		const w = (w, y) => w * y; 
+		document.getElementById("arrow_0").innerHTML = w(2,4);
+
+		const q = (q, y) => { return q * y }; 
+		document.getElementById("arrow_1").innerHTML = q(2,4);
+
+		class Car {
+			constructor(brand) {
+				this.carname = brand;
+			} 
+		}
+		var my_car = new Car("Ford");
+		document.getElementById("class_0").innerHTML = my_car.carname;
+
+		function my_function(x, y = 10) {
+			return x + y;
+		}
+		document.getElementById("func_0").innerHTML = my_function(3);
+
+		var number = [4, 9, 16, 25, 29];
+		var first = number.find(my_function_2);
+		var second = number.findIndex(my_function_2);
+		function my_function_2(value, index, array) {
+			return value > 18;
+		}
+		document.getElementById("func_1").innerHTML = first;
+		document.getElementById("func_2").innerHTML = second;
+
+		document.getElementById("propert_0").innerHTML = 
+		"EPSILON: " + Number.EPSILON +
+		"; MIN_SAFE_INTEGER: " + Number.MIN_SAFE_INTEGER +
+		"; MAX_SAFE_INTEGER: " + Number.MAX_SAFE_INTEGER;
+
+
+		document.getElementById("num_1").innerHTML = 
+		"Number.isInteger(10): <b>" + Number.isInteger(10) + 
+		"</b><br> Number.isInteger(10.5): <b>" + Number.isInteger(10.5) +
+		"</b><br> Number.isSafeInteger(10): <b>" + Number.isSafeInteger(10) +
+		"</b><br> Number.isSafeInteger(1234567890): <b>" + Number.isSafeInteger(1234567890);
+
+		document.getElementById("is_finite_0").innerHTML = isFinite(10/0);
+		document.getElementById("is_finite_1").innerHTML = isFinite(10/1);
+		document.getElementById("is_finite_2").innerHTML = isFinite("Hello");
+
+		document.getElementById("is_nan_0").innerHTML = isNaN(10/0);
+		document.getElementById("is_nan_1").innerHTML = isNaN(10/1);
+		document.getElementById("is_nan_2").innerHTML = isNaN("Hello");
+		
+		var a = 3;
+		document.getElementById("stepen_0").innerHTML = 2 ** 2;
+		document.getElementById("stepen_1").innerHTML = a ** 2;
+		document.getElementById("stepen_2").innerHTML = Math.pow(a,2);
+	</script>
+
+	<h1>JavaScript JSON</h1>
+	<b>JSON</b> - это формат для хранения и передачи данных, часто используется, когда данные отправляются с сервера на веб-страницу.
+	<h2>Что такое <b>JSON</b>?</h2>	
+	<b>JSON</b> обозначает Java Script Object Notation (JS Обозначение объекта) <br>
+	<br>ПРИМЕР
+	<pre>
+		<b>JSON</b> - это легкий формат обмена данными
+		<b>JSON</b> не зависит от языка*
+		<b>JSON</b> является самоописывающим и легким для понимания.
+
+		*Синтаксис <b>JSON</b> является производным от синтаксиса объектной нотации JavaScript,
+		но формат <b>JSON</b> является только текстовым. Код для чтения и генерации данных <b>JSON</b> 
+		можно написать на любом языке программирования.
+	</pre>
+
+	<h2>Пример JSON</h2>
+	Этот синтаксис <b>JSON</b> определяет объект сотрудников: массив из 3 записей (объектов) сотрудников:
+	<br>ПРИМЕР
+	<pre>
+		{
+		  "employees":[
+		    {"first_name":"John",  "last_name":"Doe"},
+		    {"first_name":"Anna",  "last_name":"Smith"},
+		    {"first_name":"Peter", "last_name":"Jones"}
+		  ]
+		}
+	</pre>
+
+	<h2>Формат JSON оценивает объекты JavaScript</h2>
+	Формат <b>JSON</b> синтаксически идентичен коду для создания объектов JavaScript. <br>
+	Из-за этого сходства программа JS может легко преобразовать данные <b>JSON</b> в собственные объекты JS.
+
+	<h2>Правила синтаксиса JSON</h2>
+	ПРИМЕР
+	<pre>
+		Данные представлены парами имя / значение
+		Данные разделены запятыми
+		Фигурные скобки удерживают предметы
+		Квадратные скобки содержат массивы
+	</pre>
+
+	<h2>Данные JSON - имя и значение</h2>
+	Данные <b>JSON</b> записываются в виде пар имя / значение, как и свойства объекта JavaScript. <br>
+	Пара имя / значение состоит из имени поля (в двойных кавычках), за которым следует двоеточие, за которым следует значение. <br>
+	Имена <b>JSON</b> требуют двойных кавычек. Имена JavaScript - нет.
+	<br>ПРИМЕР
+	<pre>
+		"first_name":"John"
+	</pre>
+
+	<h2>Объекты JSON</h2>
+	Объекты <b>JSON</b> записываются в фигурные скобки. Как и в JS, объекты могут содержать несколько пар имя / значение:
+	<br>ПРИМЕР
+	<pre>
+		{"first_name":"John", "last_name":"Doe"}
+	</pre>
+
+	<h2>Массивы JSON</h2>
+	Массивы <b>JSON</b> записываются в квадратные скобки. Как и в JS, массив может содержать объекты. <br>
+	<br>ПРИМЕР
+	<pre>
+		Объект «сотрудники» представляет собой массив. Он содержит три объекта. Каждый объект - это запись о человеке.
+		"employees":[
+		  {"first_name":"John",  "last_name":"Doe"},
+		  {"first_name":"Anna",  "last_name":"Smith"},
+		  {"first_name":"Peter", "last_name":"Jones"}
+		]
+	</pre>
+
+	<h2>Преобразование текста JSON в объект JavaScript</h2>
+	Обычно JSON используется для чтения данных с веб-сервера и отображения данных на веб-странице. <br>
+	Для простоты это можно продемонстрировать, используя строку в качестве входных данных.
+	<br>ПРИМЕР
+	<pre>
+		Сначала создаем строку JavaScript, содержащую синтаксис JSON:
+		var text = '{ "employees": [' +
+		 '{ "first_name":"John",  "last_name": "Doe" },' +
+		 '{ "first_name":"Anna",  "last_name": "Smith" },' +
+		 '{ "first_name":"Peter", "last_name": "Jones" }]}';
+
+		Затем используем встроенную функцию JS <b>JSON.parse()</b> для преобразования строки в объект JS:
+		var obj = JSON.parse(text);
+
+		Используем новый объект JS на своей странице:
+		var obj = JSON.parse(text);
+		obj.employees[1].first_name + " " + obj.employees[1].last_name; // <b id="json_0"></b>
+	</pre>
+	<code><ul> <b id=''></b> </ul></code> <br>
+	<script>
+		var text = '{ "employees": [' +
+		'{ "first_name":"John", "last_name": "Doe" },' +
+		'{ "first_name":"Anna", "last_name": "Smith" },' +
+		'{ "first_name":"Peter", "last_name": "Jones" }]}';
+
+		var obj = JSON.parse(text);
+		document.getElementById("json_0").innerHTML = 
+		obj.employees[1].first_name + " " + obj.employees[1].last_name;
+	</script>
+
+
+<footer></footer>
+<script type ="text/javascript" src="list.js" charset="utf-8"> </script>
+</body>
+</html>

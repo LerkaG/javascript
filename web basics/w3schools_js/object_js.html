@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset='UTF-8'>
+	<title>Object JS</title>
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<a href="javascript:scroll(0,10000)" >
+		<button class="btn">⇩</button>
+	</a>
+	<a href="javascript:scroll(0,0)" title="наверх">
+		<button class="btn_down">⇧</button>
+	</a>
+	<b id="link"></b> 
+
+	<h1>Объекты JavaScript</h1>
+	Все значения JavaScript, кроме примитивов, являются объектами. <br>
+	<b>Объекты, Функции, Массивы, Регулярные выражения, Математика, Date</b> - всегда объекты <br>
+	<b>Логические значения, Числа, Строки</b> - могут быть объектами, если они определены с помощью <b>new</b>
+
+	<h2>Примитивы JavaScript</h2>
+	<b>Примитивным значением</b> является значение, которое не имеет свойств или методов. <br>
+	<b>Примитивный тип данных</b> представляют собой данные, которые имеют элементарное значение. <br>
+	JS определяет 5 типов примитивных типов данных: <b>string, number, boolean, null, undefined</b> <br>
+	Примитивные значения неизменяемы (они жестко запрограммированы и поэтому не могут быть изменены). <br>
+	если x = 3,14, можно изменить значение x. Но нельзя изменить значение 3,14.
+	<br>ПРИМЕР
+	<pre>
+		Value	    Type	    Comment
+		"Hello"	    string	   "Hello" is always "Hello"
+		3.14	    number	    3.14 is always 3.14
+		true	    boolean	    true is always true
+		false	    boolean	    false is always false
+		null	    null (object)   null is always null
+		undefined   undefined       undefined is always undefined
+	</pre>
+
+	<h2>Объекты - это переменные</h2>
+	Переменные JS могут содержать одиночные значения. <br>
+	Объекты тоже переменные, но могут содержать много значений. Записываются как пары имя: значение. <br>
+	Объект JavaScript - это набор именованных значений
+	<br>ПРИМЕР
+	<pre>
+		var person = "Doe Stive";
+		person; //<b id="person_0"></b>
+
+		var person_1 = {name: "Stive", age:"22"};
+		person_1.name; //<b id="person_1"></b>
+	</pre>
+
+	<h2>Свойства объекта</h2>
+	Именованные значения в объектах JavaScript называются свойствами.
+	<br>ПРИМЕР
+	<pre>
+		<b>Свойство      Значение</b>
+		first_name   John
+		last_name    Doe
+	</pre>
+
+	<h2>Методы объекта</h2>
+	<b>Методы</b> - это действия, которые можно выполнять с объектами. <br>
+	Свойства объекта могут быть как примитивными значениями, так и другими объектами и функциями. <br>
+	Метод объекта является свойством объекта , содержащим определение функции. <br>
+	Объекты JavaScript - это контейнеры для именованных значений, называемых свойствами и методами.
+	<br>ПРИМЕР
+	<pre>
+		<b>Свойство        Значение</b>
+		first_name     John
+		last_name      Doe
+		color          Blue
+		full_name      function () {return this.firstName + "" + this.lastName;}
+	</pre>
+
+	<h2>Создание объекта JavaScript</h2>
+	С помощью JS можно определять и создавать свои собственные объекты. Есть разные способы создания новых объектов: <br>
+	- Определите и создайте единый объект, используя литерал объекта. <br>
+	- Определите и создайте единый объект с ключевым словом <b>new</b>. <br>
+	- Определите конструктор объекта, а затем создайте объекты сконструированного типа. <br>
+	В ECMAScript 5 объект также может быть создан с помощью функции <b>Object.create()</b>.
+	
+	<h2>Использование литерала объекта</h2>
+	Это самый простой способ создать объект JS. Используя литерал объекта, одновременно определяете и создаете объект в одном операторе. <br>
+	<b>Литерал объекта</b> - это список пар имя: значение (например, age: 50) в фигурных скобках {}.
+	<br>ПРИМЕР
+	<pre>
+		создается новый объект JS с четырьмя свойствами:
+		var person_2 = {first_name:"John", last_name:"Doe", age:3, color:"blue"};
+		person_2.first_name + "is" + person_2.age + "ears old"; <b id="person_2"></b>
+
+		Пробелы и перенос строки не важны. Определение объекта может занимать несколько строк:
+		var person_3 = {
+		   first_name:"John", 
+		   last_name:"Doe", 
+		   age:3, color:"blue"
+		};
+		person_3.first_name + " is " + person_3.age + " ears old";  <b id="person_3"></b>
+	</pre>
+	
+	<h2>Использование ключевого слова new</h2>
+	Для простоты, удобочитаемости и скорости выполнения использовать первый (метод литерала объекта).
+	<br>ПРИМЕР
+	<pre>
+		создается новый объект JavaScript с четырьмя свойствами:
+		var person_4 = new Object();
+		person_4.first_name = "John";
+		person_4.last_name = "Doe"; 
+		person_4.age = 3;
+		color = "blue";
+		person_4.first_name + " is " + person_4.age + " ears old"; <b id="person_4"></b>
+	</pre>
+	
+	<h2>Объекты JavaScript изменяемы</h2>
+	Объекты изменчивы: к ним обращаются по ссылке, а не по значению.
+	<br>ПРИМЕР
+	<pre>
+		Если человек является объектом, следующее утверждение не создаст копию человека:
+		var person_5 = { first_name:"Dou", last_name:"John", age:30 };
+
+		Объект x не является копией человека. <b>x</b>, и <b>person</b> - один и тот же объект.
+		Любые изменения в <b>x</b> также изменят <b>person</b>
+		var x = person_5; //<b id="person_5.0"></b>
+		x.age = 4; //<b id="person_5.1"></b>
+		x.age; //<b id="person_5.2"></b>
+		person_5.age; //<b id="person_5.3"></b>
+	</pre>
+
+	<script>
+		var person = "Doe Stive";
+		document.getElementById("person_0").innerHTML = person;
+
+		var person_1 = {name: "Stive", age:"22"};
+		document.getElementById("person_1").innerHTML = person_1.name;
+
+		var person_2 = {first_name:"John", last_name:"Doe", age:3, color:"blue"};
+		document.getElementById("person_2").innerHTML = person_2.first_name + " is " + person_2.age + " ears old";
+
+		var person_3 = {
+			first_name:"John", 
+			last_name:"Doe", 
+			age:3, color:"blue"
+		};
+		document.getElementById("person_3").innerHTML = person_3.first_name + " is " + person_3.age + " ears old";
+
+		var person_4 = new Object();
+			person_4.first_name = "John";
+			person_4.last_name = "Doe"; 
+			person_4.age = 3;
+			color = "blue";
+		document.getElementById("person_4").innerHTML = person_4.first_name + " is " + person_4.age + " ears old";
+
+		var person_5 = { first_name:"Dou", last_name:"John", age:30 };
+		var x = person_5;
+		document.getElementById("person_5.0").innerHTML = x;
+		x.age = 4;
+		document.getElementById("person_5.1").innerHTML = x;
+		document.getElementById("person_5.2").innerHTML = x.age;
+		document.getElementById("person_5.3").innerHTML = person_5.age;
+	</script>
+
+	<h1>Свойства объекта JavaScript</h1>
+	Свойства - самая важная часть любого объекта JavaScript.
+
+	<h2>Свойства JavaScript</h2>
+	<b>Свойства</b> - это значения, связанные с объектом JS. <br>
+	<b>Объект JS </b>- это набор неупорядоченных свойств.  <br>
+	Свойства обычно можно изменять, добавлять и удалять, но некоторые из них доступны только для чтения.
+
+	<h2>Доступ к свойствам JavaScript</h2>
+	Выражение должно соответствовать имени свойства.
+	Синтаксис доступа к свойству объекта:
+	<br>СИНТАКСИС
+	<pre>
+		object_name.property;    // person.age
+		или
+		object_name["property"]; // person["age"]
+		или
+		object_name[expression]; // x = "age"; person[x]
+	</pre>
+	<br>ПРИМЕР
+	<pre>
+		var person_6 = {
+		   first_name:"John", 
+		   last_name:"Doe", 
+		   age:3
+		};
+		person_6.first_name + " is " + person_6.age + " years old "; //<b id="person_6.0"></b>
+		person_6["first_name"] + " is " + person_6["age"] + " years old ";; //<b id="person_6.1"></b>
+	</pre>
+
+	<h2>JavaScript for...in цикле</h2>
+	Оператор JavaScript <b>for...in</b> перебирает свойства объекта. <br>
+	Блок кода внутри <b>for...in</b> цикла будет выполняться один раз для каждого свойства.
+	<br>СИНТАКСИС
+	<pre>
+		for (variable in object){
+		   // code to be executed
+		}
+	</pre>
+	<br>ПРИМЕР
+	<pre>
+		Цикл по свойствам объекта:
+		var txt = "";
+		var x;
+		for (x in person_6) {
+		   txt += person_6[x] + " ";
+		}
+		txt; //<b id="for_in_0"></b>
+	</pre>
+
+	<h2>Добавление новых свойств</h2>
+	Можно добавить новые свойства к существующему объекту, просто присвоив ему значение. <br>
+	Предположим, что объект person уже существует - тогда можно дать ему новые свойства:
+	<br>ПРИМЕР
+	<pre>
+		person_6.nationality = "Eng";
+		person_6.nationality; //<b id="person_6.3"></b>
+	</pre>
+
+	<h2>Удаление свойств</h2>
+	<b>delete</b> Ключевое слово удаляет свойство из объекта: и само имущество. После удаления свойство нельзя использовать до его повторного добавления. <br>
+	<b>delete</b> Оператор предназначен для использования на свойства объекта. Это не влияет на переменные или функции. <br>
+	<b>delete</b> Оператор не должен использоваться на заранее определенных свойств объектов JS. Это может привести к сбою приложения.
+	<br>ПРИМЕР
+	<pre>
+		delete person_6.age;
+		person_6.age; //<b id="person_6.4"></b>
+	</pre>
+
+	<h2>Атрибуты собственности</h2>
+	У всех свойств есть имя. Кроме того, они также имеют ценность. Значение - это один из атрибутов свойства. <br>
+	Другие атрибуты: перечисляемый, настраиваемый и доступный для записи. <br>
+	Эти атрибуты определяют, как можно получить доступ к свойству (доступно ли оно для чтения? Или для записи?) <br>
+	В JS все атрибуты можно читать, но можно изменить только атрибут значения (и только если свойство доступно для записи). <br>
+	(В ECMAScript 5 есть методы как для получения, так и для установки всех атрибутов свойств)
+
+	<h2>Свойства прототипа</h2>
+	Объекты JS наследуют свойства своего прототипа. <br>
+	<b>delete</b> Ключевое слово не удаляет наследуемые свойства, но при удалении свойства прототипа, он будет влиять на все объекты, унаследованные от прототипа.
+
+	<script>
+		var person_6 = {
+			first_name:"John", 
+			last_name:"Doe", 
+			age:3
+		};
+		
+		document.getElementById("person_6.0").innerHTML = person_6.first_name + " is " + person_6.age + " years old ";
+		document.getElementById("person_6.1").innerHTML = person_6["first_name"] + " is " + person_6["age"] + " years old ";
+
+		var txt = "";
+		var x;
+		for (x in person_6) {
+			txt += person_6[x] + " ";
+		}
+		document.getElementById("for_in_0").innerHTML = txt;
+
+		person_6.nationality = "Eng";
+		document.getElementById("person_6.3").innerHTML = person_6.nationality;
+
+		delete person_6.age;
+		document.getElementById("person_6.4").innerHTML = person_6.age;
+	</script>
+
+	<h1>Методы объектов JavaScript</h1>
+
+	<h2></h2>
+	<br>ПРИМЕР
+	<pre>
+	</pre>
+	<code><ul id=''> </ul></code> <br>
+
+	<h2></h2>
+	<br>ПРИМЕР
+	<pre>
+	</pre>
+	<code><ul id=''> </ul></code> <br>
+
+
+<footer></footer>
+<script type ="text/javascript" src="list.js" charset="utf-8"> </script>
+</body>
+</html>

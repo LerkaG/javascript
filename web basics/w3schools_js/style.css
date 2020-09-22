@@ -5,7 +5,7 @@ h1 {
 
 #table_link {
 	margin-top: 10px; 
-	width: 940px;
+	width: 1000px;
 	background-color: black;
 	color: black;
 }
@@ -23,7 +23,7 @@ h1 {
 #file{
 	font-weight: 600;
 	background-color: #bfbfbf;
-	width: 470px;
+	width: 580px;
 	padding-right: 5px;
 	margin-bottom: 34px;
 	font-size: 18px;
@@ -95,6 +95,7 @@ input {
 	height: 60px;
 	background-color: #9e8dfc; 
 	font-size: 30px;
+	opacity: 80%;
 	border-left: 23px;
 }
 .btn_down {
@@ -107,6 +108,7 @@ input {
 	height: 60px;
 	background-color: #9e8dfc; 
 	font-size: 30px;
+	opacity: 80%;
 	border-left: 23px;
 }
 .btn:hover, .btn_down:hover {
